@@ -119,7 +119,7 @@ QUESTIONS.push(
    why:'Methyltransferase uses S-adenosylmethionine and transfers a methyl group, so neither the cofactor nor the product matches a sulfate conjugate.'}],
  teachImg:'tbl_ph2_a',
  teach:'Sulfation and glucuronidation share a substrate and differ in almost everything else. Sulfotransferase is cytosolic and uses PAPS; UDP-glucuronosyltransferase sits in the endoplasmic reticulum and uses UDP-glucuronic acid. The practical difference is capacity: the PAPS pool is limited, so sulfation saturates at lower doses and traffic shifts to glucuronidation, and when that fills too the remainder goes to Phase 1. That sequence is exactly what the acetaminophen threshold describes in MCMet-9_17_2026.pdf slide 49, where sulfates and glucuronides are the major metabolites at normal doses.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 47 (sulfotransferases are cytosolic)',
  quote:'-OH | Sulfotransferases (STs/SULTs) | 3\'-Phosphoadenosine-5\'-phosphosulfate (PAPS) | Sulfate'},
 
 {id:'v-fg-13b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'gst-target',
@@ -153,7 +153,7 @@ QUESTIONS.push(
    why:'Neutralizing electrophiles is the glutathione S-transferase function. Here the problem is the reverse: the carboxylic acid carbon is not electrophilic enough, and activation makes it more reactive rather than less.'}],
  teachImg:'tbl_ph2_a',
  teach:'Acetyl coenzyme A appears twice in the Phase 2 table with two different jobs. For N-acetyltransferase acting on -NH2 it is the donor, and the acetyl group ends up on the drug. For acyl synthetase acting on -CO2H it is an activator, and what ends up on the drug is the amino acid. That is why the cofactor column for this row reads acetyl coenzyme A and an amino acid rather than one or the other. The same underlying difficulty, that a carboxylic acid is a poor electrophile, is why carboxylic acids have several competing routes on slide 13.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 55 (acetyl CoA activates the -COOH)',
  quote:'Acetyl Co-A & an Amino Acid (e.g., Glycine, Glutamine)'},
 
 {id:'v-fg-16b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
@@ -188,7 +188,7 @@ QUESTIONS.push(
    why:'Carboxylesterase hydrolyses esters, amides, carbamates and carbonates, slides 8 and 14 to 16. Hydrolysis changes no oxidation state, so it can do neither of the reactions described.'}],
  teachImg:'fgm_carbonyl',
  teach:'The aldehyde is the only group in this lecture that can go in both directions, because it sits in the middle of the alcohol-aldehyde-acid sequence. Ketones cannot: they have no hydrogen on the carbonyl carbon to lose, so they are only reduced, giving the secondary alcohol on slide 12. That asymmetry explains why aldehydes matter for toxicity, since they are electrophilic carbonyls in MCMet-9_17_2026.pdf slide 36 and are hazardous while they persist. Ethanol shows both sides: alcohol dehydrogenase makes acetaldehyde, which is reactive, and aldehyde dehydrogenase converts it onward to harmless acetate.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 12',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 12; Lecture #11 (MCMet-9_10_26.pdf) slide 23 (ALDH) and slide 30 (AKR)',
  quote:'Aldehydes undergo oxidative & reductive metabolism'},
 
 {id:'fg-20', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'ketone-reduction',
@@ -238,8 +238,8 @@ QUESTIONS.push(
    why:'Displacement raises free drug rather than lowering total serum levels through clearance.'},
   {t:'The inducer reduced triazolam absorption from the gut', correct:false,
    why:'Reduced absorption would also lower serum levels, so the direction fits and the mechanism does not. What separates them is where the change happens: an absorption effect keeps drug out of the circulation in the first place, while induction removes drug that was absorbed normally, by building more enzyme to clear it. The stem says an inducer was added, which names the mechanism, and induction acts on clearance rather than on uptake from the gut.'}],
- teach:'Induction changes how much enzyme is present, so it takes time and then persists. A drug that induces acts on transcription, so more enzyme protein accumulates over days rather than the effect appearing with the first dose, and the extra enzyme decays over days after the inducer stops. While it is present, a substrate of that enzyme is cleared faster and its serum concentration falls. Triazolam with rifampin is the worked case, and the shape of the curve is what identifies it: the level drops gradually as the enzyme builds up, rather than changing at once as an inhibitor would make it.',
- cite:'Lecture #10 slide 49'},
+ teach:'Induction changes how much enzyme is present, so it takes time and then persists. A drug that induces acts on transcription, so more enzyme protein accumulates over days rather than the effect appearing with the first dose, and the extra enzyme decays over days after the inducer stops. While it is present, a substrate of that enzyme is cleared faster and its serum concentration falls. Triazolam with rifampin is the worked case on Lecture 10 slide 49. The figure is a single-dose concentration–time plot over ten hours with two curves: plot X, triazolam alone, peaks at about 2.5 ng/mL; plot T, triazolam after rifampin pretreatment, peaks at about 0.3 ng/mL and stays lower throughout. The rifampin was given for days beforehand, so by the time triazolam is dosed the extra enzyme is already present and the whole curve sits roughly ten times lower. A question built from this slide asks which plot is the rifampin one, and the answer is T, the low curve. The handwritten note on the slide reads NTK, will present a case like this.',
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 49'},
 
 {id:'df-12', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'ddi-serious-drug-list',
  tags:['recall'], source:'slide',
@@ -254,7 +254,7 @@ QUESTIONS.push(
   {t:'Atenolol', correct:false,
    why:'Atenolol is cited as a renally eliminated drug.'}],
  teach:'The list of drugs involved in serious interactions is worth reading as a set of categories rather than as names. Cyclosporin and phenytoin are there for a narrow therapeutic index, so a modest change in clearance crosses into toxicity or loss of effect. Erythromycin, fluconazole and itraconazole are strong inhibitors. Rifampin is the strong inducer. The protease inhibitors, the SSRIs and the HMG-CoA reductase inhibitors appear because they combine a common indication with a CYP dependence. Theophylline combines a narrow index with CYP1A2 metabolism, which is why smoking status changes its dose.',
- cite:'Lecture #10 slide 55'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 55'},
 
 {id:'df-13', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'tylenol-ethanol-ddi',
  tags:['case','reasoning'], source:'slide',
@@ -269,7 +269,7 @@ QUESTIONS.push(
   {t:'Ethanol and acetaminophen compete for plasma protein binding', correct:false,
    why:'Protein binding is not the mechanism described for this pair.'}],
  teach:'Acetaminophen with ethanol is a CYP2E1 interaction, and chronic use is what makes it dangerous rather than a single drink. Ethanol induces CYP2E1, so more of an acetaminophen dose goes down the route that produces N-acetyl-p-benzoquinone imine. Chronic alcohol use also depletes glutathione, which is the defence against that metabolite. Both changes move in the same direction, so a dose that would be safe produces more reactive metabolite and less of what neutralises it, and liver toxicity follows at doses below the usual threshold.',
- cite:'Lecture #10 slide 54; Lecture #13 slide 28; Lecture #15 slide 47'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 54; Lecture #13 (MCMet-9_15_2026.pdf) slide 28; Lecture #15 (MCMet-9_17_2026.pdf) slide 47'},
 
 /* ---- pathways variants ---- */
 {id:'v-p1-15b', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'ce-four-substrates',
@@ -283,7 +283,7 @@ QUESTIONS.push(
   {t:'Amide', correct:false, why:'Amides are CE substrates, and CEs acting on them are also called amidases.'}],
  svg:DIA.acylFamily,
  teach:'Carboxylesterase takes four substrates, and they differ only in what sits on the carbonyl carbon beside the carbon skeleton. One oxygen makes an ester, which hydrolyses to an acid and an alcohol. One nitrogen makes an amide, giving an acid and an amine. One of each makes a carbamate, giving an alcohol and an amine with loss of carbon dioxide. Two oxygens make a carbonate, giving two alcohols and again losing carbon dioxide. Identifying the group therefore means counting and naming the heteroatoms on that one carbon, and the products follow without a separate rule for each.',
- cite:'Lecture #11 slides 35–38'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 35–38'},
 
 {id:'v-fg-5b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbamate-hydrolysis-products',
  tags:['structure','reasoning'], source:'slide',
@@ -316,7 +316,7 @@ QUESTIONS.push(
   {t:'Ethanol → acetaldehyde by MAO → acetate by CYP2E1', correct:false,
    why:'MAO acts on amines, not alcohols.'}],
  teach:'Two enzymes run the ethanol ladder in a fixed order. Alcohol dehydrogenase takes a primary alcohol to an aldehyde; aldehyde dehydrogenase takes that aldehyde to a carboxylic acid. Both are oxidations of the same carbon, each removing hydrogen and raising the oxidation state one step. The order cannot reverse, since the second enzyme\'s substrate is the first enzyme\'s product, and that dependency is what disulfiram exploits: inhibiting the second step leaves the intermediate aldehyde to accumulate.',
- cite:'Lecture #11 slides 22–23'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 22–23'},
 
 {id:'v-p2-1b', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'glucuronidation-ident',
  tags:['cofactor','reasoning'], source:'slide',
@@ -354,7 +354,7 @@ QUESTIONS.push(
 
 {id:'v-el-3b', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'polar-renal-lipophilic-biliary',
  tags:['reasoning','exam-pattern'], source:'both',
- stem:'A drug has a log P of about 4 and is extensively metabolized. Which elimination route dominates for the parent-derived material?',
+ stem:'A drug with a log P of about 4 reaches the kidney and the liver unchanged. Which elimination route dominates for the intact parent?',
  options:[
   {t:'Hepatic, through bile into feces', correct:true,
    why:'A log P of 4 is strongly lipophilic, and lipid-soluble material is moved into bile by active transport. The same property would defeat the renal route, since such a molecule reaching the tubule diffuses back into circulation rather than staying in urine.'},
@@ -365,7 +365,7 @@ QUESTIONS.push(
   {t:'Salivary', correct:false,
    why:'Saliva is not a major route and is used for monitoring, detecting exposure from 5 to 48 hours afterwards, slide 26. It has no capacity to clear a meaningful fraction of a dose.'}],
  svg:DIA.routeRank,
- teach:'One property, whether the molecule can cross a membrane passively, sorts most drugs between the two major routes. Polar drug cannot, so once filtered it is committed to urine. Lipophilic drug can, so the kidney filters it and then takes it back, and the body uses active transport into bile instead. That is also why extensive metabolism matters here: Phase 1 and Phase 2 steps raise polarity, so the metabolites of a lipophilic parent may leave renally even while the parent itself goes through bile. Reading the question as parent-derived material rather than as the parent alone is what keeps the two answers apart.',
+ teach:'One property, whether the molecule can cross a membrane passively, sorts most drugs between the two major routes. Polar drug cannot, so once filtered it is committed to urine. Lipophilic drug can, so the kidney filters it and then takes it back, and the body uses active transport into bile instead. The same drug\'s metabolites are a separate question with a different answer: Phase 1 and Phase 2 steps raise polarity, so the conjugates of a lipophilic parent leave renally even while the intact parent goes through bile. Prep-sheet question 6 asks about the metabolite\'s route for exactly this reason, and there the answer is renal. Here the question is the intact parent, and the answer is bile.',
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 7, 16',
  quote:'Non-polar drugs (e.g., Phenytoin) excreted here are subject to tubular reabsorption'},
 
@@ -436,7 +436,7 @@ QUESTIONS.push(
    why:'These are correctly grouped as nucleophiles, but that is the opposite electronic character. They are the attacking partners and the targets for Phase 2 conjugation, not the toxicophores.'}],
  svg:DIA.toxicophores,
  teachImg:'tx_aflatoxin',
- teach:'Three of the six toxicophore categories describe the same event at different positions in a molecule. Anything electron poor invites attack from the electron-rich sites that fill proteins and DNA: cysteine thiols, lysine amines, DNA base nitrogens. The remaining two categories do damage by routes that share nothing with direct attack. Free radicals carry an unpaired electron and propagate, creating a new radical with each reaction rather than being consumed, which is why a separate antioxidant defense exists on slide 61. The others group, haptens, azo compounds and N-hydroxy groups, covers immune and carcinogenic routes that need an extra step before harm appears.',
+ teach:'Three of the five toxicophore bullets on slide 30 describe the same event at different positions in a molecule. Anything electron poor invites attack from the electron-rich sites that fill proteins and DNA: cysteine thiols, lysine amines, DNA base nitrogens. The remaining two categories do damage by routes that share nothing with direct attack. Free radicals carry an unpaired electron and propagate, creating a new radical with each reaction rather than being consumed, which is why a separate antioxidant defense exists on slide 61. The others group, haptens, azo compounds and N-hydroxy groups, covers immune and carcinogenic routes that need an extra step before harm appears.',
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 30',
  quote:'Electrophilic carbons · Electrophilic carbonyls · Electrophilic double bonds · Free radicals (ROS/RNS included) · Others: Haptens, Azo, N-OH, etc.'},
 
@@ -508,7 +508,7 @@ QUESTIONS.push(
   {t:'It will be excreted unchanged by the lungs', correct:false,
    why:'Pulmonary elimination serves volatile agents.'}],
  teach:'Phase 1 and Phase 2 name two kinds of chemistry rather than two stages in a fixed order. Phase 1 enzymes are oxygenases and related enzymes that insert oxygen, remove hydrogen, add electrons or add water, and the result is a functional group that was absent or masked. Phase 2 enzymes are transferases that move a group from a cofactor onto a functional group already present. Because the second only needs a suitable group and does not care where it came from, a drug that already carries a hydroxyl or a carboxyl can go straight to conjugation, and a Phase 2 metabolite can afterwards undergo a Phase 1 reaction.',
- cite:'Lecture #10 slides 12–14; Lecture #14 slide 23'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 12–14; Lecture #14 (MCMet-9_16_2026.pdf) slide 23'},
 
 /* ---- Yendapally variants ---- */
 {id:'v-ad-1b', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'abc-vs-slc',
@@ -604,7 +604,7 @@ QUESTIONS.push(
   {t:'Log P falls and water solubility also falls', correct:false,
    why:'These two move in opposite directions by definition, since log P measures preference for an organic phase over water. Both falling together is not possible.'}],
  teach:'Phase 2 conjugation is a deliberate reduction in log P, which connects the physicochemical material to the metabolism lectures. Attaching glucuronic acid, sulfate or an amino acid adds hydrogen-bonding groups and often a charge, so the metabolite is far more water soluble than the parent and can be eliminated renally. The same logic in reverse explains prodrug design, where log P is raised on purpose to improve absorption or prolong action. Reading a metabolic step as a movement along the log P scale predicts what happens to the molecule\'s fate without recalling the specific enzyme.',
- cite:'Physicochemical Properties 2 (090226_PhysicochemicalProp2.pdf) slides 6, 9',
+ cite:'Physicochemical Properties 2 (090226_PhysicochemicalProp2.pdf) slides 6, 9; the conjugates and their groups, Lecture #14 (MCMet-9_16_2026.pdf) slides 29–30',
  quote:'Approaches to address solubility issues: Salt formation · Chemical modification by adding polar groups like –OH, NH2 etc.'},
 
 {id:'v-st-5b', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-vs-diastereomer',
@@ -636,7 +636,7 @@ QUESTIONS.push(
    why:'It can be determined directly by reversing the reading, which takes no redrawing. Rebuilding gives the same answer more slowly.'},
   {t:'It depends on whether the compound is dextrorotatory', correct:false,
    why:'Optical rotation is measured experimentally and has no fixed relationship to the R and S assignment, which is derived from structure alone.'}],
- teach:'The orientation requirement exists because a tetrahedral centre presents opposite senses of rotation from opposite sides, so the rule fixes a viewpoint to make the answer unambiguous. Two shortcuts follow. When the lowest-priority group points toward the viewer, read the rotation as drawn and reverse the letter. When it lies in the plane of the page, swapping it with the group that does point away also inverts the answer, so a second swap restores it. Both are faster than redrawing, and both depend on the ranking already being right.',
+ teach:'The orientation requirement exists because a tetrahedral centre presents opposite senses of rotation from opposite sides, so the rule fixes a viewpoint to make the answer unambiguous. One consequence follows. When the lowest-priority group points toward the viewer, read the rotation as drawn and reverse the letter, which is faster than redrawing and depends on the ranking already being right.',
  teachImg:'st_cip_rules2',
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 10, 13',
  quote:'The molecule is viewed from the side opposite the lowest-priority atom.'},

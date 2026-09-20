@@ -29,7 +29,7 @@ const sandbox = {
 };
 sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
-code += "\nglobalThis.__X={QUESTIONS,TOPICS,IMAGES,record,pickNext,st,score,drawN,askProfile,getDB:()=>DB};\n";
+code += "\nglobalThis.__X={QUESTIONS,TOPICS,IMAGES,record,pickNext,st,score,drawN,drawMixed,EXAM_SATA,askProfile,markGuessed,isMulti,gradeMulti,correctSet,getDB:()=>DB};\n";
 try { vm.runInContext(code, sandbox); }
 catch (e) { console.error('FAIL: script threw at load — ' + e.message + '\n' + e.stack); process.exit(1); }
 
@@ -55,8 +55,16 @@ for (const q of QUESTIONS) {
   if (!['Sikazwe','Yendapally'].includes(q.prof)) bad(`${q.id}: bad prof "${q.prof}"`);
   if (!['new','old'].includes(q.tier)) bad(`${q.id}: bad tier "${q.tier}"`);
   const correct = q.options.filter(o=>o.correct);
-  if (correct.length !== 1) bad(`${q.id}: ${correct.length} correct options (must be exactly 1)`);
+  if (q.multi) {
+    // select-all: at least two keyed options and at least one distractor,
+    // so the toggles and the all-or-nothing grade both have something to do
+    if (correct.length < 2) bad(`${q.id}: select-all with ${correct.length} correct option(s) (needs 2 or more)`);
+    if (correct.length === q.options.length) bad(`${q.id}: select-all with no distractor`);
+    if (q.options.length < 4) bad(`${q.id}: select-all with only ${q.options.length} options`);
+  } else if (correct.length !== 1) bad(`${q.id}: ${correct.length} correct options (must be exactly 1)`);
   if (q.options.length < 3) bad(`${q.id}: only ${q.options.length} options`);
+  if (q.options.length > 10) bad(`${q.id}: ${q.options.length} options, more than the option letters can label`);
+  if (q.teachImg && !IMAGES[q.teachImg]) bad(`${q.id}: references missing teachImg "${q.teachImg}"`);
   for (const o of q.options) {
     if (!o.t) bad(`${q.id}: option with no text`);
     if (!o.why) bad(`${q.id}: option "${String(o.t).slice(0,30)}" has no explanation`);
@@ -89,7 +97,7 @@ for (const t of TOPICS) {
 }
 
 console.log('\n=== 4. Spaced repetition rules ===');
-const { record, pickNext, st } = X;
+const { record, pickNext, st, score, markGuessed, isMulti, gradeMulti, correctSet } = X;
 X.askProfile(false);
 const DB = X.getDB;
 
@@ -121,13 +129,32 @@ record(q0,'wrong');
 if (st(q0.concept).box !== 0) bad('a miss did not reset the concept to active review (rule 4)');
 else console.log('  ok    a later miss resets the concept to active review');
 
-// Rule 3: a guess must not count as mastery
+// Rule 3: a guess is a gap. It must rank with missed concepts, ahead of
+// never-seen ones, no matter how far the concept had advanced beforehand.
+// The old rule capped the box at 1, which let a guess on a box-2 concept drop
+// to ordinary due-review below unseen material; this asserts the fix.
 const q1 = QUESTIONS.find(q=>q.concept!==q0.concept && q.topic==='tox');
+record(q1,'correct'); X.getDB().qn += 9; record(q1,'correct'); X.getDB().qn += 21;   // box 2 first
 record(q1,'guessed');
 const g = st(q1.concept);
 if (g.streak !== 0) bad('a guess advanced the streak (rule 3)');
-else if (g.box > 1) bad('a guess pushed the concept into long-interval review (rule 3)');
-else console.log('  ok    a guess is held in short rotation, streak not advanced');
+else if (g.box !== 0) bad(`a guess on a learned concept left box at ${g.box}, not 0 (rule 3)`);
+else {
+  X.getDB().qn += 4;
+  const sc = score(q1);
+  if (!sc || sc.tier !== 4) bad(`a guessed concept scored tier ${sc ? sc.tier : 'null'}; it must be tier 4, above never-seen (rule 3/5)`);
+  else console.log('  ok    a guess resets the concept to unresolved and outranks never-seen material');
+}
+// The after-the-fact guess button must agree with record('guessed')
+const q2 = QUESTIONS.find(q=>q.concept!==q0.concept && q.concept!==q1.concept && q.topic==='tox');
+record(q2,'correct', 0, 1200);
+const flipped = markGuessed(q2);
+const g2 = st(q2.concept), lastA = X.getDB().answers[X.getDB().answers.length-1];
+if (!flipped || lastA.result !== 'guessed' || g2.box !== 0 || g2.guessed !== 1)
+  bad('marking a correct answer as a guess did not rewrite the log and reset the box');
+else if (lastA.picked !== 0 || lastA.ms !== 1200)
+  bad('the answer log lost the picked option or the time taken');
+else console.log('  ok    "I guessed that one" rewrites the log, resets the box, keeps picked and ms');
 
 // Rule 6: prefers unseen wording of a concept already missed
 const multi = {};
@@ -146,10 +173,13 @@ if (fresh && mastered) {
 }
 
 console.log('\n=== 5. Exam simulation draw ===');
+// the same split beginExam uses: select-all items spread 38 : 8 : 4 across the pools
+const sNew = Math.round(X.EXAM_SATA * 38/50), sYen = Math.round(X.EXAM_SATA * 8/50);
+const sOld = Math.max(0, X.EXAM_SATA - sNew - sYen);
 function drawTest(){
-  const y = X.drawN(QUESTIONS.filter(q=>q.prof==='Yendapally'),8);
-  const o = X.drawN(QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='old'),4);
-  const n = X.drawN(QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='new'),38);
+  const y = X.drawMixed(QUESTIONS.filter(q=>q.prof==='Yendapally'), 8, sYen);
+  const o = X.drawMixed(QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='old'), 4, sOld);
+  const n = X.drawMixed(QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='new'), 38, sNew);
   return [y,o,n];
 }
 const [y,o,n] = drawTest();
@@ -160,6 +190,19 @@ const dupes = new Set(); let dupCount=0;
 [...y,...o,...n].forEach(q=>{ if(dupes.has(q.id)) dupCount++; dupes.add(q.id); });
 if (dupCount) bad(`${dupCount} duplicate questions on one exam paper`);
 else console.log('  ok    no duplicate questions on a single paper');
+const nSata = [...y,...o,...n].filter(X.isMulti).length;
+const bankSata = {yen: QUESTIONS.filter(q=>q.prof==='Yendapally' && X.isMulti(q)).length,
+                  old: QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='old' && X.isMulti(q)).length,
+                  nw:  QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='new' && X.isMulti(q)).length};
+console.log(`  select-all on the paper: ${nSata} of 50 (target ${X.EXAM_SATA}; bank holds new ${bankSata.nw}, old ${bankSata.old}, Yendapally ${bankSata.yen})`);
+if (nSata !== X.EXAM_SATA) bad(`paper carries ${nSata} select-all items, expected ${X.EXAM_SATA}`);
+else console.log('  ok    the paper carries the intended number of select-all items');
+if (bankSata.nw < sNew || bankSata.old < sOld || bankSata.yen < sYen)
+  bad(`a pool holds fewer select-all questions than its share of the paper (need new ${sNew}, old ${sOld}, Yendapally ${sYen})`);
+// 20 fresh draws: every paper is 50 distinct questions with the same select-all count
+for (let i=0;i<20;i++){ const [a,b,c]=drawTest(); const all=[...a,...b,...c];
+  if (all.length!==50 || new Set(all.map(q=>q.id)).size!==50 || all.filter(X.isMulti).length!==X.EXAM_SATA){ bad('a repeated draw broke the paper shape'); break; } }
+console.log('  ok    20 repeated draws all kept the paper shape');
 
 console.log('\n=== 6. Storage isolation ===');
 const keys = Object.keys(store);

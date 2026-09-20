@@ -116,7 +116,7 @@ QUESTIONS.push(
    why:'Optical rotation is a measured physical property with no fixed relationship to either configuration or potency. The eutomer can be the dextrorotatory or the levorotatory isomer.'}],
  teach:'This is the structural reason stereochemistry matters clinically rather than only descriptively. A receptor surface offering three binding points can be matched fully by one enantiomer and only partially by its mirror image, so the two are not interchangeable even though they contain identical atoms. The consequences run through the deck: ethambutol is more potent as the S,S isomer than the R,R; the E isomer of triprolidine is a thousand-fold more potent than the Z; levalbuterol achieves with a quarter of the dose what racemic albuterol needs; and esomeprazole is the single S isomer of omeprazole.',
  teachImg:'st_biological',
- cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 3, 19–20',
+ cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 3, 19–20; triprolidine slide 25',
  quote:'Easson-Stedman Hypothesis: The more potent enantiomer must be involved in a minimum of three intermolecular interactions with the receptor surface. Whereas the less potent enantiomer only interacts with two sites'},
 
 {id:'st-8', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'ez-isomerism',
@@ -133,7 +133,7 @@ QUESTIONS.push(
    why:'Optical activity arises from chirality, a separate phenomenon. Double bond geometry is fixed by restricted rotation rather than by handedness.'}],
  teach:'Both notations answer the same question, which groups sit on the same side of the double bond, and they differ in how the groups being compared are chosen. Cis and trans compare the obvious pair; E and Z apply the same atomic-number priority rules used for R and S to each carbon of the double bond, then ask whether the two winners are together, zusammen, or opposite, entgegen. Restricted rotation is what makes the arrangement permanent and therefore a real isomerism, and the consequences can be large: the E isomer of triprolidine is a thousand-fold more potent an antihistamine than the Z.',
  teachImg:'st_ez',
- cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 22–25',
+ cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 22–25; ring systems slide 26',
  quote:'Z (zusammen) means together · E (entgegen) means opposite'},
 
 {id:'dd-1', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-definition',
@@ -567,14 +567,14 @@ QUESTIONS.push(
  stem:'What distinguishes active transport from facilitated transport?',
  options:[
   {t:'Active transport moves drug against its concentration gradient and requires energy; facilitated transport uses a carrier but only moves drug down its gradient', correct:true,
-   why:'Both use a protein carrier and both saturate, since the number of carriers is finite. The dividing line is energy: facilitative transporters move molecules only down their concentration gradient, while active transport spends energy to work against it.'},
+   why:'Both use a protein carrier. The dividing line is energy: facilitative transporters move molecules only down their concentration gradient, without a separate energy source, while active transport spends energy to move drug from low to high concentration.'},
   {t:'Active transport requires no carrier protein', correct:false,
    why:'Active transport depends entirely on transporter proteins, and most drug transporters are active. The process needing no carrier is passive diffusion, which is how most drugs cross membranes.'},
   {t:'Facilitated transport works against the gradient', correct:false,
    why:'Facilitative transporters cannot, because nothing supplies the energy that would require. Vitamin B12 crossing the gastrointestinal membrane is the deck\'s example of facilitated transport.'},
-  {t:'Passive diffusion is saturable while active transport is not', correct:false,
-   why:'This is reversed. Carrier-mediated processes saturate once the carriers are occupied; passive diffusion depends only on a concentration gradient and does not.'}],
- teach:'Three mechanisms are separated by two questions. Is a carrier involved? Passive diffusion uses none, so it is unsaturable and depends on the gradient, lipophilicity, ionization state, and the area and duration of contact, which is what Fick\'s law expresses. Facilitated transport and active transport both use carriers, so both saturate and both can be inhibited. Is energy spent? Only active transport can then move drug against its gradient, and it divides again into primary, using ATP directly, and secondary, using a gradient another pump created. Most drugs are absorbed by passive diffusion; most drug transporters are active.',
+  {t:'Passive diffusion needs a carrier protein, and facilitated transport does not', correct:false,
+   why:'Reversed. Passive diffusion is the simplest way across a membrane and depends only on a concentration gradient, slide 11; facilitated transport is the one that uses a special carrier or transporter molecule, slide 13.'}],
+ teach:'Three mechanisms are separated by two questions. Is a carrier involved? Passive diffusion uses none and depends on the gradient, lipophilicity, ionization state, and the area and duration of contact, which is what Fick\'s law expresses. Facilitated transport and active transport both use carriers. Is energy spent? Only active transport can then move drug against its gradient, and it divides again into primary, using ATP directly, and secondary, using a gradient another pump created. Most drugs are absorbed by passive diffusion; most drug transporters are active.',
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 10–15',
  quote:'Facilitative transporters only move molecules down their concentration gradient · Remember! without the use of a separate energy source'},
 
@@ -595,7 +595,7 @@ QUESTIONS.push(
  quote:'First-pass elimination or presystemic elimination: Elimination in the intestine and liver reduces the amount of drug delivered to the systemic circulation'},
 
 {id:'ad-8', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'poor-bioavailability-causes',
- tags:['reasoning','exam-pattern'], source:'slide',
+ tags:['reasoning','exam-pattern'], source:'both',
  stem:'Which combination of factors would most plausibly explain poor oral bioavailability?',
  options:[
   {t:'Extensive first-pass metabolism, efflux by intestinal transporters, and poor aqueous solubility', correct:true,
@@ -606,8 +606,8 @@ QUESTIONS.push(
    why:'Protein binding is a distribution property that acts after absorption, governing how much free drug circulates and how much reaches tissue. It does not change how much of the dose crossed the gut wall.'},
   {t:'A large volume of distribution', correct:false,
    why:'Volume of distribution describes where a drug goes once it is in the circulation, so like protein binding it acts after the question has been settled. A drug can have a large Vd and excellent bioavailability.'}],
- teach:'Bioavailability is the fraction of an oral dose that reaches the systemic circulation, so anything that removes drug before that point lowers it. The deck groups the causes: pharmaceutical, meaning dissolution and disintegration; physicochemical, meaning solubility and lipophilicity; physiological, meaning gastrointestinal pH, metabolism, mucosal thickness and residence time; and interactions with food, other drugs and gut flora. Size and nature of the molecule, transporters, and first-pass metabolism are the three the deck names when asking this directly. Distribution properties such as protein binding and volume of distribution sit outside the question entirely.',
- cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 4, 7, 35',
+ teach:'Bioavailability is the fraction of an oral dose that reaches the systemic circulation, so anything that removes drug before that point lowers it. The deck groups the causes: pharmaceutical, meaning dissolution and disintegration; physicochemical, meaning solubility and lipophilicity; physiological, meaning gastrointestinal pH, metabolism, mucosal thickness and residence time; and interactions with food, other drugs and gut flora. Slide 4 asks the question directly, and the four factors given in the 09/03 lecture and written on that slide are first-pass metabolism, the size and nature of the molecule, transporters, and hydrophilicity or lipophilicity. Distribution properties such as protein binding and volume of distribution sit outside the question entirely.',
+ cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 4, 7, 35; the four factors from the 09/03 lecture, written on slide 4',
  quote:'Physicochemical: Solubility and hydrophilicity/lipophilicity · Physiological: GI pH, metabolism, mucosal thickness, and residence time'},
 
 {id:'ad-9', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'loperamide-quinidine',

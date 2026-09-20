@@ -146,8 +146,31 @@ function fgScale(svg, target, floor){
             .replace(/\bheight="[\d.]+"/, `height="${(h*k).toFixed(0)}"`);
 }
 
+/* Resolve an option's wording to an atlas key. Option text says
+   "Tetrahydrofuran" or "Epoxide"; the atlas key is "Tetrahydrofuran THF" or
+   "Epoxide oxirane". Exact match first, then case-insensitive, then the
+   atlas key whose first word is the whole option, so a structure is drawn
+   whenever one exists for that group and never for a different one. */
+const FG_KEYS = (typeof FG !== 'undefined') ? Object.keys(FG) : [];
+const FG_INDEX = (() => {
+  const ix = {};
+  FG_KEYS.forEach(k => {
+    ix[k.toLowerCase()] = k;
+    const first = k.toLowerCase().split(' ')[0];
+    if(!(first in ix)) ix[first] = k;
+  });
+  return ix;
+})();
+function fgKey(name){
+  if(!name) return null;
+  if(typeof FG !== 'undefined' && FG[name]) return name;
+  const lc = String(name).toLowerCase().trim();
+  return FG_INDEX[lc] || null;
+}
+
 function fgShow(key){
-  const svg = (typeof FGQ !== 'undefined' && FGQ[key]) || '';
+  const k = fgKey(key);
+  const svg = (k && typeof FGQ !== 'undefined' && FGQ[k]) || '';
   return svg ? `<div class="fgshow">${fgScale(svg, FG_TARGET, 1.4)}</div>` : '';
 }
 
@@ -187,18 +210,17 @@ function fgTell(key){
    leads, because the row is read as "this one, and here is what each of the
    others would have looked like". */
 function cmpNames(q){
-  const have = k => typeof FG !== 'undefined' && FG[k];
-  if(Array.isArray(q.cmp)) return q.cmp.filter(have);
-  const opts = (q.options || []).map(o => o.t);
-  if(!opts.length || !opts.every(have)) return [];
-  const right = (q.options.find(o => o.correct) || {}).t;
+  if(Array.isArray(q.cmp)) return q.cmp.map(fgKey).filter(Boolean);
+  const opts = (q.options || []).map(o => fgKey(o.t));
+  if(!opts.length || !opts.every(Boolean)) return [];
+  const right = fgKey((q.options.find(o => o.correct) || {}).t);
   return right ? [right, ...opts.filter(t => t !== right)] : opts;
 }
 
 function cmpStrip(q, heading){
   const names = cmpNames(q);
   if(names.length < 2) return '';
-  const right = (q.options || []).filter(o => o.correct).map(o => o.t);
+  const right = (q.options || []).filter(o => o.correct).map(o => fgKey(o.t));
   const cells = names.map(k => {
     const ok = right.includes(k);
     return `<figure class="cmpcell${ok ? ' is-ok' : ''}">
@@ -214,7 +236,8 @@ function cmpStrip(q, heading){
 /* The structure for one option, drawn beside its explanation so the reader is
    not asked to hold four shapes in mind while reading about them. */
 function optFig(name){
-  const svg = (typeof FG !== 'undefined' && FG[name]) || '';
+  const k = fgKey(name);
+  const svg = (k && typeof FG !== 'undefined' && FG[k]) || '';
   return svg ? `<span class="wfig">${fgScale(svg, 84, 1)}</span>` : '';
 }
 
@@ -334,16 +357,24 @@ function renderTopics(){
 
   h += filterBar();
 
-  // Every question in the course is examinable, so a straight pass through all
-  // of them is a first-class option rather than something below the topic list.
+  // The featured pass follows the paper. The bank holds 129 questions in the
+  // pool that supplies 4 of the 50 marks and 137 in the pool that supplies 38,
+  // so a pass through everything spends most of its time on the least-weighted
+  // material. This one samples the three pools in the paper's own proportion,
+  // anchored on the whole of the 38-mark pool, so the evening goes where the
+  // marks are. The full pass is still here, second.
   const nAll = QUESTIONS.length, nFiltered = poolFor(null, null).length;
+  const wp = weightedPool();
   h += `<div class="topic sweepcard"><div class="subs">
+    <div class="subrow"><span class="sname"><b>Exam-weighted pass — ${wp.length} questions</b>
+      <small>Every question from the 38-mark pool, plus Yendapally and the earlier Sikazwe material in the paper’s 38 : 8 : 4 proportion. Shuffled, each once.</small></span>
+      <button id="sweepWeighted">Start</button></div>
     <div class="subrow"><span class="sname"><b>All ${nAll} questions, one pass</b>
-      <small>Shuffled, each asked once, nothing held back by scheduling</small></span>
-      <button id="sweepAll">Start</button></div>
+      <small>Everything in the bank, shuffled, each asked once, nothing held back by scheduling</small></span>
+      <button id="sweepAll" class="ghost">Start</button></div>
     ${nFiltered < nAll ? `<div class="subrow"><span class="sname"><b>All ${nFiltered} under the current filters</b>
       <small>The same straight pass, limited to what the chips above select</small></span>
-      <button id="sweepFiltered">Start</button></div>` : ''}
+      <button id="sweepFiltered" class="ghost">Start</button></div>` : ''}
   </div></div>`;
 
   for(const t of TOPICS){
@@ -395,6 +426,7 @@ function renderTopics(){
     startQuiz(b.dataset.t || null, b.dataset.s || null);
   });
   const sa = document.getElementById('sweepAll');
+  const sw = document.getElementById('sweepWeighted'); if(sw) sw.onclick = () => startSweep('weighted');
   if(sa) sa.onclick = () => startSweep('all');
   const sf = document.getElementById('sweepFiltered');
   if(sf) sf.onclick = () => startSweep('filtered');
@@ -422,11 +454,27 @@ function startQuiz(topicId, subId){
    ones, but it deliberately stops when nothing is due. When the whole set is
    examinable, seeing all of it once is its own requirement, and this is the
    mode for that. Answers still record, so Weak spots stays accurate. */
+/* The pool for the exam-weighted pass: the whole 38-mark pool, and the other
+   two pools sampled so the three sit in the paper's 38 : 8 : 4 ratio. Sampling
+   takes one question per concept before any concept repeats, so the smaller
+   pools are covered broadly rather than deeply. Deterministic per call only
+   in size; the members are drawn fresh each time. */
+function weightedPool(){
+  const newP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
+  const yenP = QUESTIONS.filter(q=>q.prof==='Yendapally');
+  const oldP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
+  const nYen = Math.min(yenP.length, Math.round(newP.length * 8/38));
+  const nOld = Math.min(oldP.length, Math.round(newP.length * 4/38));
+  return [...newP, ...drawN(yenP, nYen), ...drawN(oldP, nOld)];
+}
 function startSweep(scope){
-  const pool = scope === 'filtered' ? poolFor(null, null) : QUESTIONS.slice();
+  const pool = scope === 'filtered' ? poolFor(null, null)
+             : scope === 'weighted' ? weightedPool()
+             : QUESTIONS.slice();
   if(!pool.length){ alert('No questions match those filters.'); return; }
   Q = {pool,
-       label: scope === 'filtered' ? 'Every question under these filters' : 'Every question',
+       label: scope === 'filtered' ? 'Every question under these filters'
+            : scope === 'weighted' ? 'Exam-weighted pass' : 'Every question',
        sweep: shuffle(pool.map(q => q.id)), i: 0,
        current:null, answered:0, lastId:null, examMode:false, picked:null, revealed:false};
   nextQuestion();
@@ -442,11 +490,15 @@ function nextQuestion(){
   }else{
     q = pickNext(Q.pool, Q.lastId);
   }
-  Q.current = q; Q.picked = null; Q.revealed = false;
+  Q.current = q; Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
   if(q) Q.order = shuffle(q.options.map((o,i)=>i));
   renderQuiz();
 }
 
+/* Material that came from the lecture audio rather than a slide is marked
+   wherever a citation is shown, in the quiz and in the exam review alike. */
+const srcFlag = q => q.source==='transcript' ? '<span class="srcflag">from lecture audio</span>'
+                   : q.source==='both'       ? '<span class="srcflag">slides and lecture audio</span>' : '';
 function renderQuiz(){
   const el = $('#v-quiz');
   if(!Q){ el.innerHTML = `<div class="empty">Choose a topic to begin.</div>`; return; }
@@ -462,7 +514,7 @@ function renderQuiz(){
       </p></div>`;
     document.getElementById('goGaps').onclick = () => show('gaps');
     document.getElementById('goAgain').onclick = () => startSweep(
-      Q.label === 'Every question' ? 'all' : 'filtered');
+      Q.label === 'Every question' ? 'all' : Q.label === 'Exam-weighted pass' ? 'weighted' : 'filtered');
     return;
   }
   if(!Q.current){
@@ -511,32 +563,50 @@ function renderQuiz(){
   // a slide crop would go. FG holds it as drawn SVG rather than a picture.
   if(q.fg) h += fgShow(q.fg);
 
+  const multi = isMulti(q);
+  const picks = multi ? (Q.picked || []) : null;
+  if(multi) h += `<p class="sata">Select all that apply, then check. Marked right only when the whole set matches.</p>`;
+
   Q.order.forEach((oi,n)=>{
     const o = q.options[oi];
-    let cls = 'opt';
+    let cls = 'opt' + (multi ? ' multi' : '');
+    const chosen = multi ? picks.includes(oi) : (oi === Q.picked);
     if(Q.revealed){
-      if(oi === Q.picked) cls += o.correct ? ' pick-ok' : ' pick-bad';
+      if(chosen) cls += o.correct ? ' pick-ok' : ' pick-bad';
       else if(o.correct)  cls += ' reveal-ok';
+    }else if(multi && chosen){
+      cls += ' on';
     }
-    h += `<button class="${cls}" data-o="${oi}"${Q.revealed?' disabled':''}>
-      <span class="k">${LETTERS[n]}</span><span>${esc(o.t)}</span></button>`;
+    h += `<button class="${cls}" data-o="${oi}"${Q.revealed?' disabled':''} aria-pressed="${chosen}">
+      <span class="k">${multi ? (chosen ? '\u2611' : '\u2610') : LETTERS[n]}</span><span>${esc(o.t)}</span></button>`;
   });
 
   if(Q.revealed){
-    const picked = q.options[Q.picked];
     // one gloss per term per question, shared between the options and the concept block
     const seen = new Set();
     const self = [teachText(q.teach), ...q.options.map(o=>o.why||'')].join(' ');
+    let ok, verdictLine;
+    if(multi){
+      ok = gradeMulti(q, picks);
+      const want = correctSet(q);
+      const missedOnes = want.filter(i => !picks.includes(i)).length;
+      const extraOnes  = picks.filter(i => !want.includes(i)).length;
+      verdictLine = ok ? `\u2713 Correct \u2014 all ${want.length} identified`
+        : `\u2717 Not correct \u2014 ${missedOnes ? missedOnes + ' correct option' + (missedOnes>1?'s':'') + ' left out' : ''}${
+            missedOnes && extraOnes ? ', ' : ''}${extraOnes ? extraOnes + ' wrong option' + (extraOnes>1?'s':'') + ' included' : ''}`;
+    }else{
+      ok = q.options[Q.picked].correct;
+      verdictLine = ok ? '\u2713 Correct'
+        : `\u2717 Not correct \u2014 the answer is ${LETTERS[Q.order.indexOf(q.options.findIndex(o=>o.correct))]}`;
+    }
     h += `<div class="why">
-      <p class="verdict ${picked.correct?'ok':'bad'}">
-        ${picked.correct ? '✓ Correct' : '✗ Not correct'}
-        ${picked.correct ? '' : ` — the answer is ${LETTERS[Q.order.indexOf(q.options.findIndex(o=>o.correct))]}`}
-      </p>`;
+      <p class="verdict ${ok?'ok':'bad'}">${verdictLine}</p>`;
     Q.order.forEach((oi,n)=>{
       const o = q.options[oi];
+      const chosen = multi ? picks.includes(oi) : (oi === Q.picked);
       h += `<div class="wrow">
-        <span class="mark ${o.correct?'y':'n'}">${o.correct?'✓':'✗'}</span>
-        <span class="wtxt"><b>${LETTERS[n]}. ${esc(o.t)}</b> — ${glossify(esc(o.why), seen, self)}</span>
+        <span class="mark ${o.correct?'y':'n'}">${o.correct?'\u2713':'\u2717'}</span>
+        <span class="wtxt"><b>${LETTERS[n]}. ${esc(o.t)}</b>${multi && chosen ? ' <i class="youpicked">you selected this</i>' : ''} \u2014 ${glossify(esc(o.why), seen, self)}</span>
         ${optFig(o.t)}</div>`;
     });
     if(q.teach) h += `<div class="teach"><h4>The concept behind this</h4>${
@@ -545,33 +615,29 @@ function renderQuiz(){
         cmpStrip(q, 'The structures side by side')}${renderTeach(q.teach, seen, self)}</div>`;
     if(q.note) h += `<p class="prose" style="margin:13px 0 0;font-size:14.5px">${esc(q.note)}</p>`;
     h += `<div class="cite">${q.quote ? `<span class="quote">\u201c${esc(q.quote)}\u201d</span>` : ''}${
-        q.source==='transcript' ? '<span class="srcflag">from lecture audio</span>' : ''}${esc(q.cite)}</div>`;
+        srcFlag(q)}${esc(q.cite)}</div>`;
     h += `</div>`;
   }
   h += `</div><div class="qfoot">`;
   if(!Q.revealed){
-    h += `<span style="font-size:13px;color:var(--text-dim)">Pick an answer.</span>`;
+    if(multi) h += `<button class="btn" id="btnCheck"${picks.length ? '' : ' disabled'}>Check answer</button>
+      <span style="font-size:13px;color:var(--text-dim)">${picks.length} selected</span>`;
+    else h += `<span style="font-size:13px;color:var(--text-dim)">Pick an answer.</span>`;
   }else{
+    const wasRight = multi ? gradeMulti(q, picks) : q.options[Q.picked].correct;
     h += `<button class="btn" id="btnNext">Next question</button>`;
-    if(q.options[Q.picked].correct && !Q.guessedLogged)
+    if(wasRight && !Q.guessedLogged)
       h += `<button class="btn amber" id="btnGuess">I guessed that one</button>`;
     h += `<button class="btn ghost" onclick="show('topics')">Change topic</button>`;
   }
   h += `</div></div>`;
   el.innerHTML = h;
 
-  el.querySelectorAll('.opt').forEach(b => b.onclick = () => answer(+b.dataset.o));
+  el.querySelectorAll('.opt').forEach(b => b.onclick = () => multi ? toggleOption(+b.dataset.o) : answer(+b.dataset.o));
+  const bc = $('#btnCheck'); if(bc) bc.onclick = submitMulti;
   const bn = $('#btnNext'); if(bn) bn.onclick = () => { Q.answered++; Q.lastId = Q.current.id; nextQuestion(); };
   const bg = $('#btnGuess'); if(bg) bg.onclick = () => {
-    // downgrade an already-logged correct answer to "guessed"
-    const last = DB.answers[DB.answers.length-1];
-    const cs = st(Q.current.concept);
-    if(last && last.qid === Q.current.id && last.result === 'correct'){
-      last.result = 'guessed';
-      cs.guessed++; cs.streak = 0;
-      cs.box = Math.max(0, Math.min(cs.box - 1, 1));
-      schedule(cs); save();
-    }
+    markGuessed(Q.current);
     Q.guessedLogged = true;
     bg.textContent = 'Marked as a guess';
     bg.disabled = true;
@@ -581,7 +647,20 @@ function renderQuiz(){
 function answer(oi){
   if(Q.revealed) return;
   Q.picked = oi; Q.revealed = true; Q.guessedLogged = false;
-  record(Q.current, Q.current.options[oi].correct ? 'correct' : 'wrong');
+  record(Q.current, Q.current.options[oi].correct ? 'correct' : 'wrong', oi, Date.now() - (Q.startedAt||Date.now()));
+  renderQuiz();
+}
+function toggleOption(oi){
+  if(Q.revealed) return;
+  const p = Q.picked || [];
+  Q.picked = p.includes(oi) ? p.filter(x => x !== oi) : [...p, oi];
+  renderQuiz();
+}
+function submitMulti(){
+  if(Q.revealed || !Q.picked || !Q.picked.length) return;
+  Q.revealed = true; Q.guessedLogged = false;
+  const picks = Q.picked.slice().sort((a,b)=>a-b);
+  record(Q.current, gradeMulti(Q.current, picks) ? 'correct' : 'wrong', picks, Date.now() - (Q.startedAt||Date.now()));
   renderQuiz();
 }
 
@@ -593,8 +672,9 @@ function renderGaps(){
   const tot = DB.answers.length;
   if(!tot){
     el.innerHTML = `<h2>Weak spots</h2>
-      <div class="empty">Answer some questions and this fills in with your accuracy by topic
-      and every question you have missed.</div>`;
+      <div class="empty">Answer some questions and this fills in with what to study next,
+      your accuracy by topic weighted by what each topic is worth on the paper, and every
+      question you have missed.</div>`;
     return;
   }
   const right = DB.answers.filter(a=>a.result==='correct').length;
@@ -603,7 +683,7 @@ function renderGaps(){
   const m = masteryOf(QUESTIONS);
 
   let h = `<h2>Weak spots</h2>
-  <p class="sub">Every answer you have logged, grouped by where it hurts most.</p>
+  <p class="sub">Every answer you have logged, weighted by what it is worth on the paper.</p>
   <div class="stat">
     <div><b>${tot}</b><span>answered</span></div>
     <div><b style="color:var(--ok)">${Math.round(100*right/tot)}%</b><span>correct</span></div>
@@ -612,22 +692,56 @@ function renderGaps(){
     <div><b>${m.mastered}</b><span>of ${m.total} concepts mastered</span></div>
   </div>`;
 
-  // --- accuracy by topic ---
+  /* ---- What to do next ------------------------------------------------
+     Three pools, ranked by marks. For each: concepts never seen, concepts
+     missed or guessed and not yet recovered. The 38-mark pool leads, since
+     an unseen concept there is worth ten times one in the 4-mark pool. */
+  const pools = [
+    {key:'Sikazwe|new',   name:'Sikazwe, lectures 13–15', marks:38, filter:q=>q.prof==='Sikazwe'&&q.tier==='new'},
+    {key:'Yendapally|old',name:'Yendapally',                   marks:8,  filter:q=>q.prof==='Yendapally'},
+    {key:'Sikazwe|old',   name:'Sikazwe, earlier lectures',    marks:4,  filter:q=>q.prof==='Sikazwe'&&q.tier==='old'},
+  ];
+  h += `<h3>What to do next</h3><div class="nextgrid">`;
+  for(const pl of pools){
+    const pool = QUESTIONS.filter(pl.filter);
+    const cs = conceptsIn(pool);
+    const unseen = cs.filter(c => !DB.concepts[c] || !DB.concepts[c].seen);
+    const open   = cs.filter(c => { const st = DB.concepts[c]; return st && st.seen && st.box === 0; });
+    const done   = cs.filter(c => { const st = DB.concepts[c]; return st && st.box >= MASTER_BOX; });
+    h += `<div class="nextcard">
+      <div class="nexthead"><b>${esc(pl.name)}</b><span>${pl.marks} of 50 marks · ${cs.length} concepts</span></div>
+      <div class="nextrow"><span>${unseen.length} not yet seen</span>${unseen.length
+        ? `<button class="btn small" data-next="unseen" data-pool="${pl.key}">Start these</button>` : '<i>none</i>'}</div>
+      <div class="nextrow"><span>${open.length} missed or guessed, still open</span>${open.length
+        ? `<button class="btn small amber" data-next="open" data-pool="${pl.key}">Redrill</button>` : '<i>none</i>'}</div>
+      <div class="nextrow"><span>${done.length} mastered</span><i>${cs.length ? Math.round(100*done.length/cs.length) : 0}%</i></div>
+    </div>`;
+  }
+  h += `</div>`;
+
+  /* ---- Accuracy by topic, ordered by marks at risk -------------------
+     A miss in a 137-question pool that supplies 38 marks costs 38/137 of a
+     mark; a miss in the 129-question pool that supplies 4 costs 4/129. Sorting
+     by that, rather than by the raw count, puts the topic that is actually
+     costing marks at the top even when it has fewer questions to miss. */
   const rows = [];
   for(const t of TOPICS){
-    const ids = new Set(QUESTIONS.filter(q=>q.topic===t.id).map(q=>q.id));
+    const qs = QUESTIONS.filter(q=>q.topic===t.id);
+    const ids = new Map(qs.map(q=>[q.id,q]));
     const as  = DB.answers.filter(a=>ids.has(a.qid));
     if(!as.length) continue;
     const r = as.filter(a=>a.result==='correct').length;
     const w = as.filter(a=>a.result==='wrong').length;
     const g = as.filter(a=>a.result==='guessed').length;
-    rows.push({t, n:as.length, r, w, g, pct: Math.round(100*r/as.length)});
+    const atRisk = as.reduce((acc,a)=> acc + (a.result==='correct' ? 0 : (a.result==='wrong' ? 1 : 0.5) * markWeight(ids.get(a.qid))), 0);
+    rows.push({t, n:as.length, r, w, g, pct: Math.round(100*r/as.length), atRisk});
   }
-  rows.sort((a,b)=> (b.w*2+b.g) - (a.w*2+a.g) || a.pct - b.pct);
+  rows.sort((a,b)=> b.atRisk - a.atRisk || a.pct - b.pct);
 
   h += `<h3>Where you are losing marks</h3>
+  <p class="sub">Marks at risk = each miss weighted by what one question in that pool is worth on the paper (a guess counts half).</p>
   <table class="gap"><thead><tr>
-    <th>Topic</th><th>Seen</th><th>Missed</th><th>Guessed</th><th style="width:34%">Accuracy</th>
+    <th>Topic</th><th>Seen</th><th>Missed</th><th>Guessed</th><th>Marks at risk</th><th style="width:30%">Accuracy</th>
   </tr></thead><tbody>`;
   for(const r of rows){
     const col = r.pct>=80 ? 'var(--ok)' : r.pct>=60 ? 'var(--warn)' : 'var(--bad)';
@@ -636,13 +750,44 @@ function renderGaps(){
       <td>${r.n}</td>
       <td${r.w?' style="color:var(--bad);font-weight:600"':''}>${r.w}</td>
       <td${r.g?' style="color:var(--warn)"':''}>${r.g}</td>
+      <td${r.atRisk>=0.5?' style="font-weight:600"':''}>${r.atRisk.toFixed(1)}</td>
       <td><div class="bar"><i style="width:${r.pct}%;background:${col}"></i></div>
           <span style="font-size:12px;color:var(--text-dim)">${r.pct}%</span></td>
     </tr>`;
   }
   h += `</tbody></table>`;
 
-  // --- every missed question ---
+  /* ---- Confusions -------------------------------------------------------
+     Which wrong option was picked, grouped. A pair that recurs is a specific
+     misunderstanding with a name, and the atlas or the concept block for that
+     pair is what to read. Only answers logged with `picked` count. */
+  const pairs = {};
+  for(const a of DB.answers){
+    if(a.result !== 'wrong' || a.picked === undefined || a.picked === null) continue;
+    const q = byId(a.qid); if(!q) continue;
+    const right = q.options.filter(o=>o.correct).map(o=>o.t).join(' + ');
+    const pickedIdx = Array.isArray(a.picked) ? a.picked : [a.picked];
+    const wrongPicked = pickedIdx.filter(i => q.options[i] && !q.options[i].correct).map(i => q.options[i].t);
+    for(const wp of wrongPicked){
+      const k = right + '\u0000' + wp;
+      (pairs[k] ||= {right, wrong:wp, n:0, qids:new Set(), topic:q.topic}).n++;
+      pairs[k].qids.add(q.id);
+    }
+  }
+  const plist = Object.values(pairs).sort((a,b)=>b.n-a.n).slice(0,12);
+  if(plist.length){
+    h += `<h3>What you keep choosing instead</h3>
+    <p class="sub">The wrong option you picked, against the right one. A pair that appears more than once is a confusion worth naming and reading up on.</p>
+    <table class="gap"><thead><tr><th>You picked</th><th>The answer was</th><th>Times</th><th>Topic</th></tr></thead><tbody>`;
+    for(const pr of plist){
+      const t = TOPICS.find(x=>x.id===pr.topic);
+      h += `<tr><td style="color:var(--bad)">${esc(pr.wrong)}</td><td style="color:var(--ok)">${esc(pr.right)}</td>
+        <td${pr.n>1?' style="font-weight:600"':''}>${pr.n}</td><td>${t?esc(t.name):''}</td></tr>`;
+    }
+    h += `</tbody></table>`;
+  }
+
+  /* ---- Every missed question -------------------------------------------- */
   const missedIds = [...new Set(DB.answers.filter(a=>a.result==='wrong').map(a=>a.qid))];
   h += `<h3>Every question you have missed (${missedIds.length})</h3>`;
   if(!missedIds.length){
@@ -652,15 +797,33 @@ function renderGaps(){
     for(const id of missedIds.slice().reverse()){
       const q = byId(id); if(!q) continue;
       const s = DB.concepts[q.concept] || {};
-      const correctOpt = q.options.find(o=>o.correct);
+      const correctTxt = q.options.filter(o=>o.correct).map(o=>o.t).join(' · ');
+      const last = DB.answers.slice().reverse().find(a=>a.qid===id && a.result==='wrong');
+      const pickedTxt = last && last.picked !== undefined
+        ? (Array.isArray(last.picked) ? last.picked : [last.picked]).map(i=>q.options[i] ? q.options[i].t : '').filter(Boolean).join(' · ')
+        : '';
       h += `<div class="missq">
         <div class="mstem">${esc(q.stem)}</div>
-        <div class="mmeta" style="color:var(--ok);margin-bottom:4px">Answer: ${esc(correctOpt.t)}</div>
+        <div class="mmeta" style="color:var(--ok);margin-bottom:4px">Answer: ${esc(correctTxt)}</div>
+        ${pickedTxt ? `<div class="mmeta" style="color:var(--bad);margin-bottom:4px">You picked: ${esc(pickedTxt)}</div>` : ''}
         <div class="mmeta">${esc(q.cite)} · missed ${s.wrong||1}× · ${s.box>=MASTER_BOX?'now mastered':'still in review'}</div>
       </div>`;
     }
   }
   el.innerHTML = h;
+
+  el.querySelectorAll('[data-next]').forEach(b => b.onclick = () => {
+    const pl = pools.find(x=>x.key===b.dataset.pool);
+    const pool = QUESTIONS.filter(pl.filter);
+    const want = b.dataset.next === 'unseen'
+      ? pool.filter(q => !DB.concepts[q.concept] || !DB.concepts[q.concept].seen)
+      : pool.filter(q => { const st = DB.concepts[q.concept]; return st && st.seen && st.box === 0; });
+    if(!want.length) return;
+    Q = {pool:want, label:(b.dataset.next==='unseen' ? 'Not yet seen — ' : 'Redrill — ') + pl.name,
+         sweep: shuffle(want.map(q=>q.id)), i:0,
+         current:null, answered:0, lastId:null, examMode:false, picked:null, revealed:false};
+    nextQuestion(); show('quiz');
+  });
   const d = $('#drillMissed');
   if(d) d.onclick = () => {
     const pool = QUESTIONS.filter(q => missedIds.includes(q.id) ||
@@ -678,9 +841,12 @@ function renderExam(){
   const el = $('#v-exam');
   if(EX && EX.running){ renderExamQ(); return; }
   if(EX && EX.done){ renderExamResult(); return; }
+  const nMulti = QUESTIONS.filter(isMulti).length;
   el.innerHTML = `<h2>Exam simulation</h2>
   <p class="sub">50 questions drawn at the real blueprint — 8 Yendapally, 4 Sikazwe older,
-  38 Sikazwe new — with a 75-minute clock. No explanations until you finish, same as the real thing.</p>
+  38 Sikazwe new — with a 75-minute clock. The paper mixes single-answer and select-all items, so
+  this draw does too: about ${EXAM_SATA} of the 50 are select-all, marked all-or-nothing.
+  No explanations until you finish, same as the real thing.</p>
   <div class="note"><b>This does not feed your spaced-repetition history until you submit.</b>
   Finish the paper, then every answer is logged at once so your weak spots stay accurate.</div>
   <p><button class="btn" id="startExam">Start the 75-minute paper</button></p>`;
@@ -701,12 +867,33 @@ function drawN(pool, n){
   }
   return picked.slice(0,n);
 }
+/* How many of the 50 are select-all. The exam is described as a mix of
+   multiple choice and select-all without a stated split, so the draw aims for
+   this many, taken in proportion to each pool's share of the paper, and falls
+   back to whatever the bank holds if a pool has fewer. */
+const EXAM_SATA = 8;
+
+/* Draw n from a pool with a target number of select-all items in it. Select-all
+   questions are drawn first so they are never crowded out, then single-answer
+   questions fill the rest, one concept each before any concept repeats. */
+function drawMixed(pool, n, nSata){
+  const sata = drawN(pool.filter(isMulti), Math.min(nSata, n));
+  const taken = new Set(sata.map(q => q.id));
+  const rest = drawN(pool.filter(q => !isMulti(q) && !taken.has(q.id)), n - sata.length);
+  return [...sata, ...rest];
+}
 function beginExam(){
-  const yen = drawN(QUESTIONS.filter(q=>q.prof==='Yendapally'), 8);
-  const old = drawN(QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old'), 4);
-  const nw  = drawN(QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new'), 38);
+  const yenP = QUESTIONS.filter(q=>q.prof==='Yendapally');
+  const oldP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
+  const newP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
+  // select-all items spread across the pools in the paper's 38 : 8 : 4 ratio
+  const sNew = Math.round(EXAM_SATA * 38/50), sYen = Math.round(EXAM_SATA * 8/50);
+  const sOld = Math.max(0, EXAM_SATA - sNew - sYen);
+  const yen = drawMixed(yenP, 8, sYen);
+  const old = drawMixed(oldP, 4, sOld);
+  const nw  = drawMixed(newP, 38, sNew);
   const qs  = shuffle([...yen, ...old, ...nw]);
-  EX = {qs, i:0, picks:new Array(qs.length).fill(null), running:true, done:false,
+  EX = {qs, i:0, picks:qs.map(q => isMulti(q) ? [] : null), running:true, done:false,
         ends: Date.now() + 75*60000, orders: qs.map(q=>shuffle(q.options.map((o,k)=>k)))};
   clearInterval(EX.timer);
   EX.timer = setInterval(()=>{
@@ -723,20 +910,21 @@ const fmt = ms => { const s = Math.max(0, Math.round(ms/1000));
 
 function renderExamQ(){
   const el = $('#v-exam'), q = EX.qs[EX.i], order = EX.orders[EX.i];
-  const answered = EX.picks.filter(p=>p!==null).length;
+  const answered = EX.picks.filter(p => Array.isArray(p) ? p.length > 0 : p !== null).length;
+  const multi = isMulti(q);
   let h = `<div class="examhead">
     <span class="clock" id="exClock">${fmt(EX.ends-Date.now())}</span>
     <span class="prog">Question ${EX.i+1} of ${EX.qs.length} · ${answered} answered</span>
   </div>
-  <div class="qcard"><div class="qhead">${profTag(q.prof)}<span class="spacer"></span>
+  <div class="qcard"><div class="qhead">${profTag(q.prof)}${multi ? '<span class="tag sata">select all that apply</span>' : ''}<span class="spacer"></span>
     <span>no feedback until you submit</span></div>
   <div class="qbody"><p class="stem">${esc(q.stem)}</p>`;
   if(q.img && IMAGES[q.img]) h += `<img class="qimg" src="${IMAGES[q.img]}" alt="Reaction scheme">`;
   if(q.fg) h += fgShow(q.fg);
   order.forEach((oi,n)=>{
-    const sel = EX.picks[EX.i] === oi;
-    h += `<button class="opt${sel?' pick-ok':''}" data-o="${oi}">
-      <span class="k">${LETTERS[n]}</span><span>${esc(q.options[oi].t)}</span></button>`;
+    const sel = multi ? EX.picks[EX.i].includes(oi) : EX.picks[EX.i] === oi;
+    h += `<button class="opt${multi?' multi':''}${sel?(multi?' on':' pick-ok'):''}" data-o="${oi}" aria-pressed="${sel}">
+      <span class="k">${multi ? (sel ? '\u2611' : '\u2610') : LETTERS[n]}</span><span>${esc(q.options[oi].t)}</span></button>`;
   });
   h += `</div><div class="qfoot">
     <button class="btn ghost" id="exPrev"${EX.i===0?' disabled':''}>Back</button>
@@ -745,23 +933,35 @@ function renderExamQ(){
     <button class="btn ghost" id="exEnd">Submit paper</button>
   </div></div>`;
   el.innerHTML = h;
-  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ EX.picks[EX.i]=+b.dataset.o; renderExamQ(); });
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    const oi = +b.dataset.o;
+    if(multi){ const p = EX.picks[EX.i]; EX.picks[EX.i] = p.includes(oi) ? p.filter(x=>x!==oi) : [...p, oi]; }
+    else EX.picks[EX.i] = oi;
+    renderExamQ(); });
   $('#exPrev').onclick = ()=>{ if(EX.i>0){EX.i--; renderExamQ();} };
   $('#exNext').onclick = ()=>{ if(EX.i<EX.qs.length-1){EX.i++; renderExamQ();} else finishExam(); };
   $('#exEnd').onclick  = ()=>{ if(confirm('Submit the paper and see your score?')) finishExam(); };
 }
+/* One place decides whether an exam answer was right, for both grading and the
+   review page: a select-all item is right only when the whole set matches. */
+function examRight(q, p){
+  if(isMulti(q)) return Array.isArray(p) && p.length > 0 && gradeMulti(q, p);
+  return p !== null && p !== undefined && q.options[p].correct;
+}
+const examBlank = (q, p) => isMulti(q) ? !(Array.isArray(p) && p.length) : (p === null || p === undefined);
 function finishExam(){
   clearInterval(EX.timer);
   EX.running = false; EX.done = true;
   EX.qs.forEach((q,i)=>{
     const p = EX.picks[i];
-    record(q, p===null ? 'wrong' : (q.options[p].correct ? 'correct' : 'wrong'));
+    const picked = isMulti(q) ? (p || []).slice().sort((a,b)=>a-b) : p;
+    record(q, examRight(q, p) ? 'correct' : 'wrong', picked);
   });
   renderExamResult();
 }
 function renderExamResult(){
-  const right = EX.qs.filter((q,i)=> EX.picks[i]!==null && q.options[EX.picks[i]].correct).length;
-  const blank = EX.picks.filter(p=>p===null).length;
+  const right = EX.qs.filter((q,i)=> examRight(q, EX.picks[i])).length;
+  const blank = EX.qs.filter((q,i)=> examBlank(q, EX.picks[i])).length;
   const pct = Math.round(100*right/EX.qs.length);
   let h = `<h2>Exam simulation — ${right} / ${EX.qs.length} (${pct}%)</h2>
   <p class="sub">${blank ? blank+' left blank, scored as incorrect. ' : ''}All 50 are now in your history,
@@ -770,24 +970,25 @@ function renderExamResult(){
      <button class="btn ghost" onclick="show('gaps')">See weak spots</button></p>
   <h3>Every question, with the reasoning</h3>`;
   EX.qs.forEach((q,i)=>{
-    const p = EX.picks[i], ok = p!==null && q.options[p].correct;
+    const p = EX.picks[i], ok = examRight(q, p), blankQ = examBlank(q, p), multi = isMulti(q);
+    const chosen = oi => multi ? (p || []).includes(oi) : oi === p;
     h += `<div class="qcard" style="margin-bottom:12px"><div class="qhead">
-      ${profTag(q.prof)}<span>Q${i+1}</span><span class="spacer"></span>
-      <span style="color:${ok?'var(--ok)':'var(--bad)'}">${ok?'correct':(p===null?'blank':'missed')}</span>
+      ${profTag(q.prof)}<span>Q${i+1}</span>${multi ? '<span class="tag sata">select all</span>' : ''}<span class="spacer"></span>
+      <span style="color:${ok?'var(--ok)':'var(--bad)'}">${ok?'correct':(blankQ?'blank':'missed')}</span>
       </div><div class="qbody"><p class="stem" style="font-size:15.5px">${esc(q.stem)}</p>`;
     if(q.img && IMAGES[q.img]) h += `<img class="qimg" src="${IMAGES[q.img]}" alt="Reaction scheme">`;
     if(q.fg) h += fgShow(q.fg);
     EX.orders[i].forEach((oi,n)=>{
       const o = q.options[oi];
-      h += `<div class="wrow"><span class="mark ${o.correct?'y':'n'}">${o.correct?'✓':'✗'}</span>
-        <span class="wtxt"><b>${LETTERS[n]}. ${esc(o.t)}</b>${oi===p?' &nbsp;<i>(you picked this)</i>':''} — ${esc(o.why)}</span>
+      h += `<div class="wrow"><span class="mark ${o.correct?'y':'n'}">${o.correct?'\u2713':'\u2717'}</span>
+        <span class="wtxt"><b>${LETTERS[n]}. ${esc(o.t)}</b>${chosen(oi)?' &nbsp;<i>(you picked this)</i>':''} \u2014 ${esc(o.why)}</span>
         ${optFig(o.t)}</div>`;
     });
     if(q.teach) h += `<div class="teach"><h4>The concept behind this</h4>${
         q.svg ? `<div class="tdiag">${q.svg}</div>` : ''}${
         q.teachImg && IMAGES[q.teachImg] ? `<img class="qimg tdimg" src="${IMAGES[q.teachImg]}" alt="Figure from the lecture slide">` : ''}${
         cmpStrip(q, 'The structures side by side')}${renderTeach(q.teach)}</div>`;
-    h += `<div class="cite">${q.quote ? `<span class="quote">\u201c${esc(q.quote)}\u201d</span>` : ''}${esc(q.cite)}</div></div></div>`;
+    h += `<div class="cite">${q.quote ? `<span class="quote">\u201c${esc(q.quote)}\u201d</span>` : ''}${srcFlag(q)}${esc(q.cite)}</div></div></div>`;
   });
   $('#v-exam').innerHTML = h;
   $('#exAgain').onclick = ()=>{ EX=null; renderExam(); };

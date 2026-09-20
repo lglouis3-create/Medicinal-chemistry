@@ -473,3 +473,61 @@ some of them stop at correct. The detector also over-reports, since it looks
 for diagnostic phrasing and misses a diagnosis written some other way — its
 vocabulary was widened once after reading the flagged text rather than assuming
 the detector was right.
+
+## Review round (09/20, Fable)
+
+An independent review of the whole app, then the fixes. What changed:
+
+- **Select-all items.** `q10_sata.js` and `q11_sata2.js` hold 29 questions with
+  `multi:true` and two or more keyed options. The quiz renders them with
+  toggles and a Check button, grades all-or-nothing through `gradeMulti()`, and
+  the exam simulator draws `EXAM_SATA` (8) of them per paper, spread across the
+  three pools in the 38:8:4 ratio (`drawMixed()` in views.js). `test.js` checks
+  the shape of 20 fresh draws; `browser_test.py` drives a select-all item
+  through toggles, partial and complete sets, the answer log and the exam.
+- **Scheduler.** A guess now resets the concept's box to 0 (tier 4, ahead of
+  never-seen material) instead of dropping it below new material. `record()`
+  stores `picked` and `ms` on every log entry; `markGuessed()` rewrites the last
+  entry. Weak spots reads them for the "What you keep choosing instead" table.
+- **Rings.** The nine "name the ring" questions drew from `rings.json` in a
+  field the pre-answer render never read, so the card was blank; they now draw
+  from the atlas (`fg:`), and `rings.py` was corrected (double bonds on edges
+  1–2 and 3–4 of a five-membered ring, never on the heteroatom edge). All 23
+  atlas ring structures were re-derived and checked. `browser_test.py` now
+  requires a visible figure before the answer on every stem that promises one.
+- **Facts.** cyp-p1 keys the intermediate metaboliser as the normal phenotype,
+  as the 09/15 and 09/16 lectures did, with the textbook conflict stated in a
+  note; cyp-i7's slide 34 claim was corrected (omeprazole heads the CYP2C19
+  column); tx-1, tx-3, v-tx-3b count five toxicophore bullets; tx-22, tx-10,
+  dd-14, df-11, v-el-3b, p2-6, fg-4, fg-11, fg-16, p1-14 corrected as recorded
+  in the review notes. Alcohol section of the atlas restored to the lecture's
+  shielding explanation.
+- **Duplicates and giveaways.** tx-6 now asks the adduct mechanism on slide 33
+  instead of repeating tx-15's defense pair; sar-3 asks the antagonist-size
+  observation instead of repeating sar-1; fg-17 keys the sulfotransferase row
+  instead of the acyl-synthetase row that fg-14 and v-fg-14b already key. The
+  tx-13 and tx-25 stems no longer contain their answers. Four question crops
+  that printed their own answer (p1-2, p1-8, p1-12, p2-6) were re-cut with the
+  labels masked by `harvest_mask.py`, which OCRs the crop, whites out the label
+  words, and keeps the printed version under `<key>_labeled` for the concept
+  block.
+- **Citations.** Every citation names the deck file as well as the slide
+  (`Lecture #13 (MCMet-9_15_2026.pdf) slide 32`), 100 were completed in one
+  pass, and 18 gained the slide a claim was actually drawn from. Material that
+  came from lecture audio is marked "from lecture audio"; a question drawing on
+  both is marked "slides and lecture audio", in the quiz and in the exam review.
+- **Unsupported claims trimmed**: p2-7 (concept block now about N-oxidation),
+  ad-8 (the four factors written on Absorption I slide 4 in the 09/03 lecture),
+  ad-6 (no saturation claim), fa-11, p1-11, ab2-1, ab2-2, ab2-5, ab2-6,
+  v-st-3b, el-1, p2-14.
+- **Figures.** Ten list slides cropped for the select-all concept blocks
+  (`harvest_fable2.py`), two for the triazolam case (`harvest_fable.py`), and
+  eight previously unused crops became questions of their own in
+  `q12_figures.js` (tertiary alcohol fate, benzene arene oxide, phosphate and
+  sulfate ester hydrolysis, NQO1, abacavir aldehyde, sulfamethoxazole hapten,
+  MPTP). Three crops nothing referenced were dropped. `LETTERS` runs A–J so an
+  eight-option item labels every row.
+
+Status: 375 questions, 181 images, all in the full format. `test.js`,
+`style_check.js`, `render_test.js`, `cite_check.py` (860 slide references),
+`coverage_check.py` and `browser_test.py` all pass.

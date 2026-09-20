@@ -8,21 +8,27 @@ Open **`PHAR4342_Final_Drill.html`**.
 
 ## What is in it
 
-**337 questions** across 13 topics, every one carrying a worked explanation for
-each answer choice, a concept block, and a citation to the slide it came from.
+**375 questions** across 13 topics, every one carrying a worked explanation for
+each answer choice, a concept block, and a citation naming the deck file and the
+slide it came from. 29 are select-all-that-apply items, marked all-or-nothing,
+because the paper mixes single-answer and select-all questions.
 
 | view | what it is for |
 |---|---|
-| Topics | pick a topic, or take one straight pass through all 337 |
+| Topics | pick a topic, take the exam-weighted pass, or one straight pass through all 375 |
 | Quiz | spaced repetition — missed concepts return sooner, mastered ones are held |
-| Weak spots | the concepts answered wrong or guessed |
-| Exam sim | a 50-question paper drawn to the real blueprint, timed at 1:15 |
+| Weak spots | what to do next per pool, marks at risk by topic, and the wrong options you keep choosing |
+| Exam sim | a 50-question paper drawn to the real blueprint, about 8 of them select-all, timed at 1:15 |
 | Atlas | 86 functional group structures, with a Hide names recall mode |
 | Reference | the course's tables and figures in one place |
 
 The exam blueprint is 50 questions: Dr. Yendapally 8, Dr. Sikazwe 42 (38 from
 lectures 13–15, 4 from the earlier material). The exam simulator draws to that
-split, and the weighting chips on the topics view filter the quiz to match it.
+split, spreads its select-all items across the three pools in the same 38:8:4
+ratio, and the weighting chips on the topics view filter the quiz to match it.
+A question marked "I guessed that one" is reset and comes back before anything
+never seen, and the answer log keeps which option was picked, so Weak spots can
+show the wrong answer you keep choosing against the right one.
 
 Structures are drawn, not described. A question that asks you to name a group
 shows it; after answering, the compared groups appear side by side with the
@@ -61,7 +67,7 @@ Build first — the node checks read the built page.
     node explain_check.js   # explanation quality, ranked by exam weight
     python3 cite_check.py   # every cited slide number exists in its deck
     python3 coverage_check.py   # the bank against the stated exam scope
-    python3 browser_test.py # drives the real file in Chromium
+    python3 browser_test.py # drives the real file in Chromium, select-all items included
 
 Passing all of them does not mean the content is right. They check that it
 parses, renders, runs, cites a real slide and covers the stated scope. The

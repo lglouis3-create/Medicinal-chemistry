@@ -128,6 +128,28 @@ h3{font-size:16px;margin:22px 0 8px}
 .opt.pick-bad .k{background:var(--bad);color:#fff;border-color:var(--bad)}
 .opt.reveal-ok{border-color:var(--ok)}
 .opt.reveal-ok .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+/* ---------- select-all questions ---------- */
+.sata{margin:0 0 10px;font-size:13px;color:var(--text-dim);padding:7px 11px;background:var(--surface);
+  border-left:3px solid var(--accent);border-radius:0 6px 6px 0}
+.opt.multi .k{font-size:17px;line-height:1;background:transparent;border-color:var(--line)}
+.opt.multi.on{border-color:var(--accent);background:var(--accent-bg)}
+.opt.multi.on .k{color:var(--accent);border-color:var(--accent)}
+.opt.multi.pick-ok .k,.opt.multi.reveal-ok .k{background:var(--ok);color:#fff}
+.opt.multi.pick-bad .k{background:var(--bad);color:#fff}
+.tag.sata{color:#7A46B0;border-color:#DCC7EA;background:#F8F2FB}
+.youpicked{font-style:normal;font-size:11.5px;color:var(--text-dim);margin-left:4px}
+
+/* ---------- weak spots: what to do next ---------- */
+.nextgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px;margin:0 0 22px}
+.nextcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.nexthead{display:flex;flex-direction:column;gap:2px;margin-bottom:9px}
+.nexthead b{font-size:14.5px}
+.nexthead span{font-size:12px;color:var(--text-dim)}
+.nextrow{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;
+  border-top:1px dashed var(--line-soft);font-size:13.5px}
+.nextrow i{font-style:normal;color:var(--text-dim);font-size:12.5px}
+.btn.small{padding:6px 11px;font-size:13px}
 .opt:disabled{cursor:default;opacity:1}
 
 .why{margin-top:14px;border-top:1px solid var(--line-soft);padding-top:14px}
@@ -352,7 +374,11 @@ const keyFor = p => NS + ':data:' + p;
 
 const BLANK = () => ({
   concepts:{},        // conceptId -> {seen,correct,wrong,guessed,streak,box,dueAt,dueQ,lastQ,asked:[]}
-  answers:[],         // {qid,concept,result,at,qn}
+  answers:[],         // {qid,concept,result,at,qn,picked,ms}
+                      //   picked: option index, or a sorted array of indices for a
+                      //   select-all question; ms: time from render to answer.
+                      //   Which wrong option was chosen is the most diagnostic
+                      //   signal the app has, so it is kept.
   qn:0,               // questions answered counter (drives cram scheduling)
   settings:{mode:'cram'},
   created:Date.now()
@@ -396,7 +422,8 @@ function askProfile(force){
      1 correct  -> longer interval each time, never retired permanently
      2 wrong    -> stays in active review, resurfaces after >=GAP other questions,
                    prefers a DIFFERENT question on the same concept
-     3 guessed  -> treated as not-yet-understood; does not advance the interval
+     3 guessed  -> treated as not-yet-understood: box drops to 0 so it ranks
+                   with missed concepts, ahead of never-seen material
      4 spaced   -> mastered material returns at growing intervals
      5 priority -> wrong > due > never-seen > recently mastered
      6 concept-level tracking, not wording-level
@@ -424,7 +451,7 @@ function schedule(s){
 function isDue(s){
   return cram() ? (DB.qn >= s.dueQ) : (Date.now() >= s.dueAt);
 }
-function record(q, result){          // result: 'correct' | 'wrong' | 'guessed'
+function record(q, result, picked, ms){   // result: 'correct' | 'wrong' | 'guessed'
   const s = st(q.concept);
   DB.qn++;
   s.seen++;
@@ -435,17 +462,45 @@ function record(q, result){          // result: 'correct' | 'wrong' | 'guessed'
     s.correct++; s.streak++;
     s.box = Math.min(s.box + 1, DAYS.length - 1);
   }else if(result === 'guessed'){
-    s.guessed++; s.correct++;        // it was the right pick, but not understood
+    s.guessed++;                     // the right pick, but not understood
     s.streak = 0;
-    s.box = Math.max(0, Math.min(s.box, 1));   // hold it in short rotation
+    s.box = 0;                       // rule 3: a guess is a gap, so it ranks with misses
   }else{
     s.wrong++; s.streak = 0;
     s.box = 0;                       // rule 4: a miss resets to active review
   }
   schedule(s);
-  DB.answers.push({qid:q.id, concept:q.concept, result, at:Date.now(), qn:DB.qn});
+  const entry = {qid:q.id, concept:q.concept, result, at:Date.now(), qn:DB.qn};
+  if(picked !== undefined && picked !== null) entry.picked = picked;
+  if(ms) entry.ms = ms;
+  DB.answers.push(entry);
   if(DB.answers.length > 4000) DB.answers.splice(0, DB.answers.length-4000);
   save();
+}
+
+/* Marking a correct answer as a guess after the fact. The correct path has
+   already advanced the box; this pulls the concept back to unresolved and
+   rewrites the logged result, so the answer log and the concept state agree. */
+function markGuessed(q){
+  const last = DB.answers[DB.answers.length-1];
+  const s = st(q.concept);
+  if(last && last.qid === q.id && last.result === 'correct'){
+    last.result = 'guessed';
+    s.guessed++; s.correct = Math.max(0, s.correct - 1); s.streak = 0;
+    s.box = 0;
+    schedule(s); save();
+    return true;
+  }
+  return false;
+}
+
+/* Select-all questions carry more than one correct option and are marked
+   all-or-nothing, which is how a select-all item is scored on the paper. */
+const isMulti = q => !!q.multi;
+const correctSet = q => q.options.map((o,i) => o.correct ? i : -1).filter(i => i >= 0);
+function gradeMulti(q, picks){
+  const want = correctSet(q), got = (picks || []).slice().sort((a,b)=>a-b);
+  return want.length === got.length && want.every((v,i) => v === got[i]);
 }
 
 /** Rank one candidate question. Higher score = ask sooner. */
@@ -495,7 +550,7 @@ function pickNext(pool, justAsked){
    ========================================================================== */
 const $  = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const LETTERS = 'ABCDE';
+const LETTERS = 'ABCDEFGHIJ';
 const byId = id => QUESTIONS.find(q=>q.id===id);
 const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; };
 
@@ -519,6 +574,18 @@ function masteryOf(pool){
   }
   return {mastered:m, touched:t, total:cs.length};
 }
+/* Exam weight per question. The paper is 50 questions: 38 from the Sikazwe
+   new pool, 8 Yendapally, 4 Sikazwe old. Dividing each pool's share of the
+   paper by the number of questions in that pool gives the marks each one
+   question stands for, which is what a miss actually costs. */
+const BLUEPRINT = {'Sikazwe|new':38, 'Yendapally|old':8, 'Sikazwe|old':4};
+const poolKey = q => q.prof + '|' + q.tier;
+const POOL_SIZE = (() => { const n = {}; QUESTIONS.forEach(q => { n[poolKey(q)] = (n[poolKey(q)]||0) + 1; }); return n; })();
+function markWeight(q){
+  const k = poolKey(q);
+  return (BLUEPRINT[k] || 0) / (POOL_SIZE[k] || 1);
+}
+
 function profTag(p){
   return p==='Sikazwe'
     ? '<span class="tag sik">Sikazwe</span>'

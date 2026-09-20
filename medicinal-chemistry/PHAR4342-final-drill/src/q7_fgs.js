@@ -17,7 +17,7 @@ QUESTIONS.push(
    why:'Position 7 is an ester inside a ring, also called a lactone. The carbonyl carbon carries one oxygen and one carbon, with no nitrogen at all.'}],
  svg:DIA.acylFamily,
  teach:'Every group in this family is built on one carbonyl carbon, and you tell them apart by what the two other atoms on that carbon are. Two nitrogens is a urea. One nitrogen and one carbon is an amide. One oxygen and one nitrogen is a carbamate. Two oxygens is a carbonate. One oxygen and one carbon is an ester. Slide 9 groups all of these together as carboxylic acid derivatives.',
- cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53, 56',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53, 56; carboxylic acid derivatives slides 9 and 60',
  quote:'Carboxylic Acid (CA) & derivatives: CA/Esters/Amides/Carbamates/Ureas/Imides/Guanidines'},
 
 {id:'fgx-2', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbamate',
@@ -34,7 +34,7 @@ QUESTIONS.push(
    why:'Position 3 is a carboxylic acid, –C(=O)OH. The oxygen carries a hydrogen rather than connecting to another part of the molecule, so nothing is released on hydrolysis.'}],
  svg:DIA.acylFamily,
  teach:'Carbamate and carbonate look alike because both have an oxygen attached to the carbonyl carbon. Check the other side. If it is a nitrogen, the group is a carbamate and hydrolysis gives an amine plus an alcohol. If it is a second oxygen, the group is a carbonate and hydrolysis gives two alcohols. Both are cleaved by CE, carboxylesterase.',
- cite:'Functional group deck slides 51–52, 56',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 51–52, 56',
  quote:'Esters/Carbonates/Amides/Carbamates undergo hydrolytic metabolism by Carboxyesterase or CE enzymes'},
 
 {id:'fgx-3', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-combination',
@@ -50,7 +50,7 @@ QUESTIONS.push(
   {t:'4; 5; 6', correct:false,
    why:'Position 4 is a carbonate, position 5 is a cyclic ether with no carbonyl at all, and position 6 is a carbamate. None of the three requested groups appears.'}],
  teach:'Work one number at a time rather than looking for the whole set at once. For each circled group, find the carbonyl carbon and name the two atoms attached to it. Position 5 has no carbonyl, which rules it out of this family immediately: it is an oxygen bridging two carbons, which makes it an ether.',
- cite:'Functional group deck slide 56',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 56',
  quote:'Q: What answer combination correctly identifies the urea, ester and amide FGs in drug X?'},
 
 {id:'fgx-4', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbonate',
@@ -67,7 +67,7 @@ QUESTIONS.push(
    why:'Position 3 is a carboxylic acid. Its oxygen carries a hydrogen and there is a C=O present, so it is not an ether.'}],
  svg:DIA.acylFamily,
  teach:'An ether is an oxygen with a carbon on each side and no double bond to oxygen anywhere on that carbon. A carbonate also has oxygens on both sides, but the central carbon carries a C=O as well. Looking for the C=O first sorts the whole carboxylic acid derivative family away from the ethers and alcohols.',
- cite:'Functional group deck slides 31, 49, 56'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 31, 49, 56'},
 
 {id:'fgx-5', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'ca-derivative-family',
  tags:['structure','list'], source:'slide', img:'fg_az2357',
@@ -82,7 +82,7 @@ QUESTIONS.push(
   {t:'Alkanes, alkenes, alkynes and aromatics', correct:false,
    why:'These are the hydrocarbons from slides 10 to 20, built only from carbon and hydrogen.'}],
  teach:'Slide 9 sorts every functional group in the course into five families: hydrocarbons, halogenated hydrocarbons, oxygenated hydrocarbons, amines and their derivatives, and carboxylic acid derivatives. Placing a group in its family tells you in advance which reactions to expect, because the carboxylic acid derivatives are the ones that undergo hydrolysis.',
- cite:'Functional group deck slides 9, 57',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 9, 57',
  quote:'Q: AZ2357 drug activity is linked to FGs derived from carboxylic acid (CA). Circle and list all such FGs.'},
 
 /* ───────── hydrocarbons and halogenated ───────── */
@@ -100,7 +100,7 @@ QUESTIONS.push(
    why:'Hydrogen bonding needs an oxygen, nitrogen or sulfur. A pure hydrocarbon chain has none of these.'}],
  teach:'Adding carbon and hydrogen moves a molecule toward fat. Adding oxygen or nitrogen moves it toward water. That single contrast explains most of what functional groups do to a drug\'s absorption, distribution and elimination, and it is why metabolism works by adding oxygen-containing groups.',
  teachImg:'fgd_alkanes',
- cite:'Functional group deck slides 10–11',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 10–11',
  quote:'Introduce lipophilicity in the drug molecule'},
 
 {id:'fgx-7', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'alkene-notes',
@@ -118,7 +118,7 @@ QUESTIONS.push(
  svg:DIA.cisTransEpox,
  teach:'A carbon–carbon double bond does two things at once. It fixes the shape of that part of the molecule, which matters for how the drug fits a receptor. It also provides electrons that CYP can attack, producing an epoxide. Both consequences trace back to the same structural feature.',
  teachImg:'fgd_alkenes',
- cite:'Functional group deck slide 16',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 16',
  quote:'Cis (Z)/Trans (E) geometric isomerism · Alkenes can undergo metabolic epoxidation'},
 
 {id:'fgx-8', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'halogenated-hc-definition',
@@ -135,7 +135,7 @@ QUESTIONS.push(
    why:'Phosphorus appears in the phosphonate and phosphate groups on slides 69 and 70. Neither is a halogen.'}],
  teach:'Halogens are unusual among common substituents because they make a molecule both greasier and more reactive at the same time. MCMet-9_16_2026.pdf slide 21 notes halogenated hydrocarbons are very lipophilic and hard to convert into water-soluble forms, so they stay in the body, and MCMet-9_15_2026.pdf slide 28 names CYP2E1 as the enzyme central to their toxicity.',
  teachImg:'fgd_halogenated',
- cite:'Functional group deck slides 9, 22',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 9, 22',
  quote:'Halogenated HCs: Hydrocarbons + Halogens (F, Cl, Br, I)'},
 
 /* ───────── oxygenated groups ───────── */
@@ -153,7 +153,7 @@ QUESTIONS.push(
    why:'A phenol is weakly acidic, so if anything it loses a proton and becomes negative. Permanent positive charge belongs to the quaternary amine on slide 43.'}],
  teach:'This is a storage and handling point that follows directly from structure. A hydroxyl on an aromatic ring is easy to oxidize because the ring can absorb the electronic change. Amber bottles and tight closures exist for exactly this reason. The quinone formed is also relevant to toxicity, since MCMet-9_16_2026.pdf slide 26 covers quinone metabolism by NQO1.',
  teachImg:'fgd_phenol',
- cite:'Functional group deck slide 30',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 30',
  quote:'Protect phenolic drugs from air/light because they oxidize to o,p-quinones'},
 
 {id:'fgx-10', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'pegylation',
@@ -165,12 +165,12 @@ QUESTIONS.push(
   {t:'Making a drug more lipophilic so it enters the brain', correct:false,
    why:'PEG chains carry many oxygens and are strongly water-attracting, so they lower rather than raise lipophilicity. Brain entry is discussed under the blood–brain barrier in 090426_Distribution.pdf slides 11 to 13.'},
   {t:'Converting a drug into a prodrug requiring CYP activation', correct:false,
-   why:'PEGylation is a formulation and chemistry strategy rather than a bioactivation step. Prodrug examples in this course are enalapril and sulfasalazine in MCMet9_4_26__9_9_26.pdf slides 35 and 36.'},
+   why:'PEGylation is a formulation and chemistry strategy rather than a bioactivation step. Prodrug examples in this course are enalapril and sulfasalazine in MCMet-9_4_26-9_9_26.pdf slides 35 and 36.'},
   {t:'Adding a permanent positive charge', correct:false,
    why:'PEG is neutral. Its oxygens are ether oxygens, which do not ionize.'}],
  teach:'A PEG chain is many ether groups joined in a row. Each ether oxygen can accept a hydrogen bond from water, so a long chain holds a large shell of water around the drug. That extra bulk and water association is what slows removal and softens the immune response.',
  teachImg:'fgd_ether_peg',
- cite:'Functional group deck slides 32–34',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 32–34',
  quote:'PEGylation of small or large molecules is used to improve drug PK and safety profiles'},
 
 {id:'fgx-11', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'carbonyl', concept:'aldehyde-rarity',
@@ -187,7 +187,7 @@ QUESTIONS.push(
    why:'Several do. ALDH, aldehyde dehydrogenase, oxidizes them to carboxylic acids, and AKR, aldo-keto reductase, reduces them to alcohols, in MCMet-9_10_26.pdf slides 23 and 30.'}],
  teach:'A ketone has two carbons attached to its carbonyl, which shield that carbon and spread electron density onto it. An aldehyde has only one carbon and a hydrogen, so its carbonyl carbon is more exposed and more positive. That single structural difference is why ketones appear in drugs and aldehydes mostly do not.',
  teachImg:'fgd_aldehyde',
- cite:'Functional group deck slide 36',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 36',
  quote:'Few in drug molecules. Why? Because this is a reactive FG – it can oxidize or even polymerize.'},
 
 /* ───────── nitrogen groups ───────── */
@@ -206,7 +206,7 @@ QUESTIONS.push(
  svg:DIA.amineClasses,
  teach:'Count the carbons on the nitrogen to predict behaviour. One carbon is primary, two is secondary, three is tertiary, and all three of those are basic and change charge with pH. Four carbons is quaternary: permanently charged, unable to gain or lose a proton, and classed as neutral in acid–base character. That fourth carbon changes everything about how the drug distributes.',
  teachImg:'fgd_quat_amine',
- cite:'Functional group deck slide 43',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 43',
  quote:'The charge on the N-atom is permanent, regardless of pH and prevents passive absorption into CNS. These molecules also have a neutral acid/base character.'},
 
 {id:'fgx-13', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'amine-class-counting',
@@ -224,7 +224,7 @@ QUESTIONS.push(
  svg:DIA.amineClasses,
  teach:'Counting carbons on the nitrogen tells you the class, and the class tells you the reaction. One carbon means a primary amine, which loses its nitrogen through oxidative deamination. Two or three carbons means a secondary or tertiary amine, which loses an alkyl group through N-dealkylation. Four carbons means a quaternary amine, permanently charged and largely untouched.',
  teachImg:'fgd_amines',
- cite:'Functional group deck slides 40–43; Lecture #14 slide 10'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 40–43; Lecture #14 (MCMet-9_16_2026.pdf) slide 10'},
 
 {id:'fgx-14', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'nitro-vs-nitrile',
  tags:['structure'], source:'slide',
@@ -240,7 +240,7 @@ QUESTIONS.push(
    why:'Neither contains sulfur or phosphorus. Sulfur groups are on slides 64 to 68 and phosphorus groups on slides 69 and 70.'}],
  teach:'Both appear on the electron-withdrawing side of the EDG and EWG chart on slide 94, so both pull electron density out of a ring they are attached to. They behave very differently in metabolism, though. The nitro group is reduced through nitroso and hydroxylamine intermediates, the same reactive species implicated in nitrofurantoin liver toxicity in MCMet-9_17_2026.pdf slide 48.',
  teachImg:'fgd_nitrile',
- cite:'Functional group deck slides 44–45'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 44–45'},
 
 /* ───────── sulfur and phosphorus ───────── */
 {id:'fgx-15', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfur-oxidation-series',
@@ -258,7 +258,7 @@ QUESTIONS.push(
  svg:DIA.sulfurSeries,
  teach:'Sulfur can hold different numbers of oxygens, and each count has its own name. Zero oxygens with two carbons is a sulfide. One oxygen is a sulfoxide. Two oxygens is a sulfone. Two oxygens plus a nitrogen is a sulfonamide, and two oxygens plus a hydroxyl is a sulfonic acid. Counting the oxygens on the sulfur names the group.',
  teachImg:'fgd_sulfur_list',
- cite:'Functional group deck slides 62–68',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 62–68',
  quote:'Sulfur: Sulfide, Oxygenated Sulfur & Derivatives'},
 
 {id:'fgx-16', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfonamide-nat',
@@ -276,7 +276,7 @@ QUESTIONS.push(
  svg:DIA.sulfurSeries,
  teach:'Sulfonamide is one of only two group types NAT accepts, the other being primary amines. Sulfamethoxazole appears again in MCMet-9_17_2026.pdf slide 58, where reactive products of its metabolism act as haptens and trigger a skin hypersensitivity reaction. The same group therefore connects a Phase 2 pathway and a toxicity mechanism.',
  teachImg:'fgd_sulfonamide',
- cite:'Functional group deck slide 68; Lecture #11 slide 53',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 68; Lecture #11 (MCMet-9_10_26.pdf) slide 53',
  quote:'Target FGs: 1o N (Alkyl- & Aryl-amines) · SO2NH2 (Sulfonamides)'},
 
 {id:'fgx-17', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'phosphate-hydrolysis',
@@ -293,7 +293,7 @@ QUESTIONS.push(
    why:'MAO, monoamine oxidase, acts on amines. A phosphate contains no nitrogen.'}],
  teach:'Sulfate esters follow the same pattern with a different enzyme. MCMet-9_16_2026.pdf slide 28 pairs sulfate esters with sulfatase, just as slide 27 pairs phosphate esters with phosphatase. In both, a charged group is attached to improve solubility and then removed to release the active drug.',
  teachImg:'fgd_phosphonate',
- cite:'Functional group deck slides 69–70; Lecture #14 slides 27–28'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 69–70; Lecture #14 (MCMet-9_16_2026.pdf) slides 27–28'},
 
 /* ───────── heterocyclic rings (drawn structures) ───────── */
 {id:'fgx-18', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrrole-vs-pyrrolidine',
@@ -308,10 +308,10 @@ QUESTIONS.push(
    why:'Furan is also a five-membered aromatic ring, but the heteroatom is oxygen rather than nitrogen.'},
   {t:'Imidazole', correct:false,
    why:'Imidazole is a five-membered aromatic ring with two nitrogens rather than one.'}],
- svg:RING.pyrrole,
+ fg:'Pyrrole',
  teach:'Reading a ring takes three questions in order. How many atoms are in the ring. Which of them are not carbon. And whether there are double bonds inside the ring. Those three answers name almost every ring in slides 73 to 93, and the double-bond answer also tells you whether a nitrogen in the ring is basic.',
  teachImg:'fgd_ring_5_n',
- cite:'Functional group deck slides 75–76'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 75–76'},
 
 {id:'fgx-19', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperidine',
  tags:['structure'], source:'slide',
@@ -325,10 +325,10 @@ QUESTIONS.push(
    why:'Piperazine is also saturated but has two nitrogens, positioned across the ring from each other.'},
   {t:'Pyrimidine', correct:false,
    why:'Pyrimidine is aromatic and has two nitrogens with one carbon between them.'}],
- svg:RING.piperidine,
+ fg:'Piperidine',
  teach:'Piperidine and pyridine contain the same atoms and differ only in whether the ring is saturated. That difference changes the chemistry: the saturated nitrogen in piperidine is a good proton acceptor, while the aromatic nitrogen in pyridine is much weaker because its lone pair is partly tied up in the ring system.',
  teachImg:'fgd_ring_6_n',
- cite:'Functional group deck slides 82, 85'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 82, 85'},
 
 {id:'fgx-20', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrimidine-vs-pyrazine',
  tags:['structure'], source:'slide',
@@ -342,10 +342,10 @@ QUESTIONS.push(
    why:'Piperazine has two nitrogens across the ring like pyrazine, but with no double bonds, so it is saturated.'},
   {t:'Pyridine', correct:false,
    why:'Pyridine has only one nitrogen.'}],
- svg:RING.pyrimidine,
+ fg:'Pyrimidine',
  teach:'Pyrimidine and pyrazine are the pair most often mixed up, because both are six-membered aromatic rings with two nitrogens. Count the carbons between the nitrogens. One carbon between them is pyrimidine. Two carbons on each side, putting them opposite, is pyrazine.',
  teachImg:'fgd_ring_6_2n_1',
- cite:'Functional group deck slides 83–84'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–84'},
 
 {id:'fgx-21', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-thiazole',
  tags:['structure'], source:'slide',
@@ -359,10 +359,10 @@ QUESTIONS.push(
    why:'Thiophene has a sulfur but no nitrogen, so it has only one heteroatom.'},
   {t:'Furan', correct:false,
    why:'Furan has a single oxygen as its only heteroatom.'}],
- svg:RING.thiazole,
+ fg:'Thiazole',
  teach:'Slides 75 to 81 organize the five-membered rings by which heteroatoms they contain: one oxygen gives furan, one nitrogen gives pyrrole, one sulfur gives thiophene, two nitrogens gives imidazole, and one sulfur with one nitrogen gives thiazole. Naming the heteroatoms present identifies the ring.',
  teachImg:'fgd_ring_5_sn',
- cite:'Functional group deck slides 77, 80'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 77, 80'},
 
 {id:'fgx-22', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-imidazole',
  tags:['structure'], source:'slide',
@@ -376,10 +376,10 @@ QUESTIONS.push(
    why:'Pyrrole has only one nitrogen.'},
   {t:'Pyrimidine', correct:false,
    why:'Pyrimidine has two nitrogens separated by one carbon like imidazole, but the ring has six atoms rather than five.'}],
- svg:RING.imidazole,
+ fg:'Imidazole',
  teach:'Count ring atoms before counting heteroatoms. Imidazole and pyrimidine both have two nitrogens with a single carbon between them, and the only difference is that imidazole has five ring atoms and pyrimidine has six. Getting the ring size first prevents that mix-up.',
  teachImg:'fgd_ring_5_2n',
- cite:'Functional group deck slide 79'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 79'},
 
 /* ───────── EDG vs EWG ───────── */
 {id:'fgx-23', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'edg-list',
@@ -395,7 +395,7 @@ QUESTIONS.push(
   {t:'Nitrile, aromatic amine, halogens, methoxy', correct:false,
    why:'This also mixes the two sides. Aromatic amine and methoxy donate, while nitrile and halogens withdraw.'}],
  teach:'The two sides differ in which way electrons move relative to the ring. A donating group has a lone pair it can push into the ring, which makes the ring more electron-rich and more open to attack by electron-poor species. A withdrawing group pulls density out, leaving the ring electron-poor. That change affects how acidic or basic nearby groups are and how readily CYP can oxidize the ring.',
- cite:'Functional group deck slide 94',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 94',
  quote:'EDGs vs. EWGs · Electron density influencing FGs or moieties'},
 
 {id:'fgx-24', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'ewg-effect-on-acidity',
@@ -412,7 +412,7 @@ QUESTIONS.push(
    why:'A phenol has a hydrogen to give away rather than a lone pair available to accept one, so it cannot become basic by adding a withdrawing group.'}],
  teach:'The same principle runs in reverse for bases. An electron-donating group next to a nitrogen makes that nitrogen more able to pick up a proton, so the molecule is more basic. An electron-withdrawing group makes it less able. This is why an aryl amine is less basic than an alkyl amine: the ring pulls the lone pair away from the nitrogen, as the physicochemical deck explains at slide 16.',
  teachImg:'fgd_edg_ewg',
- cite:'Functional group deck slide 94; Physicochemical Properties 1 slide 16'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 94; Physicochemical Properties 1 slide 16'},
 
 /* ───────── relevance and classification ───────── */
 {id:'fgx-25', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fg-relevance-three-areas',
@@ -429,7 +429,7 @@ QUESTIONS.push(
    why:'Melting point appears on slide 4 under physicochemical properties, but colour and taste are not among the listed areas.'}],
  teach:'These three areas are the organizing structure of the whole course. Physicochemical properties come first, because whether a group is acidic, basic or neutral determines its charge. Charge then determines absorption and distribution, which is pharmacokinetics. And the groups that remain available to contact a protein determine binding, which is pharmacodynamics.',
  teachImg:'fgd_relevance',
- cite:'Functional group deck slide 4',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 4',
  quote:'Physicochemical: Reactivity (stability/toxicity), Acid, Base, Neutral, Amphoteric, Stereochemistry, Melting Point · Pharmacodynamics · Pharmacokinetics'},
 
 {id:'fgx-26', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'ce-four-substrates-fg',
@@ -447,7 +447,7 @@ QUESTIONS.push(
  svg:DIA.acylFamily,
  teach:'One enzyme handles four groups because all four share the same arrangement: a carbonyl carbon attached to an atom that can leave. The products differ by group. An ester gives an acid plus an alcohol. An amide gives an acid plus an amine. A carbamate gives an alcohol plus an amine. A carbonate gives two alcohols.',
  teachImg:'fgd_ce_substrates',
- cite:'Functional group deck slide 52',
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 52',
  quote:'Esters/Carbonates/Amides/Carbamates undergo hydrolytic metabolism by Carboxyesterase or CE enzymes'},
 
 {id:'fgx-27', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'imide-guanidine-recognition',
@@ -465,7 +465,7 @@ QUESTIONS.push(
  svg:DIA.acylFamily,
  teach:'Urea and imide are easy to reverse because both contain two of one atom and one of another. A urea is one carbonyl carbon with two nitrogens on it. An imide is one nitrogen with two carbonyl carbons on it. The consequence differs sharply: the imide N–H is acidic, while the urea is not.',
  teachImg:'fgd_urea',
- cite:'Functional group deck slides 53–55'}
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53–55; imide on the acidic list, 082726_PhysicochemicalProp1.pdf slide 13'}
 );
 
 QUESTIONS.push(
@@ -481,10 +481,11 @@ QUESTIONS.push(
    why:'Pyrimidine is also aromatic with two nitrogens, but they are separated by a single carbon rather than sitting opposite each other.'},
   {t:'Pyridazine', correct:false,
    why:'Pyridazine has its two nitrogens next to each other, sharing a bond.'}],
- svg:RING.pyrazine,
+ cmp:['Pyrazine','Piperazine','Pyrimidine'],
+ fg:'Pyrazine',
  teach:'Three six-membered aromatic rings carry two nitrogens and differ only in where those nitrogens sit. Adjacent is pyridazine. One carbon apart is pyrimidine. Directly opposite is pyrazine. Trace around the ring and count the carbons between the two nitrogens.',
  teachImg:'fgd_ring_6_2n_2',
- cite:'Functional group deck slides 83–84'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–84'},
 
 {id:'fgx-29', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperazine',
  tags:['structure'], source:'slide',
@@ -498,10 +499,10 @@ QUESTIONS.push(
    why:'Piperidine is also saturated but contains only one nitrogen.'},
   {t:'Morpholine', correct:false,
    why:'Morpholine is a saturated six-membered ring with one nitrogen and one oxygen opposite each other, rather than two nitrogens.'}],
- svg:RING.piperazine,
+ fg:'Piperazine',
  teach:'Piperazine appears in many drugs precisely because it carries two basic nitrogens in a rigid ring. One can be attached to the rest of the molecule while the other stays free to pick up a proton, which adds water solubility without changing the drug\'s shape.',
  teachImg:'fgd_ring_6_pip',
- cite:'Functional group deck slide 85'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 85'},
 
 {id:'fgx-30', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-furan',
  tags:['structure'], source:'slide',
@@ -515,10 +516,11 @@ QUESTIONS.push(
    why:'Pyrrole has a nitrogen in that position instead of an oxygen.'},
   {t:'Tetrahydrofuran', correct:false,
    why:'Tetrahydrofuran has the same oxygen in a five-membered ring but is fully saturated, with no double bonds. Position 5 of drug X on slide 56 is a tetrahydrofuran.'}],
- svg:RING.furan,
+ cmp:['Furan','Thiophene','Pyrrole','Tetrahydrofuran THF'],
+ fg:'Furan',
  teach:'Slides 75 to 81 sort the five-membered rings by heteroatom: oxygen gives furan, sulfur gives thiophene, nitrogen gives pyrrole. Adding a second heteroatom gives imidazole for two nitrogens, thiazole for sulfur plus nitrogen, and oxazole for oxygen plus nitrogen.',
  teachImg:'fgd_ring_5_o',
- cite:'Functional group deck slide 75; Bioisosterism deck slide 11'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 75; Bioisosterism deck slide 11'},
 
 {id:'fgx-31', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyridine',
  tags:['structure'], source:'slide',
@@ -532,10 +534,11 @@ QUESTIONS.push(
    why:'Benzene is the same six-membered aromatic ring but with six carbons and no heteroatom at all.'},
   {t:'Pyrrole', correct:false,
    why:'Pyrrole also has one nitrogen but only five ring atoms.'}],
- svg:RING.pyridine,
+ cmp:['Pyridine','Piperidine','Pyrrole'],
+ fg:'Pyridine',
  teach:'Ring size and saturation state together decide basicity. Pyridine and piperidine both have one nitrogen in a six-membered ring, and the aromatic one is the weaker base. The rule to carry forward is that anything pulling the lone pair into a delocalized system reduces basicity, which is the same reason an aryl amine is weaker than an alkyl amine.',
  teachImg:'fgd_ring_6_n',
- cite:'Functional group deck slide 82; Physicochemical Properties 1 slide 16'},
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 82; Physicochemical Properties 1 slide 16'},
 
 {id:'fgx-32', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-amide-vs-acid',
  tags:['structure'], source:'slide', img:'fg_drugX',
@@ -551,5 +554,5 @@ QUESTIONS.push(
    why:'Position 6 has both an oxygen and a nitrogen, making it a carbamate. Position 4 has two oxygens, making it a carbonate.'}],
  svg:DIA.acylFamily,
  teach:'The carboxylic acid is the only member of this family whose group can ionize at physiological pH. That gives it a negative charge in the body, which affects solubility, protein binding and renal handling, and it is the group targeted by acyl synthetase in amino acid conjugation.',
- cite:'Functional group deck slides 46, 50, 56'}
+ cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 46, 50, 56'}
 );

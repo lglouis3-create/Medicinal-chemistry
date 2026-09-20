@@ -65,7 +65,7 @@ QUESTIONS.push(
    why:'Sulfation is Phase 2 rather than the Phase 1 reaction asked for, and its target on slide 29 is -OH. Amines do undergo Phase 2 reactions, as slide 11 notes, but through N-acetylation and methylation.'}],
  svg:DIA.amineClasses,
  teachImg:'fgm_amine',
- teach:'Amine reactions divide by how many carbons the nitrogen already carries. A primary amine loses the nitrogen through oxidative deamination and leaves a carbonyl behind. A secondary or tertiary amine with a methyl or ethyl group loses that group by N-dealkylation, which is the same reaction that converts imipramine to desipramine and tramadol toward its active metabolite. Counting substituents on the nitrogen predicts the product before any mechanism is drawn. Amines also have Phase 2 routes: slide 30 gives N-acetyltransferase acting on -NH2 with acetyl coenzyme A, and methyltransferase acting on -OH, -NH2 and -SH.',
+ teach:'Amine reactions divide by how many carbons the nitrogen already carries. A primary amine loses the nitrogen through oxidative deamination and leaves a carbonyl behind. A secondary or tertiary amine with a methyl or ethyl group loses that group by N-dealkylation, which is the same reaction that converts imipramine to desipramine on slide 21. Tramadol is the contrast case: its active metabolite comes from O-demethylation, a methyl leaving an oxygen rather than a nitrogen, on Lecture 13 slide 47. Counting substituents on the nitrogen predicts the product before any mechanism is drawn. Amines also have Phase 2 routes: slide 30 gives N-acetyltransferase acting on -NH2 with acetyl coenzyme A, and methyltransferase acting on -OH, -NH2 and -SH.',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 10–11',
  quote:'1o amines undergo oxidative deaminations · 3o & 2o N with Methyl/Ethyl groups undergo N-dealkylations'},
 
@@ -120,7 +120,7 @@ QUESTIONS.push(
    why:'Aldo-keto reductases reduce aldehydes and ketones to alcohols, slide 12. They act on carbonyl carbons, not on sulfur, and reduction is not among the thioether routes.'}],
  teachImg:'fgm_thioether_ox',
  teach:'Sulfur behaves like oxygen with an extra option. An ether undergoes O-dealkylation and little else, because oxygen resists further oxidation. A thioether can be dealkylated the same way, but its sulfur is also large and electron-rich enough to be oxidized directly, giving the sulfoxide and then the sulfone. That extra route matters clinically, since oxidation changes polarity and activity without breaking the molecule apart, and flavin-containing monooxygenase as well as CYP can perform it. It also explains why sulfur-containing drugs often have several circulating metabolites rather than one.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 18–19',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 18–19; Lecture #11 (MCMet-9_10_26.pdf) slide 26 (FMO oxidises sulfur to sulfoxides and sulfones)',
  quote:'Thioethers: Undergo oxidative biotransformations · Thioethers: S-Dealkylations'},
 
 {id:'fg-8', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ether', concept:'epoxide-dual-fate',
@@ -187,7 +187,7 @@ QUESTIONS.push(
   {t:'Only -CO₂H groups', correct:false,
    why:'Carboxylic acids alone are the acyl synthetase entry, which conjugates them with an amino acid. Glucuronidation takes carboxylic acids as well, but not only those.'}],
  teachImg:'tbl_ph2_a',
- teach:'The Phase 2 table is easiest to hold as a question of electronic character. Four of the six enzymes act on nucleophiles, so they need an -OH, -NH2, -SH or -CO2H to attack the cofactor: glucuronidation across all four, sulfation on -OH, amino acid conjugation on -CO2H, acetylation on -NH2, and methylation on -OH, -NH2 and -SH. Only glutathione S-transferase works the other way, supplying a nucleophile to attack an electrophilic substrate, which is why its targets are written as R-X and epoxide. Deciding whether the group is electron-rich or electron-poor narrows six enzymes to a short list before any cofactor is considered.',
+ teach:'The Phase 2 table is easiest to hold as a question of electronic character. Five of the six enzymes act on nucleophiles, so they need an -OH, -NH2, -SH or -CO2H to attack the cofactor: glucuronidation across all four, sulfation on -OH, amino acid conjugation on -CO2H, acetylation on -NH2, and methylation on -OH, -NH2 and -SH. Only glutathione S-transferase works the other way, supplying a nucleophile to attack an electrophilic substrate, which is why its targets are written as R-X and epoxide. Deciding whether the group is electron-rich or electron-poor narrows six enzymes to a short list before any cofactor is considered.',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
  quote:'-OH; -CO2H; NH2; -SH | UDP-Glucuronosyl transferases (UGTs) | Uridine-5\'-diphospho-D-glucuronic Acid (UDPGA) | Glucuronide'},
 
@@ -239,7 +239,7 @@ QUESTIONS.push(
    why:'Those are three of the four requirements of the CYP catalytic cycle, a Phase 1 oxidation, from MCMet-9_15_2026.pdf slide 12. None of them takes part in a conjugation.'}],
  teachImg:'tbl_ph2_a',
  teach:'A carboxylic acid is a poor electrophile as it stands, so it cannot simply accept an amino acid. Acetyl coenzyme A activates it first, and only then is glycine or glutamine attached, which is why the table lists two requirements for this one row while every other enzyme lists one. Acetyl coenzyme A therefore appears twice in the Phase 2 table with different roles: as the acetyl donor for N-acetyltransferase acting on -NH2, and as an activator here. Noticing that a carboxylic acid also has a glucuronidation route explains why slide 13 describes carboxylic acids as undergoing a variety of biotransformations.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 55 (acetyl CoA activates the -COOH; three co-factors)',
  quote:'- CO2H | Acylsynthatases | Acetyl Co-A & an Amino Acid (e.g., Glycine, Glutamine) | Amino Acid (Glycine/Glutamine)'},
 
 {id:'fg-15', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'nat-targets-polymorphism',
@@ -256,11 +256,11 @@ QUESTIONS.push(
    why:'Thiols are handled by glucuronidation and methylation, which take -SH among their targets. Acetylation is also not an oxidation, so describing the phenotypes as oxidizer status names the wrong reaction.'}],
  teachImg:'tbl_ph2_b',
  teach:'Acetylation is the Phase 2 route that does not increase polarity much, which makes it unusual: its purpose is to mask the amine rather than to make the molecule water soluble, and an acetylated sulfonamide can be less soluble than the parent. The polymorphism is what gives it clinical weight, since slow acetylators clear isoniazid and sulfonamides more slowly and accumulate them at ordinary doses. That places it alongside the polymorphic CYPs on slide 49 and dihydropyrimidine dehydrogenase on slide 25, and it is the standard counterexample to the idea that only Phase 1 enzymes vary genetically.',
- cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30; Lecture #11 (MCMet-9_10_26.pdf) slide 53 (NAT2 slow and fast acetylators)',
  quote:'-NH2 | N-Acetyltransferases | Acetyl Co-enzyme A | N-Acetylated'},
 
 {id:'fg-16', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
- tags:['cofactor','recall'], source:'slide',
+ tags:['cofactor','recall'], source:'slide', img:'rx_dimercaprol',
  stem:'Dimercaprol is converted to its inactive metabolite as shown. What enzyme family and cofactor are involved?',
  options:[
   {t:'Methyltransferases, using S-adenosylmethionine', correct:true,
@@ -271,7 +271,7 @@ QUESTIONS.push(
    why:'Sulfotransferase is listed for -OH only on slide 29, so a thiol falls outside its range. This is a pairing error rather than a chemistry one, because the shape of the reaction is right: 3\u2019-phosphoadenosine-5\u2019-phosphosulfate does transfer a group onto a heteroatom, exactly as S-adenosylmethionine does. Only the functional group the enzyme accepts is wrong, which is why the cofactor table is worth reading as enzyme, cofactor and accepted group together rather than as three separate lists.'},
   {t:'Flavin monooxygenase, using NADPH', correct:false,
    why:'Flavin-containing monooxygenase does act on sulfur, oxidizing it, and it is a Phase 1 enzyme. The reaction here attaches a methyl group rather than an oxygen, which makes it a Phase 2 conjugation.'}],
- teach:'Methylation shares two of its three targets with glucuronidation, -OH and -NH2, and adds -SH, so the deciding question is usually which route dominates rather than which is possible. It is also the Phase 2 reaction least useful for elimination, since adding a methyl group raises lipophilicity slightly instead of lowering it; its role is to end activity rather than to speed removal. Dimercaprol shows that plainly: methylating the thiols inactivates a chelating agent whose whole action depends on free sulfur. S-adenosylmethionine is the methyl donor throughout, and the same enzyme family methylates thiopurines, where deficiency is clinically serious.',
+ teach:'Methylation shares all three of its targets with glucuronidation, since the table on slide 29 lists -OH, -NH2 and -SH under UGT as well, so the deciding question is usually which route dominates rather than which is possible. It is also the Phase 2 reaction least useful for elimination, since adding a methyl group raises lipophilicity slightly instead of lowering it; its role is to end activity rather than to speed removal. Dimercaprol shows that plainly: methylating the thiols inactivates a chelating agent whose whole action depends on free sulfur. S-adenosylmethionine is the methyl donor throughout, and the same enzyme family methylates thiopurines, where deficiency is clinically serious.',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30',
  quote:'-OH; -NH2; -SH | Methyltransferases | S- Adenosyl methionine (SAM) | Methylated'},
 
@@ -279,14 +279,14 @@ QUESTIONS.push(
  tags:['cofactor','matching'], source:'slide',
  stem:'Which enzyme and cofactor pair is correctly matched?',
  options:[
-  {t:'Acyl synthetase — acetyl-CoA plus an amino acid', correct:true,
-   why:'This is the only row in the table with two components, because the carboxylic acid has to be activated by acetyl coenzyme A before glycine or glutamine can be attached.'},
-  {t:'UGT — PAPS', correct:false,
-   why:'The cofactors are swapped between neighbouring rows. UDP-glucuronosyltransferase uses UDP-glucuronic acid; PAPS belongs to sulfotransferase. Both act on -OH, which is why the two rows sit together and are easy to cross.'},
-  {t:'GST — S-adenosylmethionine', correct:false,
-   why:'Glutathione S-transferase uses glutathione itself. S-adenosylmethionine is the methyltransferase cofactor, and the two enzymes also differ in direction, one supplying a nucleophile and the other accepting one.'},
-  {t:'Methyltransferase — acetyl-CoA', correct:false,
-   why:'Acetyl coenzyme A donates an acetyl group to N-acetyltransferase. Methyltransferase transfers a single carbon from S-adenosylmethionine, so both the cofactor and the group transferred are wrong here.'}],
+  {t:'Sulfotransferase — PAPS (3\'-phosphoadenosine-5\'-phosphosulfate)', correct:true,
+   why:'The sulfotransferase row of the Lecture 14 slide 29 table: substrate -OH, cofactor PAPS, product a sulfate. PAPS carries the sulfate as an activated mixed anhydride, and the phenol or alcohol oxygen attacks the sulfur. Labetalol sulfate on Lecture 11 slide 48 is the worked product.'},
+  {t:'UDP-glucuronosyltransferase — S-adenosylmethionine', correct:false,
+   why:'UDP-glucuronosyltransferase uses UDP-glucuronic acid, the sugar donor. S-adenosylmethionine is the methyl donor of the methyltransferases on slide 30. The cofactor is named for what it carries, and a glucuronide needs the sugar, not a methyl.'},
+  {t:'Glutathione S-transferase — acetyl-CoA', correct:false,
+   why:'Glutathione S-transferase transfers glutathione itself, whole, onto an electrophile. Acetyl coenzyme A is the acetyl donor for N-acetyltransferase and the activator in amino acid conjugation; it has no part in the glutathione row.'},
+  {t:'Methyltransferase — UDP-glucuronic acid', correct:false,
+   why:'Methyltransferases transfer one carbon from S-adenosylmethionine to an -OH, -NH2 or -SH. UDP-glucuronic acid belongs to the glucuronidation row, and it would attach a six-carbon sugar acid rather than a methyl.'}],
  teachImg:'tbl_ph2_a',
  teach:'Matching questions on this table are answered by the transferred group rather than by the enzyme name, since each cofactor is named for what it carries: UDP-glucuronic acid gives glucuronic acid, PAPS gives sulfate, S-adenosylmethionine gives a methyl, acetyl coenzyme A gives an acetyl, and glutathione is transferred whole. The one row that breaks the pattern is amino acid conjugation, which needs an activator as well as the group being attached. Checking that the substrate class also fits gives a second filter, since sulfation and acetylation each take a single functional group while glucuronidation and methylation take several.',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 29–30',
@@ -486,7 +486,7 @@ QUESTIONS.push(
  stem:'Cats have sulfotransferases (STs) but lack UDP-glucuronosyltransferases (UGTs). What does that inter-species difference mean in practice?',
  options:[
   {t:'A drug that humans clear by glucuronidation can accumulate to toxic levels in a cat, so animal data does not transfer across species', correct:true,
-   why:'Losing UGT removes the widest phase II route, the one that handles -OH, -CO2H, -NH2 and -SH groups. A cat given acetaminophen cannot form the glucuronide, so more of the dose goes down the CYP route to NAPQI. Pigs are the reverse case: they have UGTs but lack STs.'},
+   why:'Losing UGT removes the widest phase II route, the one that handles -OH, -CO2H, -NH2 and -SH groups. A drug that humans clear as a glucuronide has no such route in the cat, so it is cleared more slowly or by a different route. Pigs are the reverse case: they have UGTs but lack STs.'},
   {t:'All mammals share an identical set of drug-metabolizing enzymes', correct:false,
    why:'The same slide gives three counterexamples: cats, pigs, and rats, which carry six CYP2D isoforms where humans carry one.'},
   {t:'Species differences apply only to phase 1 enzymes', correct:false,
@@ -494,5 +494,5 @@ QUESTIONS.push(
   {t:'Cats metabolize all drugs faster than humans', correct:false,
    why:'This inverts what losing a pathway does. A route that is absent cannot clear anything, so the drugs depending on it are removed more slowly and build up, which is why the cat and acetaminophen case is a toxicity case. The word \u2018all\u2019 is the second problem: a species difference changes the handling of drugs that use the missing route, not of every drug, since the routes a species does have are unaffected.'}],
  teach:'Inter-species differences sit under genetic factors. Two consequences follow. In drug development, a preclinical safety result obtained in one species may not predict the human outcome, because the species may route the drug differently. In veterinary practice, a dose that is safe for a human or a dog can be toxic to a cat when the cat lacks the enzyme that normally clears it.',
- cite:'MCMet-9_16_2026.pdf slide 50'}
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 50'}
 );

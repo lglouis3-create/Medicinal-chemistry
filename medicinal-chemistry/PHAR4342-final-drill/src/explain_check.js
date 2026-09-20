@@ -135,7 +135,7 @@ for (const q of Q) {
   const thin = [], undiagnosed = [];
   q.options.forEach((o, i) => {
     const why = o.why || '';
-    const L = 'ABCDE'[i];
+    const L = 'ABCDEFGHIJ'[i];
     if (why.length < 110) thin.push(L + (why ? ` (${why.length})` : ' (none)'));
     else if (!o.correct && !DIAGNOSIS.test(why)) undiagnosed.push(L);
   });
@@ -145,7 +145,7 @@ for (const q of Q) {
   const vague = [];
   for (const [re, label] of VAGUE) {
     const fields = [['concept block', teach],
-                    ...q.options.map((o, i) => ['option ' + 'ABCDE'[i], o.why || ''])];
+                    ...q.options.map((o, i) => ['option ' + 'ABCDEFGHIJ'[i], o.why || ''])];
     for (const [where, txt] of fields) {
       if (txt && re.test(txt)) { vague.push(`${where}: ${label}`); break; }
     }

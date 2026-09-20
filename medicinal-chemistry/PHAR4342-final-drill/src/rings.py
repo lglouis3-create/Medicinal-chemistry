@@ -18,10 +18,15 @@ def ring(n, hetero, aromatic, size=58, pad=26):
         t1 = 13 if i in hetero else 0
         t2 = 13 if (i+1)%n in hetero else 0
         out.append(f'<line x1="{x1+ux*t1:.1f}" y1="{y1+uy*t1:.1f}" x2="{x2-ux*t2:.1f}" y2="{y2-uy*t2:.1f}"/>')
-    # inner lines for aromatic / unsaturated bonds (alternating)
+    # inner lines for aromatic / unsaturated bonds (alternating).
+    # A five-membered ring puts its two double bonds on edges 1-2 and 3-4, so
+    # the heteroatom at vertex 0 keeps single bonds: O and S are divalent and
+    # cannot carry a ring double bond, and pyrrole's nitrogen holds the N-H.
+    # A six-membered ring alternates from edge 0, which is a valid Kekule form
+    # whether or not vertex 0 is a nitrogen.
     if aromatic:
-        step = 2
-        for i in range(0, n - (1 if n % 2 else 0), step):
+        edges = [1, 3] if n == 5 else range(0, n, 2)
+        for i in edges:
             x1,y1 = pts[i]; x2,y2 = pts[(i+1)%n]
             mx,my = (x1+x2)/2, (y1+y2)/2
             vx,vy = cx-mx, cy-my; L = math.hypot(vx,vy); vx,vy = vx/L*9, vy/L*9
@@ -38,17 +43,17 @@ def ring(n, hetero, aromatic, size=58, pad=26):
     return ''.join(out)
 
 RINGS = {
- 'pyrrole':      ring(5, {0:'N'}, True),
- 'pyrrolidine':  ring(5, {0:'N'}, False),
+ 'pyrrole':      ring(5, {0:'NH'}, True),
+ 'pyrrolidine':  ring(5, {0:'NH'}, False),
  'furan':        ring(5, {0:'O'}, True),
  'thiophene':    ring(5, {0:'S'}, True),
- 'imidazole':    ring(5, {0:'N', 2:'N'}, True),
+ 'imidazole':    ring(5, {0:'NH', 2:'N'}, True),
  'thiazole':     ring(5, {0:'S', 2:'N'}, True),
  'pyridine':     ring(6, {0:'N'}, True),
  'pyrimidine':   ring(6, {0:'N', 2:'N'}, True),
  'pyrazine':     ring(6, {0:'N', 3:'N'}, True),
- 'piperidine':   ring(6, {0:'N'}, False),
- 'piperazine':   ring(6, {0:'N', 3:'N'}, False),
+ 'piperidine':   ring(6, {0:'NH'}, False),
+ 'piperazine':   ring(6, {0:'NH', 3:'NH'}, False),
  'benzene':      ring(6, {}, True),
 }
 json.dump(RINGS, open('rings.json','w'))

@@ -50,7 +50,7 @@ const TOPICS = [
    {id:'def',   name:'Defense & antidotes',         cite:'slides 59–64'}]},
 
  {id:'dmfound', name:'Metabolism foundations', prof:'Sikazwe',
-  cite:'Lecture #10 — MCMet9_4_26__9_9_26.pdf',
+  cite:'Lecture #10 — MCMet-9_4_26-9_9_26.pdf',
   subs:[
    {id:'analysis',name:'What metabolism is & does',  cite:'slides 5–9'},
    {id:'phases',  name:'Phases, patterns & enzymes', cite:'slides 11–17'},
@@ -162,7 +162,7 @@ const QUESTIONS = [
    why:'A protein of 450 kilodaltons would be very large; a CYP is a fraction of that size. The number refers to light absorption. Molecular weight does matter elsewhere in the course: at the glomerulus, molecules under about 60 kilodaltons are filtered, in MCMet-9_17_2026.pdf slide 11.'}],
  teach:'Two parts of this name carry information you will use again. Cell-bound places the enzyme in the endoplasmic reticulum, which is what makes it microsomal rather than cytosolic. Heme pigment means there is an iron atom at the active site, and that iron is what changes oxidation state during the catalytic cycle on slide 12. The 450 nanometre figure is only how the enzyme was first detected and has no role in how it works.',
  teachImg:'cyp_heme_site',
- cite:'Lecture #13 slide 8',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 8; catalytic cycle slides 11–12',
  quote:'P450 (a "CYP + CO" complex that absorbs light @ 450 nm) · CYP450 (Cytochrome P450) is the "Root Name"'},
 
 {id:'cyp-c2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-location-structure',
@@ -177,9 +177,9 @@ const QUESTIONS = [
    why:'A flavin cofactor identifies flavin-containing monooxygenase, a separate Phase 1 enzyme that oxidizes amines, amides and thiols, in MCMet-9_10_26.pdf slides 26 to 28. Monoamine oxidase is the enzyme associated with mitochondria. CYPs sit in the endoplasmic reticulum.'},
   {t:'Secreted plasma proteins with a serine residue at the active site', correct:false,
    why:'A serine at the active site identifies a hydrolase, an enzyme that uses water to break a bond. Carboxylesterase works this way on esters and amides, in MCMet-9_10_26.pdf slides 35 to 38. CYPs are never released into plasma.'}],
- teach:'Enzyme location decides how the course groups these enzymes. CYPs and UDP-glucuronosyltransferase are in the endoplasmic reticulum and are called microsomal. Sulfotransferase and glutathione S-transferase are in the cytosol. Monoamine oxidase is associated with mitochondria. MCMet9_4_26__9_9_26.pdf slide 20 lists these three cellular locations, and a question asking where a reaction happens is asking you to place the enzyme in one of them.',
+ teach:'Enzyme location decides how the course groups these enzymes. CYPs and UDP-glucuronosyltransferase are in the endoplasmic reticulum and are called microsomal. Sulfotransferase and glutathione S-transferase are in the cytosol. Monoamine oxidase is associated with mitochondria. MCMet-9_4_26-9_9_26.pdf slide 20 lists these three cellular locations, and a question asking where a reaction happens is asking you to place the enzyme in one of them.',
  teachImg:'cyp_heme_site',
- cite:'Lecture #13 slide 10',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 10; cellular sites Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 20',
  quote:'CyPs are in the ER (liver & other cells) · CyPs are membrane bound proteins · Porphyrin with Fe-Cysteine catalytic site'},
 
 {id:'cyp-c3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-nomenclature-parsing',
@@ -196,7 +196,7 @@ const QUESTIONS = [
    why:'The structure tells you which enzymes are related. CYP2C9 and CYP2C19 share the letter C, so they are in one subfamily and share more than half their sequence. That is why both metabolize phenytoin, as slide 24 shows.'}],
  teach:'Shared letters predict shared behaviour. CYP2C9 and CYP2C19 are in the same subfamily and handle several of the same drugs, including phenytoin and mephenytoin. CYP2D6 and CYP2E1 are in family 2 but different subfamilies, and their substrate lists have nothing in common. When an unfamiliar isoform appears, its label tells you which isoform you already know it resembles.',
  teachImg:'cyp_nomenclature',
- cite:'Lecture #13 slides 9, 19',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 9, 19; polymorphism slide 38',
  quote:'>18 Families (>40% homology) · >40 Subfamilies (>50% homology)'},
 
 /* ═══════════ CATALYTIC CYCLE ═══════════ */
@@ -215,7 +215,7 @@ const QUESTIONS = [
  svg:DIA.cypCycle,
  teach:'Four things are required, and each has one job. The CYP enzyme holds the drug and contains the iron. Molecular oxygen provides the oxygen atom that ends up in the product. NADPH provides the two electrons. CYP450 reductase carries those electrons from NADPH to the iron, because NADPH cannot reach the iron directly. If any one is missing you can say what stops: with no enzyme there is nowhere for the drug to bind, with no oxygen there is nothing to insert, with no NADPH there are no electrons, and with no reductase the electrons cannot reach the iron.',
  teachImg:'cyp_catalytic_cycle',
- cite:'Lecture #13 slide 12',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 12',
  quote:'Reaction requirements/ingredients: CYP450 · CYP450 Reductase · NADPH (e- donor) · Molecular Oxygen (O2)'},
 
 {id:'cyp-y2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-order',
@@ -233,7 +233,7 @@ const QUESTIONS = [
  svg:DIA.cypCycle,
  teach:'Each step exists because of what the one before it made possible. The drug binds while the iron is Fe³⁺. The first electron converts the iron to Fe²⁺, and only Fe²⁺ can bind oxygen. The second electron converts that bound oxygen into a form reactive enough to break a carbon–hydrogen bond. Then the oxygen is inserted into the drug. Every CYP reaction in MCMet-9_10_26.pdf slides 11 to 20, from aliphatic hydroxylation through N-dealkylation to epoxidation, uses this same cycle on a different part of the molecule.',
  teachImg:'cyp_catalytic_cycle',
- cite:'Lecture #13 slides 11–12',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 11–12',
  quote:'1. Oxidized (Fe3+) P450 complexes the drug 2. NADPH donates an e- (via CYP450 reductase) to reduce the initial complex 3. NADPH donates another e- to reduce O2 & form an activated "oxidized-CYP450 complex" 4. Activated oxygen oxidizes the bound drug to form the product'},
 
 {id:'cyp-y3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-reductase-role',
@@ -250,7 +250,7 @@ const QUESTIONS = [
    why:'That is glutathione reductase, a different enzyme entirely. It converts disulfide bonds back to free thiols so glutathione can be used again, and it appears under toxicity defense in MCMet-9_17_2026.pdf slide 61. The two enzymes share the word reductase but work on different molecules in different systems.'}],
  teach:'The reductase exists because of a physical distance problem. Electrons have to travel from NADPH in the cell fluid to an iron atom held inside a membrane-bound protein. The reductase spans that gap. It appears at two points in the cycle description because two electrons are delivered, one before oxygen binds and one after.',
  teachImg:'cyp_catalytic_cycle',
- cite:'Lecture #13 slide 12',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 12',
  quote:'NADPH donates an e- (via CYP450 reductase) to reduce the initial complex'},
 
 {id:'cyp-y4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-oxidation-breadth',
@@ -267,7 +267,7 @@ const QUESTIONS = [
    why:'Phase 2 means attaching a polar partner molecule onto the drug. Dealkylation removes a group rather than attaching one, so it cannot be Phase 2. It is a Phase 1 reaction.'}],
  teach:'Removing a methyl group from nitrogen, oxygen or sulfur looks different from hydroxylation but happens by the same chemistry. The enzyme adds a hydroxyl to the carbon of the methyl group, which produces an unstable structure. That structure falls apart on its own, releasing formaldehyde and leaving a hydrogen on the nitrogen, oxygen or sulfur. This is why N-dealkylation, O-dealkylation and S-dealkylation are one reaction type applied to three different atoms.',
  teachImg:'cyp_oxidative_reactions',
- cite:'Lecture #11 slide 11; Lecture #13 slide 13; PTI Study Aid question 2(i)'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 11; Lecture #13 (MCMet-9_15_2026.pdf) slide 13; Ex4-Prep-Work question 2(i)'},
 
 /* ═══════════ EXPRESSION & SHARE ═══════════ */
 {id:'cyp-e1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp3a4-dominance',
@@ -285,7 +285,7 @@ const QUESTIONS = [
  teach:'Two different percentages are attached to CYP isoforms and they measure different things. One is how much of the liver\'s CYP protein that isoform makes up. The other is what share of drugs it clears. For CYP3A4 both are about one third. For CYP2D6 they are 3 percent and 21 percent. When a question gives a percentage, check which of the two it means.',
  teachImg:'cyp_drug_share',
  note:'Two figures in this lecture disagree on the liver share. Slide 30 puts CYP3A4 at one third of liver CYP isoforms, while the pie chart on slide 14 shows CYP3A4 at 11 percent, CYP3A5 at 3 percent and CYP3A7 at 2 percent, which is 16 percent for the whole CYP3A group, with CYP2E1 the largest single slice at 21 percent. The share-of-drugs figure is not in dispute: slide 16 gives CYP3A4/5 at 30 percent, matching the one third in the stem. Confirm which liver figure is being examined.',
- cite:'Lecture #13 slides 14, 16, 30',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 14, 16, 30',
  quote:'1/3 of liver CYP isoforms & metabolizes 1/3 of drugs'},
 
 {id:'cyp-e2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp2d6-low-expression-ddi',
@@ -297,13 +297,13 @@ const QUESTIONS = [
   {t:'It is the most inducible of all CYP isoforms', correct:false,
    why:'Slide 26 states the opposite: CYP2D6 shows minimal induction. This means the liver cannot make much more of it in response to a drug. CYP3A4 and CYP1A2 can both be increased substantially, which gives them a way to compensate that 2D6 does not have.'},
   {t:'It is responsible for most of the first-pass effect', correct:false,
-   why:'First-pass metabolism is mostly CYP3A4, which slide 30 places in the intestine and the liver. An oral drug passes both before reaching general circulation. CYP2D6 is not described as being in the intestinal wall.'},
+   why:'First-pass metabolism is mostly CYP3A4, which slide 30 places in the intestine and the liver. An oral drug passes both before reaching general circulation. CYP2D6 is under one percent of intestinal CYP on the slide 15 pie, so it contributes almost nothing to gut-wall first pass.'},
   {t:'Its substrates are mostly environmental chemicals rather than drugs', correct:false,
    why:'That describes CYP2E1 on slide 28. CYP2D6 handles many prescribed drugs, including codeine and venlafaxine on slide 26, and beta blockers and several psychiatric drugs in the substrate table on slide 17.'}],
  svg:DIA.d6Share,
  teach:'Three facts about CYP2D6 combine into its clinical profile. It is present in small amounts, so it saturates easily. It cannot be induced much, so the body cannot increase supply to compensate. And it is strongly polymorphic, with four phenotypes on slide 26, so patients differ from each other before any drug is given. Together these explain why codeine and tramadol produce such different results in different patients.',
  teachImg:'cyp_drug_share',
- cite:'Lecture #13 slide 26',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 26',
  quote:'Lots of DDIs due to low expression · i.e., 3% of liver CYPs · Lots of substrates (21% of clinical drugs)'},
 
 {id:'cyp-e3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp-families-80-percent',
@@ -320,7 +320,7 @@ const QUESTIONS = [
    why:'Family members share more than 40 percent of their sequence, which still leaves most of the protein different. Those differences change which drugs an isoform accepts and whether it can be induced.'}],
  teach:'Only a small part of this enzyme superfamily matters for drug therapy. Families 1, 2 and 3 handle about 80 percent of clinical drugs. For each main isoform in those families there are three facts to know: what increases how much of it the liver makes, whether patients inherit different working versions of it, and which drugs it handles. Slides 20 through 31 cover 1A2, 2B6, 2C9 with 2C19, 2D6, 2E1 and 3A4 in that order.',
  teachImg:'cyp_drug_share',
- cite:'Lecture #13 slide 19',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 19',
  quote:'Emphasis is on the 1, 2, 3 CYP families: They metabolize 80% of clinical drugs'},
 
 /* ═══════════ FAMILIES & SUBSTRATES ═══════════ */
@@ -336,9 +336,9 @@ const QUESTIONS = [
    why:'CYP1A2 does handle the R form of warfarin in the substrate table on slide 17, but the question asks about the S form. The S form is the more potent anticoagulant and belongs to CYP2C9.'},
   {t:'CYP2E1', correct:false,
    why:'CYP2E1 handles ethanol, halogenated hydrocarbons and acetaminophen during overdose. It has no anticoagulant substrates.'}],
- teach:'Warfarin is active exactly as it is given, and metabolism only destroys it. That makes every interaction predictable in direction. Block CYP2C9 and warfarin builds up, anticoagulation increases, and the patient can bleed. Increase CYP2C9 and warfarin is removed faster, anticoagulation drops, and the patient can clot. The omeprazole case on MCMet9_4_26__9_9_26.pdf slide 52 is the first of these two.',
+ teach:'Warfarin is active exactly as it is given, and metabolism only destroys it. That makes every interaction predictable in direction. Block CYP2C9 and warfarin builds up, anticoagulation increases, and the patient can bleed. Increase CYP2C9 and warfarin is removed faster, anticoagulation drops, and the patient can clot. The omeprazole case on MCMet-9_4_26-9_9_26.pdf slide 52 is the first of these two.',
  teachImg:'cyp_polymorphic_adr_table',
- cite:'Lecture #13 slide 24',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 24',
  quote:'(S)-Warfarin (2C9) · Phenytoin & (S)-Mephenytoin (2C9/2C19) · Tolbutamide, Glipzide (2C9)'},
 
 {id:'cyp-f2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-induction-smoking',
@@ -355,7 +355,7 @@ const QUESTIONS = [
    why:'The direction is right but the reason is wrong. Smoking does not change filtration at the glomerulus or handling in the renal tubule. The change happens in the liver, where more enzyme is built.'}],
  teach:'This interaction works in both directions. A patient who starts smoking clears the drug faster and may need a higher dose. A patient who stops smoking, for example on admission to a hospital where smoking is not allowed, loses the extra enzyme over several days and drug levels climb. Clozapine is where this matters most, because it is a CYP1A2 substrate, and the case on slide 58 follows exactly this pattern.',
  teachImg:'cyp_inducer_table',
- cite:'Lecture #13 slide 20; Lecture #14 slide 57',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 20; Lecture #14 (MCMet-9_16_2026.pdf) slide 57',
  quote:'Induced by PAHS (tobacco smoke), dioxins, omeprazole, etc.'},
 
 {id:'cyp-f3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2e1-role',
@@ -370,9 +370,9 @@ const QUESTIONS = [
    why:'CYP2C19 works with CYP2C9 on phenytoin and mephenytoin, and it is the enzyme in the clopidogrel case on slide 59. It has no role with environmental halogenated chemicals.'},
   {t:'CYP1A2', correct:false,
    why:'CYP1A2 also acts on environmental chemicals, but a different group: aryl amines and polycyclic aromatic hydrocarbons. The distinction is that polycyclic aromatic hydrocarbons induce CYP1A2 while ethanol induces CYP2E1.'}],
- teach:'CYP2E1 links the metabolism half of this course to the toxicity half. Ethanol increases how much CYP2E1 the liver makes, and CYP2E1 is the enzyme that converts acetaminophen into its toxic form NAPQI. A patient who drinks heavily therefore faces two problems at once: more enzyme producing more NAPQI from the same dose, and less glutathione available to react with it. MCMet-9_17_2026.pdf slide 47 lists alcohol use as a hepatotoxicity risk factor for both reasons.',
+ teach:'CYP2E1 links the metabolism half of this course to the toxicity half. Ethanol increases how much CYP2E1 the liver makes, and CYP2E1 is the enzyme that converts acetaminophen into its toxic form NAPQI. A patient who drinks heavily therefore faces two problems at once: more enzyme producing more NAPQI from the same dose, and less glutathione available to react with it. MCMet-9_17_2026.pdf slide 47 lists alcohol use as a hepatotoxicity risk factor for cirrhosis and glutathione depletion; the CYP2E1 induction comes from MCMet-9_15_2026.pdf slide 28, which names ethanol as a 2E1 inducer.',
  teachImg:'cyp_2e1_substrates',
- cite:'Lecture #13 slide 28; Lecture #15 slides 47, 49',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 28; Lecture #15 (MCMet-9_17_2026.pdf) slides 47, 49',
  quote:'Mainly for environmental chemicals · Induced by ethanol & Ketones · Key in carcinogenicity/toxicity of halogenated HCs'},
 
 {id:'cyp-f4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp3a4-first-pass',
@@ -389,7 +389,7 @@ const QUESTIONS = [
    why:'CYP3A4 is one of the most frequently inhibited isoforms. Slide 32 lists azole antifungals, macrolide antibiotics, protease inhibitors and grapefruit juice among its inhibitors, and slide 35 devotes a full table to the grapefruit interaction.'}],
  teach:'First-pass metabolism is about position rather than enzyme speed. CYP3A4 happens to sit in both places a swallowed drug must pass. This also explains why grapefruit juice has such a large effect on some drugs: it blocks CYP3A4 in the intestinal wall, removing the first of those two barriers, so more of the swallowed dose survives into circulation.',
  teachImg:'cyp_intestine_share',
- cite:'Lecture #13 slide 30',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 30',
  quote:'Largely responsible for 1st pass effect · Present in liver, intestine, lungs'},
 
 {id:'cyp-f5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-substrates',
@@ -403,10 +403,10 @@ const QUESTIONS = [
   {t:'CYP3A4', correct:false,
    why:'CYP3A4 does handle caffeine in the wider substrate table on slide 17, but the isoform the lecture names for caffeine is CYP1A2. CYP3A4\'s named drugs are calcium channel blockers, statins, benzodiazepines and immunosuppressants.'},
   {t:'CYP2D6', correct:false,
-   why:'The drugs named for CYP2D6 are codeine and venlafaxine. Haloperidol is the tempting choice here because it is a psychiatric drug like several 2D6 substrates, but it is listed under CYP1A2.'}],
+   why:'The drugs named for CYP2D6 are codeine and venlafaxine. Haloperidol is the tempting choice here because slide 17 lists it under 2D6 as well as under 1A2, and imipramine appears in both columns too. Caffeine is the one of the three that sits only under 1A2, so caffeine is what pins the trio to CYP1A2.'}],
  teach:'Each isoform accepts drugs of a particular shape and electronic character. CYP1A2 takes flat ring systems containing nitrogen, which is also why polycyclic aromatic hydrocarbons, which have the same flat ring shape, switch on its gene. CYP2C9 takes several acidic drugs. CYP2D6 takes basic amines. CYP3A4 takes large, greasy molecules. When an unfamiliar drug appears, its structure points to the likely isoform.',
  teachImg:'cyp_1a2_substrates',
- cite:'Lecture #13 slides 20–21',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 20–21',
  quote:'1A2 - clinically relevant substrates: Caffeine, Imipramine, Haloperidol, etc.'},
 
 {id:'cyp-f6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2b6-profile',
@@ -423,7 +423,7 @@ const QUESTIONS = [
    why:'CYP1A2 is induced by polycyclic aromatic hydrocarbons, dioxins and omeprazole, and its named drugs are caffeine, imipramine and haloperidol.'}],
  teach:'Slide 22 calls family 2 the largest clinically relevant family, containing 2B6, 2C9, 2C19, 2D6 and 2E1. Most of the polymorphism in this course sits in that family, so it is where a patient\'s genotype changes the outcome most. CYP3A4 by contrast is abundant and easily induced but varies little between individuals.',
  teachImg:'cyp_2b6_substrates',
- cite:'Lecture #13 slide 22',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 22',
  quote:'CYP isoform 2B6: Induced by several drugs · Polymorphism (e.g., observed with Efavirenz) · Diverse substrates including: Bupropion, Methadone, insecticides'},
 
 {id:'cyp-f7', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2c-inducible-polymorphic',
@@ -435,12 +435,12 @@ const QUESTIONS = [
   {t:'Neither is inducible and neither shows polymorphism', correct:false,
    why:'Slide 24 states both properties for both enzymes. The isoform described as showing minimal induction is CYP2D6 on slide 26.'},
   {t:'Both are induced by ethanol', correct:false,
-   why:'Ethanol induces CYP2E1, on slide 28. Ethanol also appears on the general inducer list on slide 32, but the specific enzyme paired with it in this course is 2E1.'},
+   why:'Ethanol induces CYP2E1, on slide 28. Ethanol also appears on the general inducer list on slide 32, but slide 33 pairs it with 2D6 and 2E1, and slide 28 gives 2E1 as the isoform ethanol induces.'},
   {t:'Both are confined to the intestine', correct:false,
-   why:'Presence in the intestine is a CYP3A4 property from slide 30, and it is what makes 3A4 central to first-pass metabolism. The 2C enzymes are in the liver.'}],
+   why:'Presence in the intestine is a CYP3A4 property from slide 30, and it is what makes 3A4 central to first-pass metabolism. Neither is confined to the intestine: the slide 15 pie of small-intestinal CYP is 82 percent 3A, 14 percent 2C9 and 2 percent 2C19, so 2C enzymes are present there but 3A dominates.'}],
  teach:'Two enzymes sharing a subfamily letter share more than half their amino acid sequence, so they tend to accept the same drugs and respond to the same regulation. That is why phenytoin is listed under both CYP2C9 and CYP2C19. It also means a drug that blocks one may affect the other, so the subfamily letter is a practical warning rather than just a naming detail.',
  teachImg:'cyp_polymorphism_table',
- cite:'Lecture #13 slide 24',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 24',
  quote:'Both are inducible · Both are polymorphic'},
 
 /* ═══════════ INDUCTION & INHIBITION ═══════════ */
@@ -458,7 +458,7 @@ const QUESTIONS = [
    why:'Blocking the active site is inhibition, which reduces metabolism. This option describes the opposite of what the question asks about.'}],
  teach:'Induction and inhibition differ in what they change, how quickly, and how they reverse. Induction changes the number of enzyme molecules, develops over days, and fades over days as the extra protein is broken down. Inhibition changes whether existing enzyme can work, starts immediately, and ends as soon as the inhibitor is cleared. Knowing which one you are dealing with tells you how soon to expect a change after starting or stopping a drug.',
  teachImg:'cyp_inducer_table',
- cite:'Lecture #10 slide 47; Lecture #14 slide 53',
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 47; Lecture #14 (MCMet-9_16_2026.pdf) slide 53',
  quote:'Mechanism: Activation of DNA transcription'},
 
 {id:'cyp-i2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'inhibitor-recognition',
@@ -473,9 +473,9 @@ const QUESTIONS = [
    why:'Both are on the inducer list. St John\'s wort matters in practice because patients often do not report supplements when asked what medications they take.'},
   {t:'Tobacco smoke and nevirapine', correct:false,
    why:'Both are on the inducer list. Tobacco increases CYP1A2 through its polycyclic aromatic hydrocarbon content, the same chemistry that appears again on slide 57 of MCMet-9_16_2026.pdf under smoked and barbecued food.'}],
- teach:'The two lists divide along a chemical line. Most inducers are substances taken repeatedly over time that switch on enzyme genes: anticonvulsants, rifampin, alcohol, tobacco and St John\'s wort. Most inhibitors physically interfere with an enzyme that already exists, often by binding its iron, which is how azole antifungals and the furocoumarins in grapefruit juice work. Omeprazole is the exception to learn separately, because it appears as an inhibitor on slide 32 and as a CYP1A2 inducer on slide 20.',
+ teach:'The two lists divide along a chemical line. Most inducers are substances taken repeatedly over time that switch on enzyme genes: anticonvulsants, rifampin, alcohol, tobacco and St John\'s wort. Most inhibitors physically interfere with an enzyme that already exists, and the furocoumarins in grapefruit juice are the course\'s worked example: MCMet-9_16_2026.pdf slide 63 calls them mechanism-based inhibitors of CYP3A4, meaning the enzyme oxidises them to an epoxide that then binds the enzyme itself. Azole antifungals inhibit by binding the heme iron, which is standard pharmacology rather than a claim on these slides. Omeprazole is the exception to learn separately, because it appears as an inhibitor on slide 32 and as a CYP1A2 inducer on slide 20.',
  teachImg:'cyp_ind_inh_lists',
- cite:'Lecture #13 slide 32',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 32',
  quote:'Common Inhibitors: Clarithromycin · Erythromycin · Azole Antifungals: Ketoconazole, Itraconazole · Cimetidine · Protease inhibitors · Grape Fruit Juice · Quinidine · Omeprazole'},
 
 {id:'cyp-i7', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'omeprazole-dual-role',
@@ -483,17 +483,16 @@ const QUESTIONS = [
  stem:'Omeprazole induces CYP1A1/2 and CYP3A4 and also appears among the common CYP inhibitors. How can one drug do both?',
  options:[
   {t:'Induction and inhibition act on different isoforms, so one drug can raise the amount of one enzyme while blocking the activity of another', correct:true,
-   why:'The two processes work at different places. Induction increases how many enzyme molecules the cell makes, through gene transcription, and reaches only the isoforms that respond to that signal. Inhibition interferes with enzyme already present, at the active site of whichever isoform the drug binds. Nothing requires those to be the same isoform. Slide 33 gives omeprazole as an inducer of 1A1/2 and 3A4, and slide 32 carries it on the common inhibitor list.'},
+   why:'The two processes work at different places. Induction increases how many enzyme molecules the cell makes, through gene transcription, and reaches only the isoforms that respond to that signal. Inhibition interferes with enzyme already present, at the active site of whichever isoform the drug binds. Nothing requires those to be the same isoform. Slide 33 gives omeprazole as an inducer of 1A1/2 and 3A4; slide 32 carries it on the common inhibitor list, and slide 34 names the inhibited isoform: omeprazole is the first entry in the CYP2C19 column.'},
   {t:'One of the two must be an error, because a drug cannot both induce and inhibit', correct:false,
    why:'Both hold at once, on different isoforms. A drug that induces one isoform and inhibits another is the reason interaction checks are run per isoform rather than per drug.'},
   {t:'Omeprazole induces at low dose and inhibits at high dose', correct:false,
    why:'Dose changes the size of each effect but is not what separates them. The separation is which isoform is involved: slide 33 names the induced isoforms, 1A1/2 and 3A4, with no dose condition attached.'},
   {t:'Induction and inhibition are the same process observed at different times', correct:false,
    why:'They differ in mechanism as well as in timing. Induction changes the number of enzyme molecules, develops over days, and fades over days as the extra protein is degraded. Inhibition changes the activity of enzyme that already exists and appears with the first doses.'}],
- teach:'An inducer increases how much enzyme the cell makes; an inhibitor blocks enzyme that is already there. Those are different mechanisms acting at different points, so one drug can do one of them to one isoform and the other to a second isoform, in the same patient at the same time. Lecture 13 carries omeprazole twice: slide 33 gives it as an inducer of CYP1A1/2 and CYP3A4, and slide 20 repeats the CYP1A2 induction, while slide 32 places it on the common inhibitor list without naming an isoform. Which isoform it inhibits is not settled anywhere in this lecture. Slide 17 shows omeprazole among the proton pump inhibitors under CYP2C19, which makes it a substrate there, and a drug occupying an enzyme competes with whatever else that enzyme clears. Take the two induced isoforms as given and the inhibited isoform as unnamed in this material.',
+ teach:'An inducer increases how much enzyme the cell makes; an inhibitor blocks enzyme that is already there. Those are different mechanisms acting at different points, so one drug can do one of them to one isoform and the other to a second isoform, in the same patient at the same time. Lecture 13 carries omeprazole three times: slide 33 gives it as an inducer of CYP1A1/2 and CYP3A4, slide 20 repeats the CYP1A2 induction, and slide 34 lists it first in the CYP2C19 column of the inhibitor table. Slide 17 also shows it among the proton pump inhibitors under CYP2C19 as a substrate. So the picture is: induces 1A1/2 and 3A4, inhibits 2C19, and is itself cleared by 2C19. Lecture 14 slide 46 fits that: neonates with low CYP2C19 should avoid omeprazole, because a patient with little of the enzyme that clears it will accumulate it.',
  teachImg:'cyp_inducer_table',
- note:'CYP2C19 is the isoform usually named for the inhibition half, but neither lecture states it. The CYP2C19 column of the inhibitor table on slide 34 is alphabetical and its screenshot ends after Norfloxacin, before any entry beginning with O. MCMet-9_16_2026.pdf slide 46 does pair the two, warning that neonates with low CYP2C19 should avoid omeprazole, but that is a clearance problem in a patient with little enzyme, which fits omeprazole being a CYP2C19 substrate on slide 17 rather than an inhibitor of it.',
- cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 20, 32, 33; slide 17',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 17, 20, 32, 33, 34; Lecture #14 (MCMet-9_16_2026.pdf) slide 46',
  quote:'Many DIs due to induction/inhibition'},
 
 {id:'cyp-i3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-active-drug',
@@ -511,7 +510,7 @@ const QUESTIONS = [
  svg:DIA.directionGrid,
  teach:'Four cases in these decks all turn on one question: is the drug active as given, or does it need to be converted into something active first? Warfarin and glyburide are active as given, so blocking their metabolism increases the effect. Tramadol and clopidogrel must be converted, so blocking that conversion reduces the effect. Answer that question first and the direction of any interaction follows.',
  teachImg:'cyp_active_drug_grid',
- cite:'Lecture #10 slide 52; Lecture #13 slide 24',
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 52; Lecture #13 (MCMet-9_15_2026.pdf) slide 24',
  quote:'Case: Intake of Omeprazole and Warfarin could lead to a bleeding event. Explain.'},
 
 {id:'cyp-i4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-glyburide',
@@ -528,7 +527,7 @@ const QUESTIONS = [
    why:'The outcome is right but the cause is wrong. Erythromycin has no glucose-lowering action of its own. All of the extra effect comes from glyburide that was not broken down.'}],
  teach:'Inhibiting an enzyme does not create a new effect. It produces more of the effect the drug already has. For an anticoagulant that means bleeding. For a sulfonylurea it means low blood glucose. For a sedative it means excessive sedation. To predict the adverse event, ask what the drug does, then picture more of it.',
  teachImg:'cyp_active_drug_grid',
- cite:'Lecture #10 slide 53',
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 53',
  quote:'Case: Erythromycin inhibits Glyburide (anti-diabetes drug) inactivation, the likely outcome?'},
 
 {id:'cyp-i5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-mechanism',
@@ -536,7 +535,7 @@ const QUESTIONS = [
  stem:'Grapefruit juice raises the bioavailability of nifedipine and felodipine. What is responsible?',
  options:[
   {t:'Furocoumarins, chiefly bergamottin and 6\',7\'-dihydroxybergamottin, block CYP3A4', correct:true,
-   why:'Grapefruit contains a group of compounds called furocoumarins, and the two strongest are bergamottin and 6\',7\'-dihydroxybergamottin. They block CYP3A4 in the intestinal wall. Because that enzyme normally destroys part of the dose before it is absorbed, blocking it allows more of the swallowed dose to reach circulation.'},
+   why:'Grapefruit contains a group of compounds called furocoumarins, and slide 63 names bergamottin and 6\',7\'-dihydroxybergamottin as the most abundant of them. They are mechanism-based inhibitors of CYP3A4: the enzyme oxidises the furan double bond to an epoxide, which then binds the enzyme itself. They block CYP3A4 in the intestinal wall. Because that enzyme normally destroys part of the dose before it is absorbed, blocking it allows more of the swallowed dose to reach circulation.'},
   {t:'Grapefruit juice increases how much CYP3A4 the liver makes', correct:false,
    why:'More enzyme would clear the drug faster and lower the amount reaching circulation, which is the opposite of the observed rise. Grapefruit juice is on the inhibitor list on slide 32.'},
   {t:'Grapefruit juice raises gastric pH, improving tablet dissolution', correct:false,
@@ -545,8 +544,8 @@ const QUESTIONS = [
    why:'The mechanism taught here is CYP3A4 inhibition. P-glycoprotein is an efflux transporter covered separately in 090326_ADMETAbsorption_I.pdf slides 21 to 24.'}],
  teach:'Where an enzyme sits determines what kind of change results when it is blocked. Blocking CYP3A4 in the intestinal wall increases how much of the swallowed dose gets absorbed, which is a bioavailability change. Blocking the same enzyme in the liver slows removal of drug that is already in circulation. Grapefruit juice does both, and the intestinal part is why the effect is so large for drugs that normally lose most of their dose to first-pass metabolism.',
  teachImg:'cyp_gfj_table',
- cite:'Lecture #14 slides 62–64; Lecture #13 slide 35',
- quote:'Bergamottin & 6\',7\'-dihydroxybergamottin are the most potent'},
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 62–64; Lecture #13 (MCMet-9_15_2026.pdf) slide 35',
+ quote:'Bergamottin & 6\',7\'-dihydroxybergamottin are the most abundant Furocoumarins in GFJ · mechanism-based inhibitors of 3A4'},
 
 {id:'cyp-i6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-affected-classes',
  tags:['recall','case'], source:'slide',
@@ -562,7 +561,7 @@ const QUESTIONS = [
    why:'These leave the body by being breathed out rather than by being metabolized, in MCMet-9_17_2026.pdf slide 22, so blocking an enzyme has little effect on them.'}],
  teach:'The table reduces to one rule: grapefruit matters for CYP3A4 substrates that lose a large fraction of their dose to first-pass metabolism. Not every drug in a class behaves the same way. The table marks pravastatin and fluvastatin differently from simvastatin and lovastatin, because those two depend less on CYP3A4.',
  teachImg:'cyp_gfj_table',
- cite:'Lecture #13 slide 35',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 35',
  quote:'Calcium channel blocker · HMG-CoA reductase inhibitors'},
 
 /* ═══════════ BIOACTIVATION ═══════════ */
@@ -580,7 +579,7 @@ const QUESTIONS = [
    why:'Phase 2 conjugation usually ends reactivity by attaching a polar partner molecule. Converting a harmless compound into a carcinogen is a CYP reaction, and slide 7 names it as one of the two reasons CYPs matter.'}],
  teach:'Each isoform activates the chemicals that resemble the drugs it normally handles. CYP1A1 and CYP1A2 take flat aromatic rings and aryl amines. CYP2E1 takes small halogenated solvents such as carbon tetrachloride and chloroform, matching its role with halogenated hydrocarbons on slide 28. CYP3A4 takes larger molecules including aflatoxin B1. Substrate preference and bioactivation profile are the same property described from two directions.',
  teachImg:'cyp_bioactivation_table',
- cite:'Lecture #13 slides 36–37',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 36–37',
  quote:'CYP1A1 CYP1A2: Benzo[a]pyrene, Other PAHs, 4-Aminobiphenyl, 2-Naphthylamine'},
 
 {id:'cyp-b2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'bioact', concept:'cyp2e1-solvent-activation',
@@ -597,25 +596,26 @@ const QUESTIONS = [
    why:'CYP2C19 does not appear in the bioactivation table. In this course it matters for inherited variation, particularly in the clopidogrel case on slide 59.'}],
  teach:'One chemical property explains three separate facts about halogenated hydrocarbons. A chlorine atom pulls electrons away from the carbon it is attached to, leaving that carbon short of electrons and therefore reactive toward proteins. MCMet-9_16_2026.pdf slide 21 states these compounds are very greasy and not easily converted into water-soluble forms, so they stay in the body. MCMet-9_17_2026.pdf slide 31 lists a halogen-bearing carbon as a toxic group and uses halothane as the example.',
  teachImg:'cyp_bioactivation_table',
- cite:'Lecture #13 slide 37; Lecture #15 slide 31',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 37; Lecture #15 (MCMet-9_17_2026.pdf) slide 31',
  quote:'CYP2E1: Benzene, Styrene, Acrylonitrile, Vinyl bromide, Trichloroethylene, Carbon tetrachloride, Chloroform, Methylene chloride'},
 
 /* ═══════════ POLYMORPHISM ═══════════ */
 {id:'cyp-p1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phenotypes',
  tags:['definition','polymorphism'], source:'slide',
- stem:'The four polymorphic phenotypes listed for CYP2D6 are ultrarapid, extensive, intermediate and poor metabolizer. Which is the normal-function reference?',
+ stem:'The four polymorphic phenotypes listed for CYP2D6 are ultrarapid, extensive, intermediate and poor metabolizer. In this course, which one did Dr. Sikazwe describe as the normal metabolizer?',
  options:[
-  {t:'Extensive metabolizer', correct:true,
-   why:'Extensive metabolizer is the normal phenotype, and the other three are defined against it. Ultrarapid is faster than normal, intermediate is slower, and poor metabolizer is the slowest. The name is misleading, because extensive sounds like it should describe unusually fast clearance when it actually means ordinary clearance.'},
+  {t:'Intermediate metabolizer', correct:true,
+   why:'From lecture audio (09/15, walking slide 26): "The intermediate, IM, is the normal metabolizer phenotype. That is where we want people to be." He repeated it on 09/16: "intermediate, which is like normal metabolizer." That is the definition this course examines. The standard pharmacogenomics definition places normal function under extensive metabolizer instead, and the note under this question carries that conflict, but an exam written from these lectures keys IM as the normal one.'},
+  {t:'Extensive metabolizer', correct:false,
+   why:'This is the textbook answer, and it is what most pharmacogenomics references say: EM is the normal phenotype and the others are defined against it. It is not what was said in this course. The 09/15 lecture describes EM as behaving like an ultrarapid metabolizer, producing a lot more metabolite. Picking it here means answering from general knowledge rather than from the lecture, which on this one point differ.'},
   {t:'Ultrarapid metabolizer', correct:false,
-   why:'Ultrarapid metabolizers usually carry extra working copies of the gene, so they clear the drug faster than normal. This is a departure from the reference rather than the reference itself.'},
-  {t:'Intermediate metabolizer', correct:false,
-   why:'Intermediate falls between extensive and poor. Enzyme function is reduced but not absent, so it is a partial loss rather than a baseline.'},
+   why:'Ultrarapid metabolizers usually carry extra working copies of the gene, so they clear the drug faster than normal. Neither the course nor the textbook treats this as the reference; it is the fastest departure from it.'},
   {t:'Poor metabolizer', correct:false,
-   why:'Poor metabolizer has the least enzyme function of the four. This is the phenotype that builds up an active parent drug and fails to convert a prodrug.'}],
+   why:'Poor metabolizer has the least enzyme function of the four. This is the phenotype that builds up an active parent drug and fails to convert a prodrug. It is the slowest departure from normal, not normal itself.'}],
  teach:'Phenotype alone only tells you whether enzyme activity is higher or lower than normal. To reach a clinical answer you also need to know whether the drug works as given or must be converted first. A poor metabolizer on warfarin over-anticoagulates, because warfarin works as given and is building up. A poor metabolizer on codeine gets no pain relief, because codeine must be converted to morphine and that conversion is not happening. Same phenotype, opposite results.',
  teachImg:'cyp_pm_um_populations',
- cite:'Lecture #13 slide 26',
+ note:'Source conflict, stated rather than resolved. Slide 26 lists the four phenotypes with no definitions. The 09/15 and 09/16 lectures both key intermediate metabolizer as the normal phenotype and extensive metabolizer as a fast, high-metabolite one. Standard references (Foye, CPIC) key extensive metabolizer as normal and intermediate as reduced function. Answer this course\'s exam with the lecturer\'s definition; know that a reference outside the course will say the other.',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 26; lecture audio 09/15 and 09/16 (marked)',
  quote:'Polymorphic phenotypes: UM; EM; IM; PM'},
 
 {id:'cyp-p2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-prodrug-direction',
@@ -632,7 +632,7 @@ const QUESTIONS = [
    why:'Slide 26 lists all four phenotypes for CYP2D6 and describes its substrate list as extensive. It is one of the most variable isoforms between patients.'}],
  teach:'Codeine and tramadol behave the same way because both depend on CYP2D6 to remove a methyl group from an oxygen. Codeine becomes morphine, in MCMet-9_10_26.pdf slide 17. Tramadol becomes O-desmethyltramadol. In both, a poor metabolizer gets too little pain relief and an ultrarapid metabolizer risks slowed breathing. Recognizing the shared step handles both drugs at once.',
  teachImg:'cyp_tramadol_odt',
- cite:'Lecture #13 slide 47; Lecture #11 slide 17'},
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 47; Lecture #11 (MCMet-9_10_26.pdf) slide 17'},
 
 {id:'cyp-p3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-vs-induction-analogy',
  tags:['reasoning','polymorphism'], source:'slide',
@@ -649,7 +649,7 @@ const QUESTIONS = [
  svg:DIA.directionGrid,
  teach:'Four situations reduce to a two-by-two grid. Enzyme activity can be higher than normal, from an inducer or from an ultrarapid phenotype, or lower than normal, from an inhibitor or from a poor metabolizer phenotype. Then the drug type decides what that means for the patient. If the drug works as given, more enzyme activity means less effect. If the drug must be converted first, more enzyme activity means more effect.',
  teachImg:'cyp_active_drug_grid',
- cite:'Lecture #13 slide 50',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 50',
  quote:'Enzyme induction is analogous to rapid metabolizer phenotype. TRUE/FALSE'},
 
 {id:'cyp-p4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phase2-also',
@@ -663,10 +663,10 @@ const QUESTIONS = [
   {t:'True — only CYPs have allelic variants', correct:false,
    why:'Gene variants occur in any gene. N-acetyltransferase 2 variants are what produce the slow and fast acetylator phenotypes.'},
   {t:'False — but only inhibition applies to Phase 2, not induction or polymorphism', correct:false,
-   why:'The first word is right and the list after it is not. Polymorphism applies, since N-acetyltransferase 2 acetylator status is inherited and splits patients into slow and fast, on MCMet-9_10_26.pdf slide 53. Induction applies as well, and the UDP-glucuronosyltransferase case carries it: activity is low at birth and rises over the following weeks, on MCMet-9_16_2026.pdf slide 46, which is a change in how much enzyme is present. Choosing this usually means recalling one Phase 2 counterexample and treating it as the only one.'}],
+   why:'The first word is right and the list after it is not. Polymorphism applies, since N-acetyltransferase 2 acetylator status is inherited and splits patients into slow and fast, on MCMet-9_10_26.pdf slide 53. Induction applies as well: MCMet-9_16_2026.pdf slide 53 states that CYPs, UDP-glucuronosyltransferases and glutathione S-transferases have inducible isoforms, and slide 58 has dioxin and PCB pollutants raising some UGT isoforms. The neonatal case on slide 46, low UGT1A1 at birth, is maturation of the enzyme rather than induction, so it does not carry this point. Choosing this usually means recalling one Phase 2 counterexample and treating it as the only one.'}],
  teach:'Phase 1 gets more attention in this course because CYP interactions are more common, but the same three variables operate in Phase 2 and the consequences can be as serious. A slow acetylator clears isoniazid more slowly and is more prone to its adverse effects. A newborn cannot attach glucuronic acid to bilirubin quickly enough. In both cases the limitation is Phase 2 capacity, not CYP activity.',
  teachImg:'cyp_ethnic_frequencies',
- cite:'Lecture #13 slide 51; Lecture #11 slide 53; Lecture #14 slide 46',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 51; Lecture #11 (MCMet-9_10_26.pdf) slide 53; Lecture #14 (MCMet-9_16_2026.pdf) slide 46',
  quote:'Only phase I enzymes are inducible, can be inhibited, and exhibit polymorphism. TRUE/FALSE'},
 
 {id:'cyp-p5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'phase12-both-substrate-types',
@@ -680,9 +680,9 @@ const QUESTIONS = [
   {t:'False — drug-metabolizing enzymes act only on foreign compounds', correct:false,
    why:'These enzymes existed before any drugs did, handling the body\'s own chemistry and compounds from food. Processing drugs is an additional use of a system that was already there.'},
   {t:'True — but only in the liver', correct:false,
-   why:'The first part is right but the restriction is not. MCMet9_4_26__9_9_26.pdf slide 19 describes metabolism in the liver and outside it, and slide 20 lists three cellular locations: the endoplasmic reticulum, the cytosol and the mitochondria.'}],
- teach:'One enzyme handling many unrelated compounds is the reason drug interactions happen at all. If each enzyme accepted only one substrate, two drugs could never compete. Because a single enzyme accepts drugs, hormones and dietary compounds alike, adding one drug changes how everything else in that queue is processed. MCMet9_4_26__9_9_26.pdf slide 16 lists this broad substrate activity first among enzyme characteristics.',
- cite:'Lecture #13 slide 49; Lecture #10 slides 7, 16',
+   why:'The first part is right but the restriction is not. MCMet-9_4_26-9_9_26.pdf slide 19 describes metabolism in the liver and outside it, and slide 20 lists three cellular locations: the endoplasmic reticulum, the cytosol and the mitochondria.'}],
+ teach:'One enzyme handling many unrelated compounds is the reason drug interactions happen at all. If each enzyme accepted only one substrate, two drugs could never compete. Because a single enzyme accepts drugs, hormones and dietary compounds alike, adding one drug changes how everything else in that queue is processed. MCMet-9_4_26-9_9_26.pdf slide 16 lists this broad substrate activity first among enzyme characteristics.',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 49; Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 7, 16',
  quote:'Phases I & II enzymes metabolize both endobiotics and xenobiotics. TRUE/FALSE'},
 
 /* ═══════════ CASES ═══════════ */
@@ -700,7 +700,7 @@ const QUESTIONS = [
    why:'Metabolism makes a drug easier to remove; it does not remove it. The polar products still have to leave the body, usually through the kidney.'}],
  teach:'This matters when a drug is being developed as well as when it is prescribed. A drug that depends on a single polymorphic enzyme will behave very differently in the fraction of patients who carry a poor-function version. Spreading clearance across several enzymes narrows the range of drug levels across a population, which matters most for drugs where the safe and toxic doses are close together.',
  teachImg:'cyp_phase1_enzyme_share',
- cite:'Lecture #13 slide 45',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 45',
  quote:'In polypharmacy, it is preferrable for a drug to be metabolically deactivated by several enzymes. Why?'},
 
 {id:'cyp-x2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'meperidine-normeperidine',
@@ -715,8 +715,8 @@ const QUESTIONS = [
    why:'Dialysis removes substances from blood and does not increase enzyme production. The problem described is seizures rather than too much pain relief.'},
   {t:'Normeperidine is a stronger analgesic and caused an opioid overdose', correct:false,
    why:'Normeperidine is half as strong an analgesic as meperidine. The seizures come from a separate action of the molecule, not from an exaggerated opioid effect.'}],
- teach:'This case shows why metabolism and elimination have to be considered together. Producing a metabolite is only safe if the body can then remove it. Normeperidine depends on the kidney, so kidney failure turns an ordinary metabolic route into a dangerous one. MCMet9_4_26__9_9_26.pdf slide 28 lists production of an active metabolite with different properties among the general consequences of metabolism.',
- cite:'Lecture #13 slide 57 (Case #1)',
+ teach:'This case shows why metabolism and elimination have to be considered together. Producing a metabolite is only safe if the body can then remove it. Normeperidine depends on the kidney, so kidney failure turns an ordinary metabolic route into a dangerous one. MCMet-9_4_26-9_9_26.pdf slide 28 lists production of an active metabolite with different properties among the general consequences of metabolism.',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 57 (Case #1)',
  quote:'Normeperidine, via 3A4/2B6, is half as potent as Meperidine as an analgesic but approx. 3 times more potent as a convulsant'},
 
 {id:'cyp-x3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clozapine-induction-inhibition',
@@ -733,7 +733,7 @@ const QUESTIONS = [
    why:'The case ties the worsening symptoms to a fall in serum clozapine occurring at the same time, and the symptoms improved once the dose was raised.'}],
  teach:'The danger in this case is at the switchover. A dose that was raised to overcome an inducer becomes too high the moment that inducer is replaced by an inhibitor. Whenever an interacting drug is swapped rather than simply stopped, the dose that was correct under the old combination is likely to be wrong under the new one.',
  teachImg:'cyp_inducer_table',
- cite:'Lecture #13 slide 58 (Case #2)',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 58 (Case #2)',
  quote:'After replacing the Rifampicin with Ciprofloxacin (an inhibitor of CYP1A2) the patient\'s serum clozapine level rose to 60% higher than his previously stable level, despite lowering the Clozapine dose'},
 
 {id:'cyp-x4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clopidogrel-2c19',
@@ -750,7 +750,7 @@ const QUESTIONS = [
    why:'CYP2E1 handles ethanol, halogenated hydrocarbons and acetaminophen during overdose. It has no role in converting clopidogrel.'}],
  teach:'Clopidogrel shows what happens when a drug that must be converted meets a patient who cannot convert it. The patient takes the medication exactly as directed and still has a cardiovascular event, because the active form was never produced. This is also where inherited differences between populations appear, which is why slide 39 covers metabolic differences across ethnicities.',
  teachImg:'cyp_ethnic_frequencies',
- cite:'Lecture #13 slide 59 (Case #3); slide 39',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 59 (Case #3); slide 39',
  quote:'Clopidogrel requires transformation into an active metabolite by 2C19 to exert its antiplatelet effect'},
 
 {id:'cyp-x5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'pm-profile-recognition',
@@ -767,7 +767,7 @@ const QUESTIONS = [
    why:'Renal function affects removal of polar products of metabolism. The profile described points to slower metabolism of the parent drug itself.'}],
  teach:'Read these profiles in two steps. First ask what the concentration says about clearance: a high parent concentration means slow clearance, a low one means fast. Then ask which form of the drug is active. If the parent is active, slow clearance means too much effect. If the drug must be converted first, slow clearance of the parent means too little effect, because the active form was never produced.',
  teachImg:'cyp_pm_um_populations',
- cite:'Lecture #13 slides 40–42, 46',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 40–42, 46',
  quote:'TRUE/FALSE. The pharmacotherapeutic profile below is that of PM CYP phenotype.'},
 
 {id:'cyp-x6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'active-vs-prodrug-direction-rule',
@@ -785,5 +785,5 @@ const QUESTIONS = [
  svg:DIA.directionGrid,
  teach:'Four cases across these decks reduce to one question. Warfarin with omeprazole and glyburide with erythromycin are both blockade of an enzyme clearing an already-active drug, so the effect increases. Tramadol and clopidogrel in poor metabolizers are both failure to produce an active form, so the effect decreases. An unfamiliar drug on the exam is still answerable as long as the question tells you which form is active.',
  teachImg:'cyp_prodrug_grid',
- cite:'Lecture #10 slides 50–53; Lecture #13 slides 47, 57–59'}
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 50–53; Lecture #13 (MCMet-9_15_2026.pdf) slides 47, 57–59'}
 ];

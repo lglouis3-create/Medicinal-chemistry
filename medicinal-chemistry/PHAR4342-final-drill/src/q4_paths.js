@@ -13,7 +13,7 @@ QUESTIONS.push(
   {t:'Binding of drug to its receptor', correct:false,
    why:'Receptor binding is the pharmacodynamic event, what the drug does to the body, while metabolism is part of pharmacokinetics, what the body does to the drug. Both involve a drug and a protein, which is what makes this option readable as metabolism, but binding changes no covalent structure.'}],
  teach:'Every word of the definition does work. Enzyme-catalysed rules out spontaneous chemical breakdown, which happens to some drugs in solution but is not metabolism. Substrates being drugs or non-drugs means the same enzymes act on endogenous molecules as well, which is why dopamine and sumatriptan appear side by side as substrates of one enzyme. And a change in chemical structure is the result, which separates metabolism from elimination: metabolism alters the molecule, elimination removes it. A drug can be eliminated without ever being metabolised, and several are.',
- cite:'Lecture #10 slide 6'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 6'},
 
 {id:'df-2', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'analysis', concept:'dm-chemical-defense',
  tags:['reasoning'], source:'slide',
@@ -28,7 +28,7 @@ QUESTIONS.push(
   {t:'Binds drugs irreversibly to plasma proteins', correct:false,
    why:'Plasma protein binding is reversible and belongs to distribution rather than metabolism, and it makes no covalent change to the drug. It does hold drug out of circulation temporarily, which is what makes it sound like a defence, but the drug is released unchanged and is no easier to eliminate for having been bound.'}],
  teach:'The defence is a change in solubility. A lipophilic molecule crosses membranes easily in both directions, so the kidney filters it and the tubule reabsorbs it, and the drug circulates instead of leaving. Metabolism adds or exposes polar groups in Phase 1, then attaches a large polar conjugate in Phase 2, and the product is water-soluble enough to stay in the tubular fluid or to be carried into bile. Two qualifications come with it: not every metabolite is more hydrophilic than its parent, and not every metabolite is harmless, since some are active and some are reactive.',
- cite:'Lecture #10 slide 9'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 9'},
 
 {id:'df-3', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'phases', concept:'phase1-vs-phase2-role',
  tags:['definition','exam-pattern'], source:'slide',
@@ -43,7 +43,7 @@ QUESTIONS.push(
   {t:'Phase 1 conjugates and Phase 2 oxidizes', correct:false,
    why:'This swaps the two. Conjugation is the Phase 2 activity, carried out by transferases; oxidation is Phase 1, carried out by oxygenases. Since both phases are named only by number, there is nothing in the labels themselves to fix the order, which is why the chemistry behind each has to carry it.'}],
  teach:'The two phases are named for the chemistry their enzymes do, not for an order they run in. Phase 1 enzymes are oxygenases: cytochrome P450, flavin-containing monooxygenase, monoamine oxidase, alcohol and aldehyde dehydrogenase, the aldo-keto reductases, carboxylesterase and epoxide hydrolase. They insert oxygen, remove hydrogen, add electrons or add water, and the result is a functional group that was either absent or masked. Phase 2 enzymes are transferases: the glucuronosyltransferases, sulfotransferases, glutathione S-transferases, N-acetyltransferases, methyltransferases and acyl synthetases. Each moves a group from a cofactor onto a functional group that is already present, which is why a drug carrying a suitable group can go straight to Phase 2.',
- cite:'Lecture #10 slides 12–13'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 12–13'},
 
 {id:'df-4', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'phases', concept:'metabolic-patterns',
  tags:['reasoning','exam-pattern'], source:'slide',
@@ -58,7 +58,7 @@ QUESTIONS.push(
   {t:'Phase 2 metabolites are always inactive', correct:false,
    why:'Most are inactive, but conjugation can retain or create activity, and consequences include bioactivation.'}],
  teach:'Four patterns are listed, and only the first is the familiar one. A parent drug can go through Phase 1 to a Phase 1 metabolite and then through Phase 2; a Phase 1 metabolite can undergo a second Phase 1 reaction; a parent drug can go directly to a Phase 2 metabolite; and a Phase 2 metabolite can undergo a Phase 1 reaction afterwards. The numbering of the phases describes two kinds of chemistry, so any sequence of them is possible, and the sequence a given drug takes depends only on which functional groups it carries and which it acquires.',
- cite:'Lecture #10 slides 8, 14'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 8, 14'},
 
 {id:'df-5', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'phases', concept:'enzyme-characteristics',
  tags:['recall','reasoning'], source:'slide',
@@ -73,7 +73,7 @@ QUESTIONS.push(
   {t:'It means enzyme levels cannot change', correct:false,
    why:'Enzyme amount does change, and inducibility is listed as its own characteristic beside broad substrate activity. Picking this confuses two separate properties: broad specificity is about which molecules the enzyme accepts, while inducibility is about how much enzyme is present, and the two vary independently.'}],
  teach:'Broad substrate activity is the first of the listed enzyme characteristics, and the clinical consequence follows from it directly. One enzyme accepting many unrelated molecules means two drugs prescribed for unrelated reasons can compete at the same active site, so an interaction needs no chemical similarity between the drugs at all. Dopamine and sumatriptan are the paired example. The other characteristics compound it: multiple families and subfamilies, polymorphism producing rapid through poor metaboliser phenotypes, a cytoprotective role, constitutive expression, and inducibility. Broad specificity makes interactions common; inducibility and polymorphism make their size vary between patients.',
- cite:'Lecture #10 slides 16–17'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 16–17'},
 
 {id:'df-6', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'sites', concept:'presystemic-vs-systemic',
  tags:['definition'], source:'slide',
@@ -88,7 +88,7 @@ QUESTIONS.push(
   {t:'Metabolism by plasma esterases only', correct:false,
    why:'Plasma esterase activity is systemic and is only one of several enzyme systems.'}],
  teach:'The distinction is geographic. Pre-systemic metabolism happens between swallowing and the systemic circulation, in the gut wall and then in the liver by way of the portal vein, which is the first-pass effect. Systemic metabolism happens after the drug has reached the circulation and been distributed. The practical consequence is that an oral dose and an intravenous dose of the same drug can produce very different exposures, because only the oral route passes the liver before reaching the rest of the body, and intestinal CYP3A4 removes some of the dose before the liver sees it.',
- cite:'Lecture #10 slide 18'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 18'},
 
 {id:'df-7', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'sites', concept:'cellular-sites',
  tags:['recall'], source:'slide',
@@ -103,7 +103,7 @@ QUESTIONS.push(
   {t:'Plasma membrane exclusively', correct:false,
    why:'CYPs are membrane bound, but within the endoplasmic reticulum rather than the plasma membrane.'}],
  teach:'Three cellular compartments hold the enzymes, and the compartment tracks the enzyme family. Microsomal means the endoplasmic reticulum, where the cytochrome P450 enzymes and the glucuronosyltransferases sit as membrane-bound proteins. The cytosol is where the sulfotransferases and glutathione S-transferases float free. The mitochondria hold monoamine oxidase and some other oxidases. The nucleus is where induction is triggered, since a drug that induces an enzyme does so by increasing transcription, but no metabolic reaction is carried out there.',
- cite:'Lecture #10 slide 20'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 20'},
 
 {id:'df-8', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'consequences-list',
  tags:['recall','exam-pattern'], source:'slide',
@@ -118,7 +118,7 @@ QUESTIONS.push(
   {t:'Change in the drug\'s route of administration', correct:false,
    why:'Route is a clinical decision made before dosing.'}],
  teach:'Metabolism has more than one outcome, and the possibilities are not all favourable. A drug can be inactivated, which is the expected result. An inactive prodrug can be activated. An active drug can be converted to another active metabolite. And a drug can be bioactivated to a reactive species that damages the cell that made it. The same enzyme can produce different outcomes for different substrates, so the consequence is a property of the drug and the reaction rather than of the enzyme.',
- cite:'Lecture #10 slide 28'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 28'},
 
 {id:'df-9', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'prodrug-ester-azo',
  tags:['reasoning','case'], source:'slide',
@@ -133,7 +133,7 @@ QUESTIONS.push(
   {t:'Both by glucuronidation', correct:false,
    why:'Glucuronidation is a Phase 2 conjugation that generally inactivates rather than activates.'}],
  teach:'A prodrug is designed around the enzyme that will convert it, and the two examples take different routes. Enalapril is an ester prodrug: carboxylesterase hydrolyses the ester to release enalaprilat, the active diacid, and the ester exists because the acid itself is absorbed poorly. Azo prodrugs are cleaved by bacterial azo-reductases in the intestine, splitting the nitrogen-nitrogen double bond to give two amines, and in the named case both halves are active, one an antibiotic and one an anti-inflammatory. Site matters as much as chemistry in the second case, since the enzyme belongs to the gut flora and the release therefore happens in the colon.',
- cite:'Lecture #10 slides 35–36'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 35–36'},
 
 {id:'df-10', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'reactive-metabolite-withdrawals',
  tags:['recall','case'], source:'slide',
@@ -148,7 +148,7 @@ QUESTIONS.push(
   {t:'Its reactive metabolite is eliminated by exhalation', correct:false,
    why:'Reactive metabolites are neutralised by conjugation, not exhaled.'}],
  teach:'Reactive metabolites are the reason several drugs carry a black box warning or were withdrawn, and the lists are kept separate for a reason. One list holds drugs withdrawn because of reactive metabolites. A second holds drugs never approved in the United States for the same reason. A third holds drugs that remain in use with hepatotoxicity precautions, acetaminophen, carbamazepine and clozapine among them. The third list is the clinically important one, because those drugs are still prescribed and the risk is managed by dose limits and monitoring rather than by removal.',
- cite:'Lecture #10 slides 25–26'},
+ cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 25–26; acetaminophen dose threshold Lecture #15 (MCMet-9_17_2026.pdf) slide 49'},
 
 /* ======================= PHASE 1 PATHWAYS (with images) ======================= */
 {id:'p1-1', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'cyp-oxidation-types',
@@ -168,7 +168,7 @@ QUESTIONS.push(
  quote:'CYP Oxidative Reactions Include: Aliphatic, Allylic, Benzylic, Aryl carbons · Heteroatom · N-dealkylations · O-dealkylations · S-dealkylations · Dehalogenations · Double bonds (dbs) to form Epoxides'},
 
 {id:'p1-2', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'allylic-hydroxylation-ident',
- tags:['structure','reaction-id'], source:'slide', img:'rx_allylic_pentazocine',
+ tags:['structure','reaction-id'], source:'slide', img:'rx_allylic_pentazocine', teachImg:'rx_allylic_pentazocine_labeled',
  stem:'Pentazocine is converted to the metabolite shown. Which specific CYP oxidation is this?',
  options:[
   {t:'Allylic hydroxylation', correct:true,
@@ -180,7 +180,7 @@ QUESTIONS.push(
   {t:'Omega hydroxylation', correct:false,
    why:'Omega hydroxylation targets the terminal carbon of an alkyl chain, with no reference to a double bond.'}],
  teach:'Allylic hydroxylation is named for where the carbon sits rather than for what it becomes. A carbon adjacent to a carbon-carbon double bond is allylic, and cytochrome P450 hydroxylates it in preference to an ordinary saturated carbon because the radical formed at that position is stabilised by the neighbouring double bond. The product is an alcohol, exactly as in plain aliphatic hydroxylation; the label changes because the position does. Finding a double bond in a structure is therefore the clue that the carbons on either side of it are likely oxidation sites.',
- cite:'Lecture #11 slide 13'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 13'},
 
 {id:'p1-3', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'benzylic-hydroxylation-ident',
  tags:['structure','reaction-id'], source:'slide', img:'rx_benzylic_tolbutamide',
@@ -195,7 +195,7 @@ QUESTIONS.push(
   {t:'N-dealkylation', correct:false,
    why:'No alkyl group leaves here and no nitrogen is involved: a carbon simply gains a hydroxyl. N-dealkylation would remove a substituent from a nitrogen and release it as an aldehyde, leaving a smaller amine behind. Comparing the atom count of parent and metabolite settles it, since hydroxylation adds one oxygen and removes nothing.'}],
  teach:'A benzylic carbon is the carbon directly attached to an aromatic ring, and only that one. The carbon one position further along is not benzylic. Cytochrome P450 hydroxylates it readily for the same reason it favours the allylic position: the adjacent ring stabilises the intermediate. Tolbutamide is the worked example, where the methyl group on the ring is hydroxylated. Distinguishing benzylic from aromatic hydroxylation is a matter of which atom takes the oxygen, the side-chain carbon or a carbon of the ring itself.',
- cite:'Lecture #11 slide 14'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 14'},
 
 {id:'p1-4', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'aromatic-hydroxylation-ident',
  tags:['structure','reaction-id'], source:'slide', img:'rx_aromatic_estradiol',
@@ -210,7 +210,7 @@ QUESTIONS.push(
   {t:'Epoxidation followed by hydrolysis', correct:false,
    why:'The products are phenols rather than diols, so no epoxide-to-diol conversion is shown.'}],
  teach:'Aromatic hydroxylation puts the hydroxyl directly onto a carbon of the ring rather than onto a side chain. Estradiol is the worked example, and it also shows that one drug usually gives more than one metabolite, since the hydroxyl can be introduced at more than one ring position. A phenol appearing where a plain benzene ring was is the signature of the reaction, and it matters downstream because a phenol is a substrate for glucuronidation and sulfation, so an aromatic hydroxylation often creates the handle a Phase 2 enzyme then uses.',
- cite:'Lecture #11 slide 15'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 15'},
 
 {id:'p1-5', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'n-dealkylation-ident',
  tags:['structure','reaction-id'], source:'slide', img:'rx_ndemeth_imipramine',
@@ -225,7 +225,7 @@ QUESTIONS.push(
   {t:'N-acetylation', correct:false,
    why:'That is a Phase 2 reaction that adds an acetyl group rather than removing a methyl.'}],
  teach:'N-dealkylation looks like a group being removed, and the naming follows the heteroatom that loses it. Cytochrome P450 oxidises the carbon next to the nitrogen, and that carbon then leaves as an aldehyde, so a secondary amine appears where a tertiary one was and formaldehyde is released when the group removed was a methyl. The oxygen is inserted at a carbon even though the reaction is named for the nitrogen, which is why N-, O- and S-dealkylation are one reaction type with three labels: the difference is only which heteroatom the departing alkyl group was attached to.',
- cite:'Lecture #11 slide 16'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 16'},
 
 {id:'p1-6', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'s-dealkylation-ident',
  tags:['structure','reaction-id'], source:'slide', img:'rx_sdemeth_mtp',
@@ -240,7 +240,7 @@ QUESTIONS.push(
   {t:'Sulfoxidation', correct:false,
    why:'Sulfoxidation adds oxygen to sulfur while keeping the methyl. Here the methyl is gone and no oxygen is added.'}],
  teach:'S-dealkylation removes an alkyl group from a sulfur, by the same route as its nitrogen and oxygen counterparts: the carbon adjacent to the heteroatom is oxidised and departs, leaving a free thiol where a thioether was. Reading the reaction from the structure means finding which heteroatom lost a substituent, so a thiol appearing in a metabolite where a sulfur-carbon bond used to be identifies the reaction without needing the enzyme to be named.',
- cite:'Lecture #11 slide 18'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 18'},
 
 {id:'p1-7', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'codeine-morphine',
  tags:['case','recall'], source:'slide',
@@ -255,10 +255,11 @@ QUESTIONS.push(
   {t:'Glucuronidation', correct:false,
    why:'Morphine is glucuronidated afterwards, but that is a later Phase 2 step rather than the conversion itself.'}],
  teach:'Codeine to morphine is an O-demethylation, and it is the case where the reaction decides whether the drug works. The methyl group on codeine\'s phenolic oxygen is removed by CYP2D6, giving morphine, and morphine is the species with meaningful analgesic activity. A poor metaboliser produces little morphine and reports no relief; an ultrarapid metaboliser produces a great deal and can reach respiratory depression from a standard dose. The whole clinical picture follows from one methyl group and the enzyme that removes it.',
- cite:'Lecture #11 slide 17'},
+ teachImg:'fgm_ether',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 17'},
 
 {id:'p1-8', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'adh-aldh-sequence',
- tags:['mechanism','enzyme'], source:'slide', img:'rx_adh',
+ tags:['mechanism','enzyme'], source:'slide', img:'rx_adh', teachImg:'rx_adh_labeled',
  stem:'A primary alcohol is oxidized as shown. Which enzyme does this, and what acts next?',
  options:[
   {t:'Alcohol dehydrogenase gives the aldehyde; aldehyde dehydrogenase then gives the carboxylic acid', correct:true,
@@ -270,7 +271,7 @@ QUESTIONS.push(
   {t:'CYP450 gives the aldehyde; epoxide hydrolase gives the acid', correct:false,
    why:'EH opens epoxides to diols and has no role in this sequence.'}],
  teach:'Ethanol is cleared in two oxidation steps by two different enzymes, and the order cannot be swapped. Alcohol dehydrogenase oxidises the primary alcohol to an aldehyde. Aldehyde dehydrogenase then oxidises that aldehyde to a carboxylic acid. Each step removes hydrogen and raises the oxidation state of the same carbon, so the pair reads as one ladder: alcohol, aldehyde, acid. Naming the enzyme from a structure means asking which rung the starting material sits on, since the substrate of the second enzyme is the product of the first.',
- cite:'Lecture #11 slides 22–23',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 22–23',
  note:'ALDH is inhibited by disulfiram, which is how disulfiram causes acetaldehyde to build up after drinking.'},
 
 {id:'p1-9', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'aldh-disulfiram',
@@ -286,7 +287,7 @@ QUESTIONS.push(
   {t:'Nothing changes, because ALDH is not involved in ethanol metabolism', correct:false,
    why:'ALDH is central to it, converting acetaldehyde to acetate.'}],
  teach:'Disulfiram works by stopping the second step rather than the first. It inhibits aldehyde dehydrogenase, so ethanol is still oxidised to acetaldehyde by alcohol dehydrogenase but the acetaldehyde is not cleared onward to acetic acid. Acetaldehyde accumulates, and the flushing, nausea and headache that follow are the deterrent the drug is prescribed for. Pyrazole inhibits the same enzyme. The design point is that blocking a middle step of a pathway causes the intermediate to build up, which is a different kind of effect from blocking the first step.',
- cite:'Lecture #11 slide 23'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 23'},
 
 {id:'p1-10', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'mao-substrate',
  tags:['enzyme','recall'], source:'slide',
@@ -301,7 +302,7 @@ QUESTIONS.push(
   {t:'N-oxides', correct:false,
    why:'N-oxidation is performed by flavin monooxygenase and by CYPs, keeping the nitrogen in place.'}],
  teach:'Monoamine oxidase oxidises an amine to an aldehyde, and its substrates are largely neurotransmitters rather than foreign compounds. The two isoforms divide by preference: MAO-A handles serotonin, MAO-B handles phenethylamines. That division is why MAO inhibitors carry the interactions they do, since blocking the enzyme leaves dietary amines such as tyramine unmetabolised and free to act. The reaction itself is an oxidative deamination, so the nitrogen leaves and a carbonyl appears where the amine carbon was.',
- cite:'Lecture #11 slides 24–25'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 24–25'},
 
 {id:'p1-11', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'fmo-targets',
  tags:['enzyme','recall'], source:'slide',
@@ -315,11 +316,11 @@ QUESTIONS.push(
    why:'Esters and carbamates are hydrolysed by carboxylesterases, which break a bond by adding water. Flavin-containing monooxygenase inserts oxygen onto a heteroatom and breaks nothing, so the two enzymes share neither a substrate nor a kind of chemistry.'},
   {t:'Epoxides only', correct:false,
    why:'Epoxides are handled by epoxide hydrolase, which opens the ring to a diol, and by glutathione S-transferase, which attacks the electrophilic ring carbon. Flavin-containing monooxygenase creates oxidised products rather than consuming them, so an epoxide is the kind of thing that chemistry produces rather than something it acts on.'}],
- teach:'Flavin-containing monooxygenase handles nitrogen and sulfur, and the products are named by the heteroatom that receives the oxygen. Tertiary amines and amides give N-oxides. Sulfur gives sulfoxides and then sulfones. Three major isoforms are known. What separates it from cytochrome P450 is that it is not affected by the inducers and inhibitors that act on the P450 system, so a drug cleared mainly by FMO escapes a whole class of interaction. Cytochrome P450 can also carry out N-oxidation, so the product alone does not always identify the enzyme.',
- cite:'Lecture #11 slides 26–28'},
+ teach:'Flavin-containing monooxygenase handles nitrogen and sulfur, and the products are named by the heteroatom that receives the oxygen. Tertiary amines and amides give N-oxides. Sulfur gives sulfoxides and then sulfones. Three major isoforms are known. What separates it from cytochrome P450 is the note on slide 26 that it is not affected by CYP450 inhibitors, so a drug cleared mainly by FMO escapes that class of interaction. Cytochrome P450 can also carry out N-oxidation, so the product alone does not always identify the enzyme.',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 26–28'},
 
 {id:'p1-12', prof:'Sikazwe', tier:'old', topic:'paths', sub:'red', concept:'akr-function',
- tags:['enzyme','reaction-id'], source:'slide', img:'rx_akr',
+ tags:['enzyme','reaction-id'], source:'slide', img:'rx_akr', teachImg:'rx_akr_labeled',
  stem:'Which enzyme family carries out the conversions shown, and what is the general transformation?',
  options:[
   {t:'Aldo-keto reductases, reducing aldehydes and ketones to alcohols', correct:true,
@@ -331,7 +332,7 @@ QUESTIONS.push(
   {t:'Azo-reductases, reducing N=N bonds', correct:false,
    why:'Azo reduction splits a nitrogen–nitrogen double bond, which is not what is shown.'}],
  teach:'Aldo-keto reductase runs the reduction that alcohol dehydrogenase runs in reverse, converting aldehydes and ketones to alcohols. The clinical example is doxorubicin, whose ketone is reduced to the secondary alcohol doxorubicinol, and the alcohol is the species responsible for the cardiotoxicity. Metabolism here neither inactivates the drug nor prepares it for elimination but creates the toxicity, which is why reduction reactions cannot be assumed to be detoxifying.',
- cite:'Lecture #11 slides 30–31'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 30–31'},
 
 {id:'p1-13', prof:'Sikazwe', tier:'old', topic:'paths', sub:'red', concept:'azo-reduction-ident',
  tags:['structure','reaction-id','enzyme'], source:'slide', img:'rx_azo_sulfasalazine',
@@ -346,14 +347,14 @@ QUESTIONS.push(
   {t:'Nitro-reductases acting on a nitro group', correct:false,
    why:'Nitro reduction converts -NO₂ to -NH₂. The starting material here has an azo bond instead.'}],
  teach:'Azo reduction splits a nitrogen-nitrogen double bond and yields two amines, one from each side. The enzymes belong to the intestinal microbiota rather than to the liver, so the reaction happens in the colon and depends on gut flora being present. Prontosil and sulfasalazine are the cases where this activates the drug, since neither parent is active until the azo bond is cleaved. A metabolite pair that together account for the whole parent structure, each carrying a new amine, identifies the reaction.',
- cite:'Lecture #11 slide 32; Lecture #10 slide 36'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 32; Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 36'},
 
 {id:'p1-14', prof:'Sikazwe', tier:'old', topic:'paths', sub:'red', concept:'nitro-reduction-ident',
  tags:['structure','reaction-id','enzyme'], source:'slide', img:'rx_chloramphenicol',
  stem:'What enzymes are implicated in the chloramphenicol reaction shown?',
  options:[
   {t:'Nitro-reductases, converting the nitro group to an amine', correct:true,
-   why:'The -NO₂ on the ring becomes -NH₂, a four-electron reduction. It passes through nitroso and hydroxylamine intermediates, the same reactive species implicated in nitrofurantoin toxicity.'},
+   why:'The -NO₂ on the ring becomes -NH₂. The reduction runs in three two-electron steps, nitro to nitroso to hydroxylamine to amine, so the whole conversion is a six-electron reduction, and the two middle species are the reactive ones. It passes through nitroso and hydroxylamine intermediates, the same reactive species implicated in nitrofurantoin toxicity.'},
   {t:'Azo-reductases, cleaving an N=N bond', correct:false,
    why:'There is no azo bond in chloramphenicol. The reduced group is a nitro substituent.'},
   {t:'Carboxylesterases, hydrolyzing the amide', correct:false,
@@ -361,7 +362,8 @@ QUESTIONS.push(
   {t:'CYP450, performing aromatic hydroxylation', correct:false,
    why:'No hydroxyl is added to the ring, and the change is a reduction rather than an oxidation.'}],
  teach:'Nitro reduction converts a nitro group to a primary amine, passing through nitroso and hydroxylamine intermediates on the way. The intermediates matter beyond bookkeeping, because a hydroxylamine is itself reactive and is one of the structural alerts in the toxicity material. So the same reduction that detoxifies by finishing at an amine can cause harm if it stalls at the middle. Recognising it from a structure is a matter of seeing an -NO2 in the parent and an -NH2 in the metabolite at the same position.',
- cite:'Lecture #11 slide 33; PTI Study Aid Q1'},
+ teachImg:'rx_nitro_chloramphenicol',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 33; PTI Study Aid Q1'},
 
 {id:'p1-15', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'ce-four-substrates',
  tags:['enzyme','recall','exam-pattern'], source:'slide',
@@ -377,7 +379,8 @@ QUESTIONS.push(
    why:'Ethers undergo O-dealkylation, thioethers are oxidized, and alkanes and alkenes are largely stable.'}],
  svg:DIA.acylFamily,
  teach:'Carboxylesterase hydrolyses four functional groups, and all four share the same carbonyl carbon with two substituents, so the products follow from what is attached. An ester gives a carboxylic acid and an alcohol. An amide gives a carboxylic acid and an amine. A carbamate gives an alcohol and an amine, losing carbon dioxide. A carbonate gives two alcohols, also losing carbon dioxide. Counting the heteroatoms on the carbonyl carbon and naming which ones they are gives the products without any further rule.',
- cite:'Lecture #11 slides 35–38; Lecture #14 slides 14–16'},
+ teachImg:'fgm_ester',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 35–38; Lecture #14 (MCMet-9_16_2026.pdf) slides 14–16'},
 
 {id:'p1-16', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'procaine-hydrolysis',
  tags:['structure','reaction-id','enzyme'], source:'slide', img:'rx_procaine',
@@ -392,7 +395,7 @@ QUESTIONS.push(
   {t:'Phase 2, GST, glutathione conjugation', correct:false,
    why:'GSH conjugation attaches the tripeptide to an electrophilic carbon and would increase molecular weight.'}],
  teach:'Procaine\'s short duration of action follows directly from its ester. That bond is cleaved by esterases in plasma and tissue to give para-aminobenzoic acid and diethylaminoethanol, neither of which is a local anaesthetic, so the drug\'s action ends as soon as hydrolysis occurs. An ester in a drug is therefore a design decision about duration as much as a functional group, and replacing it with an amide, as in lidocaine, gives a molecule that survives plasma esterases and lasts longer.',
- cite:'Lecture #11 slide 35; PTI Study Aid Q4'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 35; PTI Study Aid Q4'},
 
 {id:'p1-17', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'epoxide-hydrolase-function',
  tags:['enzyme','recall'], source:'slide',
@@ -407,7 +410,7 @@ QUESTIONS.push(
   {t:'Glutathione conjugates', correct:false,
    why:'That is the parallel GST route for epoxides, not the EH reaction.'}],
  teach:'Epoxide hydrolase adds water across an epoxide and opens the three-membered ring, giving a molecule with two adjacent hydroxyl groups. The reaction is a detoxification, because the epoxide carbon is electrophilic and will otherwise be attacked by nucleophiles on protein and DNA. It is also saturable, and that is the limitation that matters clinically: at a high enough exposure the epoxide is produced faster than the enzyme can open it, and the surplus is left for glutathione S-transferase or for whatever macromolecule it reaches first.',
- cite:'Lecture #11 slide 39'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 39'},
 
 /* ======================= PHASE 2 (with images) ======================= */
 {id:'p2-1', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'glucuronidation-ident',
@@ -423,7 +426,7 @@ QUESTIONS.push(
   {t:'N-acetyltransferase with acetyl-CoA; eliminated renally', correct:false,
    why:'Acetaminophen is already acetylated, and the reaction shown occurs at the phenolic oxygen rather than at nitrogen.'}],
  teach:'Glucuronidation is the widest Phase 2 route and the one to check first. UDP-glucuronosyltransferase is microsomal, its cofactor is UDP-glucuronic acid, and it accepts alcohols, carboxylic acids, aromatic amines and thiols. Bilirubin is its endogenous substrate, which is why a newborn with low UGT activity becomes jaundiced. The conjugate is recognisable from its structure: a six-carbon sugar carrying a carboxyl group, so the metabolite is both much larger than the parent and ionised at physiological pH, which is what makes it eliminable.',
- cite:'Lecture #11 slide 46; PTI Study Aid Q6'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 46; PTI Study Aid Q6'},
 
 {id:'p2-2', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'gsh-conjugation-ident',
  tags:['structure','reaction-id','cofactor'], source:'slide', img:'rx_cdnb_gsh',
@@ -438,10 +441,10 @@ QUESTIONS.push(
   {t:'Nitro-reductase with NADPH', correct:false,
    why:'The nitro groups are unchanged in the product; the reaction occurs at the carbon bearing chlorine.'}],
  teach:'Glutathione conjugation is the defence against electrophilic carbon, and its two target types are specific. Glutathione S-transferase acts on carbons bearing a halogen and on the carbons of an epoxide, both of which are electron-poor and open to attack. The cofactor is glutathione itself, a tripeptide whose cysteine sulfhydryl does the attacking. The conjugate is identified by the tripeptide appearing in the metabolite, often abbreviated as GS- or -SG, and the conjugate is later trimmed by peptidases and acetylated to the mercapturic acid that leaves in urine.',
- cite:'Lecture #11 slide 49; PTI Study Aid Q7'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 49; PTI Study Aid Q7'},
 
 {id:'p2-3', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'nac-mimics-gsh',
- tags:['mechanism','reasoning'], source:'slide',
+ tags:['mechanism','reasoning'], source:'both',
  stem:'Why can N-acetylcysteine substitute for glutathione?',
  options:[
   {t:'It carries a free nucleophilic thiol that attacks electrophilic centres the same way glutathione does', correct:true,
@@ -455,7 +458,7 @@ QUESTIONS.push(
  teach:'Glutathione (GSH) is a tripeptide, and only one of its three residues does the chemistry: the cysteine in the middle carries a sulfhydryl, and sulfur is a soft nucleophile that attacks electron-poor carbon. Glutathione S-transferase (GST) uses it on two kinds of electrophilic carbon, the carbon bearing a halogen and the carbon of an epoxide. Acetaminophen (APAP) overdose makes both parts of that matter at once. At a normal dose the drug leaves as sulfate and glucuronide conjugates, but an overdose exhausts the sulfotransferases (SULTs) and glucuronosyltransferases (UGTs), so more of the drug goes through Phase 1 bioactivation to N-acetyl-p-benzoquinone imine (NAPQI), and NAPQI consumes glutathione until there is none left to deactivate it. N-acetylcysteine (NAC) is cysteine with an acetyl group on its nitrogen, so it brings the same free sulfhydryl without the rest of the tripeptide, and it restores the nucleophile rather than the enzyme. That is why the antidote works within the same chemistry rather than by changing how much enzyme is present.',
  teachImg:'tbl_ph2_b',
  note:'The class transcript records the professor giving glutathione’s residues as glutamine, cysteine and glycine. Glutathione is γ-glutamyl-cysteinyl-glycine, so the first residue is glutamate; the auto-caption is the likely source of the difference, and the cysteine sulfhydryl, which is the part the question turns on, is the same either way.',
- cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 51; Lecture #15 (MCMet-9_17_2026.pdf) slides 49, 63',
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 50–51; Lecture #15 (MCMet-9_17_2026.pdf) slides 49, 63; lecture audio 09/10 (marked)',
  quote:'NAC - antidote for APAP toxicity · Electrophile deactivation by NAC'},
 
 {id:'p2-4', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'nat-ident',
@@ -471,7 +474,7 @@ QUESTIONS.push(
   {t:'S-adenosylmethionine', correct:false,
    why:'SAM donates a methyl group, a single carbon, not the two-carbon acetyl unit shown.'}],
  teach:'N-acetylation moves an acetyl group from acetyl coenzyme A onto a nitrogen, and it is the Phase 2 route that does not increase polarity. Its targets are primary amines, both alkyl and aryl, and sulfonamide nitrogens. NAT2 is polymorphic, splitting patients into slow and fast acetylators, which changes exposure to isoniazid, hydralazine and the sulfonamides. Because the acetamide product is often less water-soluble than the parent amine, this is the conjugation that can precipitate in the renal tubule, so it is the exception to the rule that Phase 2 makes elimination easier.',
- cite:'Lecture #11 slides 53–54'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 53–54'},
 
 {id:'p2-5', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'aa-conjugation-ident',
  tags:['structure','reaction-id','cofactor'], source:'slide', img:'rx_aaconj_benzoic',
@@ -486,7 +489,7 @@ QUESTIONS.push(
   {t:'Glutathione conjugation with GSH', correct:false,
    why:'GSH conjugation needs an electrophilic carbon. A carboxylic acid is not one.'}],
  teach:'Amino acid conjugation attaches a whole amino acid, usually glycine or glutamine, to a carboxylic acid. The mechanism has an extra step the other conjugations lack: acetyl coenzyme A first activates the carboxyl group, and only then does acyl synthetase join the amino acid to it. Three cofactors are therefore listed rather than one. Benzoic acid conjugated with glycine to give hippuric acid is the classical case. Recognising it means finding an amide bond in the metabolite whose nitrogen side is a recognisable amino acid.',
- cite:'Lecture #11 slides 55–56'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 55–56'},
 
 {id:'p2-6', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'gluc-vs-sulf-targets',
  tags:['reaction-id','cofactor'], source:'slide', img:'rx_gluc_sulf',
@@ -500,9 +503,9 @@ QUESTIONS.push(
    why:'Neither product contains a tripeptide or an acetamide.'},
   {t:'Both are Phase 1 oxidations', correct:false,
    why:'Both attach a polar group to an existing handle, which defines Phase 2 conjugation.'}],
- teach:'Two Phase 2 reactions compete for the same hydroxyl, and the cofactor is what tells them apart. UDP-glucuronosyltransferase (UGT) draws on uridine-5’-diphospho-D-glucuronic acid (UDPGA) and transfers glucuronic acid, a six-carbon sugar carrying a carboxyl group, so the conjugate is bulky and charged. Sulfotransferase (SULT) draws on 3’-phosphoadenosine-5’-phosphosulfate (PAPS) and transfers a sulfate, which is small and charged. Neither reaction runs at all without its cofactor, so naming the cofactor is how you name the enzyme from a structure alone. Morphine is the worked example: the same hydroxyl gives morphine-6-glucuronide under UGT and a sulfate under SULT, and the glucuronide is the more potent of the two, so which route a patient favours has a clinical consequence rather than just a chemical one. The two enzymes also accept different handles, UGT taking hydroxyl, carboxyl, amino and thiol groups against SULT’s hydroxyl.',
+ teach:'Two Phase 2 reactions compete for the same hydroxyl, and the cofactor is what tells them apart. UDP-glucuronosyltransferase (UGT) draws on uridine-5’-diphospho-D-glucuronic acid (UDPGA) and transfers glucuronic acid, a six-carbon sugar carrying a carboxyl group, so the conjugate is bulky and charged. Sulfotransferase (SULT) draws on 3’-phosphoadenosine-5’-phosphosulfate (PAPS) and transfers a sulfate, which is small and charged. Neither reaction runs at all without its cofactor, so naming the cofactor is how you name the enzyme from a structure alone. Slide 48 pairs one example with each enzyme: morphine goes to morphine-6-O-glucuronide under UGT, and labetalol goes to labetalol sulfate under SULT. Morphine-6-glucuronide is more potent than morphine itself, so a conjugation step can raise activity rather than end it. The two enzymes also accept different handles. UGT takes hydroxyl, carboxyl, amino and thiol groups. SULT takes alkyl and aryl alcohols and, on Lecture 11 slide 47, aromatic amines as well.',
  teachImg:'tbl_ph2_a',
- note:'The cofactor table on MCMet-9_16_2026.pdf slide 29 lists only -OH for the sulfotransferases. The class transcript for 09/10 has the professor adding amines to that list while working the same slide. Where the two differ, the table is the one to answer from, since it is the version the exam questions are drawn against.',
+ note:'Two slides list sulfotransferase substrates differently. Lecture 11 slide 47 prints "Alkyl- & Ar-alcohols · Aromatic amines", and the 09/10 lecture said the same aloud. The cofactor table on Lecture 14 slide 29 abbreviates the entry to -OH. Both are printed, so know both: an alcohol is the common case, and an aromatic amine can also be sulfated.',
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 46–48; cofactor table in Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
  quote:'-OH; -CO2H; -NH2; -SH · UDP-Glucuronosyl transferases (UGTs) · Uridine-5’-diphospho-D-glucuronic Acid (UDPGA) · Glucuronide // -OH · Sulfotransferases (STs/SULTs) · 3’-Phosphoadenosine-5’-phosphosulfate (PAPS) · Sulfate'},
 
@@ -518,8 +521,13 @@ QUESTIONS.push(
    why:'Both are hydrolases. No bond is hydrolyzed here; an oxygen is added to nitrogen.'},
   {t:'UGT and sulfotransferase', correct:false,
    why:'These are Phase 2 conjugating enzymes and would attach a large polar group.'}],
- teach:'Tamoxifen needs two enzymes in sequence, and the second one is where the variation lies. CYP3A4 performs the N-demethylation and CYP2D6 the hydroxylation, and only the product of both, endoxifen, has the activity the treatment depends on. A patient who is a CYP2D6 poor metaboliser, or who takes a CYP2D6 inhibitor such as a selective serotonin reuptake inhibitor, makes less endoxifen from the same dose. The concentration of the parent drug in that patient is unremarkable, which is what makes the interaction easy to miss: the failure is in a metabolite that is not usually measured.',
- cite:'Lecture #11 slides 26–27; PTI Study Aid Q3'},
+ teach:[
+  {h:'What an N-oxide is',
+   t:'Tamoxifen carries a tertiary amine, a nitrogen with three carbons and one lone pair. N-oxidation puts an oxygen on that lone pair, giving the N-oxide drawn on the slide: the nitrogen keeps all three carbons and gains an oxygen, so nothing is removed from the molecule. That separates it from N-dealkylation, where a carbon next to the nitrogen is oxidised and an alkyl group leaves.'},
+  {h:'Two enzymes for one reaction',
+   t:'Lecture 11 slide 26 gives flavin-containing monooxygenase as the enzyme that oxidises tertiary amines and amides to N-oxides and sulfur to sulfoxides and sulfones, with the note that its products are not affected by CYP450 inhibitors. Slide 27 adds the note that CYPs can facilitate N-oxidations too. So a drug N-oxidised mainly by FMO keeps that route when a CYP inhibitor is present, and the prep sheet asks for both enzymes by name.'}],
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 26–27; Ex4-Prep-Work question 3',
+ quote:'FMO oxidation of Amines (Note: CYPs can facilitate N-oxidations, too)'},
 
 {id:'p2-8', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'phase2-enzyme-list',
  tags:['recall'], source:'slide',
@@ -568,7 +576,7 @@ QUESTIONS.push(
   {t:'The class determines whether the drug is absorbed orally', correct:false,
    why:'Oral absorption depends on lipophilicity, size and transport, not on amine class alone.'}],
  teach:'Amines are classified by how many carbons are on the nitrogen, not by how many carbons the molecule has. A primary amine carries one, a secondary two, a tertiary three, and a quaternary ammonium four, which leaves the nitrogen permanently charged. The class determines which reactions apply: primary amines are the targets for N-acetylation, tertiary amines and amides form N-oxides under flavin-containing monooxygenase, and a quaternary nitrogen cannot be neutralised at any pH, so it does not cross into the central nervous system by passive diffusion. Counting substituents on the nitrogen is therefore the first step in predicting a nitrogen-containing drug\'s fate.',
- cite:'Lecture #14 slide 10; functional group deck'},
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 10; functional group deck'},
 
 {id:'fgg-3', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfur-fg-fates',
  tags:['structure','reasoning'], source:'slide',
@@ -583,7 +591,7 @@ QUESTIONS.push(
   {t:'No metabolism at all, since sulfur is inert', correct:false,
    why:'Sulfur groups are among the more reactive handles, which is why they appear in several pathways.'}],
  teach:'Sulfur appears in several oxidation states and each has its own enzyme. A thiol can be methylated by a methyltransferase using S-adenosylmethionine, glucuronidated by UDP-glucuronosyltransferase, or oxidised by flavin-containing monooxygenase. A thioether can be S-dealkylated by cytochrome P450 or oxidised through the sulfoxide to the sulfone. The oxidation ladder runs sulfide to sulfoxide to sulfone, adding one oxygen at each step, so naming the metabolite is a matter of counting oxygens on the sulfur. Sulfur is also where dimercaprol\'s activity lies, which is why methylating its thiols removes the drug\'s ability to bind metals.',
- cite:'Lecture #11 slides 28, 46, 57; Lecture #14 slides 18–19'},
+ cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 28, 46, 57; Lecture #14 (MCMet-9_16_2026.pdf) slides 18–19'},
 
 {id:'fgg-4', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fg-predicts-pathway',
  tags:['reasoning','exam-pattern'], source:'slide',
@@ -598,7 +606,7 @@ QUESTIONS.push(
   {t:'None, since carboxylic acids are excreted unchanged', correct:false,
    why:'Carboxylic acids have two available conjugation routes and are described as undergoing a variety of biotransformations.'}],
  teach:'A functional group predicts its own metabolic route, which is what makes structure reading the whole skill. A hydroxyl invites glucuronidation, sulfation or methylation. A carboxylic acid invites glucuronidation or amino acid conjugation. A primary amine invites acetylation. An epoxide or a halogen-bearing carbon invites glutathione conjugation. An ester or amide invites carboxylesterase. Working from the structure rather than from a memorised list of drugs means a drug never seen before can still be placed, because the groups it carries are the same groups the course has already assigned to enzymes.',
- cite:'Lecture #14 slides 13, 29; Lecture #11 slides 46, 55',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 13, 29; Lecture #11 (MCMet-9_10_26.pdf) slides 46, 55',
  note:'Working backwards from the functional group to the enzyme is the pattern behind most of the prep sheet questions.'}
 );
 
@@ -690,6 +698,6 @@ QUESTIONS.push(
    why:'NADPH and molecular oxygen are the two things a CYP needs, which makes this a phase I list.'},
   {t:'Glutathione, glycine, glutamine, cysteine, taurine', correct:false,
    why:'Glycine and glutamine are the amino acids attached in amino acid conjugation, but listing them alone omits the enzymes\u2019 activating co-factors and leaves out UDPGA, PAPS and SAM.'}],
- teach:'This is one of the ten questions on the exam prep sheet. The separation that matters is between phase I co-substrates, which supply electrons or oxygen, and phase II co-factors, which supply the group being attached. NADPH and O2 belong to phase I; UDPGA, PAPS, acetyl CoA, glutathione and SAM belong to phase II.',
- cite:'Ex4-Prep-Work.pdf question 7; MCMet-9_16_2026.pdf slides 29–30'}
+ teach:'The separation that matters is between phase I co-substrates, which supply electrons or oxygen, and phase II co-factors, which supply the group being attached. NADPH and O2 belong to phase I; UDPGA, PAPS, acetyl CoA, glutathione and SAM belong to phase II.',
+ cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 29–30; Ex4-Prep-Work.pdf question 7'}
 );

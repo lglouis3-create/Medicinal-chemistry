@@ -44,7 +44,7 @@ const teachText = t => Array.isArray(t) ? t.map(p=>[p.h,p.t].filter(Boolean).joi
 const rebuilt = Q.filter(q=>q.teach);
 for(const q of rebuilt){
   scan(teachText(q.teach), q.id+' · concept block');
-  q.options.forEach((o,i)=>scan(o.why, q.id+' · option '+'ABCDE'[i]));
+  q.options.forEach((o,i)=>scan(o.why, q.id+' · option '+'ABCDEFGH'[i]));
 }
 console.log(`\n  scanned ${rebuilt.length} rebuilt questions`);
 console.log(hits ? `  ${hits} phrasing issues found\n` : '  no flagged phrasing found\n');

@@ -27,9 +27,9 @@ ALIASES = {
     "mcmet9_4_26__9_9_26.pdf": "MCMet-9_4_26-9_9_26.pdf",
     "mcmet-9_4_26-9_9_26.pdf": "MCMet-9_4_26-9_9_26.pdf",
     "mcfgs8_1718_26.pdf":  "MCFGs8_1718_26.pdf",
-    "090326_admetabsorption_i.pdf": None,      # not on hand
-    "090226_physicochemicalprop2.pdf": None,   # not on hand
-    "082426_introductiontosar.pdf": None,      # not on hand
+    "090326_admetabsorption_i.pdf": "090326_ADMETAbsorption_I.pdf",
+    "090226_physicochemicalprop2.pdf": "090226_PhysicochemicalProp2.pdf",
+    "082426_introductiontosar.pdf": "082426_IntroductiontoSAR.pdf",
     "ex4-prep-work.pdf": None,
 }
 # lecture number -> file, for citations that say "Lecture #11" instead
@@ -50,7 +50,7 @@ BARE_DECK = re.compile(
     r"Physicochemical Properties [123]|Drug Discovery|Drug\u2013Receptor Interactions|"
     r"Introduction to SAR|Practice Problem Answers|Functional group deck)\b")
 BARE_MAP = {
-    "Absorption I": None, "Absorption II": "090426_ADMETAbsorption_II.pdf",
+    "Absorption I": "090326_ADMETAbsorption_I.pdf", "Absorption II": "090426_ADMETAbsorption_II.pdf",
     "Distribution": "090426_Distribution.pdf",
     "Stereochemistry": "081926_Stereochemistry.pdf",
     "Bioisosterism": "082626_Bioisosterism.pdf",

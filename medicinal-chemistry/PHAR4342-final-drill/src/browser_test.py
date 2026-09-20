@@ -92,6 +92,27 @@ def main():
         check(not bad, f'all {imgs} embedded images decode', ', '.join(bad[:5]))
 
         # answer a question end to end through the real UI
+        # A select-all item is answered by toggling options and pressing Check;
+        # a single-answer item by clicking one option. `answerCurrent` does
+        # whichever the question on screen needs, through the rendered buttons,
+        # so every walk below exercises the same code a reader would.
+        page.evaluate("""() => {
+            window.answerCurrent = (allCorrect) => {
+                const q = Q && Q.current; if (!q) return false;
+                const btns = [...document.querySelectorAll('#v-quiz button[data-o]')];
+                if (!btns.length) return false;
+                if (isMulti(q)) {
+                    const want = allCorrect ? correctSet(q) : [+btns[0].dataset.o];
+                    for (const i of want) { const b = document.querySelector(`#v-quiz button[data-o="${i}"]`); if (b) b.click(); }
+                    const chk = document.getElementById('btnCheck'); if (!chk) return false;
+                    chk.click();
+                } else if (allCorrect) {
+                    const c = q.options.findIndex(o => o.correct);
+                    document.querySelector(`#v-quiz button[data-o="${c}"]`).click();
+                } else btns[0].click();
+                return true;
+            };
+        }""")
         started = page.evaluate("""() => {
             if (typeof startQuiz !== 'function') return 'no startQuiz';
             try { startQuiz('cyp'); return 'ok'; } catch (e) { return String(e); }
@@ -102,7 +123,7 @@ def main():
         opts = page.query_selector_all('#v-quiz button[data-o]')
         check(len(opts) >= 2, f'question options render ({len(opts)} found)')
         if opts:
-            opts[0].click()
+            page.evaluate('answerCurrent(false)')
             page.wait_for_timeout(500)
             after = page.inner_text('body')
             check('concept behind this' in after.lower() or len(after) > len(body),
@@ -119,11 +140,9 @@ def main():
             for (const q of want) {
                 startQuiz(q.topic);
                 if (!Q) return {err: 'startQuiz left no quiz state'};
-                Q.current = q; Q.picked = null; Q.revealed = false;
+                Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
                 renderQuiz();
-                const b = document.querySelector('#v-quiz button[data-o]');
-                if (!b) { missing.push(q.id + ' (no options)'); continue; }
-                b.click();
+                if (!answerCurrent(true)) { missing.push(q.id + ' (no options)'); continue; }
                 const img = document.querySelector('#v-quiz img.qimg');
                 if (!img) { missing.push(q.id + ' -> ' + q.teachImg); continue; }
                 if (!img.getAttribute('src').startsWith('data:image/'))
@@ -151,19 +170,24 @@ def main():
             for (const q of QUESTIONS) {
                 try {
                     startQuiz(q.topic);
-                    Q.current = q; Q.picked = null; Q.revealed = false;
+                    Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
                     renderQuiz();
                     const btns = document.querySelectorAll('#v-quiz button[data-o]');
                     if (btns.length !== q.options.length) {
                         bad.options.push(`${q.id} (${btns.length}/${q.options.length})`);
                         continue;
                     }
-                    btns[0].click();
+                    if (!answerCurrent(true)) { bad.verdict.push(q.id + ' (could not answer)'); continue; }
                     const panel = document.querySelector('#v-quiz .why');
                     if (!panel) { bad.verdict.push(q.id); continue; }
+                    const verdict = panel.querySelector('.verdict');
+                    if (!verdict || !verdict.classList.contains('ok'))
+                        bad.verdict.push(q.id + ' (keyed answer not marked correct)');
                     const rows = panel.querySelectorAll('.wrow');
                     if (rows.length !== q.options.length)
                         bad.whys.push(`${q.id} (${rows.length}/${q.options.length})`);
+                    if (/\b(undefined|null|NaN|\[object Object\])\b/.test(document.getElementById('v-quiz').textContent))
+                        bad.whys.push(`${q.id} (undefined/null text reached the page)`);
                     const cite = panel.querySelector('.cite');
                     if (!cite || cite.textContent.trim().length < 5) bad.cite.push(q.id);
                 } catch (e) {
@@ -198,9 +222,7 @@ def main():
             while (Q && Q.current && n < want + 20) {
                 if (seen.has(Q.current.id)) dup++;
                 seen.add(Q.current.id);
-                const o = document.querySelector('#v-quiz button[data-o]');
-                if (!o) return {err: 'no options at question ' + (n + 1)};
-                o.click();
+                if (!answerCurrent(false)) return {err: 'no options at question ' + (n + 1)};
                 const nx = document.getElementById('btnNext');
                 if (!nx) return {err: 'no Next button at question ' + (n + 1)};
                 nx.click(); n++;
@@ -242,7 +264,9 @@ def main():
                 startQuiz('cyp');
                 const btns = document.querySelectorAll('#v-quiz button[data-o]');
                 if (!btns.length) return {err: 'no options rendered'};
-                btns[0].click();
+                const q = Q.current;
+                if (isMulti(q)) { for (const i of correctSet(q)) document.querySelector(`#v-quiz button[data-o="${i}"]`).click(); document.getElementById('btnCheck').click(); }
+                else btns[0].click();
                 return {ok: !!document.querySelector('#v-quiz .why')};
             } catch (e) { return {err: e.message}; }
         }""")
@@ -353,7 +377,7 @@ def main():
             const missing = [];
             for (const q of drawn) {
                 startQuiz(q.topic);
-                Q.current = q; Q.picked = null; Q.revealed = false;
+                Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
                 renderQuiz();
                 const el = document.getElementById('v-quiz');
                 if (!el.querySelector('.fgshow svg')) missing.push(q.id);
@@ -364,6 +388,119 @@ def main():
         }""")
         check(shown == 'ok',
               'every structure question shows its drawing before the answer', shown)
+
+        # The general form of that check. A stem that says "shown", "below",
+        # "drawn" or "pictured" is promising the reader something to look at.
+        # Nine ring questions once shipped with that promise and an empty
+        # card, because the drawing lived in a field the pre-answer render
+        # never read. This walks every such stem and requires a visible
+        # figure of any kind before the answer.
+        promised = page.evaluate("""() => {
+            const re = /\\b(shown|below|drawn|pictured|illustrated|depicted|circled|boxed)\\b/i;
+            const qs = QUESTIONS.filter(q => re.test(q.stem));
+            const bare = [];
+            for (const q of qs) {
+                startQuiz(q.topic);
+                Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
+                renderQuiz();
+                const el = document.getElementById('v-quiz');
+                const figs = el.querySelectorAll('.qbody svg, .qbody img, .fgshow svg, .qimg');
+                if (!figs.length) bare.push(q.id);
+            }
+            return {n: qs.length, bare};
+        }""")
+        check(promised['n'] > 0, f"stems that promise a figure exist ({promised['n']})")
+        check(not promised['bare'],
+              'every stem that promises a figure shows one before the answer',
+              f"{len(promised['bare'])} bare: " + ', '.join(promised['bare'][:8]))
+
+        # Select-all items: toggles, the Check button, all-or-nothing grading in
+        # the quiz, the logged picks, and the exam paper's share of them.
+        sata = page.evaluate("""() => {
+            const out = {};
+            const qs = QUESTIONS.filter(isMulti);
+            out.n = qs.length;
+            if (!qs.length) return out;
+            const q = qs[0];
+            startQuiz(q.topic);
+            Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
+            renderQuiz();
+            const el = document.getElementById('v-quiz');
+            out.banner = !!el.querySelector('.sata');
+            out.toggles = el.querySelectorAll('button.opt.multi').length === q.options.length;
+            const chk = () => document.getElementById('btnCheck');
+            out.checkDisabledAtStart = !!chk() && chk().disabled;
+            // a partial set: toggle one correct option, check -> marked wrong
+            const want = correctSet(q);
+            document.querySelector(`#v-quiz button[data-o="${want[0]}"]`).click();
+            out.toggledOn = !!document.querySelector(`#v-quiz button[data-o="${want[0]}"].on`);
+            out.checkEnabledAfterToggle = !!chk() && !chk().disabled;
+            const before = DB.answers.length;
+            chk().click();
+            const v1 = el.querySelector('.verdict');
+            out.partialMarkedWrong = !!v1 && v1.classList.contains('bad');
+            const logged = DB.answers[DB.answers.length - 1];
+            out.logged = DB.answers.length === before + 1 && logged.qid === q.id && logged.result === 'wrong'
+                         && Array.isArray(logged.picked) && logged.picked.length === 1 && logged.picked[0] === want[0];
+            out.youSelected = el.querySelectorAll('.youpicked').length === 1;
+            // the full set: every correct option and nothing else -> marked right
+            startQuiz(q.topic);
+            Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
+            renderQuiz();
+            for (const i of want) document.querySelector(`#v-quiz button[data-o="${i}"]`).click();
+            chk().click();
+            const v2 = el.querySelector('.verdict');
+            out.fullMarkedRight = !!v2 && v2.classList.contains('ok');
+            out.guessOffered = !!document.getElementById('btnGuess');
+            // the full set plus one wrong option -> marked wrong
+            const wrong = q.options.findIndex(o => !o.correct);
+            startQuiz(q.topic);
+            Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
+            renderQuiz();
+            for (const i of [...want, wrong]) document.querySelector(`#v-quiz button[data-o="${i}"]`).click();
+            chk().click();
+            const v3 = el.querySelector('.verdict');
+            out.extraMarkedWrong = !!v3 && v3.classList.contains('bad');
+            // the exam paper draws its share of select-all items and renders them with toggles
+            show('exam');
+            document.getElementById('startExam').click();
+            out.examSata = EX.qs.filter(isMulti).length;
+            out.examTarget = EXAM_SATA;
+            const first = EX.qs.findIndex(isMulti);
+            EX.i = first; renderExamQ();
+            const ex = document.getElementById('v-exam');
+            out.examToggles = ex.querySelectorAll('button.opt.multi').length === EX.qs[first].options.length;
+            out.examChip = !!ex.querySelector('.tag.sata');
+            ex.querySelector('button.opt.multi').click();
+            out.examPickIsArray = Array.isArray(EX.picks[first]) && EX.picks[first].length === 1;
+            clearInterval(EX.timer); EX = null;
+            return out;
+        }""")
+        check(sata['n'] >= 20, f"select-all questions exist ({sata['n']})")
+        if sata['n']:
+            check(sata['banner'] and sata['toggles'], 'a select-all item renders its banner and toggle options')
+            check(sata['checkDisabledAtStart'] and sata['checkEnabledAfterToggle'] and sata['toggledOn'],
+                  'the Check button waits for a selection and toggles mark on')
+            check(sata['partialMarkedWrong'], 'a partial selection is marked wrong')
+            check(sata['logged'], 'the answer log stores the picked set and the verdict')
+            check(sata['youSelected'], 'the review marks which options were selected')
+            check(sata['fullMarkedRight'] and sata['guessOffered'], 'the complete correct set is marked right and can be flagged as a guess')
+            check(sata['extraMarkedWrong'], 'the correct set plus a wrong option is marked wrong')
+            check(sata['examSata'] == sata['examTarget'],
+                  f"the exam paper carries {sata['examTarget']} select-all items", f"drew {sata['examSata']}")
+            check(sata['examToggles'] and sata['examChip'] and sata['examPickIsArray'],
+                  'exam select-all items render toggles, a chip, and store an array of picks')
+
+        # Weak spots after mixed results: the next-step cards and the confusion table render
+        gaps = page.evaluate("""() => {
+            show('gaps');
+            const el = document.getElementById('v-gaps');
+            return {cards: el.querySelectorAll('.nextcard').length,
+                    table: !!el.querySelector('table'),
+                    text: el.innerText.length};
+        }""")
+        check(gaps['cards'] >= 3, f"weak spots shows a next-step card per pool ({gaps['cards']})")
+        check(gaps['table'] and gaps['text'] > 200, 'weak spots renders its tables')
 
         # every view renders without throwing
         for view in ['topics', 'quiz', 'gaps', 'exam', 'atlas', 'ref', 'settings']:

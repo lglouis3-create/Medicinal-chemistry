@@ -14,7 +14,8 @@ import json, re, io, os, subprocess, sys, tempfile
 DATA_FILES = ['atlas.js', 'diagrams.js',
               'q1_cyp.js', 'q2_fgdm.js', 'q3_elimtox.js', 'q4_paths.js',
               'q5_yendapally.js', 'q6_variants.js', 'q7_fgs.js',
-              'q8_atlas.js', 'q9_gaps.js']
+              'q8_atlas.js', 'q9_gaps.js', 'q10_sata.js', 'q11_sata2.js',
+              'q12_figures.js']
 
 # Everything that has to parse before a build is allowed to proceed. Derived
 # from DATA_FILES rather than listed again, so adding a question file cannot
@@ -40,7 +41,8 @@ images = json.load(open('images.json'))
 
 parts = []
 parts.append('const IMAGES = ' + json.dumps(images) + ';\n')
-parts.append('const RING = ' + json.dumps(json.load(open('rings.json'))) + ';\n')
+# rings.json is no longer inlined: the ring questions draw from the atlas, and
+# the atlas structures are verified. rings.py is kept, corrected, for reference.
 for f in DATA_FILES:
     parts.append(open(f, encoding='utf-8').read() + '\n')
 parts.append(open('reference.js', encoding='utf-8').read() + '\n')
