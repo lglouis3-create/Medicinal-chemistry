@@ -15,7 +15,7 @@ DATA_FILES = ['atlas.js', 'diagrams.js',
               'q1_cyp.js', 'q2_fgdm.js', 'q3_elimtox.js', 'q4_paths.js',
               'q5_yendapally.js', 'q6_variants.js', 'q7_fgs.js',
               'q8_atlas.js', 'q9_gaps.js', 'q10_sata.js', 'q11_sata2.js',
-              'q12_figures.js']
+              'q12_figures.js', 'q13_quizlet.js']
 
 # Everything that has to parse before a build is allowed to proceed. Derived
 # from DATA_FILES rather than listed again, so adding a question file cannot

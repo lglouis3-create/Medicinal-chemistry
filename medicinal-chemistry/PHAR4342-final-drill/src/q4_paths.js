@@ -576,6 +576,7 @@ QUESTIONS.push(
   {t:'The class determines whether the drug is absorbed orally', correct:false,
    why:'Oral absorption depends on lipophilicity, size and transport, not on amine class alone.'}],
  teach:'Amines are classified by how many carbons are on the nitrogen, not by how many carbons the molecule has. A primary amine carries one, a secondary two, a tertiary three, and a quaternary ammonium four, which leaves the nitrogen permanently charged. The class determines which reactions apply: primary amines are the targets for N-acetylation, tertiary amines and amides form N-oxides under flavin-containing monooxygenase, and a quaternary nitrogen cannot be neutralised at any pH, so it does not cross into the central nervous system by passive diffusion. Counting substituents on the nitrogen is therefore the first step in predicting a nitrogen-containing drug\'s fate.',
+ teachImg:'fgm_amine',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 10; functional group deck'},
 
 {id:'fgg-3', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfur-fg-fates',
@@ -591,6 +592,7 @@ QUESTIONS.push(
   {t:'No metabolism at all, since sulfur is inert', correct:false,
    why:'Sulfur groups are among the more reactive handles, which is why they appear in several pathways.'}],
  teach:'Sulfur appears in several oxidation states and each has its own enzyme. A thiol can be methylated by a methyltransferase using S-adenosylmethionine, glucuronidated by UDP-glucuronosyltransferase, or oxidised by flavin-containing monooxygenase. A thioether can be S-dealkylated by cytochrome P450 or oxidised through the sulfoxide to the sulfone. The oxidation ladder runs sulfide to sulfoxide to sulfone, adding one oxygen at each step, so naming the metabolite is a matter of counting oxygens on the sulfur. Sulfur is also where dimercaprol\'s activity lies, which is why methylating its thiols removes the drug\'s ability to bind metals.',
+ teachImg:'fgm_thioether_ox',
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 28, 46, 57; Lecture #14 (MCMet-9_16_2026.pdf) slides 18–19'},
 
 {id:'fgg-4', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fg-predicts-pathway',
@@ -606,6 +608,7 @@ QUESTIONS.push(
   {t:'None, since carboxylic acids are excreted unchanged', correct:false,
    why:'Carboxylic acids have two available conjugation routes and are described as undergoing a variety of biotransformations.'}],
  teach:'A functional group predicts its own metabolic route, which is what makes structure reading the whole skill. A hydroxyl invites glucuronidation, sulfation or methylation. A carboxylic acid invites glucuronidation or amino acid conjugation. A primary amine invites acetylation. An epoxide or a halogen-bearing carbon invites glutathione conjugation. An ester or amide invites carboxylesterase. Working from the structure rather than from a memorised list of drugs means a drug never seen before can still be placed, because the groups it carries are the same groups the course has already assigned to enzymes.',
+ teachImg:'tbl_ph2_a',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 13, 29; Lecture #11 (MCMet-9_10_26.pdf) slides 46, 55',
  note:'Working backwards from the functional group to the enzyme is the pattern behind most of the prep sheet questions.'}
 );

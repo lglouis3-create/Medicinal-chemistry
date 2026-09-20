@@ -20,7 +20,7 @@ QUESTIONS.push(
   {t:'Grapefruit juice', correct:true,
    why:'On the inhibitor list, and slide 35 tabulates the drugs it affects: the dihydropyridine calcium channel blockers, atorvastatin, lovastatin and simvastatin, buspirone, midazolam and triazolam, cyclosporine. The affected drugs are oral CYP3A4 substrates with a large first-pass loss.'},
   {t:'Quinidine', correct:true,
-   why:'On the slide 32 inhibitor list, and again in the CYP2D6 column of the slide 34 table, so it inhibits more than one CYP.'},
+   why:'On the slide 32 inhibitor list, and again in the CYP2C9 column of the slide 34 table, so it inhibits more than one CYP.'},
   {t:'Rifampin', correct:false,
    why:'Rifampin is an inducer: more enzyme is made, the substrate is cleared faster, and its level falls. Lecture 10 slide 49 shows the triazolam curve collapsing when rifampin is added. Slide 33 gives its induced CYPs as 2C8, 2C9, 2C19, 2D6, 3A4 and 2B6.'},
   {t:'Carbamazepine', correct:false,

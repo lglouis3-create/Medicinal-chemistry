@@ -531,3 +531,32 @@ An independent review of the whole app, then the fixes. What changed:
 Status: 375 questions, 181 images, all in the full format. `test.js`,
 `style_check.js`, `render_test.js`, `cite_check.py` (860 slide references),
 `coverage_check.py` and `browser_test.py` all pass.
+
+## Quizlet round (09/20)
+
+Louis's three Quizlet sets (09.15, 09.16 and 09.17 lectures) were checked card
+by card against the bank. Nearly every card was already covered; the gaps
+became `q13_quizlet.js`: endobiotic CYP substrates (L13 s5), the CYP2D6
+profile (s26) and the poor/ultrarapid population consequences (s40), the
+lactone ring-opening (L14 s16), the three first-pass examples (s36), the
+cyclosporin inducer case (s55), the induction consequences (s53), the DDI
+outcome table (s65), the second inhibitor column (s60), the felodipine and
+grapefruit-juice plot as a case with the plot as the question image (s66), and
+the free-radical versus non-radical species (L15 s41). `harvest_quizlet.py`
+cropped the slides for the concept blocks. tx-26 names the two amines Solvent
+Red 1 gives; tx-23 gains the methyldiazonium step.
+
+Two things the cards got wrong, for Louis's own set: card 6 of the 09.15 set
+gives the CYP subfamily homology as more than 55%, where slide 19 prints more
+than 50% (card 29 of the same set has it right); and the 09.17 set repeats
+slide 23's label of cimetidine as a PPI, which it is not (it is an H2-receptor
+antagonist), so that label is the slide's error.
+
+Lecture 14 was re-uploaded with its structure layer intact and is installed as
+`MCMet-9.16.2026.pdf` (the old copy is `.nofigs.pdf.bak`); the cache under
+`work_MCMet-9_16_2026/` was rebuilt from it. Reading the Lecture 13 slide 34
+tables closely: the right-hand table continues the CYP2C19 and CYP2C9 columns
+(omeprazole heads 2C19; itraconazole, quinidine, paroxetine and ritonavir are in
+the 2C9 continuation), so quinidine's second listing is 2C9, not 2D6.
+
+Status: 386 questions, 188 images, 36 select-all. All seven checks pass.

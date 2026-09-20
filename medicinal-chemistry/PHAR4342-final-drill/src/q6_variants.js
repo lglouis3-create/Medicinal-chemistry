@@ -508,6 +508,7 @@ QUESTIONS.push(
   {t:'It will be excreted unchanged by the lungs', correct:false,
    why:'Pulmonary elimination serves volatile agents.'}],
  teach:'Phase 1 and Phase 2 name two kinds of chemistry rather than two stages in a fixed order. Phase 1 enzymes are oxygenases and related enzymes that insert oxygen, remove hydrogen, add electrons or add water, and the result is a functional group that was absent or masked. Phase 2 enzymes are transferases that move a group from a cofactor onto a functional group already present. Because the second only needs a suitable group and does not care where it came from, a drug that already carries a hydroxyl or a carboxyl can go straight to conjugation, and a Phase 2 metabolite can afterwards undergo a Phase 1 reaction.',
+ teachImg:'fgm_phenol_ph2',
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 12–14; Lecture #14 (MCMet-9_16_2026.pdf) slide 23'},
 
 /* ---- Yendapally variants ---- */

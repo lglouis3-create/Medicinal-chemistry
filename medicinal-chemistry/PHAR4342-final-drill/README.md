@@ -8,14 +8,14 @@ Open **`PHAR4342_Final_Drill.html`**.
 
 ## What is in it
 
-**375 questions** across 13 topics, every one carrying a worked explanation for
+**386 questions** across 13 topics, every one carrying a worked explanation for
 each answer choice, a concept block, and a citation naming the deck file and the
-slide it came from. 29 are select-all-that-apply items, marked all-or-nothing,
+slide it came from. 36 are select-all-that-apply items, marked all-or-nothing,
 because the paper mixes single-answer and select-all questions.
 
 | view | what it is for |
 |---|---|
-| Topics | pick a topic, take the exam-weighted pass, or one straight pass through all 375 |
+| Topics | pick a topic, take the exam-weighted pass, or one straight pass through all 386 |
 | Quiz | spaced repetition — missed concepts return sooner, mastered ones are held |
 | Weak spots | what to do next per pool, marks at risk by topic, and the wrong options you keep choosing |
 | Exam sim | a 50-question paper drawn to the real blueprint, about 8 of them select-all, timed at 1:15 |
