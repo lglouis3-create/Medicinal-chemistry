@@ -2,7 +2,7 @@
    returns as a different question rather than the identical item (rules 2 and 6). */
 QUESTIONS.push(
 /* ---- CYP ---- */
-{id:'v-cyp-y1b', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-requirements',
+{id:'v-cyp-y1b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-requirements',
  tags:['mechanism','cofactor'], source:'slide',
  stem:'A microsomal preparation contains CYP450, CYP450 reductase and molecular oxygen, but no oxidation occurs. What is most likely missing?',
  options:[
@@ -19,7 +19,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 11–12',
  quote:'Reaction requirements/ingredients: CYP450 · CYP450 Reductase · NADPH (e- donor) · Molecular Oxygen (O2)'},
 
-{id:'v-cyp-e1b', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp3a4-dominance',
+{id:'v-cyp-e1b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp3a4-dominance',
  tags:['reasoning'], source:'slide',
  stem:'A new drug is a substrate of a single CYP isoform. Which isoform would make drug interactions most likely, simply because so many other drugs use it?',
  options:[
@@ -36,7 +36,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 16, 30',
  quote:'1/3 of liver CYP isoforms & metabolizes 1/3 of drugs'},
 
-{id:'v-cyp-i2b', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'inhibitor-recognition',
+{id:'v-cyp-i2b', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'inhibitor-recognition',
  tags:['recall','induction'], source:'slide',
  stem:'A patient on a narrow therapeutic index CYP substrate starts rifampin. Expected substrate levels?',
  options:[
@@ -53,7 +53,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 32–33',
  quote:'Many DIs due to induction/inhibition'},
 
-{id:'v-cyp-p7b', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'active-vs-prodrug-direction-rule',
+{id:'v-cyp-p7b', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'active-vs-prodrug-direction-rule',
  tags:['reasoning','case'], source:'both',
  stem:'A prodrug is activated by CYP2D6. In an ultrarapid metabolizer, expect:',
  options:[
@@ -70,7 +70,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 41–42, 47',
  quote:'Drug exposure under UM & PM conditions'},
 
-{id:'v-cyp-p2b', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-prodrug-direction',
+{id:'v-cyp-p2b', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-prodrug-direction',
  tags:['case','polymorphism'], source:'slide',
  stem:'A CYP2D6 poor metabolizer takes codeine (O-demethylated to morphine) for pain. Most likely outcome?',
  options:[
@@ -88,7 +88,7 @@ QUESTIONS.push(
  quote:'Polymorphic phenotypes: UM; EM; IM; PM'},
 
 /* ---- Phase 2 cofactors ---- */
-{id:'v-fg-11b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrates',
+{id:'v-fg-11b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrates',
  tags:['cofactor','reasoning'], source:'slide',
  stem:'Which Phase 2 enzyme has the broadest range of target functional groups?',
  options:[
@@ -105,7 +105,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
  quote:'-OH; -CO2H; NH2; -SH | UDP-Glucuronosyl transferases (UGTs)'},
 
-{id:'v-fg-12b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'papso4-cofactor',
+{id:'v-fg-12b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'papso4-cofactor',
  tags:['cofactor','matching'], source:'slide',
  stem:'A drug forms a sulfate conjugate. Which enzyme and cofactor were involved, and where in the cell?',
  options:[
@@ -122,7 +122,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 47 (sulfotransferases are cytosolic)',
  quote:'-OH | Sulfotransferases (STs/SULTs) | 3\'-Phosphoadenosine-5\'-phosphosulfate (PAPS) | Sulfate'},
 
-{id:'v-fg-13b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'gst-target',
+{id:'v-fg-13b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'gst-target',
  tags:['reasoning','cofactor'], source:'slide',
  stem:'A reactive epoxide has formed from a drug. Which Phase 2 enzyme is positioned to neutralize it?',
  options:[
@@ -139,7 +139,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30',
  quote:'R-X; Epoxide | Glutathione S-transferases | Glutathione (GSH) | Glutathione-S'},
 
-{id:'v-fg-14b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'aa-conjugation-cofactors',
+{id:'v-fg-14b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'aa-conjugation-cofactors',
  tags:['cofactor','reasoning'], source:'slide',
  stem:'In amino acid conjugation, acetyl-CoA serves to:',
  options:[
@@ -156,7 +156,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 55 (acetyl CoA activates the -COOH)',
  quote:'Acetyl Co-A & an Amino Acid (e.g., Glycine, Glutamine)'},
 
-{id:'v-fg-16b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
+{id:'v-fg-16b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
  tags:['cofactor','matching'], source:'slide',
  stem:'S-adenosylmethionine is the cofactor for which reaction, and on which groups?',
  options:[
@@ -174,7 +174,7 @@ QUESTIONS.push(
  quote:'-OH; -NH2; -SH | Methyltransferases | S- Adenosyl methionine (SAM) | Methylated'},
 
 /* ---- fgdm/carb: carbonyls and carboxylic acids ---- */
-{id:'fg-19', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'aldehyde-dual-fate',
+{id:'fg-19', skill:'tell', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'aldehyde-dual-fate',
  tags:['reasoning','structure'], source:'slide',
  stem:'Aldehydes are oxidised and reduced, respectively, by:',
  options:[
@@ -191,7 +191,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 12; Lecture #11 (MCMet-9_10_26.pdf) slide 23 (ALDH) and slide 30 (AKR)',
  quote:'Aldehydes undergo oxidative & reductive metabolism'},
 
-{id:'fg-20', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'ketone-reduction',
+{id:'fg-20', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'ketone-reduction',
  tags:['reasoning','structure'], source:'slide',
  stem:'Ketones undergo reductive metabolism. What is the product and which enzyme family is responsible?',
  options:[
@@ -208,7 +208,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 12',
  quote:'Ketones undergo reductive metabolism to 2O alcohols'},
 
-{id:'fg-21', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'carboxylic-acid-routes',
+{id:'fg-21', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'carb', concept:'carboxylic-acid-routes',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Carboxylic acids undergo which two phase II conjugations?',
  options:[
@@ -226,7 +226,7 @@ QUESTIONS.push(
  quote:'Carboxylic Acids: Undergo a variety of biotransformations'},
 
 /* ---- dmfound/ddi ---- */
-{id:'df-11', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'induction-timecourse-clinical',
+{id:'df-11', skill:'apply', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'induction-timecourse-clinical',
  tags:['case','reasoning'], source:'slide',
  stem:'Triazolam serum levels fall when an inducer is co-administered. This is because the inducer:',
  options:[
@@ -241,7 +241,7 @@ QUESTIONS.push(
  teach:'Induction changes how much enzyme is present, so it takes time and then persists. A drug that induces acts on transcription, so more enzyme protein accumulates over days rather than the effect appearing with the first dose, and the extra enzyme decays over days after the inducer stops. While it is present, a substrate of that enzyme is cleared faster and its serum concentration falls. Triazolam with rifampin is the worked case on Lecture 10 slide 49. The figure is a single-dose concentration–time plot over ten hours with two curves: plot X, triazolam alone, peaks at about 2.5 ng/mL; plot T, triazolam after rifampin pretreatment, peaks at about 0.3 ng/mL and stays lower throughout. The rifampin was given for days beforehand, so by the time triazolam is dosed the extra enzyme is already present and the whole curve sits roughly ten times lower. A question built from this slide asks which plot is the rifampin one, and the answer is T, the low curve. The handwritten note on the slide reads NTK, will present a case like this.',
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 49'},
 
-{id:'df-12', lowYield:true, prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'ddi-serious-drug-list',
+{id:'df-12', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'ddi-serious-drug-list',
  tags:['recall'], source:'slide',
  stem:'Which drug is involved in serious drug-drug interactions?',
  options:[
@@ -256,7 +256,7 @@ QUESTIONS.push(
  teach:'The list of drugs involved in serious interactions is worth reading as a set of categories rather than as names. Cyclosporin and phenytoin are there for a narrow therapeutic index, so a modest change in clearance crosses into toxicity or loss of effect. Erythromycin, fluconazole and itraconazole are strong inhibitors. Rifampin is the strong inducer. The protease inhibitors, the SSRIs and the HMG-CoA reductase inhibitors appear because they combine a common indication with a CYP dependence. Theophylline combines a narrow index with CYP1A2 metabolism, which is why smoking status changes its dose.',
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 55'},
 
-{id:'df-13', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'tylenol-ethanol-ddi',
+{id:'df-13', skill:'apply', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'tylenol-ethanol-ddi',
  tags:['case','reasoning'], source:'slide',
  stem:'Why does chronic ethanol use raise acetaminophen hepatotoxicity risk?',
  options:[
@@ -272,7 +272,7 @@ QUESTIONS.push(
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 54; Lecture #13 (MCMet-9_15_2026.pdf) slide 28; Lecture #15 (MCMet-9_17_2026.pdf) slide 47'},
 
 /* ---- pathways variants ---- */
-{id:'v-p1-15b', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'ce-four-substrates',
+{id:'v-p1-15b', skill:'tell', prof:'Sikazwe', tier:'old', topic:'paths', sub:'hyd', concept:'ce-four-substrates',
  tags:['enzyme','reasoning'], source:'slide',
  stem:'Which functional group is NOT hydrolyzed by carboxylesterases?',
  options:[
@@ -285,7 +285,7 @@ QUESTIONS.push(
  teach:'Carboxylesterase takes four substrates, and they differ only in what sits on the carbonyl carbon beside the carbon skeleton. One oxygen makes an ester, which hydrolyses to an acid and an alcohol. One nitrogen makes an amide, giving an acid and an amine. One of each makes a carbamate, giving an alcohol and an amine with loss of carbon dioxide. Two oxygens make a carbonate, giving two alcohols and again losing carbon dioxide. Identifying the group therefore means counting and naming the heteroatoms on that one carbon, and the products follow without a separate rule for each.',
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 35–38'},
 
-{id:'v-fg-5b', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbamate-hydrolysis-products',
+{id:'v-fg-5b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbamate-hydrolysis-products',
  tags:['structure','reasoning'], source:'slide',
  stem:'Hydrolysis of a functional group yields one alcohol and one amine. Which group was it?',
  options:[
@@ -303,7 +303,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 15',
  quote:'Carbamates: Undergo CE hydrolysis to give amines and'},
 
-{id:'v-p1-8b', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'adh-aldh-sequence',
+{id:'v-p1-8b', skill:'recall', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'adh-aldh-sequence',
  tags:['mechanism','reasoning'], source:'slide',
  stem:'Ethanol is metabolized through which sequence?',
  options:[
@@ -318,7 +318,7 @@ QUESTIONS.push(
  teach:'Two enzymes run the ethanol ladder in a fixed order. Alcohol dehydrogenase takes a primary alcohol to an aldehyde; aldehyde dehydrogenase takes that aldehyde to a carboxylic acid. Both are oxidations of the same carbon, each removing hydrogen and raising the oxidation state one step. The order cannot reverse, since the second enzyme\'s substrate is the first enzyme\'s product, and that dependency is what disulfiram exploits: inhibiting the second step leaves the intermediate aldehyde to accumulate.',
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slides 22–23'},
 
-{id:'v-p2-1b', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'glucuronidation-ident',
+{id:'v-p2-1b', skill:'recall', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'glucuronidation-ident',
  tags:['cofactor','reasoning'], source:'slide',
  stem:'A metabolite is more water soluble than the parent and carries an ionized carboxylate on a six-carbon sugar. What was formed?',
  options:[
@@ -335,7 +335,7 @@ QUESTIONS.push(
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 46; cofactor table in Lecture #14 (MCMet-9_16_2026.pdf) slide 29'},
 
 /* ---- elimination variants ---- */
-{id:'v-el-7b', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-definition',
+{id:'v-el-7b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-definition',
  tags:['reasoning','mechanism'], source:'slide',
  stem:'An ionized drug in the renal tubule is eliminated more because it:',
  options:[
@@ -352,7 +352,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 12, 14',
  quote:'The un-ionized drug is reabsorbed from the renal tubule back into circulation (mostly via passive back diffusion)'},
 
-{id:'v-el-3b', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'polar-renal-lipophilic-biliary',
+{id:'v-el-3b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'polar-renal-lipophilic-biliary',
  tags:['reasoning','exam-pattern'], source:'both',
  stem:'Lipid-soluble parent drugs are primarily eliminated via which route?',
  options:[
@@ -369,7 +369,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 7, 16',
  quote:'Non-polar drugs (e.g., Phenytoin) excreted here are subject to tubular reabsorption'},
 
-{id:'v-el-11b', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-definition',
+{id:'v-el-11b', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-definition',
  tags:['reasoning','case'], source:'both',
  stem:'A drug\'s duration of action is long despite rapid hepatic metabolism. Which phenomenon explains it?',
  options:[
@@ -386,7 +386,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 18–19',
  quote:'*Zetia undergoes repeated cycling - long DoA (t1/2= 22-24 h)'},
 
-{id:'v-el-2b', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'route-ranking',
+{id:'v-el-2b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'route-ranking',
  tags:['ranking'], source:'slide',
  stem:'Within the non-renal routes, which is the largest?',
  options:[
@@ -404,7 +404,7 @@ QUESTIONS.push(
  quote:'Hepatic/Bile/Fecal Primary route for lipid-soluble drugs, metabolites'},
 
 /* ---- toxicity variants ---- */
-{id:'v-tx-1b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-definition',
+{id:'v-tx-1b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-definition',
  tags:['definition','exam-pattern'], source:'both',
  stem:'A toxicophore is:',
  options:[
@@ -422,7 +422,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 29–30',
  quote:'Toxicophores (toxic/potentially toxic FGs)'},
 
-{id:'v-tx-3b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'toxicophore-categories',
+{id:'v-tx-3b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'toxicophore-categories',
  tags:['structure','reasoning'], source:'slide',
  stem:'Which set lists the electrophilic toxicophores?',
  options:[
@@ -440,7 +440,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 30',
  quote:'Electrophilic carbons · Electrophilic carbonyls · Electrophilic double bonds · Free radicals (ROS/RNS included) · Others: Haptens, Azo, N-OH, etc.'},
 
-{id:'v-tx-11b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi',
+{id:'v-tx-11b', skill:'apply', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi',
  tags:['case','reasoning'], source:'both',
  stem:'APAP is safe at normal doses but hepatotoxic in overdose because:',
  options:[
@@ -458,7 +458,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 49',
  quote:'Safe at < 4g/day; hepatotoxic at higher doses'},
 
-{id:'v-tx-15b', dupOf:'v-tx-11b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'gst-eh-defense',
+{id:'v-tx-15b', skill:'recall', dupOf:'v-tx-11b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'gst-eh-defense',
  tags:['reasoning','enzyme'], source:'slide',
  stem:'Why can a normally safe drug become toxic at high dose despite GST and EH defence?',
  options:[
@@ -476,7 +476,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 33, 60',
  quote:'Enzyme Defense- Electrophile deactivation by GSTs and EHs'},
 
-{id:'v-tx-12b', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'nac-antidote',
+{id:'v-tx-12b', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'nac-antidote',
  tags:['case','antidote','reasoning'], source:'both',
  stem:'N-acetylcysteine (NAC) neutralises NAPQI through:',
  options:[
@@ -495,7 +495,7 @@ QUESTIONS.push(
  quote:'NAC - antidote for APAP toxicity · Electrophile deactivation by NAC'},
 
 /* ---- foundations variants ---- */
-{id:'v-df-3b', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'phases', concept:'phase1-vs-phase2-role',
+{id:'v-df-3b', skill:'recall', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'phases', concept:'phase1-vs-phase2-role',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A drug already carries a phenolic hydroxyl. Its metabolism can begin with:',
  options:[
@@ -512,7 +512,7 @@ QUESTIONS.push(
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slides 12–14; Lecture #14 (MCMet-9_16_2026.pdf) slide 23'},
 
 /* ---- Yendapally variants ---- */
-{id:'v-ad-1b', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'abc-vs-slc',
+{id:'v-ad-1b', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'abc-vs-slc',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A transporter moves drug against its concentration gradient using ATP directly. Which family is it, and which direction does it usually move drug at the intestinal apical membrane?',
  options:[
@@ -528,7 +528,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 15, 18–21',
  quote:'ABC (ATP-binding cassette) Transporters · Primary active transporters (use ATP as an energy source)'},
 
-{id:'v-ad-3b', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'efflux-effect-on-bioavailability',
+{id:'v-ad-3b', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'efflux-effect-on-bioavailability',
  tags:['case','reasoning'], source:'slide',
  stem:'A patient on digoxin starts a P-glycoprotein inhibitor. Expected digoxin levels?',
  options:[
@@ -544,7 +544,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption II (090426_ADMETAbsorption_II.pdf) slides 13; Absorption I slide 24',
  quote:'Verapamil is an inhibitor of intestinal P-gp efflux. Increases digoxin blood levels · Rifampin inducer of intestinal P-gp expression. Results in the lowering of digoxin blood levels'},
 
-{id:'v-ad-11b', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-interpretation',
+{id:'v-ad-11b', skill:'calc', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-interpretation',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'At equal doses, drug A has a much higher plasma concentration than drug B. Which has the smaller Vd?',
  options:[
@@ -560,7 +560,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 3–5, 10',
  quote:'Vd = Amount of drug in the body / C'},
 
-{id:'v-dr-1b', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'bond-strength-order',
+{id:'v-dr-1b', skill:'recall', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'bond-strength-order',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A drug binds its receptor through an interaction of roughly 5–10 kcal/mol. Which type is it?',
  options:[
@@ -576,7 +576,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 4–8',
  quote:'Ionic Bond · Two atoms are attracted to each other by electrostatic forces · Strength: 5-10 kcal/mol'},
 
-{id:'v-pc-1b', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'pka-direction-acids',
+{id:'v-pc-1b', skill:'calc', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'pka-direction-acids',
  tags:['ranking','reasoning'], source:'slide',
  stem:'Acidic drugs have pKa 3.5, 5.0 and 8.0. Which is the strongest acid and most ionized at pH 7.4?',
  options:[
@@ -592,7 +592,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 1 (082726_PhysicochemicalProp1.pdf) slides 9, 18, 33',
  quote:'Lower the pKa for acids, higher is their strength · Higher the pKa for bases, higher is their strength'},
 
-{id:'v-pc-6b', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'hydrophilic-group-effect',
+{id:'v-pc-6b', skill:'apply', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'hydrophilic-group-effect',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Metabolism converts a drug to a glucuronide. What happens to log P and water solubility?',
  options:[
@@ -608,7 +608,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 2 (090226_PhysicochemicalProp2.pdf) slides 6, 9; the conjugates and their groups, Lecture #14 (MCMet-9_16_2026.pdf) slides 29–30',
  quote:'Approaches to address solubility issues: Salt formation · Chemical modification by adding polar groups like –OH, NH2 etc.'},
 
-{id:'v-st-5b', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-vs-diastereomer',
+{id:'v-st-5b', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-vs-diastereomer',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A molecule has three chiral centres. Another molecule has the opposite configuration at all three. What is the relationship?',
  options:[
@@ -625,7 +625,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 14, 21',
  quote:'Enantiomers are nonsuperimposable mirror images'},
 
-{id:'v-st-3b', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'rs-rotation-direction',
+{id:'v-st-3b', skill:'apply', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'rs-rotation-direction',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Priorities 1 to 3 run clockwise, but the lowest-priority group points toward you. The configuration is:',
  options:[
@@ -642,7 +642,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 10, 13',
  quote:'The molecule is viewed from the side opposite the lowest-priority atom.'},
 
-{id:'v-dd-3b', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'classical-vs-nonclassical',
+{id:'v-dd-3b', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'classical-vs-nonclassical',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Replacing a carboxylic acid with a tetrazole is which type of bioisosteric substitution?',
  options:[

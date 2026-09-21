@@ -1,6 +1,7 @@
-/* Flags phrasing Louis rejected: study meta-commentary, metaphor, and appeals to the deck. */
+/* Flags phrasing the drill's style rules reject: study meta-commentary, metaphor, and appeals to the deck. */
 const fs=require('fs'), vm=require('vm');
-let c=[...fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html','utf8').matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
+const OUT = '/mnt/user-data/outputs/' + ((require('fs').readFileSync('course.js','utf8').match(/output:\s*'([^']+)'/)||[])[1] || 'exam_drill.html');
+let c=[...fs.readFileSync(OUT,'utf8').matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=c.lastIndexOf('   BOOT'); c=c.slice(0,c.lastIndexOf('/* ===',b)); c+='\nglobalThis.__Q=QUESTIONS;';
 const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{}},window:{},prompt:()=>'x',setTimeout:()=>0,clearTimeout(){},Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
 sb.globalThis=sb;vm.createContext(sb);vm.runInContext(c,sb);
@@ -12,7 +13,7 @@ const BANNED=[
  [/\b(memoriz\w+|by rote|recallable|learnable|under (exam )?pressure)\b/i,'study meta-commentary'],
  [/\bthe (deck|slide|lecture) (states|says|gives|tells)\b/i,'appeals to the deck instead of giving the reason'],
  [/\b(workhorse|backbone|cleaning up|clean up after|downstream of|sits at the (centre|center)|single point of failure)\b/i,'metaphor'],
- [/\b(quench\w*|mop up|soak up|hand off|catches people|the trap (here|is))\b/i,'metaphor or jargon Louis flagged'],
+ [/\b(quench\w*|mop up|soak up|hand off|catches people|the trap (here|is))\b/i,'metaphor or jargon'],
  [/\bis the (whole )?point\b/i,'commentary about the question'],
  [/\bthis (option|question) (tests|is testing|exists to|is designed to)\b/i,'commentary about the question'],
 ];
@@ -44,7 +45,9 @@ const teachText = t => Array.isArray(t) ? t.map(p=>[p.h,p.t].filter(Boolean).joi
 const rebuilt = Q.filter(q=>q.teach);
 for(const q of rebuilt){
   scan(teachText(q.teach), q.id+' · concept block');
-  q.options.forEach((o,i)=>scan(o.why, q.id+' · option '+'ABCDEFGH'[i]));
+  (q.options||[]).forEach((o,i)=>scan(o.why, q.id+' · option '+'ABCDEFGHIJ'[i]));
+  (q.steps||[]).forEach((st,i)=>scan(st.why, q.id+' · step '+(i+1)));
+  (q.pairs||[]).forEach((p,i)=>scan(p.why, q.id+' · pair '+(i+1)));
 }
 console.log(`\n  scanned ${rebuilt.length} rebuilt questions`);
 console.log(hits ? `  ${hits} phrasing issues found\n` : '  no flagged phrasing found\n');

@@ -15,12 +15,12 @@ DATA_FILES = ['atlas.js', 'diagrams.js',
               'q1_cyp.js', 'q2_fgdm.js', 'q3_elimtox.js', 'q4_paths.js',
               'q5_yendapally.js', 'q6_variants.js', 'q7_fgs.js',
               'q8_atlas.js', 'q9_gaps.js', 'q10_sata.js', 'q11_sata2.js',
-              'q12_figures.js', 'q13_quizlet.js']
+              'q12_figures.js', 'q13_quizlet.js', 'q14_tell.js', 'q15_types.js']
 
 # Everything that has to parse before a build is allowed to proceed. Derived
 # from DATA_FILES rather than listed again, so adding a question file cannot
 # leave it syntax-checked in one place and unchecked in the other.
-SOURCES = DATA_FILES + ['reference.js', 'tell.js', 'guide.js', 'views.js']
+SOURCES = ['course.js'] + DATA_FILES + ['reference.js', 'tell.js', 'guide.js', 'views.js']
 
 
 def node_check(path, label):
@@ -38,6 +38,14 @@ print(f'  {len(SOURCES)} sources parse cleanly')
 
 shell = open('shell.html', encoding='utf-8').read()
 images = json.load(open('images.json'))
+
+# the course manifest goes first, then a build stamp so the page can say which
+# build it is; the question count is filled in after the data is assembled
+import datetime, zoneinfo
+course_src = open('course.js', encoding='utf-8').read()
+if '/*__COURSE__*/' not in shell:
+    sys.exit('ERROR: course placeholder not found in shell.html')
+shell = shell.replace('/*__COURSE__*/', course_src + '\n')
 
 parts = []
 parts.append('const IMAGES = ' + json.dumps(images) + ';\n')
@@ -57,6 +65,12 @@ const TOPICS = /*__TOPICS__*/[];"""
 if old not in shell:
     sys.exit('ERROR: data placeholder block not found in shell.html')
 shell = shell.replace(old, DATA)
+n_q = sum(len(re.findall(r"(?m)^\s*\{id:'", open(f, encoding='utf-8').read())) for f in DATA_FILES if f.startswith('q'))
+stamp = datetime.datetime.now(zoneinfo.ZoneInfo('America/Chicago')).strftime('%Y-%m-%d %H:%M CT')
+build_old = "const BUILD = /*__BUILD__*/{stamp:'', questions:0, images:0};"
+if build_old not in shell:
+    sys.exit('ERROR: build stamp placeholder not found in shell.html')
+shell = shell.replace(build_old, "const BUILD = {stamp:%s, questions:%d, images:%d};" % (json.dumps(stamp), n_q, len(images)))
 
 # append the views/runtime just before the closing script tag
 views = open('views.js', encoding='utf-8').read()
@@ -80,7 +94,8 @@ print('  assembled script parses cleanly')
 
 # write to a temporary file first, so a failed build never leaves a half-written
 # or truncated HTML in place of the last good one
-out = '/mnt/user-data/outputs/PHAR4342_Final_Drill.html'
+m = re.search(r"output:\s*'([^']+)'", course_src)
+out = os.path.join('/mnt/user-data/outputs', m.group(1) if m else 'exam_drill.html')
 os.makedirs('/mnt/user-data/outputs', exist_ok=True)
 tmp_out = out + '.tmp'
 with open(tmp_out, 'w', encoding='utf-8') as fh:

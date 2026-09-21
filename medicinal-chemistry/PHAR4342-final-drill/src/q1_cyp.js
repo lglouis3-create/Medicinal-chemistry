@@ -113,7 +113,7 @@ const TOPICS = [
 
 const QUESTIONS = [
 /* ═══════════ WHY CYPs MATTER ═══════════ */
-{id:'cyp-w1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'cyp-two-roles',
+{id:'cyp-w1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'cyp-two-roles',
  tags:['definition','reasoning'], source:'slide',
  stem:'CYPs matter in pharmacy because they:',
  options:[
@@ -131,7 +131,7 @@ const QUESTIONS = [
  quote:'They play a big role in xenobiotic bioactivations (e.g., to carcinogens)'},
 
 /* ═══════════ CHARACTERISTICS & NOMENCLATURE ═══════════ */
-{id:'cyp-w2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'fmo-not-a-cyp',
+{id:'cyp-w2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'fmo-not-a-cyp',
  tags:['enzyme','exam-pattern'], source:'slide',
  stem:'Flavin-containing monooxygenase (FMO) is:',
  options:[
@@ -148,7 +148,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 6, 8, 10',
  quote:'They are key for drug metabolism'},
 
-{id:'cyp-c1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-name-origin',
+{id:'cyp-c1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-name-origin',
  tags:['definition'], source:'slide',
  stem:'In "cytochrome P450", cyto, chrome and 450 stand for:',
  options:[
@@ -165,7 +165,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 8; catalytic cycle slides 11–12',
  quote:'P450 (a "CYP + CO" complex that absorbs light @ 450 nm) · CYP450 (Cytochrome P450) is the "Root Name"'},
 
-{id:'cyp-c2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-location-structure',
+{id:'cyp-c2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-location-structure',
  tags:['definition','structure'], source:'slide',
  stem:'CYP enzymes are:',
  options:[
@@ -182,7 +182,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 10; cellular sites Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 20',
  quote:'CyPs are in the ER (liver & other cells) · CyPs are membrane bound proteins · Porphyrin with Fe-Cysteine catalytic site'},
 
-{id:'cyp-c3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-nomenclature-parsing',
+{id:'cyp-c3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-nomenclature-parsing',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'In CYP2D6*4, what does each element of the label identify?',
  options:[
@@ -200,7 +200,7 @@ const QUESTIONS = [
  quote:'>18 Families (>40% homology) · >40 Subfamilies (>50% homology)'},
 
 /* ═══════════ CATALYTIC CYCLE ═══════════ */
-{id:'cyp-y1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-requirements',
+{id:'cyp-y1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-requirements',
  tags:['mechanism','cofactor'], source:'slide',
  stem:'A CYP-mediated oxidation will not proceed if which one of the following is missing?',
  options:[
@@ -218,7 +218,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 12',
  quote:'Reaction requirements/ingredients: CYP450 · CYP450 Reductase · NADPH (e- donor) · Molecular Oxygen (O2)'},
 
-{id:'cyp-y2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-order',
+{id:'cyp-y2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-cycle-order',
  tags:['mechanism','exam-pattern'], source:'slide',
  stem:'The correct order of the four steps of the CYP oxidation cycle is:',
  options:[
@@ -236,7 +236,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 11–12',
  quote:'1. Oxidized (Fe3+) P450 complexes the drug 2. NADPH donates an e- (via CYP450 reductase) to reduce the initial complex 3. NADPH donates another e- to reduce O2 & form an activated "oxidized-CYP450 complex" 4. Activated oxygen oxidizes the bound drug to form the product'},
 
-{id:'cyp-y3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-reductase-role',
+{id:'cyp-y3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-reductase-role',
  tags:['mechanism','enzyme'], source:'slide',
  stem:'What is the role of CYP450 reductase in the catalytic cycle?',
  options:[
@@ -253,7 +253,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 12',
  quote:'NADPH donates an e- (via CYP450 reductase) to reduce the initial complex'},
 
-{id:'cyp-y4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-oxidation-breadth',
+{id:'cyp-y4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cycle', concept:'cyp-oxidation-breadth',
  tags:['mechanism','recall'], source:'both',
  stem:'TRUE/FALSE: CYPs also catalyze epoxidation, dealkylation and dehalogenation reactions.',
  options:[
@@ -270,7 +270,7 @@ const QUESTIONS = [
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 11; Lecture #13 (MCMet-9_15_2026.pdf) slide 13; Ex4-Prep-Work question 2(i)'},
 
 /* ═══════════ EXPRESSION & SHARE ═══════════ */
-{id:'cyp-e1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp3a4-dominance',
+{id:'cyp-e1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp3a4-dominance',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which CYP isoform accounts for roughly one third of liver CYP content and metabolizes roughly one third of clinical drugs?',
  options:[
@@ -288,7 +288,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 14, 16, 30',
  quote:'1/3 of liver CYP isoforms & metabolizes 1/3 of drugs'},
 
-{id:'cyp-e2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp2d6-low-expression-ddi',
+{id:'cyp-e2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp2d6-low-expression-ddi',
  tags:['reasoning'], source:'slide',
  stem:'CYP2D6 is only 3% of liver CYPs yet metabolizes 21% of clinical drugs, so it:',
  options:[
@@ -306,7 +306,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 26',
  quote:'Lots of DDIs due to low expression · i.e., 3% of liver CYPs · Lots of substrates (21% of clinical drugs)'},
 
-{id:'cyp-e3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp-families-80-percent',
+{id:'cyp-e3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'cyp-families-80-percent',
  tags:['recall'], source:'slide',
  stem:'Only CYP families ________ metabolize about 80% of clinical drugs.',
  options:[
@@ -324,7 +324,7 @@ const QUESTIONS = [
  quote:'Emphasis is on the 1, 2, 3 CYP families: They metabolize 80% of clinical drugs'},
 
 /* ═══════════ FAMILIES & SUBSTRATES ═══════════ */
-{id:'cyp-f1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2c9-warfarin',
+{id:'cyp-f1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2c9-warfarin',
  tags:['recall','substrate'], source:'slide',
  stem:'Which CYP isoform metabolizes (S)-warfarin?',
  options:[
@@ -341,7 +341,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 24',
  quote:'(S)-Warfarin (2C9) · Phenytoin & (S)-Mephenytoin (2C9/2C19) · Tolbutamide, Glipzide (2C9)'},
 
-{id:'cyp-f2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-induction-smoking',
+{id:'cyp-f2', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-induction-smoking',
  tags:['reasoning','induction','case'], source:'slide',
  stem:'A patient stabilized on a CYP1A2 substrate starts smoking heavily; the drug levels will:',
  options:[
@@ -358,7 +358,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 20; Lecture #14 (MCMet-9_16_2026.pdf) slide 57',
  quote:'Induced by PAHS (tobacco smoke), dioxins, omeprazole, etc.'},
 
-{id:'cyp-f3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2e1-role',
+{id:'cyp-f3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2e1-role',
  tags:['recall','toxicity'], source:'slide',
  stem:'Which isoform is key in the carcinogenicity and toxicity of halogenated hydrocarbons, and is induced by ethanol and ketones?',
  options:[
@@ -375,7 +375,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 28; Lecture #15 (MCMet-9_17_2026.pdf) slides 47, 49',
  quote:'Mainly for environmental chemicals · Induced by ethanol & Ketones · Key in carcinogenicity/toxicity of halogenated HCs'},
 
-{id:'cyp-f4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp3a4-first-pass',
+{id:'cyp-f4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp3a4-first-pass',
  tags:['reasoning'], source:'slide',
  stem:'Which feature of CYP3A4 best explains why it drives so much of the first-pass effect?',
  options:[
@@ -392,7 +392,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 30',
  quote:'Largely responsible for 1st pass effect · Present in liver, intestine, lungs'},
 
-{id:'cyp-f5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-substrates',
+{id:'cyp-f5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp1a2-substrates',
  tags:['recall','substrate'], source:'slide',
  stem:'Caffeine, imipramine and haloperidol are substrates of which CYP isoform?',
  options:[
@@ -409,7 +409,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 20–21',
  quote:'1A2 - clinically relevant substrates: Caffeine, Imipramine, Haloperidol, etc.'},
 
-{id:'cyp-f6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2b6-profile',
+{id:'cyp-f6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2b6-profile',
  tags:['recall','polymorphism'], source:'slide',
  stem:'Which CYP isoform is induced by several drugs, shows polymorphism with efavirenz, and metabolizes bupropion, methadone and insecticides?',
  options:[
@@ -426,7 +426,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 22',
  quote:'CYP isoform 2B6: Induced by several drugs · Polymorphism (e.g., observed with Efavirenz) · Diverse substrates including: Bupropion, Methadone, insecticides'},
 
-{id:'cyp-f7', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2c-inducible-polymorphic',
+{id:'cyp-f7', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2c-inducible-polymorphic',
  tags:['recall','polymorphism'], source:'slide',
  stem:'CYP2C9 and CYP2C19 are both:',
  options:[
@@ -444,7 +444,7 @@ const QUESTIONS = [
  quote:'Both are inducible · Both are polymorphic'},
 
 /* ═══════════ INDUCTION & INHIBITION ═══════════ */
-{id:'cyp-i1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'induction-mechanism',
+{id:'cyp-i1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'induction-mechanism',
  tags:['mechanism','induction'], source:'slide',
  stem:'By what mechanism does enzyme induction increase metabolic capacity?',
  options:[
@@ -461,7 +461,7 @@ const QUESTIONS = [
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 47; Lecture #14 (MCMet-9_16_2026.pdf) slide 53',
  quote:'Mechanism: Activation of DNA transcription'},
 
-{id:'cyp-i2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'inhibitor-recognition',
+{id:'cyp-i2', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'inhibitor-recognition',
  tags:['recall','inhibition','exam-pattern'], source:'slide',
  stem:'Which group of agents appears on the common CYP inhibitor list rather than the inducer list?',
  options:[
@@ -478,7 +478,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 32',
  quote:'Common Inhibitors: Clarithromycin · Erythromycin · Azole Antifungals: Ketoconazole, Itraconazole · Cimetidine · Protease inhibitors · Grape Fruit Juice · Quinidine · Omeprazole'},
 
-{id:'cyp-i7', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'omeprazole-dual-role',
+{id:'cyp-i7', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'omeprazole-dual-role',
  tags:['enzyme','exam-pattern','interaction'], source:'slide',
  stem:'Omeprazole appears on both the CYP inducer and CYP inhibitor lists because:',
  options:[
@@ -495,7 +495,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 17, 20, 32, 33, 34; Lecture #14 (MCMet-9_16_2026.pdf) slide 46',
  quote:'Many DIs due to induction/inhibition'},
 
-{id:'cyp-i3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-active-drug',
+{id:'cyp-i3', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-active-drug',
  tags:['case','reasoning'], source:'slide',
  stem:'Omeprazole and warfarin taken together can produce a bleeding event. What is the mechanism?',
  options:[
@@ -513,7 +513,7 @@ const QUESTIONS = [
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 52; Lecture #13 (MCMet-9_15_2026.pdf) slide 24',
  quote:'Case: Intake of Omeprazole and Warfarin could lead to a bleeding event. Explain.'},
 
-{id:'cyp-i4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-glyburide',
+{id:'cyp-i4', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'ddi-inhibition-glyburide',
  tags:['case','reasoning'], source:'slide',
  stem:'Erythromycin inhibits glyburide inactivation; the likely metabolic drug interaction of administering both drugs is:',
  options:[
@@ -530,7 +530,7 @@ const QUESTIONS = [
  cite:'Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 53',
  quote:'Case: Erythromycin inhibits Glyburide (anti-diabetes drug) inactivation, the likely outcome?'},
 
-{id:'cyp-i5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-mechanism',
+{id:'cyp-i5', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-mechanism',
  tags:['mechanism','inhibition','case'], source:'slide',
  stem:'Grapefruit juice raises nifedipine and felodipine bioavailability because its:',
  options:[
@@ -547,7 +547,7 @@ const QUESTIONS = [
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 62–64; Lecture #13 (MCMet-9_15_2026.pdf) slide 35',
  quote:'Bergamottin & 6\',7\'-dihydroxybergamottin are the most abundant Furocoumarins in GFJ · mechanism-based inhibitors of 3A4'},
 
-{id:'cyp-i6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-affected-classes',
+{id:'cyp-i6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'gfj-affected-classes',
  tags:['recall','case'], source:'slide',
  stem:'Which two drug classes dominate the grapefruit juice interaction table?',
  options:[
@@ -565,7 +565,7 @@ const QUESTIONS = [
  quote:'Calcium channel blocker · HMG-CoA reductase inhibitors'},
 
 /* ═══════════ BIOACTIVATION ═══════════ */
-{id:'cyp-b1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'bioact', concept:'cyp-bioactivation-carcinogens',
+{id:'cyp-b1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'bioact', concept:'cyp-bioactivation-carcinogens',
  tags:['toxicity','reasoning'], source:'slide',
  stem:'Benzo[a]pyrene and other polycyclic aromatic hydrocarbons are bioactivated to carcinogens by which isoforms?',
  options:[
@@ -582,7 +582,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 36–37',
  quote:'CYP1A1 CYP1A2: Benzo[a]pyrene, Other PAHs, 4-Aminobiphenyl, 2-Naphthylamine'},
 
-{id:'cyp-b2', dupOf:'cyp-f3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'bioact', concept:'cyp2e1-solvent-activation',
+{id:'cyp-b2', skill:'recall', dupOf:'cyp-f3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'bioact', concept:'cyp2e1-solvent-activation',
  tags:['toxicity','recall'], source:'slide',
  stem:'Carbon tetrachloride, chloroform and trichloroethylene are bioactivated by which isoform?',
  options:[
@@ -600,7 +600,7 @@ const QUESTIONS = [
  quote:'CYP2E1: Benzene, Styrene, Acrylonitrile, Vinyl bromide, Trichloroethylene, Carbon tetrachloride, Chloroform, Methylene chloride'},
 
 /* ═══════════ POLYMORPHISM ═══════════ */
-{id:'cyp-p1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phenotypes',
+{id:'cyp-p1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phenotypes',
  tags:['definition','polymorphism'], source:'transcript',
  stem:'Of the CYP2D6 phenotypes UM, EM, IM and PM, the normal metabolizer is the:',
  options:[
@@ -618,7 +618,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 26; lecture audio 09/15 and 09/16 (marked)',
  quote:'Polymorphic phenotypes: UM; EM; IM; PM'},
 
-{id:'cyp-p2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-prodrug-direction',
+{id:'cyp-p2', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-prodrug-direction',
  tags:['case','reasoning','polymorphism'], source:'both',
  stem:'Tramadol is converted by CYP2D6 to O-desmethyltramadol, the more active species. What happens in a poor metabolizer?',
  options:[
@@ -634,7 +634,7 @@ const QUESTIONS = [
  teachImg:'cyp_tramadol_odt',
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 47; Lecture #11 (MCMet-9_10_26.pdf) slide 17'},
 
-{id:'cyp-p3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-vs-induction-analogy',
+{id:'cyp-p3', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-vs-induction-analogy',
  tags:['reasoning','polymorphism'], source:'slide',
  stem:'TRUE/FALSE: Enzyme induction is analogous to a rapid metabolizer phenotype.',
  options:[
@@ -652,7 +652,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 50',
  quote:'Enzyme induction is analogous to rapid metabolizer phenotype. TRUE/FALSE'},
 
-{id:'cyp-p4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phase2-also',
+{id:'cyp-p4', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'poly-phase2-also',
  tags:['reasoning','polymorphism'], source:'slide',
  stem:'True or false: only Phase 1 enzymes are inducible, can be inhibited, and exhibit polymorphism.',
  options:[
@@ -669,7 +669,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 51; Lecture #11 (MCMet-9_10_26.pdf) slide 53; Lecture #14 (MCMet-9_16_2026.pdf) slide 46',
  quote:'Only phase I enzymes are inducible, can be inhibited, and exhibit polymorphism. TRUE/FALSE'},
 
-{id:'cyp-p5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'phase12-both-substrate-types',
+{id:'cyp-p5', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'phase12-both-substrate-types',
  tags:['reasoning'], source:'slide',
  stem:'True or false: Phase 1 and Phase 2 enzymes metabolize both endobiotics and xenobiotics.',
  options:[
@@ -686,7 +686,7 @@ const QUESTIONS = [
  quote:'Phases I & II enzymes metabolize both endobiotics and xenobiotics. TRUE/FALSE'},
 
 /* ═══════════ CASES ═══════════ */
-{id:'cyp-x1', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'polypharmacy-multiple-enzymes',
+{id:'cyp-x1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'polypharmacy-multiple-enzymes',
  tags:['reasoning','case'], source:'slide',
  stem:'In polypharmacy, deactivation by several enzymes is preferable because:',
  options:[
@@ -703,7 +703,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 45',
  quote:'In polypharmacy, it is preferrable for a drug to be metabolically deactivated by several enzymes. Why?'},
 
-{id:'cyp-x2', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'meperidine-normeperidine',
+{id:'cyp-x2', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'meperidine-normeperidine',
  tags:['case','reasoning'], source:'slide',
  stem:'A dialysis patient on meperidine develops myoclonus and a grand mal seizure because of:',
  options:[
@@ -719,7 +719,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 57 (Case #1)',
  quote:'Normeperidine, via 3A4/2B6, is half as potent as Meperidine as an analgesic but approx. 3 times more potent as a convulsant'},
 
-{id:'cyp-x3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clozapine-induction-inhibition',
+{id:'cyp-x3', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clozapine-induction-inhibition',
  tags:['case','reasoning','induction'], source:'slide',
  stem:'A clozapine patient\'s level falls on rifampicin, then rises 60% when rifampicin is swapped for ciprofloxacin; this reflects:',
  options:[
@@ -736,7 +736,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 58 (Case #2)',
  quote:'After replacing the Rifampicin with Ciprofloxacin (an inhibitor of CYP1A2) the patient\'s serum clozapine level rose to 60% higher than his previously stable level, despite lowering the Clozapine dose'},
 
-{id:'cyp-x4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clopidogrel-2c19',
+{id:'cyp-x4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'clopidogrel-2c19',
  tags:['case','reasoning','polymorphism'], source:'slide',
  stem:'Clopidogrel\'s black-box warning of reduced efficacy involves:',
  options:[
@@ -753,7 +753,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 59 (Case #3); slide 39',
  quote:'Clopidogrel requires transformation into an active metabolite by 2C19 to exert its antiplatelet effect'},
 
-{id:'cyp-x5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'pm-profile-recognition',
+{id:'cyp-x5', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'pm-profile-recognition',
  tags:['reasoning','polymorphism','exam-pattern'], source:'slide',
  stem:'A profile shows unusually high plasma concentration of an active parent drug at a standard dose, with exaggerated effect. Which phenotype does this suggest?',
  options:[
@@ -770,7 +770,7 @@ const QUESTIONS = [
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 40–42, 46',
  quote:'TRUE/FALSE. The pharmacotherapeutic profile below is that of PM CYP phenotype.'},
 
-{id:'cyp-x6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'active-vs-prodrug-direction-rule',
+{id:'cyp-x6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'cases', concept:'active-vs-prodrug-direction-rule',
  tags:['reasoning','exam-pattern'], source:'both',
  stem:'To predict whether enzyme inhibition raises or lowers a drug\'s effect, one must first know whether the drug:',
  options:[

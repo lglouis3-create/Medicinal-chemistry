@@ -213,7 +213,7 @@ function cmpNames(q){
   if(Array.isArray(q.cmp)) return q.cmp.map(fgKey).filter(Boolean);
   const opts = (q.options || []).map(o => fgKey(o.t));
   if(!opts.length || !opts.every(Boolean)) return [];
-  const right = fgKey((q.options.find(o => o.correct) || {}).t);
+  const right = fgKey(((q.options || []).find(o => o.correct) || {}).t);
   return right ? [right, ...opts.filter(t => t !== right)] : opts;
 }
 
@@ -301,8 +301,9 @@ function poolFor(topicId, subId){
     (!subId   || q.sub   === subId)   &&
     matchesFilter(q));
 }
-/* Question types describe the TASK, matching how Dr. Sikazwe asks. Derived from
-   each question rather than hand-tagged, so every file follows the same scheme. */
+/* Question formats describe the TASK a stem sets (a format chip row in the
+   filter bar). Derived from each question rather than hand-tagged, so every
+   file follows the same scheme. */
 const TYPE_LABEL = {
   structure:'read a structure', enzyme:'name the enzyme or cofactor',
   predict:'predict the outcome', define:'define a term',
@@ -311,10 +312,11 @@ const TYPE_LABEL = {
    the stem and the figure, in this order: a scheme or structure to read; a
    patient or drug scenario to work; two similar things to tell apart; the
    fact itself. Used by Weak spots to say which kind of thinking is failing. */
-const SKILLS = [['read','Read a structure or scheme'], ['apply','Apply to a case'],
-                ['tell','Tell apart'], ['recall','Recall the fact']];
-const SKILL_SHORT = {read:'Read', apply:'Apply', tell:'Tell apart', recall:'Recall'};
+const SKILLS = COURSE.skills.map(s => [s.id, s.label]);
+const SKILL_SHORT = Object.fromEntries(COURSE.skills.map(s => [s.id, s.short || s.label]));
+const SKILL_LABEL = Object.fromEntries(COURSE.skills.map(s => [s.id, s.label]));
 function skillOf(q){
+  if(q.skill && SKILL_LABEL[q.skill]) return q.skill;   // set when the question was written
   if(q._skill) return q._skill;
   const s = q.stem, tags = q.tags || [];
   let k;
@@ -351,13 +353,19 @@ function show(v){
 /* ==========================================================================
    TOPICS
    ========================================================================== */
+/* Marks on the active paper that fall to questions of one tier, summed over
+   the pools whose filter names that tier; pools without a tier filter are
+   counted as older material. */
+function tierMarks(tier){
+  return EXAM.pools.filter(p => (p.filter.tier || 'old') === tier).reduce((n, p) => n + p.marks, 0);
+}
 function filterBar(){
   const chip=(g,v,l)=>`<button class="chip" data-f="${g}" data-v="${v}" aria-pressed="${FILTER[g]===v}">${l}</button>`;
   return `<div class="filters">
     <div class="frow"><label>Professor</label>
-      ${chip('prof','all','Both')}${chip('prof','Sikazwe','Sikazwe')}${chip('prof','Yendapally','Yendapally')}</div>
-    <div class="frow"><label>Weighting</label>
-      ${chip('tier','all','All')}${chip('tier','new','New (38 q)')}${chip('tier','old','Older (12 q)')}</div>
+      ${chip('prof','all',COURSE.professors.length > 1 ? 'Both' : 'All')}${COURSE.professors.map(p => chip('prof',p,p)).join('')}</div>
+    ${EXAM.pools.some(p => p.filter.tier) ? `<div class="frow"><label>Weighting</label>
+      ${chip('tier','all','All')}${chip('tier','new',`New (${tierMarks('new')} marks)`)}${chip('tier','old',`Older (${tierMarks('old')} marks)`)}</div>` : ''}
     <div class="frow"><label>Question type</label>
       ${chip('tag','all','Any')}${ALL_TAGS.map(t=>chip('tag',t,TYPE_LABEL[t])).join('')}</div>
   </div>`;
@@ -368,9 +376,8 @@ function renderTopics(){
   QUESTIONS.forEach(q => counts[q.prof] = (counts[q.prof]||0)+1);
 
   let h = `<h2>Pick a topic</h2>
-  <p class="sub">Exam 4 is 50 questions on Mon 9/21, 9:00–10:15 am.
-  Dr.&nbsp;Yendapally 8 · Dr.&nbsp;Sikazwe 42 (38 new, 4 older).
-  Question bank: ${QUESTIONS.length} across ${conceptsIn(QUESTIONS).length} concepts.</p>`;
+  <p class="sub">${esc(EXAM.name)}: ${EXAM.questions} questions, ${EXAM.minutes} minutes${EXAM.date ? ', ' + esc(EXAM.date) : ''}.
+  ${EXAM.blurb ? esc(EXAM.blurb) + '. ' : ''}Question bank: ${QUESTIONS.length} across ${conceptsIn(QUESTIONS).length} concepts.</p>`;
 
   h += filterBar();
 
@@ -384,7 +391,7 @@ function renderTopics(){
   const wp = weightedPool();
   h += `<div class="topic sweepcard"><div class="subs">
     <div class="subrow"><span class="sname"><b>Exam-weighted pass — ${wp.length} questions</b>
-      <small>Every question from the 38-mark pool, plus Yendapally and the earlier Sikazwe material in the paper’s 38 : 8 : 4 proportion. Shuffled, each once.</small></span>
+      <small>Every question from the ${mainPool().marks}-mark pool, plus the other pools in the paper's ${EXAM.pools.map(p=>p.marks).join(' : ')} proportion. Shuffled, each once.</small></span>
       <button id="sweepWeighted">Start</button></div>
     <div class="subrow"><span class="sname"><b>All ${nAll} questions, one pass</b>
       <small>Everything in the bank, shuffled, each asked once, nothing held back by scheduling</small></span>
@@ -476,13 +483,15 @@ function startQuiz(topicId, subId){
    takes one question per concept before any concept repeats, so the smaller
    pools are covered broadly rather than deeply. Deterministic per call only
    in size; the members are drawn fresh each time. */
+const mainPool = () => EXAM.pools.reduce((a, b) => b.marks > a.marks ? b : a, EXAM.pools[0]);
 function weightedPool(){
-  const newP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
-  const yenP = QUESTIONS.filter(q=>q.prof==='Yendapally');
-  const oldP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
-  const nYen = Math.min(yenP.length, Math.round(newP.length * 8/38));
-  const nOld = Math.min(oldP.length, Math.round(newP.length * 4/38));
-  return [...newP, ...drawN(yenP, nYen), ...drawN(oldP, nOld)];
+  const main = mainPool();
+  const anchor = QUESTIONS.filter(main.test);
+  const rest = EXAM.pools.filter(p => p !== main).flatMap(p => {
+    const pool = QUESTIONS.filter(p.test);
+    return drawN(pool, Math.min(pool.length, Math.round(anchor.length * p.marks / main.marks)));
+  });
+  return [...anchor, ...rest];
 }
 function startSweep(scope){
   const pool = scope === 'filtered' ? poolFor(null, null)
@@ -508,10 +517,19 @@ function nextQuestion(){
     q = pickNext(Q.pool, Q.lastId);
   }
   Q.current = q; Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
-  if(q) Q.order = shuffle(q.options.map((o,i)=>i));
+  Q.rights = null; Q.lastRight = false; Q.missLogged = null; Q.guessedLogged = false;
+  if(q) Q.order = shuffle((q.options || []).map((o,i)=>i));
   renderQuiz();
 }
 
+/* Has this exact question been shown before (any result)? */
+const askedBefore = q => { const s = DB.concepts[q.concept]; return !!(s && s.asked && s.asked.includes(q.id)); };
+/* The small labels on a question card: exam and module from the manifest,
+   and the kind of thinking the question asks for. */
+function qLabel(q){
+  const l = lecOf(q), k = skillOf(q);
+  return `${l ? `<span class="lbl">Exam ${l.exam} · ${esc(l.module)}</span>` : ''}<span class="lbl kind">${esc(SKILL_SHORT[k] || k)}</span>`;
+}
 /* Material that came from the lecture audio rather than a slide is marked
    wherever a citation is shown, in the quiz and in the exam review alike. */
 const srcFlag = q => q.source==='transcript' ? '<span class="srcflag">from lecture audio</span>'
@@ -537,38 +555,53 @@ function renderQuiz(){
   if(!Q.current){
     const t = TOPICS.find(x=>x.name===String(Q.label).split(' — ')[0]);
     const wider = t ? poolFor(t.id, null).length : 0;
+    // The scheduler stops when no concept is due, which can happen while other
+    // wordings of those concepts have never been shown. Say so, and offer them.
+    const unseenQ = Q.pool.filter(q => !askedBefore(q));
     el.innerHTML = `<div class="empty">
-      <p><b>You have worked through everything available in this set.</b></p>
+      <p><b>${unseenQ.length
+        ? `Every concept in this set has been answered at least once, and none is due yet.`
+        : `You have worked through everything available in this set.`}</b></p>
       <p style="margin:10px 0 16px">${Q.pool.length === 1
         ? 'This subtopic currently holds one question, so there is nothing further to draw from here.'
-        : 'Every concept here has been answered and is scheduled to return later.'}</p>
+        : unseenQ.length
+          ? `${unseenQ.length} question${unseenQ.length===1?'':'s'} with other wordings ${unseenQ.length===1?'has':'have'} not been shown. Missed and due concepts come back on their own schedule.`
+          : 'Every question here has been shown and every concept is scheduled to return later.'}</p>
       <p style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center">
+        ${unseenQ.length ? `<button class="btn" id="goUnseen">Ask the ${unseenQ.length} not yet shown</button>` : ''}
         ${t && wider > Q.pool.length
-          ? `<button class="btn" id="goWide">Continue with all of ${esc(t.name)} (${wider})</button>` : ''}
-        <button class="btn${t && wider > Q.pool.length ? ' ghost' : ''}" id="goAll">Continue with everything</button>
+          ? `<button class="btn ghost" id="goWide">Continue with all of ${esc(t.name)} (${wider})</button>` : ''}
+        <button class="btn ghost" id="goAll">Continue with everything</button>
         <button class="btn ghost" onclick="show('topics')">Back to topics</button>
       </p></div>`;
+    const gu = document.getElementById('goUnseen');
+    if (gu) gu.onclick = () => {
+      Q = {pool:unseenQ, label:(Q.label||'') + ' — not yet shown', sweep: shuffle(unseenQ.map(q=>q.id)), i:0,
+           current:null, answered:0, lastId:null, examMode:false, picked:null, revealed:false};
+      nextQuestion();
+    };
     const gw = document.getElementById('goWide');
     if (gw) gw.onclick = () => startQuiz(t.id, null);
     document.getElementById('goAll').onclick = () => startQuiz(null, null);
     return;
   }
   const q = Q.current, s = DB.concepts[q.concept];
-  const totalC = conceptsIn(Q.pool).length;
   const left   = remainingIn(Q.pool);
-  const pctDone = totalC ? Math.round(100*(totalC-left)/totalC) : 0;
+  const seenQ  = Q.pool.filter(askedBefore).length;
+  const pctDone = Q.pool.length ? Math.round(100*seenQ/Q.pool.length) : 0;
   const seenBefore = s && s.seen > 0;
   const missedBefore = s && s.wrong > 0 && s.box === 0;
 
   let h = `<div class="qcard"><div class="qhead">
     ${profTag(q.prof)}
     <span>${esc(Q.label)}</span>
+    ${qLabel(q)}
     <span class="spacer"></span>
     ${missedBefore ? '<span style="color:var(--bad)">missed before</span>' :
       seenBefore   ? '<span>review</span>' : '<span>new</span>'}
   </div>
   <div class="qprog">
-    <span>${Q.sweep ? `question ${Q.i} of ${Q.sweep.length}` : `${Q.answered} answered`}</span>
+    <span>${Q.sweep ? `question ${Q.i} of ${Q.sweep.length}` : `${seenQ} of ${Q.pool.length} questions shown`}</span>
     <span class="pbar"><i style="width:${Q.sweep ? Math.round(100*Q.i/Q.sweep.length) : pctDone}%"></i></span>
     <span>${Q.sweep ? `${Q.sweep.length - Q.i} to go` : `${left} concept${left===1?'':'s'} to go`}</span>
   </div>
@@ -582,6 +615,24 @@ function renderQuiz(){
 
   const multi = isMulti(q);
   const picks = multi ? (Q.picked || []) : null;
+  const kind = q.type || 'mc';
+  if(kind !== 'mc'){
+    h += kind === 'numeric' ? numericBody(q) : matchBody(q);
+    h += `</div><div class="qfoot">`;
+    if(!Q.revealed){
+      h += kind === 'numeric'
+        ? `<button class="btn" id="btnCheck">Check answer</button><span style="font-size:13px;color:var(--text-dim)">Type the number${q.units ? ' in ' + esc(q.units) : ''}.</span>`
+        : `<button class="btn" id="btnCheck"${matchComplete(q) ? '' : ' disabled'}>Check answer</button><span style="font-size:13px;color:var(--text-dim)">${(Q.picked||[]).filter(x=>x!==null&&x!==undefined).length} of ${q.pairs.length} matched</span>`;
+    }else{
+      h += `<button class="btn" id="btnNext">Next question</button>`;
+      if(Q.lastRight && !Q.guessedLogged) h += confidenceButtons();
+      h += `<button class="btn ghost" onclick="show('topics')">Change topic</button>`;
+    }
+    h += `</div></div>`;
+    el.innerHTML = h;
+    wireTyped(q, kind);
+    return;
+  }
   if(multi) h += `<p class="sata">Select all that apply, then check. Marked right only when the whole set matches.</p>`;
 
   Q.order.forEach((oi,n)=>{
@@ -643,8 +694,7 @@ function renderQuiz(){
   }else{
     const wasRight = multi ? gradeMulti(q, picks) : q.options[Q.picked].correct;
     h += `<button class="btn" id="btnNext">Next question</button>`;
-    if(wasRight && !Q.guessedLogged)
-      h += `<button class="btn amber" id="btnGuess">I guessed that one</button>`;
+    if(wasRight && !Q.guessedLogged) h += confidenceButtons();
     h += `<button class="btn ghost" onclick="show('topics')">Change topic</button>`;
   }
   h += `</div></div>`;
@@ -653,18 +703,141 @@ function renderQuiz(){
   el.querySelectorAll('.opt').forEach(b => b.onclick = () => multi ? toggleOption(+b.dataset.o) : answer(+b.dataset.o));
   const bc = $('#btnCheck'); if(bc) bc.onclick = submitMulti;
   const bn = $('#btnNext'); if(bn) bn.onclick = () => { Q.answered++; Q.lastId = Q.current.id; nextQuestion(); };
+  wireConfidence();
+}
+/* After a correct answer: how sure were you. "Not sure" brings the concept
+   back at the short interval; "guessed" treats it as not yet known. */
+function confidenceButtons(){
+  return `<button class="btn amber" id="btnShaky">Not sure, ask again soon</button>
+    <button class="btn amber" id="btnGuess">I guessed that one</button>`;
+}
+function wireConfidence(){
   const bg = $('#btnGuess'); if(bg) bg.onclick = () => {
     markGuessed(Q.current);
     Q.guessedLogged = true;
-    bg.textContent = 'Marked as a guess';
-    bg.disabled = true;
+    bg.textContent = 'Marked as a guess'; bg.disabled = true;
+    const bs = $('#btnShaky'); if(bs) bs.remove();
   };
+  const bs = $('#btnShaky'); if(bs) bs.onclick = () => {
+    markShaky(Q.current);
+    Q.guessedLogged = true;
+    bs.textContent = 'Coming back soon'; bs.disabled = true;
+    const g = $('#btnGuess'); if(g) g.remove();
+  };
+}
+
+/* ---- typed question kinds: numeric answer, and matching ------------------ */
+/* Numeric: the student types a number; it is right within `tol` (absolute) of
+   `answer`. After the check the worked solution is shown one line at a time,
+   each line tagged with the kind of work it is (setup, unit, algebra, round),
+   and a wrong answer asks which line the student's own work left, so Weak
+   spots can say which kind of miss it was. */
+const MISS_KINDS = {setup:'Setup', unit:'Unit conversion', algebra:'Algebra', round:'Rounding'};
+function numericBody(q){
+  let h = '';
+  if(!Q.revealed){
+    h += `<div class="numin"><input type="text" inputmode="decimal" id="numIn" value="${Q.picked !== null && Q.picked !== undefined ? esc(Q.picked) : ''}" placeholder="your answer" aria-label="your answer">${q.units ? `<span class="units">${esc(q.units)}</span>` : ''}</div>`;
+    return h;
+  }
+  const typed = Q.picked, ok = Q.lastRight;
+  h += `<div class="why"><p class="verdict ${ok?'ok':'bad'}">${ok ? '✓ Correct' : '✗ Not correct'} — the answer is ${esc(fmtNum(q.answer))}${q.units ? ' ' + esc(q.units) : ''}${typed !== null && typed !== undefined && typed !== '' ? `; you wrote ${esc(typed)}` : ''}${q.tol ? ` (accepted within ±${esc(fmtNum(q.tol))})` : ''}</p>`;
+  h += `<ol class="steps">` + q.steps.map((s, i) => `<li><span class="stepk">${esc(MISS_KINDS[s.k] || s.k)}</span><code>${esc(s.t)}</code>${s.why ? `<span class="stepwhy">${esc(s.why)}</span>` : ''}</li>`).join('') + `</ol>`;
+  if(!ok){
+    h += Q.missLogged
+      ? `<p class="sub">Logged as a ${esc(MISS_KINDS[Q.missLogged] || Q.missLogged)} miss.</p>`
+      : `<p class="sub" style="margin:8px 0 4px">Where did your working leave the solution?</p><p class="misspick">${
+          Object.entries(MISS_KINDS).map(([k, l]) => `<button class="chip" data-miss="${k}">${esc(l)}</button>`).join('')}</p>`;
+  }
+  if(q.teach) h += `<div class="teach"><h4>The concept behind this</h4>${renderTeach(q.teach)}</div>`;
+  if(q.note) h += `<p class="prose" style="margin:13px 0 0;font-size:14.5px">${esc(q.note)}</p>`;
+  h += `<div class="cite">${srcFlag(q)}${esc(q.cite)}</div></div>`;
+  return h;
+}
+const fmtNum = n => (typeof n === 'number' ? (Math.round(n * 10000) / 10000).toString() : String(n));
+function parseNum(s){
+  const t = String(s || '').replace(/,/g, '').replace(/[^0-9eE+\-.]/g, '');
+  return t === '' ? NaN : Number(t);
+}
+function gradeNumeric(q, typed){
+  const x = parseNum(typed); if(!isFinite(x)) return false;
+  const tol = q.tol !== undefined ? q.tol : Math.abs(q.answer) * 0.01;
+  return Math.abs(x - q.answer) <= tol + 1e-9;
+}
+/* Matching: one dropdown per left-hand item, every right-hand value offered
+   in each. Right only when every pair is right; the per-pair result is kept on
+   the log entry so a table column that keeps failing can be named. */
+function matchBody(q){
+  const picks = Q.picked || q.pairs.map(() => null);
+  const rights = Q.rights || (Q.rights = shuffle(q.pairs.map((p, i) => i)));
+  let h = `<table class="reftab matchtab"><thead><tr><th>${esc(q.left || '')}</th><th>${esc(q.right || '')}</th>${Q.revealed ? '<th></th>' : ''}</tr></thead><tbody>`;
+  q.pairs.forEach((p, i) => {
+    const chosen = picks[i];
+    if(!Q.revealed){
+      h += `<tr><td>${esc(p.l)}</td><td><select data-row="${i}" aria-label="match for ${esc(p.l)}"><option value="">—</option>${
+        rights.map(ri => `<option value="${ri}"${chosen === ri ? ' selected' : ''}>${esc(q.pairs[ri].r)}</option>`).join('')}</select></td></tr>`;
+    }else{
+      const ok = chosen === i;
+      h += `<tr><td>${esc(p.l)}</td><td>${ok ? esc(p.r) : `<s>${chosen === null || chosen === undefined ? '—' : esc(q.pairs[chosen].r)}</s> ${esc(p.r)}`}${p.why ? `<div class="stepwhy">${esc(p.why)}</div>` : ''}</td><td><span class="mark ${ok?'y':'n'}">${ok?'✓':'✗'}</span></td></tr>`;
+    }
+  });
+  h += `</tbody></table>`;
+  if(Q.revealed){
+    const n = q.pairs.filter((p, i) => picks[i] === i).length;
+    h += `<div class="why"><p class="verdict ${Q.lastRight?'ok':'bad'}">${Q.lastRight ? '✓ Correct — all matched' : `✗ Not correct — ${n} of ${q.pairs.length} matched`}</p>`;
+    if(q.teach) h += `<div class="teach"><h4>The concept behind this</h4>${renderTeach(q.teach)}</div>`;
+    h += `<div class="cite">${srcFlag(q)}${esc(q.cite)}</div></div>`;
+  }
+  return h;
+}
+const matchComplete = q => (Q.picked || []).length === q.pairs.length && (Q.picked || []).every(x => x !== null && x !== undefined);
+function wireTyped(q, kind){
+  const el = $('#v-quiz');
+  const bn = $('#btnNext'); if(bn) bn.onclick = () => { Q.answered++; Q.lastId = Q.current.id; nextQuestion(); };
+  wireConfidence();
+  if(kind === 'numeric'){
+    const inp = $('#numIn'), bc = $('#btnCheck');
+    if(inp && bc){
+      const go = () => {
+        if(Q.revealed) return;
+        const typed = inp.value.trim(); if(typed === '') { inp.focus(); return; }
+        Q.picked = typed; Q.revealed = true; Q.guessedLogged = false; Q.missLogged = null;
+        Q.lastRight = gradeNumeric(q, typed);
+        record(q, Q.lastRight ? 'correct' : 'wrong', typed, Date.now() - (Q.startedAt||Date.now()));
+        renderQuiz();
+      };
+      bc.onclick = go; inp.onkeydown = e => { if(e.key === 'Enter') go(); };
+      inp.focus();
+    }
+    el.querySelectorAll('[data-miss]').forEach(b => b.onclick = () => {
+      const last = DB.answers[DB.answers.length-1];
+      if(last && last.qid === q.id){ last.miss = b.dataset.miss; save(); }
+      Q.missLogged = b.dataset.miss; renderQuiz();
+    });
+  }else{
+    el.querySelectorAll('select[data-row]').forEach(s => s.onchange = () => {
+      const p = Q.picked || (Q.picked = q.pairs.map(() => null));
+      p[+s.dataset.row] = s.value === '' ? null : +s.value;
+      const bc = $('#btnCheck'); if(bc) bc.disabled = !matchComplete(q);
+      const cnt = bc && bc.nextElementSibling; if(cnt) cnt.textContent = `${p.filter(x=>x!==null&&x!==undefined).length} of ${q.pairs.length} matched`;
+    });
+    const bc = $('#btnCheck'); if(bc) bc.onclick = () => {
+      if(Q.revealed || !matchComplete(q)) return;
+      Q.revealed = true; Q.guessedLogged = false;
+      const picks = Q.picked.slice();
+      Q.lastRight = picks.every((x, i) => x === i);
+      record(q, Q.lastRight ? 'correct' : 'wrong', picks, Date.now() - (Q.startedAt||Date.now()));
+      const last = DB.answers[DB.answers.length-1];
+      if(last && last.qid === q.id){ last.pairOk = picks.map((x, i) => x === i); save(); }
+      renderQuiz();
+    };
+  }
 }
 
 function answer(oi){
   if(Q.revealed) return;
   Q.picked = oi; Q.revealed = true; Q.guessedLogged = false;
-  record(Q.current, Q.current.options[oi].correct ? 'correct' : 'wrong', oi, Date.now() - (Q.startedAt||Date.now()));
+  Q.lastRight = Q.current.options[oi].correct;
+  record(Q.current, Q.lastRight ? 'correct' : 'wrong', oi, Date.now() - (Q.startedAt||Date.now()));
   renderQuiz();
 }
 function toggleOption(oi){
@@ -677,7 +850,8 @@ function submitMulti(){
   if(Q.revealed || !Q.picked || !Q.picked.length) return;
   Q.revealed = true; Q.guessedLogged = false;
   const picks = Q.picked.slice().sort((a,b)=>a-b);
-  record(Q.current, gradeMulti(Q.current, picks) ? 'correct' : 'wrong', picks, Date.now() - (Q.startedAt||Date.now()));
+  Q.lastRight = gradeMulti(Q.current, picks);
+  record(Q.current, Q.lastRight ? 'correct' : 'wrong', picks, Date.now() - (Q.startedAt||Date.now()));
   renderQuiz();
 }
 
@@ -713,11 +887,7 @@ function renderGaps(){
      Three pools, ranked by marks. For each: concepts never seen, concepts
      missed or guessed and not yet recovered. The 38-mark pool leads, since
      an unseen concept there is worth ten times one in the 4-mark pool. */
-  const pools = [
-    {key:'Sikazwe|new',   name:'Sikazwe, lectures 13–15', marks:38, filter:q=>q.prof==='Sikazwe'&&q.tier==='new'},
-    {key:'Yendapally|old',name:'Yendapally',                   marks:8,  filter:q=>q.prof==='Yendapally'},
-    {key:'Sikazwe|old',   name:'Sikazwe, earlier lectures',    marks:4,  filter:q=>q.prof==='Sikazwe'&&q.tier==='old'},
-  ];
+  const pools = EXAM.pools.map(p => ({key:p.key, name:p.name, marks:p.marks, filter:p.test}));
   h += `<h3>What to do next</h3><div class="nextgrid">`;
   for(const pl of pools){
     const pool = QUESTIONS.filter(pl.filter);
@@ -726,7 +896,7 @@ function renderGaps(){
     const open   = cs.filter(c => { const st = DB.concepts[c]; return st && st.seen && st.box === 0; });
     const done   = cs.filter(c => { const st = DB.concepts[c]; return st && st.box >= MASTER_BOX; });
     h += `<div class="nextcard">
-      <div class="nexthead"><b>${esc(pl.name)}</b><span>${pl.marks} of 50 marks · ${cs.length} concepts</span></div>
+      <div class="nexthead"><b>${esc(pl.name)}</b><span>${pl.marks} of ${EXAM.questions} marks · ${cs.length} concepts</span></div>
       <div class="nextrow"><span>${unseen.length} not yet seen</span>${unseen.length
         ? `<button class="btn small" data-next="unseen" data-pool="${pl.key}">Start these</button>` : '<i>none</i>'}</div>
       <div class="nextrow"><span>${open.length} missed or guessed, still open</span>${open.length
@@ -761,6 +931,44 @@ function renderGaps(){
       <td><div class="bar"><i style="width:${pct}%;background:${col}"></i></div><span style="font-size:12px;color:var(--text-dim)">${pct}%</span></td></tr>`;
   }
   h += `</tbody></table>`;
+
+  /* ---- Right, but slow -------------------------------------------------
+     A correct answer that took far longer than the student's own median for
+     that kind of question is knowledge that is not yet firm; the box advanced
+     as if it were. These concepts are listed so they can be redrilled. */
+  const medians = {};
+  for(const [k] of SKILLS){
+    const ts = DB.answers.filter(a => a.result==='correct' && a.ms && byId(a.qid) && skillOf(byId(a.qid))===k).map(a=>a.ms).sort((a,b)=>a-b);
+    if(ts.length >= 5) medians[k] = ts[Math.floor(ts.length/2)];
+  }
+  const slowC = {};
+  for(const a of DB.answers){
+    if(a.result !== 'correct' || !a.ms) continue;
+    const q = byId(a.qid); if(!q) continue;
+    const med = medians[skillOf(q)]; if(!med) continue;
+    if(a.ms >= Math.max(2*med, 8000)) slowC[q.concept] = {q, ms:a.ms, med};
+    else if(slowC[q.concept] && slowC[q.concept].q.id === q.id) delete slowC[q.concept];   // a later quick answer clears it
+  }
+  const slowList = Object.values(slowC).filter(x => { const s = DB.concepts[x.q.concept]; return s && s.box > 0; })
+    .sort((a,b) => b.ms/b.med - a.ms/a.med).slice(0, 12);
+  if(slowList.length){
+    h += `<h3>Right, but slow</h3>
+    <p class="sub">Correct answers that took at least twice your usual time for that kind of question (and at least 8 seconds). The scheduler counted them as known; these are worth a second pass.</p>
+    <table class="gap"><thead><tr><th>Question</th><th>Kind</th><th>Took</th><th>Your usual</th></tr></thead><tbody>`;
+    for(const x of slowList){
+      h += `<tr><td>${esc(x.q.stem)}</td><td>${esc(SKILL_SHORT[skillOf(x.q)] || '')}</td><td>${Math.round(x.ms/1000)} s</td><td>${Math.round(x.med/1000)} s</td></tr>`;
+    }
+    h += `</tbody></table><p class="sub"><button class="btn" id="drillSlow">Redrill these ${slowList.length}</button></p>`;
+  }
+
+  /* ---- Kind of miss on calculation items --------------------------------- */
+  const missK = {};
+  for(const a of DB.answers){ if(a.result==='wrong' && a.miss) missK[a.miss] = (missK[a.miss]||0) + 1; }
+  if(Object.keys(missK).length){
+    h += `<h3>Calculation misses, by kind</h3>
+    <table class="gap"><thead><tr><th>Kind of miss</th><th>Times</th></tr></thead><tbody>${
+      Object.entries(missK).sort((a,b)=>b[1]-a[1]).map(([k,n]) => `<tr><td>${esc(MISS_KINDS[k]||k)}</td><td>${n}</td></tr>`).join('')}</tbody></table>`;
+  }
 
   /* ---- Accuracy by topic, ordered by marks at risk -------------------
      A miss in a 137-question pool that supplies 38 marks costs 38/137 of a
@@ -839,6 +1047,7 @@ function renderGaps(){
   for(const a of DB.answers){
     if(a.result !== 'wrong' || a.picked === undefined || a.picked === null) continue;
     const q = byId(a.qid); if(!q) continue;
+    if(q.type) continue;
     const right = q.options.filter(o=>o.correct).map(o=>o.t).join(' + ');
     const pickedIdx = Array.isArray(a.picked) ? a.picked : [a.picked];
     const wrongPicked = pickedIdx.filter(i => q.options[i] && !q.options[i].correct).map(i => q.options[i].t);
@@ -871,10 +1080,12 @@ function renderGaps(){
     for(const id of missedIds.slice().reverse()){
       const q = byId(id); if(!q) continue;
       const s = DB.concepts[q.concept] || {};
-      const correctTxt = q.options.filter(o=>o.correct).map(o=>o.t).join(' · ');
+      const correctTxt = q.type === 'numeric' ? `${fmtNum(q.answer)}${q.units ? ' ' + q.units : ''}` : q.type === 'match' ? q.pairs.map(p => `${p.l} → ${p.r}`).join(' · ') : q.options.filter(o=>o.correct).map(o=>o.t).join(' · ');
       const last = DB.answers.slice().reverse().find(a=>a.qid===id && a.result==='wrong');
       const pickedTxt = last && last.picked !== undefined
-        ? (Array.isArray(last.picked) ? last.picked : [last.picked]).map(i=>q.options[i] ? q.options[i].t : '').filter(Boolean).join(' · ')
+        ? (q.type === 'numeric' ? String(last.picked)
+           : q.type === 'match' ? (Array.isArray(last.picked) ? last.picked.map((r, k) => r !== null && r !== undefined && r !== k ? `${q.pairs[k].l} → ${q.pairs[r].r}` : '').filter(Boolean).join(' · ') : '')
+           : (Array.isArray(last.picked) ? last.picked : [last.picked]).map(i=>q.options[i] ? q.options[i].t : '').filter(Boolean).join(' · '))
         : '';
       h += `<div class="missq">
         <div class="mstem">${esc(q.stem)}</div>
@@ -898,6 +1109,12 @@ function renderGaps(){
          current:null, answered:0, lastId:null, examMode:false, picked:null, revealed:false};
     nextQuestion(); show('quiz');
   });
+  const ds = $('#drillSlow');
+  if(ds) ds.onclick = () => {
+    const pool = slowList.map(x => x.q);
+    Q = {pool, label:'Right but slow', sweep: shuffle(pool.map(q=>q.id)), i:0, current:null, answered:0, lastId:null, picked:null, revealed:false};
+    nextQuestion(); show('quiz');
+  };
   const d = $('#drillMissed');
   if(d) d.onclick = () => {
     const pool = QUESTIONS.filter(q => missedIds.includes(q.id) ||
@@ -913,17 +1130,18 @@ function renderGaps(){
 let EX = null;
 function renderExam(){
   const el = $('#v-exam');
+  if(!EX) restoreExam();
   if(EX && EX.running){ renderExamQ(); return; }
   if(EX && EX.done){ renderExamResult(); return; }
-  const nMulti = QUESTIONS.filter(isMulti).length;
   el.innerHTML = `<h2>Exam simulation</h2>
-  <p class="sub">50 questions drawn at the real blueprint — 8 Yendapally, 4 Sikazwe older,
-  38 Sikazwe new — with a 75-minute clock. The paper mixes single-answer and select-all items, so
-  this draw does too: about ${EXAM_SATA} of the 50 are select-all, marked all-or-nothing.
+  <p class="sub">${EXAM.questions} questions drawn at the blueprint of ${esc(EXAM.name)}${EXAM.blurb ? ' — ' + esc(EXAM.blurb) : ''} —
+  with a ${EXAM.minutes}-minute clock. The paper mixes single-answer and select-all items, so
+  this draw does too: about ${EXAM_SATA} of the ${EXAM.questions} are select-all, marked all-or-nothing.
   No explanations until you finish, same as the real thing.</p>
-  <div class="note"><b>This does not feed your spaced-repetition history until you submit.</b>
-  Finish the paper, then every answer is logged at once so your weak spots stay accurate.</div>
-  <p><button class="btn" id="startExam">Start the 75-minute paper</button></p>`;
+  <div class="note"><b>Answers are logged when you submit.</b> The paper is saved as you go, so a
+  reload or a switch to another app does not lose it, and "Submit what I have answered" logs a
+  paper you cannot finish; blank items are then left out of your history rather than counted as misses.</div>
+  <p><button class="btn" id="startExam">Start the ${EXAM.minutes}-minute paper</button></p>`;
   $('#startExam').onclick = beginExam;
 }
 /* A question marked dupOf:'x' tests the same fact as question x, so a paper
@@ -949,7 +1167,7 @@ function drawN(pool, n, blocked){
    multiple choice and select-all without a stated split, so the draw aims for
    this many, taken in proportion to each pool's share of the paper, and falls
    back to whatever the bank holds if a pool has fewer. */
-const EXAM_SATA = 8;
+const EXAM_SATA = EXAM.sata || 0;
 
 /* Draw n from a pool with a target number of select-all items in it. Select-all
    questions are drawn first so they are never crowded out, then single-answer
@@ -960,29 +1178,56 @@ function drawMixed(pool, n, nSata){
   const rest = drawN(pool.filter(q => !isMulti(q)), n - sata.length, used);
   return [...sata, ...rest];
 }
-function beginExam(){
-  // lowYield items (slide asides never polled or listed for review) stay out of the paper
-  const examQ = QUESTIONS.filter(q => !q.lowYield);
-  const yenP = examQ.filter(q=>q.prof==='Yendapally');
-  const oldP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
-  const newP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
-  // select-all items spread across the pools in the paper's 38 : 8 : 4 ratio
-  const sNew = Math.round(EXAM_SATA * 38/50), sYen = Math.round(EXAM_SATA * 8/50);
-  const sOld = Math.max(0, EXAM_SATA - sNew - sYen);
-  const yen = drawMixed(yenP, 8, sYen);
-  const old = drawMixed(oldP, 4, sOld);
-  const nw  = drawMixed(newP, 38, sNew);
-  const qs  = shuffle([...yen, ...old, ...nw]);
-  EX = {qs, i:0, picks:qs.map(q => isMulti(q) ? [] : null), running:true, done:false,
-        ends: Date.now() + 75*60000, orders: qs.map(q=>shuffle(q.options.map((o,k)=>k)))};
+/* The paper follows the manifest: each pool supplies its marks' worth of
+   questions, and the select-all target is split across the pools in the same
+   proportion (largest pool takes the rounding remainder). lowYield items and
+   typed items (numeric, matching) stay out of the paper. */
+function drawPaper(){
+  const examQ = QUESTIONS.filter(q => !q.lowYield && !q.type);
+  const total = EXAM.pools.reduce((n, p) => n + p.marks, 0) || 1;
+  const main = mainPool();
+  let sataLeft = EXAM_SATA;
+  const parts = EXAM.pools.filter(p => p !== main).map(p => {
+    const s = Math.round(EXAM_SATA * p.marks / total); sataLeft -= s;
+    return drawMixed(examQ.filter(p.test), p.marks, s);
+  });
+  parts.push(drawMixed(examQ.filter(main.test), main.marks, Math.max(0, sataLeft)));
+  return shuffle(parts.flat());
+}
+const EXAM_KEY = () => NS + ':exam:' + PROFILE;
+function saveExam(){
+  if(!EX || !EX.running) return;
+  LS.set(EXAM_KEY(), JSON.stringify({ids:EX.qs.map(q=>q.id), picks:EX.picks, orders:EX.orders, i:EX.i, ends:EX.ends}));
+}
+function clearExam(){ LS.set(EXAM_KEY(), ''); }
+/* A paper saved by an earlier visit is brought back if its clock has not run
+   out; otherwise it is submitted as it stands. */
+function restoreExam(){
+  let j = null;
+  try { j = JSON.parse(LS.get(EXAM_KEY()) || 'null'); } catch(e) { j = null; }
+  if(!j || !j.ids) return false;
+  const qs = j.ids.map(byId); if(qs.some(q => !q)) { clearExam(); return false; }
+  EX = {qs, i:Math.min(j.i||0, qs.length-1), picks:j.picks, orders:j.orders, running:true, done:false, ends:j.ends};
+  if(Date.now() >= EX.ends){ finishExam(true); return true; }
+  startClock();
+  return true;
+}
+function startClock(){
   clearInterval(EX.timer);
   EX.timer = setInterval(()=>{
     if(!EX || !EX.running) return clearInterval(EX.timer);
-    if(Date.now() >= EX.ends){ finishExam(); return; }
+    if(Date.now() >= EX.ends){ finishExam(true); return; }
     const c = document.getElementById('exClock');
     if(c){ const l = EX.ends - Date.now();
       c.textContent = fmt(l); c.classList.toggle('low', l < 5*60000); }
   }, 1000);
+}
+function beginExam(){
+  const qs = drawPaper();
+  EX = {qs, i:0, picks:qs.map(q => isMulti(q) ? [] : null), running:true, done:false,
+        ends: Date.now() + EXAM.minutes*60000, orders: qs.map(q=>shuffle(q.options.map((o,k)=>k)))};
+  saveExam();
+  startClock();
   renderExamQ();
 }
 const fmt = ms => { const s = Math.max(0, Math.round(ms/1000));
@@ -1010,17 +1255,21 @@ function renderExamQ(){
     <button class="btn ghost" id="exPrev"${EX.i===0?' disabled':''}>Back</button>
     <button class="btn" id="exNext">${EX.i===EX.qs.length-1?'Review':'Next'}</button>
     <span class="spacer" style="flex:1"></span>
-    <button class="btn ghost" id="exEnd">Submit paper</button>
+    <button class="btn ghost" id="exEnd">${answered < EX.qs.length ? 'Submit what I have answered' : 'Submit paper'}</button>
   </div></div>`;
   el.innerHTML = h;
   el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
     const oi = +b.dataset.o;
     if(multi){ const p = EX.picks[EX.i]; EX.picks[EX.i] = p.includes(oi) ? p.filter(x=>x!==oi) : [...p, oi]; }
     else EX.picks[EX.i] = oi;
-    renderExamQ(); });
-  $('#exPrev').onclick = ()=>{ if(EX.i>0){EX.i--; renderExamQ();} };
-  $('#exNext').onclick = ()=>{ if(EX.i<EX.qs.length-1){EX.i++; renderExamQ();} else finishExam(); };
-  $('#exEnd').onclick  = ()=>{ if(confirm('Submit the paper and see your score?')) finishExam(); };
+    saveExam(); renderExamQ(); });
+  $('#exPrev').onclick = ()=>{ if(EX.i>0){EX.i--; saveExam(); renderExamQ();} };
+  $('#exNext').onclick = ()=>{ if(EX.i<EX.qs.length-1){EX.i++; saveExam(); renderExamQ();} else finishExam(false); };
+  $('#exEnd').onclick  = ()=>{
+    const blank = EX.qs.filter((q,i)=> examBlank(q, EX.picks[i])).length;
+    if(!blank){ if(confirm('Submit the paper and see your score?')) finishExam(false); return; }
+    if(confirm(`${blank} item${blank===1?' is':'s are'} still blank.\n\nOK: submit what you have answered (blank items are not logged).\nCancel: keep going.`)) finishExam(true);
+  };
 }
 /* One place decides whether an exam answer was right, for both grading and the
    review page: a select-all item is right only when the whole set matches. */
@@ -1029,14 +1278,18 @@ function examRight(q, p){
   return p !== null && p !== undefined && q.options[p].correct;
 }
 const examBlank = (q, p) => isMulti(q) ? !(Array.isArray(p) && p.length) : (p === null || p === undefined);
-function finishExam(){
+/* partial: blank items are left out of the history rather than logged as
+   misses, for a paper that could not be finished. */
+function finishExam(partial){
   clearInterval(EX.timer);
-  EX.running = false; EX.done = true;
+  EX.running = false; EX.done = true; EX.partial = !!partial;
   EX.qs.forEach((q,i)=>{
     const p = EX.picks[i];
+    if(partial && examBlank(q, p)) return;
     const picked = isMulti(q) ? (p || []).slice().sort((a,b)=>a-b) : p;
     record(q, examRight(q, p) ? 'correct' : 'wrong', picked);
   });
+  clearExam();
   renderExamResult();
 }
 function renderExamResult(){
@@ -1044,7 +1297,7 @@ function renderExamResult(){
   const blank = EX.qs.filter((q,i)=> examBlank(q, EX.picks[i])).length;
   const pct = Math.round(100*right/EX.qs.length);
   let h = `<h2>Exam simulation — ${right} / ${EX.qs.length} (${pct}%)</h2>
-  <p class="sub">${blank ? blank+' left blank, scored as incorrect. ' : ''}All 50 are now in your history,
+  <p class="sub">${blank ? blank + ' left blank' + (EX.partial ? ', not logged. ' : ', scored as incorrect. ') : ''}${EX.partial ? 'The answered items are' : 'All ' + EX.qs.length + ' are'} now in your history,
   so anything you missed is back in active review.</p>
   <p><button class="btn" id="exAgain">New paper</button>
      <button class="btn ghost" onclick="show('gaps')">See weak spots</button></p>
@@ -1232,22 +1485,32 @@ function renderGuide(){ renderDoc($('#v-guide'), refFigures(GUIDE_HTML), 'guide'
    SETTINGS
    ========================================================================== */
 function renderSettings(){
-  const mode = DB.settings.mode || 'cram';
+  const p = pace(), all = DB.settings.mode === 'all';
   $('#v-settings').innerHTML = `<h2>Settings</h2>
   <p class="sub">Progress is stored in this browser only, under the name “${esc(PROFILE)}”.</p>
 
-  <h3>Review schedule</h3>
+  <h3>Review pace</h3>
   <div class="filters">
     <div class="frow">
-      <button class="chip" data-m="cram"  aria-pressed="${mode==='cram'}">Exam cram</button>
-      <button class="chip" data-m="long"  aria-pressed="${mode==='long'}">Long term</button>
-      <button class="chip" data-m="all"   aria-pressed="${mode==='all'}">Ask everything</button>
+      ${Object.entries(PACES).map(([k, P]) => `<button class="chip" data-pace="${k}" aria-pressed="${p===k && !all}">${esc(P.label)}</button>`).join('')}
+      <button class="chip" data-pace="all" aria-pressed="${all}">Ask everything</button>
     </div>
     <p style="font-size:13.5px;color:var(--text-dim);margin:4px 0 0">
-      <b>Exam cram</b> spaces a correct concept by how many questions you answer after it
-      (8, 20, 45, 90…), so everything can still come back before Monday.
-      <b>Long term</b> uses real days (1, 3, 7, 14, 30, 60) — switch to this after the exam.
-      <b>Ask everything</b> ignores scheduling and keeps serving questions, still worst-first.
+      ${Object.values(PACES).map(P => `<b>${esc(P.label)}</b>: ${esc(P.blurb)}. `).join('')}
+      <b>Ask everything</b> ignores the schedule and keeps serving questions, still worst-first.
+      After a correct answer, "Not sure" brings that concept back at the shortest interval and "I guessed" treats it as not yet known.
+    </p>
+  </div>
+
+  <h3>Export</h3>
+  <div class="filters">
+    <div class="frow">
+      <button class="btn ghost" id="expMd">Questions as text (Markdown)</button>
+      <button class="btn ghost" id="expJson">Questions as data (JSON)</button>
+      <button class="btn ghost" id="expGuides">Guides + Tell apart + Reference (HTML)</button>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-dim);margin:4px 0 0">
+      The Markdown file lists every question with its answer, explanations and citation; the JSON is the same bank for other apps; the HTML is the three reading tabs as one page that prints.
     </p>
   </div>
 
@@ -1272,20 +1535,26 @@ function renderSettings(){
     </p>
   </div>
 
+  <p class="sub" style="margin-top:18px">Build ${esc(BUILD.stamp || '')} · ${BUILD.questions || QUESTIONS.length} questions · ${BUILD.images || Object.keys(IMAGES).length} figures · ${esc(COURSE.title)}</p>
   <div class="note" style="margin-top:20px">
     <b>Sharing this with classmates.</b> Each person's history lives in their own browser on their own
     device, so nobody can see anyone else's. On a shared computer, use the Switch button at the top
     right to keep profiles apart. Private/incognito windows and “clear site data” erase progress.
   </div>`;
 
-  $('#v-settings').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
-    DB.settings.mode = b.dataset.m; save(); renderSettings();
+  $('#v-settings').querySelectorAll('.chip[data-pace]').forEach(b=>b.onclick=()=>{
+    if(b.dataset.pace === 'all'){ DB.settings.mode = 'all'; }
+    else { DB.settings.mode = 'normal'; DB.settings.pace = b.dataset.pace; }
+    save(); renderSettings();
   });
+  $('#expMd').onclick = () => download(`${COURSE.id}-questions.md`, bankMarkdown(), 'text/markdown');
+  $('#expJson').onclick = () => download(`${COURSE.id}-questions.json`, JSON.stringify(bankJson(), null, 1), 'application/json');
+  $('#expGuides').onclick = () => download(`${COURSE.id}-guides.html`, readingHtml(), 'text/html');
   $('#btnExport').onclick = ()=>{
     const blob = new Blob([JSON.stringify({profile:PROFILE, db:DB}, null, 1)], {type:'application/json'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `phar4342-progress-${PROFILE.replace(/\W+/g,'_')}.json`;
+    a.download = `${COURSE.id}-progress-${PROFILE.replace(/\W+/g,'_')}.json`;
     a.click(); URL.revokeObjectURL(a.href);
   };
   $('#btnImport').onclick = ()=> $('#fileIn').click();
@@ -1309,6 +1578,53 @@ function renderSettings(){
   };
 }
 
+/* ---- exports --------------------------------------------------------------- */
+function download(name, text, type){
+  const blob = new Blob([text], {type: type + ';charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+const plain = s => deEnt(String(s || '')).replace(/<[^>]+>/g, '');
+function bankJson(){
+  return QUESTIONS.map(q => ({id:q.id, prof:q.prof, exam:(lecOf(q)||{}).exam, module:(lecOf(q)||{}).module, topic:q.topic, sub:q.sub,
+    concept:q.concept, skill:skillOf(q), type:q.type||'mc', multi:!!q.multi, source:q.source||'slide', stem:q.stem,
+    options:(q.options||[]).map(o=>({t:o.t, correct:!!o.correct, why:o.why})),
+    answer:q.answer, units:q.units, steps:q.steps, pairs:q.pairs, teach:teachText(q.teach), note:q.note, cite:q.cite}));
+}
+function bankMarkdown(){
+  const lines = [`# ${plain(COURSE.title)} — question bank`, '', `${QUESTIONS.length} questions. Build ${BUILD.stamp || ''}.`, ''];
+  let n = 0;
+  for(const t of TOPICS){
+    const qs = QUESTIONS.filter(q => q.topic === t.id); if(!qs.length) continue;
+    lines.push(`## ${plain(t.name)} (${t.prof})`, '');
+    for(const q of qs){
+      n++;
+      const l = lecOf(q);
+      lines.push(`### ${n}. ${plain(q.stem)}`, '', `*${l ? `Exam ${l.exam} · ${plain(l.module)} · ` : ''}${plain(SKILL_LABEL[skillOf(q)]||'')}${q.multi ? ' · select all that apply' : ''}*`, '');
+      if(q.type === 'numeric'){
+        lines.push(`Answer: ${fmtNum(q.answer)}${q.units ? ' ' + q.units : ''}`, '');
+        (q.steps||[]).forEach((s, i) => lines.push(`${i+1}. [${MISS_KINDS[s.k]||s.k}] ${plain(s.t)}${s.why ? ' — ' + plain(s.why) : ''}`));
+      } else if(q.type === 'match'){
+        (q.pairs||[]).forEach(p => lines.push(`- ${plain(p.l)} → ${plain(p.r)}${p.why ? ' — ' + plain(p.why) : ''}`));
+      } else {
+        q.options.forEach((o, i) => lines.push(`- ${o.correct ? '**' : ''}${LETTERS[i]}. ${plain(o.t)}${o.correct ? ' ✓**' : ''} — ${plain(o.why)}`));
+      }
+      if(q.teach) lines.push('', `> ${plain(teachText(q.teach)).replace(/\n+/g, ' ')}`);
+      if(q.note) lines.push('', `Note: ${plain(q.note)}`);
+      lines.push('', `Source: ${plain(q.cite)}${q.source && q.source !== 'slide' ? ' (lecture audio)' : ''}`, '');
+    }
+  }
+  return lines.join('\n');
+}
+/* The three reading tabs as one standalone page, with the figures inlined and
+   the same styles, so it prints or opens anywhere. */
+function readingHtml(){
+  const css = [...document.querySelectorAll('style')].map(s => s.textContent).join('\n');
+  const body = ['<h1>' + esc(COURSE.title) + '</h1>', refFigures(GUIDE_HTML), refFigures(TELL_HTML), refFigures(REFERENCE_HTML)].join('\n<hr>\n');
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(COURSE.short)} — guides</title><style>${css}\nbody{background:#fff}main{max-width:980px;margin:0 auto;padding:16px}@media print{.refnav-wrap{display:none}}</style></head><body><main>${body}</main></body></html>`;
+}
+
 /* "Ask everything" mode short-circuits the due check */
 const _isDue = isDue;
 isDue = function(s){ return (DB.settings.mode === 'all') ? true : _isDue(s); };
@@ -1316,7 +1632,9 @@ isDue = function(s){ return (DB.settings.mode === 'all') ? true : _isDue(s); };
 /* ==========================================================================
    BOOT
    ========================================================================== */
+document.title = COURSE.title.replace(/\u2014.*/, '').trim() + ' — exam drill';
+document.getElementById('courseTitle').textContent = COURSE.title;
 document.querySelectorAll('#nav button').forEach(b => b.onclick = () => show(b.dataset.v));
 document.getElementById('btnWho').onclick = () => { askProfile(true); show(VIEW); };
 askProfile(false);
-show('topics');
+show(restoreExam() ? 'exam' : 'topics');

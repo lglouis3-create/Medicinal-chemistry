@@ -1,6 +1,6 @@
 QUESTIONS.push(
 /* ======================= STEREOCHEMISTRY ======================= */
-{id:'st-1', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'chiral-carbon-definition',
+{id:'st-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'chiral-carbon-definition',
  tags:['definition','structure'], source:'slide',
  stem:'What makes a carbon a chiral centre?',
  options:[
@@ -17,7 +17,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 7–8',
  quote:'Chiral carbon: A chiral carbon is a carbon in which 4 different groups are attached.'},
 
-{id:'st-2', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'cip-priority-atomic-number',
+{id:'st-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'cip-priority-atomic-number',
  tags:['reasoning','structure'], source:'slide',
  stem:'How is priority assigned to the groups around a chiral centre?',
  options:[
@@ -34,7 +34,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 9–12',
  quote:'1. Highest priority is given to the atom with the highest atomic number · 2. If two atoms with the same atomic number attached to the chiral center—the priority is given to the next atoms atomic number'},
 
-{id:'st-3', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'rs-rotation-direction',
+{id:'st-3', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'rs', concept:'rs-rotation-direction',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'To assign R/S after ranking the four groups:',
  options:[
@@ -51,7 +51,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 10, 13',
  quote:'If first three priorities rotate clockwise assign it as R, if they rotate counterclockwise assign, it as S. The molecule is viewed from the side opposite the lowest-priority atom.'},
 
-{id:'st-4', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'config-vs-rotation',
+{id:'st-4', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'config-vs-rotation',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Does R configuration predict the direction of optical rotation?',
  options:[
@@ -68,7 +68,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 17–18',
  quote:'A compound can be R[+], R[-], S[+], or S[-]'},
 
-{id:'st-5', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-vs-diastereomer',
+{id:'st-5', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-vs-diastereomer',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'Two stereoisomers have two chiral centres. They differ at one centre and match at the other. What is their relationship?',
  options:[
@@ -85,7 +85,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 14, 21',
  quote:'Enantiomers are nonsuperimposable mirror images · Diastereomers: Nonsuperimposable, non-mirror image isomers.'},
 
-{id:'st-6', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-properties',
+{id:'st-6', skill:'tell', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'enantiomer-properties',
  tags:['reasoning'], source:'slide',
  stem:'Enantiomers share boiling point, melting point and density but differ in:',
  options:[
@@ -102,7 +102,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 16–19',
  quote:'Enantiomers have nearly identical physical properties: Same BP, MP, density, refractive index'},
 
-{id:'st-7', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'easson-stedman',
+{id:'st-7', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'easson-stedman',
  tags:['definition','reasoning'], source:'slide',
  stem:'The Easson-Stedman hypothesis states:',
  options:[
@@ -119,7 +119,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 3, 19–20; triprolidine slide 25',
  quote:'Easson-Stedman Hypothesis: The more potent enantiomer must be involved in a minimum of three intermolecular interactions with the receptor surface. Whereas the less potent enantiomer only interacts with two sites'},
 
-{id:'st-8', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'ez-isomerism',
+{id:'st-8', skill:'recall', prof:'Yendapally', tier:'old', topic:'stereo', sub:'terms', concept:'ez-isomerism',
  tags:['definition','structure'], source:'slide',
  stem:'E/Z notation replaces cis/trans when:',
  options:[
@@ -136,7 +136,7 @@ QUESTIONS.push(
  cite:'Stereochemistry (081926_Stereochemistry.pdf) slides 22–25; ring systems slide 26',
  quote:'Z (zusammen) means together · E (entgegen) means opposite'},
 
-{id:'dd-1', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-definition',
+{id:'dd-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-definition',
  tags:['definition'], source:'slide',
  stem:'What does a structure–activity relationship study establish?',
  options:[
@@ -152,7 +152,7 @@ QUESTIONS.push(
  cite:'Introduction to SAR (082426_IntroductiontoSAR.pdf) slides 3–4, 7–8',
  quote:'Systematic modifications of molecules by altering the functional groups and determining how these modifications affect the biological activity'},
 
-{id:'dd-2', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'bioisostere-definition',
+{id:'dd-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'bioisostere-definition',
  tags:['definition'], source:'slide',
  stem:'Burger defines bioisosteres as groups with similar:',
  options:[
@@ -169,7 +169,7 @@ QUESTIONS.push(
  cite:'Bioisosterism (082626_Bioisosterism.pdf) slides 3–4',
  quote:'Compounds/groups that possess near equal molecular shapes and volumes, approximately the same distribution of electrons'},
 
-{id:'dd-3', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'classical-vs-nonclassical',
+{id:'dd-3', skill:'tell', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'classical-vs-nonclassical',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'Classical bioisosteres, unlike non-classical ones, share:',
  options:[
@@ -186,7 +186,7 @@ QUESTIONS.push(
  cite:'Bioisosterism (082626_Bioisosterism.pdf) slides 5, 12',
  quote:'Nonclassical Bioisosteres: Atoms or functional groups that do not have similar valence electron configurations and number of atoms (but may display similar biological activities)'},
 
-{id:'dd-4', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'tetrazole-carboxylic-acid',
+{id:'dd-4', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'tetrazole-carboxylic-acid',
  tags:['recall','structure'], source:'slide',
  stem:'Tetrazole is used as a bioisosteric replacement for which group, and in which drug class?',
  options:[
@@ -211,7 +211,7 @@ QUESTIONS.push(
  cite:'Bioisosterism (082626_Bioisosterism.pdf) slide 14',
  quote:'Tetrazole: A bioisosteric replacement of carboxylic acid. · Angiotensin II receptor blockers (ARBs) are used as antihypertensive agents'},
 
-{id:'dd-5', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'ranitidine-nizatidine',
+{id:'dd-5', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'ranitidine-nizatidine',
  tags:['case','reasoning'], source:'slide',
  stem:'Replacing the furan ring of ranitidine with a thiazole gives nizatidine. What did that achieve?',
  options:[
@@ -228,7 +228,7 @@ QUESTIONS.push(
  cite:'Bioisosterism (082626_Bioisosterism.pdf) slides 7, 11',
  quote:'Ranitidine Furan · Oral bioavailability: ~50% · Nizatidine (Axid) Thiazole · Oral bioavailability: ~90%. · Short half-life'},
 
-{id:'dd-6', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'fluorouracil-bioisostere',
+{id:'dd-6', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'bio', concept:'fluorouracil-bioisostere',
  tags:['case','reasoning'], source:'slide',
  stem:'5-Fluorouracil works as a hydrogen-to-fluorine bioisostere because fluorine is:',
  options:[
@@ -245,7 +245,7 @@ QUESTIONS.push(
  cite:'Bioisosterism (082626_Bioisosterism.pdf) slides 6, 9',
  quote:'5-Fluorouracil (Adrucil) inhibits thymidylate synthetase · Function: Responsible for conversion of dUMP to dTMP'},
 
-{id:'dd-7', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'drug-sources',
+{id:'dd-7', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'drug-sources',
  tags:['recall'], source:'slide',
  stem:'Sources of new drugs include:',
  options:[
@@ -263,7 +263,7 @@ QUESTIONS.push(
  quote:'Natural products: Plants · Micro organisms · Based on mammalian biochemical pathways · Other sources: Synthetic products',
  note:'The option text was corrected here: slide 9 lists plants, microorganisms and mammalian biochemical pathways, and does not name marine organisms.'},
 
-{id:'dr-1', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'bond-strength-order',
+{id:'dr-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'bond-strength-order',
  tags:['ranking','exam-pattern'], source:'slide',
  stem:'Rank these drug-receptor interactions from strongest to weakest.',
  options:[
@@ -280,7 +280,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 4–8',
  quote:'Covalent Bond · Strongest of bonds · Strength: 50-150 kcal/mol'},
 
-{id:'dr-2', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'covalent-irreversible',
+{id:'dr-2', skill:'apply', prof:'Yendapally', tier:'old', topic:'recept', sub:'bonds', concept:'covalent-irreversible',
  tags:['reasoning','case'], source:'slide',
  stem:'Phenoxybenzamine blocks alpha-adrenoceptors covalently, so its effect:',
  options:[
@@ -297,7 +297,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 4–5',
  quote:'Irreversible binding: Receptor\'s are destroyed by endocytosis and chemical destruction'},
 
-{id:'dr-3', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'aa-ionic-interaction',
+{id:'dr-3', skill:'apply', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'aa-ionic-interaction',
  tags:['reasoning','structure','exam-pattern'], source:'slide',
  stem:'A drug carries a carboxylate group. Which amino acid side chain can form an ionic interaction with it?',
  options:[
@@ -314,7 +314,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 6, 12',
  quote:'Interaction of a negatively charged drug with positively charged aminoacids (lysine, arginine)'},
 
-{id:'dr-4', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'aa-hbond-donors-acceptors',
+{id:'dr-4', skill:'recall', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'aa-hbond-donors-acceptors',
  tags:['reasoning','structure'], source:'slide',
  stem:'Which amino acid side chains can participate in hydrogen bonding with a drug?',
  options:[
@@ -331,7 +331,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 7, 11',
  quote:'Usually multiple hydrogen bonds are formed between drugs and receptors so they can add up'},
 
-{id:'dr-5', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'hydrophobic-pocket',
+{id:'dr-5', skill:'recall', prof:'Yendapally', tier:'old', topic:'recept', sub:'aa', concept:'hydrophobic-pocket',
  tags:['reasoning','case'], source:'slide',
  stem:'Captopril binding to ACE includes a hydrophobic pocket contact. Which side chains line such a pocket?',
  options:[
@@ -348,7 +348,7 @@ QUESTIONS.push(
  cite:'Drug–Receptor Interactions (082426_DrugReceptorInteractions.pdf) slides 8, 11–12',
  quote:'Hydrophobic Interactions · Van der Waals forces or London forces · Strength: 0.5-1 kcal/mol'},
 
-{id:'pc-1', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'pka-direction-acids',
+{id:'pc-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'pka-direction-acids',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'For acidic functional groups, how does pKa relate to acid strength?',
  options:[
@@ -365,7 +365,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 1 (082726_PhysicochemicalProp1.pdf) slides 9, 18',
  quote:'Therefore, lower the pKa for acids, higher is their strength'},
 
-{id:'pc-2', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'aryl-vs-alkyl-amine-basicity',
+{id:'pc-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'aryl-vs-alkyl-amine-basicity',
  tags:['reasoning','mechanism'], source:'slide',
  stem:'Aryl amines are less basic than aliphatic amines because the nitrogen lone pair is:',
  options:[
@@ -382,7 +382,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 1 (082726_PhysicochemicalProp1.pdf) slides 15–16',
  quote:'The lone pair of electrons on nitrogen in aryl amines interacts with the electron cloud of aryl amines'},
 
-{id:'pc-3', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'neutral-groups',
+{id:'pc-3', skill:'recall', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'neutral-groups',
  tags:['structure','exam-pattern'], source:'slide',
  stem:'Which group is neutral at physiological pH, contributing neither acidity nor basicity?',
  options:[
@@ -399,7 +399,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 1 (082726_PhysicochemicalProp1.pdf) slides 19–20',
  quote:'Neutral Functional Groups · ketone · esters · aldehyde · amide · urea'},
 
-{id:'pc-4', prof:'Yendapally', tier:'old', topic:'physchem', sub:'ionization', concept:'ionization-direction-acid',
+{id:'pc-4', skill:'apply', prof:'Yendapally', tier:'old', topic:'physchem', sub:'ionization', concept:'ionization-direction-acid',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'An acidic drug moves from the stomach at pH 2 to plasma at pH 7.4. What happens to its ionization?',
  options:[
@@ -416,7 +416,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 1 (082726_PhysicochemicalProp1.pdf) slides 24, 29–33',
  quote:'General rule: Acidic drugs exists as unionized form (lipophilic) in acidic environment and are absorbed well'},
 
-{id:'pc-5', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'logp-definition',
+{id:'pc-5', skill:'recall', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'logp-definition',
  tags:['definition'], source:'slide',
  stem:'What does the partition coefficient measure?',
  options:[
@@ -433,7 +433,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 3 (090326_PhysicochemicalProp3.pdf) slides 12–16',
  quote:'What is partitioning? The movement of molecules from one phase to another · Drugs partition between the aqueous phase and lipophilic membrane'},
 
-{id:'pc-6', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'hydrophilic-group-effect',
+{id:'pc-6', skill:'apply', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'hydrophilic-group-effect',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A hydroxyl group is added to a drug. What happens to log P and to water solubility?',
  options:[
@@ -449,7 +449,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 2 (090226_PhysicochemicalProp2.pdf) slides 6, 9, 12–13',
  quote:'Generally, water solubility of the compound is proportional to the sum of each FG capable of donating or accepting a hydrogen bond.'},
 
-{id:'pc-7', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'lipophilic-group-effect',
+{id:'pc-7', skill:'apply', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'lipophilic-group-effect',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Two analogues differ only in that one carries an extra ethyl group. How do they compare?',
  options:[
@@ -466,7 +466,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 3 (090326_PhysicochemicalProp3.pdf) slides 15, 20–23',
  quote:'C (aliphatic) +0.5 · Phenyl +2.0 · O (hydroxyl, phenol, ether) –1.0'},
 
-{id:'pc-8', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'logp-membrane-tradeoff',
+{id:'pc-8', skill:'recall', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'logp-membrane-tradeoff',
  tags:['reasoning'], source:'slide',
  stem:'An extremely high log P hurts oral absorption because the drug:',
  options:[
@@ -482,7 +482,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 2 (090226_PhysicochemicalProp2.pdf) slides 4–5',
  quote:'Too lipophilic (nonpolar) · Good membrane penetration · Poor water solubility · A balance between hydrophilicity (aqueous solubility) & lipophilicity (ability to cross biological membranes)'},
 
-{id:'ad-1', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'abc-vs-slc',
+{id:'ad-1', skill:'tell', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'abc-vs-slc',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'ABC and SLC transporters are, respectively:',
  options:[
@@ -498,7 +498,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 14–15, 18–25',
  quote:'Primary active transporters: Most commonly use adenosine triphosphate (ATP) as an energy source · Example: ABC transporters (ATP-binding cassette) family'},
 
-{id:'ad-2', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pgp-identity-substrates',
+{id:'ad-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pgp-identity-substrates',
  tags:['recall','case'], source:'slide',
  stem:'P-glycoprotein belongs to which transporter family, and what are its substrates?',
  options:[
@@ -514,7 +514,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 21–24',
  quote:'PgP substrates: Loperamide (Imodium), digoxin (Lanoxin), Fexofenadine HCl (Allegra), Paclitaxel (Taxol) etc.'},
 
-{id:'ad-3', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'efflux-effect-on-bioavailability',
+{id:'ad-3', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'efflux-effect-on-bioavailability',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A drug that is a substrate of an intestinal efflux transporter:',
  options:[
@@ -530,7 +530,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 16, 34–35',
  quote:'Inhibition of transport resulting in increased bioavailability of the transporter substrate.'},
 
-{id:'ad-4', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pept1-prodrug',
+{id:'ad-4', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pept1-prodrug',
  tags:['case','reasoning'], source:'slide',
  stem:'Valacyclovir has better oral bioavailability than acyclovir because it is:',
  options:[
@@ -546,7 +546,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 28–30, 36',
  quote:'Valacyclovir(Valtrex) · PepT1 substrate · Increased oral bioavailability (54%)'},
 
-{id:'ad-5', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pept1-substrate-classes',
+{id:'ad-5', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'pept1-substrate-classes',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which drug classes are transported by PEPT1?',
  options:[
@@ -562,7 +562,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 28–29',
  quote:'Drug substrates: Captopril, enalapril, cephalexin, valacyclovir'},
 
-{id:'ad-6', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'passive-vs-active-transport',
+{id:'ad-6', skill:'tell', prof:'Yendapally', tier:'old', topic:'admet', sub:'trans', concept:'passive-vs-active-transport',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'Which statement distinguishes active from facilitated transport?',
  options:[
@@ -578,7 +578,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 10–15',
  quote:'Facilitative transporters only move molecules down their concentration gradient · Remember! without the use of a separate energy source'},
 
-{id:'ad-7', dupOf:'df-6', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'first-pass-definition',
+{id:'ad-7', skill:'recall', dupOf:'df-6', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'first-pass-definition',
  tags:['definition'], source:'slide',
  stem:'The first-pass effect occurs in the:',
  options:[
@@ -594,7 +594,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 5, 8–9',
  quote:'First-pass elimination or presystemic elimination: Elimination in the intestine and liver reduces the amount of drug delivered to the systemic circulation'},
 
-{id:'ad-8', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'poor-bioavailability-causes',
+{id:'ad-8', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'poor-bioavailability-causes',
  tags:['reasoning','exam-pattern'], source:'both',
  stem:'Which set of factors explains poor oral bioavailability?',
  options:[
@@ -610,7 +610,7 @@ QUESTIONS.push(
  cite:'ADMET Absorption I (090326_ADMETAbsorption_I.pdf) slides 4, 7, 35; the four factors from the 09/03 lecture, written on slide 4',
  quote:'Physicochemical: Solubility and hydrophilicity/lipophilicity · Physiological: GI pH, metabolism, mucosal thickness, and residence time'},
 
-{id:'ad-9', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'loperamide-quinidine',
+{id:'ad-9', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'loperamide-quinidine',
  tags:['case','reasoning'], source:'slide',
  stem:'Loperamide causes no central effects until quinidine is added. Why?',
  options:[
@@ -627,7 +627,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 14–15',
  quote:'Because quinidine inhibits P-glycoprotein mediated efflux in the BBB, resulting in increased exposure of the CNS to loperamide and bringing about the respiratory depression.'},
 
-{id:'ad-10', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-equation-meaning',
+{id:'ad-10', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-equation-meaning',
  tags:['definition','exam-pattern'], source:'slide',
  stem:'Volume of distribution (amount of drug in the body / plasma concentration) represents:',
  options:[
@@ -644,7 +644,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 3–5',
  quote:'Remember! Vd is An apparent volume/ hypothetical volume'},
 
-{id:'ad-11', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-interpretation',
+{id:'ad-11', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-interpretation',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A low volume of distribution indicates that the drug:',
  options:[
@@ -661,7 +661,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 5, 10, 18',
  quote:'Drugs with a low volume of distribution are those that stay within the vascular compartment'},
 
-{id:'ad-12', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-factors',
+{id:'ad-12', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'vd-factors',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which set lists factors affecting drug distribution?',
  options:[
@@ -678,7 +678,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 6–9',
  quote:'Factors Affecting Distribution: Blood flow · Membrane Permeability · Partition coefficient of the drug · Drug Binding: Plasma proteins, tissues, bone and teeth'},
 
-{id:'ad-13', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'amiodarone-vd',
+{id:'ad-13', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'amiodarone-vd',
  tags:['case','reasoning'], source:'slide',
  stem:'Amiodarone\'s volume of distribution is about 4620 L. What explains this?',
  options:[
@@ -696,7 +696,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slide 10',
  quote:'Amiodarone (Cordarone) · Vd = 4620 L for a 70kg person · Highly lipophilic · Taken up by fat tissue, liver, lungs and skin'},
 
-{id:'ad-14', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'protein-binding-displacement',
+{id:'ad-14', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'protein-binding-displacement',
  tags:['case','reasoning'], source:'slide',
  stem:'Two highly protein-bound drugs are co-administered. What is the concern?',
  options:[
@@ -713,7 +713,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 22, 25',
  quote:'Phenytoin is displaced from its protein binding sites by valproic acid and increasing the fraction of unbound drug'},
 
-{id:'ad-15', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'hypoalbuminemia',
+{id:'ad-15', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'hypoalbuminemia',
  tags:['case','reasoning'], source:'slide',
  stem:'A hypoalbuminemic patient receives a standard phenytoin dose. What is the risk?',
  options:[
@@ -730,7 +730,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 24, 26',
  quote:'In hypoalbuminemia Binding may be reduced, and high concentrations of free drug may be attained e.g. Phenytoin and Furosemide'},
 
-{id:'ad-16', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'bbb-efflux-and-influx',
+{id:'ad-16', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'bbb-efflux-and-influx',
  tags:['reasoning','case'], source:'slide',
  stem:'Why does levodopa reach the brain when many polar molecules do not?',
  options:[
@@ -747,7 +747,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 11–13',
  quote:'Levodopa used Parkinson disease is transported into the brain by the l-type amino acid transporter (LAT) 1'},
 
-{id:'ad-17', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'tetracycline-chelation',
+{id:'ad-17', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'vd', concept:'tetracycline-chelation',
  tags:['case','reasoning'], source:'slide',
  stem:'Why are tetracyclines traditionally contraindicated in young children?',
  options:[
@@ -764,7 +764,7 @@ QUESTIONS.push(
  cite:'ADMET Distribution (090426_Distribution.pdf) slides 16–18',
  quote:'Tetracyclines are traditionally contraindicated in children due to accumulation in teeth and staining'},
 
-{id:'pc-9', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'clogp-fragment-sum',
+{id:'pc-9', skill:'calc', prof:'Yendapally', tier:'old', topic:'physchem', sub:'logp', concept:'clogp-fragment-sum',
  tags:['calculation','exam-pattern'], source:'slide',
  stem:'Ibuprofen carries one phenyl ring, six aliphatic carbons and one carboxyl group. Using the fragment values π = +0.5 for aliphatic carbon, +2.0 for phenyl and −0.7 for O=C–O, what is its ClogP?',
  options:[
@@ -782,7 +782,7 @@ QUESTIONS.push(
  cite:'Physicochemical Properties 3 (090326_PhysicochemicalProp3.pdf) slides 15–17',
  quote:'Fragments π · 6 aliphatic carbons +3.0 (6 x 0.5) · 1 phenyl +2.0 · 1 carboxyl − 0.7 · ClogP +4.3'},
 
-{id:'pc-10', prof:'Yendapally', tier:'old', topic:'physchem', sub:'ionization', concept:'percent-ionization-acid',
+{id:'pc-10', skill:'calc', prof:'Yendapally', tier:'old', topic:'physchem', sub:'ionization', concept:'percent-ionization-acid',
  tags:['calculation','exam-pattern'], source:'slide',
  stem:'Aspirin has a pKa of 3.5. At pH 7.0, what percentage of the drug is in the ionized form?',
  options:[

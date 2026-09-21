@@ -16,7 +16,7 @@
 QUESTIONS.push(
 
 /* ═══════════ DRUG DISCOVERY — SOURCES AND USES ═══════════ */
-{id:'dd-10', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-plant-digoxin',
+{id:'dd-10', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-plant-digoxin',
  tags:['recall','source'], source:'slide',
  stem:'Digoxin comes from the foxglove plant. What is its chemical class and what is it used to treat?',
  options:[
@@ -37,7 +37,7 @@ QUESTIONS.push(
    t:'Three of the four plant drugs here are labelled alkaloids and they differ in therapeutic use entirely, so the class alone never settles which drug is meant. Digoxin is the one that is not: it is a steroid glycoside.'}],
  cite:'082026_Drugdiscovery.pdf, "Natural Products: Plants" and "Digoxin(Natural Products: Plants)"'},
 
-{id:'dd-11', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-mammalian-pathways',
+{id:'dd-11', skill:'tell', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-mammalian-pathways',
  tags:['recall','source'], source:'slide',
  stem:'Which of these drugs is NOT based on a mammalian biochemical pathway?',
  options:[
@@ -56,7 +56,7 @@ QUESTIONS.push(
    t:'Epinephrine from the adrenal gland, erythropoietin as a renal glycoprotein that stimulates red blood cell production, insulin replacing what the pancreatic islet cells make, and levothyroxine as thyroid hormone replacement are all molecules a mammal already makes, given as drugs. Every one of them is a replacement or a copy rather than something foreign.'}],
  cite:'082026_Drugdiscovery.pdf, "Natural Products: Biochemicals"'},
 
-{id:'dd-12', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-approaches-list',
+{id:'dd-12', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-approaches-list',
  tags:['recall','list'], source:'slide',
  stem:'Which of the following is an approach used to discover new drugs?',
  options:[
@@ -77,7 +77,7 @@ QUESTIONS.push(
    t:'Discovery and development runs chemical synthesis or natural products or molecular modeling, then preclinical testing, then clinical testing, then marketing. An Investigational New Drug application is filed with the Food and Drug Administration (FDA) before human testing, and a New Drug Application or Biological License Application is filed after Phase 3. Phase 4 begins once the drug is approved to market.'}],
  cite:'082026_Drugdiscovery.pdf, "Drug Discovery: Approaches" and "Overview of Drug Discovery"'},
 
-{id:'dd-13', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-metabolism-studies',
+{id:'dd-13', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-metabolism-studies',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which drug was discovered through drug metabolism studies?',
  options:[
@@ -98,7 +98,7 @@ QUESTIONS.push(
    t:'Sulfonamides inhibit dihydropteroate synthase, the enzyme bacteria need to build folic acid, by competing at the active site with p-aminobenzoic acid (PABA). The only difference between the two molecules is that PABA carries a carboxyl group where sulfanilamide carries a sulfonamide, which is close enough for the enzyme to accept it. The slide is titled for the point it rests on: bacteria carry out their own folic acid synthesis, which is what makes that pathway available as a target.'}],
  cite:'082026_Drugdiscovery.pdf, "DM Studies: Discovery of sulfanilamide" and "Drug Metabolism Studies: Terfenadine vs Fexofenadine"'},
 
-{id:'dd-14', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-side-effects',
+{id:'dd-14', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'approach', concept:'dd-side-effects',
  tags:['recall','reasoning'], source:'slide',
  stem:'Sildenafil was developed for angina and approved for erectile dysfunction. This illustrates which drug-discovery approach, and which other example belongs to it?',
  options:[
@@ -117,7 +117,7 @@ QUESTIONS.push(
    t:'Slide 40 draws the antihistamine chain: benzodioxanes, then the ethanolamines with diphenhydramine as the first class of antihistamines, then the ethylenediamines, then the phenothiazine promethazine. Promethazine was a good antihistamine and a strong sedative, and that sedation is what led to chlorpromazine and the antipsychotics. Sildenafil citrate was begun by Pfizer in 1989 for angina, showed no effect on angina in trials, and was approved in 1998 as the first oral treatment for erectile dysfunction. It is also used in pulmonary arterial hypertension. Its chemical class is pyrazolo-pyrimidine and it works by inhibiting phosphodiesterase 5, which relaxes smooth muscle.'}],
  cite:'082026_Drugdiscovery.pdf, "Observation of Side Effects", the two "(Contd.)" slides that follow, and "Observation of Side Effects: Sildenafil citrate"'},
 
-{id:'dd-15', lowYield:true, prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-biologics',
+{id:'dd-15', skill:'tell', lowYield:true, prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'dd-biologics',
  tags:['recall','compare'], source:'slide',
  stem:'Which of the following is true of a biologic compared with a small-molecule drug?',
  options:[
@@ -137,7 +137,7 @@ QUESTIONS.push(
  cite:'082026_Drugdiscovery.pdf, "Biologics vs. Small-Molecule Drugs"'},
 
 /* ═══════════ STRUCTURE–ACTIVITY RELATIONSHIP ═══════════ */
-{id:'sar-1', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-brown-fraser',
+{id:'sar-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-brown-fraser',
  tags:['recall','reasoning'], source:'slide',
  stem:'Brown and Fraser (1869) converted tertiary amines to quaternary ammonium compounds and observed muscle relaxation. What conclusion followed from their work?',
  options:[
@@ -158,7 +158,7 @@ QUESTIONS.push(
    t:'It is not true that all quaternary ammonium compounds are muscle relaxants. Acetylcholine is a quaternary ammonium compound and it is the neurotransmitter that activates muscle contraction. What survives is the general statement that molecular structure influences biological activity.'}],
  cite:'082426_IntroductiontoSAR.pdf, "Early SAR" and "Conclusions: Early SAR"'},
 
-{id:'sar-2', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-agonist-antagonist',
+{id:'sar-2', skill:'tell', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'sar-agonist-antagonist',
  tags:['definition','compare'], source:'slide',
  stem:'What separates an agonist from an antagonist at a receptor?',
  options:[
@@ -177,7 +177,7 @@ QUESTIONS.push(
    t:'Acetylcholine is the agonist: a neurotransmitter and activator of muscle contraction, and the smaller of the two molecules. Tubocurarine is the antagonist: a neuromuscular blocking agent that causes muscle relaxation by keeping acetylcholine off its receptors, and the larger molecule. The general observation is that antagonists of a natural neurotransmitter tend to be larger than the neurotransmitter itself.'}],
  cite:'082426_IntroductiontoSAR.pdf, "Agonists and Antagonists" and "Selectivity of Drug Action and Drug Receptors"'},
 
-{id:'sar-3', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'antagonist-size-observation',
+{id:'sar-3', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sar', concept:'antagonist-size-observation',
  tags:['reasoning','structure'], source:'slide',
  stem:'Tubocurarine blocks the receptors that acetylcholine activates. Which generalisation about antagonists does this pair illustrate?',
  options:[
@@ -199,7 +199,7 @@ QUESTIONS.push(
  quote:'Molecules that block the effects of natural neurotransmitters (antagonists) generally are larger in size than the native compound'},
 
 /* ═══════════ ABSORPTION II — DRUG–DRUG INTERACTIONS ═══════════ */
-{id:'ab2-1', dupOf:'sa-ab2-1', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-four-mechanisms',
+{id:'ab2-1', skill:'recall', dupOf:'sa-ab2-1', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-four-mechanisms',
  tags:['list','recall'], source:'slide',
  stem:'Which of the following is a mechanism by which a co-administered substance changes the oral absorption of a drug?',
  options:[
@@ -218,7 +218,7 @@ QUESTIONS.push(
    t:'Digoxin is a substrate for the P-glycoprotein efflux pump. Verapamil inhibits intestinal P-glycoprotein, so less digoxin is pumped back into the gut and blood levels rise. Rifampin induces intestinal P-glycoprotein expression, so more is pumped back and blood levels fall. Same drug, same transporter, opposite directions.'}],
  cite:'090426_ADMETAbsorption_II.pdf, "Oral Route of Drug Administration" (the Drug–Drug Interactions slide) and "Key Concepts"'},
 
-{id:'ab2-2', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-quinolone-chelation',
+{id:'ab2-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-quinolone-chelation',
  tags:['structure','reasoning'], source:'slide',
  stem:'A patient takes ciprofloxacin with an antacid and the antibacterial fails. Which groups on the quinolone are responsible, and what does the chelate do?',
  options:[
@@ -241,7 +241,7 @@ QUESTIONS.push(
    t:'Bone and teeth are calcium-rich, so tetracyclines accumulate in them in proportion to the amount given and the duration of treatment while those structures are forming. Tetracyclines are yellow, and in advanced cases the discoloration is permanent and the teeth turn brown. This is why tetracyclines are normally avoided in children aged 6 to 12, while the permanent teeth are forming.'}],
  cite:'090426_ADMETAbsorption_II.pdf, "Oral Route of Drug Administration (Contd.): 5" and "Tetracyclines: Chelation"'},
 
-{id:'ab2-3', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-motility',
+{id:'ab2-3', skill:'tell', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-motility',
  tags:['compare','recall'], source:'slide',
  stem:'Loperamide and bisacodyl both change drug absorption by altering gastrointestinal motility. How does each act?',
  options:[
@@ -260,7 +260,7 @@ QUESTIONS.push(
    t:'Transit time sets how long a drug stays in contact with the absorbing surface, so changing it changes absorption. The deck records the result as variable rather than giving it a single direction, so the examinable point is which way each drug moves transit, not what that does to any particular drug.'}],
  cite:'090426_ADMETAbsorption_II.pdf, "Oral Route of Drug Administration (Contd.): 8"'},
 
-{id:'ab2-4', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-cholestyramine',
+{id:'ab2-4', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ab2-cholestyramine',
  tags:['reasoning','predict'], source:'slide',
  stem:'Cholestyramine given with furosemide decreases the diuretic effect. Cholestyramine hinders drug absorption by:',
  options:[
@@ -281,7 +281,7 @@ QUESTIONS.push(
    t:'Activated charcoal is used in the emergency treatment of some poisonings for exactly this reason. Its very large surface area adsorbs the poison in the gut, so less of it is free to be absorbed. The same property that creates the unwanted resin interaction is what makes charcoal useful.'}],
  cite:'090426_ADMETAbsorption_II.pdf, "Oral Route of Drug Administration (Contd.)" and "Oral Route of Drug Administration (Contd.): 2"'},
 
-{id:'ab2-5', dupOf:'sa-ab2-2', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'ab2-prodrug-def',
+{id:'ab2-5', skill:'recall', dupOf:'sa-ab2-2', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'ab2-prodrug-def',
  tags:['definition','list'], source:'slide',
  stem:'What is a prodrug?',
  options:[
@@ -302,7 +302,7 @@ QUESTIONS.push(
    t:'Every one of these five is an ester: an ethyl ester for enalapril and oseltamivir, a valine ester for valacyclovir, a decanoate ester for haloperidol, a phosphate ester for phenytoin and a dipivalic acid diester for dipivefrin. An ester is a way to change a molecule\'s solubility or lipophilicity while being confident the change will be undone in the body. The deck names the converting enzyme for three of them: esterases for oseltamivir and dipivefrin, and phosphatases for fosphenytoin, with a conversion half-life of 8 to 15 minutes. For enalapril, valacyclovir and haloperidol decanoate it records the conversion without naming the enzyme.'}],
  cite:'090426_ADMETAbsorption_II.pdf, "Prodrugs: 1" and "Key Concepts: 2"'},
 
-{id:'ab2-6', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'ab2-prodrug-match',
+{id:'ab2-6', skill:'apply', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'ab2-prodrug-match',
  tags:['reasoning','compare'], source:'slide',
  stem:'Haloperidol decanoate is given intramuscularly once a month; haloperidol is taken orally two or three times a day. What accounts for the difference?',
  options:[
@@ -322,7 +322,7 @@ QUESTIONS.push(
  cite:'090426_ADMETAbsorption_II.pdf, "Prodrugs (Contd.): 4"'},
 
 /* ═══════════ THE SLIDE-49 CASE — Sikazwe, Lecture 10 ═══════════ */
-{id:'df-14', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'induction-plot-case',
+{id:'df-14', skill:'read', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'ddi', concept:'induction-plot-case',
  tags:['case','predict'], source:'slide', img:'dm_triazolam_plot_clean',
  stem:'Two single-dose triazolam concentration curves are shown, X and T. One was recorded after several days of rifampin. Which plot is triazolam given with rifampin?',
  options:[

@@ -8,7 +8,7 @@
 QUESTIONS.push(
 
 /* ═══════════ LECTURE 14 — functional groups and metabolism ═══════════ */
-{id:'fg-22', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'oh', concept:'tertiary-alcohol-fate',
+{id:'fg-22', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'oh', concept:'tertiary-alcohol-fate',
  tags:['reasoning','structure'], source:'slide',
  stem:'A drug carries a tertiary alcohol. What is its metabolic fate?',
  options:[
@@ -29,7 +29,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 22',
  quote:'Hydroxy (OH): 1o, 2o, 3o can undergo phases 1 and 2 metabolism'},
 
-{id:'fg-23', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'benzene-arene-oxide',
+{id:'fg-23', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'benzene-arene-oxide',
  tags:['mechanism','reasoning'], source:'slide',
  stem:'Benzene is oxidised by CYP2E1 to an arene oxide. What becomes of the arene oxide?',
  options:[
@@ -50,7 +50,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 7; CYP2E1 substrates Lecture #13 (MCMet-9_15_2026.pdf) slide 37; epoxide defense Lecture #15 (MCMet-9_17_2026.pdf) slide 60',
  quote:'Aromatic HCs: Benzene can be biotransformed to….'},
 
-{id:'fg-24', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'phosphate-ester-hydrolysis',
+{id:'fg-24', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'phosphate-ester-hydrolysis',
  tags:['enzyme','reaction-id'], source:'slide',
  stem:'Prednisolone phosphate is given intravenously and prednisolone appears in the plasma. Which enzyme releases it, and what is the other product?',
  options:[
@@ -71,7 +71,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 27; sulfatase slide 28; O-dealkylation slide 17',
  quote:'Phosphates: Phosphate esters undergo phosphatase hydrolysis · Others: Fosphenytoin (prodrug), ATP, DNA, etc.'},
 
-{id:'fg-25', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'sulfate-ester-hydrolysis',
+{id:'fg-25', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'sulfate-ester-hydrolysis',
  tags:['enzyme','reaction-id'], source:'slide',
  stem:'Estrone sulfate circulates in plasma and estrone is released from it in tissue. Which enzyme releases estrone?',
  options:[
@@ -92,7 +92,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 28; sulfotransferase slide 29; phosphatase slide 27',
  quote:'Sulfates: Sulfate esters undergo Sulfatase hydrolysis'},
 
-{id:'fg-26', lowYield:true, prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'quinone-nqo1',
+{id:'fg-26', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'quinone-nqo1',
  tags:['enzyme','reasoning'], source:'slide',
  stem:'Which enzyme metabolises quinones?',
  options:[
@@ -114,7 +114,7 @@ QUESTIONS.push(
  quote:'Quinones: NADPH Quinone Oxidoreductase-1 (NQO1, overexpressed in many cancers) metabolizes quinones · NQO1 is inducible and polymorphic'},
 
 /* ═══════════ LECTURE 15 — toxicity mechanisms and organ toxicity ═══════════ */
-{id:'tx-31', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'aldehyde-electrophile-abacavir',
+{id:'tx-31', skill:'apply', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'aldehyde-electrophile-abacavir',
  tags:['case','mechanism'], source:'slide',
  stem:'Abacavir\'s primary alcohol is oxidised by alcohol dehydrogenase. Why is the product toxic?',
  options:[
@@ -135,7 +135,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 36; categories slide 30; ALDH Lecture #11 (MCMet-9_10_26.pdf) slide 23',
  quote:'Existing or bioactivated electrophilic carbonyls – Example: Aldehydes'},
 
-{id:'tx-32', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'sulfamethoxazole-dermal',
+{id:'tx-32', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'sulfamethoxazole-dermal',
  tags:['case','mechanism'], source:'slide',
  stem:'Sulfamethoxazole causes skin hypersensitivity in some patients. What is the hapten?',
  options:[
@@ -156,7 +156,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 58; organ list slide 51; haptens slide 42; nitrofurantoin slide 48',
  quote:'Dermal toxicity: Sulfamethoxazole (antibiotic hypersensitivity) · CYP metabolism leads to nitroso haptens which trigger an immune response'},
 
-{id:'tx-33', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'mptp-mao-b',
+{id:'tx-33', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'mptp-mao-b',
  tags:['case','mechanism'], source:'slide',
  stem:'MPTP, a designer drug, produces Parkinson\'s symptoms. What is the mechanism?',
  options:[

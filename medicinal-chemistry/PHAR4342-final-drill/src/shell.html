@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PHAR 4342 — Cumulative Final Drill</title>
+<title>Exam drill</title>
 <style>
 :root{
   --ink:#16202E; --ink-2:#22303F; --paper:#FFFFFF; --surface:#F2F4F7;
@@ -72,6 +72,8 @@ h3{font-size:16px;margin:22px 0 8px}
 .tag{font-size:11px;padding:2px 7px;border-radius:20px;border:1px solid;white-space:nowrap}
 .tag.sik{color:var(--sik);border-color:#BDD0EA;background:#F1F6FD}
 .tag.yen{color:var(--yen);border-color:#DCC7EA;background:#F8F2FB}
+.tag.p3{background:#eef6ee;color:#2f6b3a;border-color:#bfe0c4}
+.tag.p4{background:#f6eef6;color:#6b2f66;border-color:#dfbfdc}
 .subs{border-top:1px solid var(--line-soft);padding:6px 8px 10px}
 .subrow{
   display:flex;align-items:center;gap:10px;padding:9px 8px;border-radius:8px
@@ -299,6 +301,14 @@ table.gap tr:last-child td{border-bottom:0}
 .gobj .prose{font-size:14.5px;margin:0 0 10px}
 .gobj .reftab{margin:8px 0 14px}
 .gobj .reffig img{max-width:620px;width:100%}
+.gpt{margin:0 0 12px}
+.gpt h5{margin:14px 0 4px;font-size:14.5px;color:var(--text)}
+.gpt ul{margin:2px 0 0 18px;padding:0}
+.gpt li{margin:3px 0;font-size:14.5px;line-height:1.5}
+.gtell{border:1px solid;border-radius:9px;padding:11px 14px;margin:14px 0;font-size:14px;line-height:1.55;border-color:#7a5cc4;background:rgba(122,92,196,.07)}
+.gtell>b{display:block;margin-bottom:4px}
+.gtell ul,.gpoll ul,.ghook ul{margin:4px 0 4px 18px;padding:0}
+.gtell li,.gpoll li,.ghook li{margin:3px 0}
 .ghook,.gpoll,.gask{border:1px solid;border-radius:9px;padding:11px 14px;margin:14px 0;font-size:14px;line-height:1.55}
 .ghook{border-color:#d9822b;background:rgba(217,130,43,.08)}
 .gpoll{border-color:#3b62c4;background:rgba(59,98,196,.07)}
@@ -307,6 +317,20 @@ table.gap tr:last-child td{border-bottom:0}
 .gask ul{margin:6px 0 6px 18px;padding:0}
 .gask li{margin:3px 0}
 @media (max-width:600px){.gwords{grid-template-columns:1fr}.gwords dd{margin:0 0 6px 10px}}
+/* labels on a question card, typed question kinds */
+.lbl{font-size:11.5px;color:var(--text-dim);border:1px solid var(--line-soft);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.lbl.kind{background:var(--surface)}
+.numin{display:flex;align-items:center;gap:10px;margin:14px 0 6px}
+.numin input{font:inherit;font-size:17px;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;width:180px;max-width:60%}
+.numin .units{font-size:15px;color:var(--text-dim)}
+.steps{margin:10px 0 6px;padding-left:22px}
+.steps li{margin:6px 0}
+.steps .stepk{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);width:118px}
+.steps code{font-size:14px;background:var(--surface);padding:2px 6px;border-radius:5px}
+.steps .stepwhy,.matchtab .stepwhy{display:block;font-size:13px;color:var(--text-dim);margin:3px 0 0}
+.misspick{display:flex;flex-wrap:wrap;gap:6px}
+.matchtab select{font:inherit;font-size:14px;padding:6px 8px;border:1.5px solid var(--line);border-radius:7px;max-width:100%;background:var(--paper)}
+.matchtab s{color:var(--bad)}
 .refnav-wrap{margin:0 0 20px;border:1px solid var(--line-soft);border-radius:8px;background:var(--surface)}
 .refnav-wrap summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--accent);list-style:none}
 .refnav-wrap summary::-webkit-details-marker{display:none}
@@ -334,7 +358,7 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
 <body>
 
 <header>
-  <h1>PHAR 4342 — Cumulative Final</h1>
+  <h1 id="courseTitle">Exam drill</h1>
   <div class="who">
     <span id="whoName">—</span>
     <button id="btnWho">Switch</button>
@@ -369,14 +393,33 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
 /* ==========================================================================
    DATA  (injected at build time)
    ========================================================================== */
+/*__COURSE__*/
+const BUILD = /*__BUILD__*/{stamp:'', questions:0, images:0};
 const IMAGES = /*__IMAGES__*/{};
 const QUESTIONS = /*__QUESTIONS__*/[];
 const TOPICS = /*__TOPICS__*/[];
+/* Which exam the simulator and the weighted pass follow, and its pools. A pool
+   filter is an object of field:value; an array value means "one of". */
+const EXAM = COURSE.exams.find(e => e.id === COURSE.activeExam) || COURSE.exams[0];
+/* Fields a pool filter may name: any question field, plus exam, module and
+   lecture, which come from the lecture the question's citation names. */
+const fieldOf = (q, k) => (k === 'exam' || k === 'module') ? (lecOf(q) || {})[k] : k === 'lecture' ? (lecOf(q) || {}).id : q[k];
+const poolFilter = f => q => Object.entries(f).every(([k, v]) => Array.isArray(v) ? v.includes(fieldOf(q, k)) : fieldOf(q, k) === v);
+EXAM.pools.forEach(p => { p.test = poolFilter(p.filter); });
+const poolOf = q => EXAM.pools.find(p => p.test(q));
+/* The lecture a question comes from, read from the deck its citation names. */
+const lecOf = q => {
+  if(q._lec !== undefined) return q._lec;
+  const c = q.cite || '';
+  return (q._lec = COURSE.lectures.find(l => c.includes(l.deck)) || null);
+};
+const examLabel = q => { const l = lecOf(q); if(!l) return '';
+  return `Exam ${l.exam} · ${l.module}`; };
 
 /* ==========================================================================
    STORAGE — namespaced per profile so several people can share one browser
    ========================================================================== */
-const NS = 'phar4342final';
+const NS = COURSE.ns;
 
 /* localStorage is not always reachable. Opening this file from disk can give
    the page an opaque origin, and a private window or blocked site data does the
@@ -448,7 +491,7 @@ function askProfile(force){
 
 /* ==========================================================================
    SPACED REPETITION
-   Rules implemented (Louis's spec):
+   Rules implemented:
      1 correct  -> longer interval each time, never retired permanently
      2 wrong    -> stays in active review, resurfaces after >=GAP other questions,
                    prefers a DIFFERENT question on the same concept
@@ -460,8 +503,19 @@ function askProfile(force){
      7 mastery  -> needs repeated correct answers on separate occasions
    ========================================================================== */
 const GAP = 4;                                   // min other questions before a missed concept returns
-const DAYS = [0, 1, 3, 7, 14, 30, 60];           // long-term schedule (box index -> days)
-const CRAM = [0, 8, 20, 45, 90, 160, 260];       // cram schedule (box index -> questions answered)
+/* Review paces. Cram spaces a mastered concept by how many questions are
+   answered after it; the other two by real days. Weekly is for a course that
+   examines every week: everything comes back within a fortnight. Semester is
+   for material that must hold for months. */
+const PACES = {
+  cram:     {by:'questions', steps:[0, 8, 20, 45, 90, 160, 260], label:'Exam cram',
+             blurb:'a correct concept returns after 8, 20, 45, 90… more questions, so everything can come back before an exam that is days away'},
+  weekly:   {by:'days', steps:[0, 1, 2, 4, 7, 10, 14], label:'Weekly exams',
+             blurb:'real days, 1, 2, 4, 7, 10, 14: nothing waits longer than two weeks'},
+  semester: {by:'days', steps:[0, 1, 3, 7, 14, 30, 60], label:'Semester',
+             blurb:'real days, 1, 3, 7, 14, 30, 60: for material that must still hold at a cumulative final'},
+};
+const DAYS = PACES.semester.steps;               // kept for the box range
 const MASTER_BOX = 3;                            // box at/above which a concept counts as mastered
 
 function st(concept){
@@ -471,12 +525,18 @@ function st(concept){
   }
   return DB.concepts[concept];
 }
-const cram = () => (DB.settings.mode||'cram') === 'cram';
+function pace(){
+  const p = DB.settings.pace || (DB.settings.mode === 'long' ? 'semester' : COURSE.paceDefault || 'cram');
+  return PACES[p] ? p : 'cram';
+}
+const cram = () => PACES[pace()].by === 'questions';
 
 function schedule(s){
-  const b = Math.max(0, Math.min(s.box, DAYS.length-1));
-  s.dueQ  = DB.qn + CRAM[b];
-  s.dueAt = Date.now() + DAYS[b]*86400000;
+  const P = PACES[pace()];
+  const b = Math.max(0, Math.min(s.box, P.steps.length-1));
+  // both clocks are set, so switching pace later keeps every concept schedulable
+  s.dueQ  = DB.qn + (cram() ? P.steps[b] : PACES.cram.steps[b]);
+  s.dueAt = Date.now() + (cram() ? PACES.semester.steps[b] : P.steps[b])*86400000;
 }
 function isDue(s){
   return cram() ? (DB.qn >= s.dueQ) : (Date.now() >= s.dueAt);
@@ -508,6 +568,20 @@ function record(q, result, picked, ms){   // result: 'correct' | 'wrong' | 'gues
   save();
 }
 
+/* Confidence on a correct answer. "Not sure" undoes the box advance the
+   correct answer gave, so the concept comes back at the short interval instead
+   of the next one; the log entry keeps the verdict for Weak spots. */
+function markShaky(q){
+  const last = DB.answers[DB.answers.length-1];
+  const s = st(q.concept);
+  if(last && last.qid === q.id && last.result === 'correct' && !last.conf){
+    last.conf = 'shaky';
+    s.box = Math.max(0, s.box - 1); s.streak = 0;
+    schedule(s); save();
+    return true;
+  }
+  return false;
+}
 /* Marking a correct answer as a guess after the fact. The correct path has
    already advanced the box; this pulls the concept back to unresolved and
    rewrites the logged result, so the answer log and the concept state agree. */
@@ -617,12 +691,12 @@ function masteryOf(pool){
   }
   return {mastered:m, touched:t, total:cs.length};
 }
-/* Exam weight per question. The paper is 50 questions: 38 from the Sikazwe
-   new pool, 8 Yendapally, 4 Sikazwe old. Dividing each pool's share of the
-   paper by the number of questions in that pool gives the marks each one
-   question stands for, which is what a miss actually costs. */
-const BLUEPRINT = {'Sikazwe|new':38, 'Yendapally|old':8, 'Sikazwe|old':4};
-const poolKey = q => q.prof + '|' + q.tier;
+/* Exam weight per question. Each pool in the manifest supplies a fixed number
+   of marks on the paper. Dividing a pool's share of the paper by the number of
+   questions in that pool gives the marks each one question stands for, which
+   is what a miss actually costs. */
+const BLUEPRINT = Object.fromEntries(EXAM.pools.map(p => [p.key, p.marks]));
+const poolKey = q => { const p = poolOf(q); return p ? p.key : 'none'; };
 const POOL_SIZE = (() => { const n = {}; QUESTIONS.forEach(q => { n[poolKey(q)] = (n[poolKey(q)]||0) + 1; }); return n; })();
 function markWeight(q){
   const k = poolKey(q);
@@ -630,9 +704,8 @@ function markWeight(q){
 }
 
 function profTag(p){
-  return p==='Sikazwe'
-    ? '<span class="tag sik">Sikazwe</span>'
-    : '<span class="tag yen">Yendapally</span>';
+  const cls = ['sik','yen','p3','p4'][COURSE.professors.indexOf(p)] || 'p3';
+  return `<span class="tag ${cls}">${esc(p)}</span>`;
 }
 </script>
 </body>

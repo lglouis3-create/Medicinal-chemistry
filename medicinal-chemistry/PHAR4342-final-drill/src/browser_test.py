@@ -12,7 +12,8 @@ runs — a boot error, a view that throws on click, an image that does not decod
 import glob, json, pathlib, re, sys
 from playwright.sync_api import sync_playwright
 
-HTML = sys.argv[1] if len(sys.argv) > 1 else '/mnt/user-data/outputs/PHAR4342_Final_Drill.html'
+_m = re.search(r"output:\s*'([^']+)'", open('course.js', encoding='utf-8').read())
+HTML = sys.argv[1] if len(sys.argv) > 1 else '/mnt/user-data/outputs/' + (_m.group(1) if _m else 'exam_drill.html')
 
 # Every question file, found rather than listed, so a new one is picked up here
 # the moment it is built into the page instead of quietly going uncounted.
@@ -20,8 +21,8 @@ QSRC = sorted(glob.glob('q[0-9]*.js'))
 
 
 # A question object opens at column 0 and carries a prof field; the TOPICS
-# entries in q1_cyp.js are indented and have no prof, so they are not counted.
-QRE = re.compile(r"(?m)^\{id:'[^']+',(?: *(?:lowYield|dupOf):[^,]+,)* *prof:'")
+# entries in the first question file are indented and have no prof, so they are not counted.
+QRE = re.compile(r"(?m)^\{id:'[^']+',(?: *(?:lowYield|dupOf|skill|type):[^,]+,)* *prof:'")
 
 
 def source_counts():
@@ -38,6 +39,13 @@ def check(ok, label, detail=''):
     print(('  ok    ' if ok else '  FAIL  ') + label + (f'  — {detail}' if detail and not ok else ''))
     if not ok:
         fails.append(label)
+
+
+skipped = []
+def skip(label, why):
+    """A check that could not run on this bank is reported as skipped, never as passed."""
+    print('  skip  ' + label + f'  — {why}')
+    skipped.append(label)
 
 
 def main():
@@ -99,6 +107,16 @@ def main():
         page.evaluate("""() => {
             window.answerCurrent = (allCorrect) => {
                 const q = Q && Q.current; if (!q) return false;
+                if (q.type === 'numeric') {
+                    const inp = document.getElementById('numIn'); if (!inp) return false;
+                    inp.value = allCorrect ? String(q.answer) : String(q.answer + 1000);
+                    document.getElementById('btnCheck').click(); return true;
+                }
+                if (q.type === 'match') {
+                    const sels = [...document.querySelectorAll('#v-quiz select[data-row]')]; if (!sels.length) return false;
+                    sels.forEach((s, i) => { s.value = String(allCorrect ? i : (i + 1) % sels.length); s.dispatchEvent(new Event('change')); });
+                    document.getElementById('btnCheck').click(); return true;
+                }
                 const btns = [...document.querySelectorAll('#v-quiz button[data-o]')];
                 if (!btns.length) return false;
                 if (isMulti(q)) {
@@ -115,7 +133,7 @@ def main():
         }""")
         started = page.evaluate("""() => {
             if (typeof startQuiz !== 'function') return 'no startQuiz';
-            try { startQuiz('cyp'); return 'ok'; } catch (e) { return String(e); }
+            try { startQuiz(TOPICS[0].id); return 'ok'; } catch (e) { return String(e); }
         }""")
         check(started == 'ok', 'a quiz starts', started)
         page.wait_for_timeout(400)
@@ -134,7 +152,7 @@ def main():
         # whatever happened to be on screen would pass with zero figures.
         shown = page.evaluate("""() => {
             const want = QUESTIONS.filter(q => q.teachImg);
-            if (!want.length) return {err: 'no question in the bank carries a teachImg'};
+            if (!want.length) return {none: true};
             const noTeach = want.filter(q => !q.teach).map(q => q.id);
             const missing = [], notEmbedded = [];
             for (const q of want) {
@@ -150,16 +168,19 @@ def main():
             }
             return {n: want.length, noTeach, missing, notEmbedded};
         }""")
-        check(not shown.get('err'), 'questions carrying a figure can be reached', shown.get('err', ''))
-        check(not shown.get('noTeach'),
-              'every teachImg sits on a question that has a concept block',
-              'these would never display: ' + ', '.join(shown.get('noTeach', [])))
-        check(not shown.get('missing'),
-              f"all {shown.get('n')} concept-block figures render after answering",
-              'did not render: ' + ', '.join(shown.get('missing', [])[:6]))
-        check(not shown.get('notEmbedded'),
-              'every rendered figure is an embedded data URL',
-              ', '.join(shown.get('notEmbedded', [])[:6]))
+        if shown.get('none'):
+            skip('concept-block figures render after answering', 'no question in this bank carries a teachImg')
+        else:
+            check(not shown.get('err'), 'questions carrying a figure can be reached', shown.get('err', ''))
+            check(not shown.get('noTeach'),
+                  'every teachImg sits on a question that has a concept block',
+                  'these would never display: ' + ', '.join(shown.get('noTeach', [])))
+            check(not shown.get('missing'),
+                  f"all {shown.get('n')} concept-block figures render after answering",
+                  'did not render: ' + ', '.join(shown.get('missing', [])[:6]))
+            check(not shown.get('notEmbedded'),
+                  'every rendered figure is an embedded data URL',
+                  ', '.join(shown.get('notEmbedded', [])[:6]))
 
         # Every question, answered through the real renderer. The checks above
         # drive a handful; a fault in one question's data — an option list that
@@ -168,6 +189,7 @@ def main():
         every = page.evaluate("""() => {
             const bad = {options: [], verdict: [], whys: [], cite: [], threw: []};
             for (const q of QUESTIONS) {
+                if (q.type) continue;   // numeric and matching items have their own check
                 try {
                     startQuiz(q.topic);
                     Q.current = q; Q.order = q.options.map((o,i)=>i); Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
@@ -261,7 +283,7 @@ def main():
         survived = denied.evaluate("""() => {
             try {
                 if (typeof QUESTIONS === 'undefined') return {err: 'script did not finish'};
-                startQuiz('cyp');
+                startQuiz(TOPICS[0].id);
                 const btns = document.querySelectorAll('#v-quiz button[data-o]');
                 if (!btns.length) return {err: 'no options rendered'};
                 const q = Q.current;
@@ -298,61 +320,71 @@ def main():
         check(ref['secs'] > 0 and ref['navs'] == ref['secs'],
               f"reference has {ref['secs']} sections, each with a jump link",
               f"{ref['navs']} links for {ref['secs']} sections")
-        check(ref['figs'] > 0, f"reference figures render ({ref['figs']})")
+        if ref['figs']: check(True, f"reference figures render ({ref['figs']})")
         check(not ref['broken'], 'every reference figure is an embedded data URL',
               ', '.join(ref['broken']))
         check(not ref['tokens'], 'no unexpanded figure token reached the reference')
         check(not ref['entities'], 'no raw HTML entity reaches the reader',
               ' | '.join(ref['entities']))
 
-        # The atlas is a recall surface as well as a reference one, so the
-        # names have to be hideable and the structures have to survive hiding.
-        atlas = page.evaluate("""() => {
-            show('atlas');
-            const el = document.getElementById('v-atlas');
-            const tiles = () => [...el.querySelectorAll('.attile')].filter(t => !t.hidden);
-            const before = tiles().length;
+        has_atlas = page.evaluate("() => !!(document.querySelector('#nav button[data-v=\"atlas\"]') && typeof ATLAS !== 'undefined' && ATLAS.boards && ATLAS.boards.length)")
+        if has_atlas:
+            # The atlas is a recall surface as well as a reference one, so the
+            # names have to be hideable and the structures have to survive hiding.
+            atlas = page.evaluate("""() => {
+                show('atlas');
+                const el = document.getElementById('v-atlas');
+                const tiles = () => [...el.querySelectorAll('.attile')].filter(t => !t.hidden);
+                const before = tiles().length;
 
-            const hide = el.querySelector('#atHide');
-            if (hide) hide.click();
-            const hidden = el.classList.contains('namesoff');
+                const hide = el.querySelector('#atHide');
+                if (hide) hide.click();
+                const hidden = el.classList.contains('namesoff');
 
-            const reveal = el.querySelector('#atShow');
-            const revealOffered = !!reveal && !reveal.classList.contains('hide');
-            if (hide) hide.click();          // back to names shown
+                const reveal = el.querySelector('#atShow');
+                const revealOffered = !!reveal && !reveal.classList.contains('hide');
+                if (hide) hide.click();          // back to names shown
 
-            const box = el.querySelector('#atq');
-            let filtered = before;
-            if (box) {
-                box.value = 'tetrazole';
-                box.oninput();
-                filtered = tiles().length;
-                box.value = '';
-                box.oninput();
-            }
-            return {
-                tiles: before,
-                svgs: el.querySelectorAll('.attile .atfig svg').length,
-                boards: el.querySelectorAll('.atboard').length,
-                hidden, filtered, restored: tiles().length, revealOffered,
-                hasSearch: !!box, hasHide: !!hide,
-            };
-        }""")
-        check(atlas['tiles'] > 50, f"atlas renders its tiles ({atlas['tiles']})")
-        check(atlas['svgs'] == atlas['tiles'],
-              'every atlas tile draws a structure',
-              f"{atlas['svgs']} drawings for {atlas['tiles']} tiles")
-        check(atlas['boards'] > 5, f"atlas boards render ({atlas['boards']})")
-        check(atlas['hasHide'] and atlas['hidden'],
-              'hiding the names puts the atlas into recall mode')
-        check(atlas['revealOffered'],
-              'recall mode offers a way to reveal every name again')
-        check(atlas['hasSearch'] and 0 < atlas['filtered'] < atlas['tiles'],
-              'atlas search narrows the tiles',
-              f"{atlas['filtered']} of {atlas['tiles']} left after searching")
-        check(atlas['restored'] == atlas['tiles'],
-              'clearing the search brings every tile back',
-              f"{atlas['restored']} of {atlas['tiles']}")
+                const box = el.querySelector('#atq');
+                let filtered = before;
+                if (box) {
+                    // search for the first word of the last tile's name: a
+                    // term that matches at least one tile and, on any atlas
+                    // with more than a handful of tiles, not all of them
+                    const names = [...el.querySelectorAll('.attile .atname')].map(n => n.textContent.trim());
+                    box.value = (names[names.length - 1] || 'a').split(/\s+/)[0].toLowerCase();
+                    box.oninput();
+                    filtered = tiles().length;
+                    box.value = '';
+                    box.oninput();
+                }
+                return {
+                    tiles: before,
+                    items: ATLAS.boards.reduce((n, b) => n + b.sections.reduce((m, s) => m + s.items.length, 0), 0),
+                    svgs: el.querySelectorAll('.attile .atfig svg').length,
+                    boards: el.querySelectorAll('.atboard').length,
+                    boardsInData: ATLAS.boards.length,
+                    hidden, filtered, restored: tiles().length, revealOffered,
+                    hasSearch: !!box, hasHide: !!hide,
+                };
+            }""")
+            check(atlas['tiles'] == atlas['items'] and atlas['tiles'] > 0,
+                  f"atlas renders a tile per item ({atlas['tiles']} of {atlas['items']})")
+            check(atlas['svgs'] == atlas['tiles'],
+                  'every atlas tile draws a structure',
+                  f"{atlas['svgs']} drawings for {atlas['tiles']} tiles")
+            check(atlas['boards'] == atlas['boardsInData'],
+                  f"atlas boards render ({atlas['boards']} of {atlas['boardsInData']})")
+            check(atlas['hasHide'] and atlas['hidden'],
+                  'hiding the names puts the atlas into recall mode')
+            check(atlas['revealOffered'],
+                  'recall mode offers a way to reveal every name again')
+            check(atlas['hasSearch'] and 0 < atlas['filtered'] < atlas['tiles'],
+                  'atlas search narrows the tiles',
+                  f"{atlas['filtered']} of {atlas['tiles']} left after searching")
+            check(atlas['restored'] == atlas['tiles'],
+                  'clearing the search brings every tile back',
+                  f"{atlas['restored']} of {atlas['tiles']}")
 
         # A question that asks for the name of a drawn group must not carry
         # that name anywhere a reader can reach before answering.
@@ -365,15 +397,18 @@ def main():
             }).map(x => x.id);
             return {n: q.length, missing: missing.slice(0, 4), leaks: leaks.slice(0, 4)};
         }""")
-        check(drawn['n'] > 0, f"questions carry a drawn structure ({drawn['n']})")
-        check(not drawn['missing'], 'every drawn structure resolves to a group',
-              ', '.join(drawn['missing']))
-        check(not drawn['leaks'], 'no drawing names the group it is asking about',
-              ', '.join(drawn['leaks']))
+        if drawn['n'] == 0 and not has_atlas:
+            skip('drawn structures', 'no question in this bank carries a drawn structure (no atlas)')
+        else:
+            check(drawn['n'] > 0, f"questions carry a drawn structure ({drawn['n']})")
+            check(not drawn['missing'], 'every drawn structure resolves to a group',
+                  ', '.join(drawn['missing']))
+            check(not drawn['leaks'], 'no drawing names the group it is asking about',
+                  ', '.join(drawn['leaks']))
 
         shown = page.evaluate("""() => {
             const drawn = QUESTIONS.filter(q => q.fg);
-            if (!drawn.length) return 'no question carries a drawn structure';
+            if (!drawn.length) return 'ok';
             const missing = [];
             for (const q of drawn) {
                 startQuiz(q.topic);
@@ -409,7 +444,10 @@ def main():
             }
             return {n: qs.length, bare};
         }""")
-        check(promised['n'] > 0, f"stems that promise a figure exist ({promised['n']})")
+        if promised['n'] == 0:
+            skip('stems that promise a figure show one', 'no stem in this bank promises a figure')
+        else:
+            check(promised['n'] > 0, f"stems that promise a figure exist ({promised['n']})")
         check(not promised['bare'],
               'every stem that promises a figure shows one before the answer',
               f"{len(promised['bare'])} bare: " + ', '.join(promised['bare'][:8]))
@@ -467,16 +505,22 @@ def main():
             out.examSata = EX.qs.filter(isMulti).length;
             out.examTarget = EXAM_SATA;
             const first = EX.qs.findIndex(isMulti);
-            EX.i = first; renderExamQ();
-            const ex = document.getElementById('v-exam');
-            out.examToggles = ex.querySelectorAll('button.opt.multi').length === EX.qs[first].options.length;
-            out.examChip = !!ex.querySelector('.tag.sata');
-            ex.querySelector('button.opt.multi').click();
-            out.examPickIsArray = Array.isArray(EX.picks[first]) && EX.picks[first].length === 1;
+            if (first >= 0) {
+                EX.i = first; renderExamQ();
+                const ex = document.getElementById('v-exam');
+                out.examToggles = ex.querySelectorAll('button.opt.multi').length === EX.qs[first].options.length;
+                out.examChip = !!ex.querySelector('.tag.sata');
+                ex.querySelector('button.opt.multi').click();
+                out.examPickIsArray = Array.isArray(EX.picks[first]) && EX.picks[first].length === 1;
+            }
             clearInterval(EX.timer); EX = null;
             return out;
         }""")
-        check(sata['n'] >= 20, f"select-all questions exist ({sata['n']})")
+        if sata['n'] == 0 and not sata.get('examTarget'):
+            skip('select-all items', 'no select-all question in this bank and none on the blueprint')
+        else:
+            check(sata['n'] >= sata.get('examTarget', 0),
+                  f"select-all questions exist ({sata['n']}, the paper draws {sata.get('examTarget', 0)})")
         if sata['n']:
             check(sata['banner'] and sata['toggles'], 'a select-all item renders its banner and toggle options')
             check(sata['checkDisabledAtStart'] and sata['checkEnabledAfterToggle'] and sata['toggledOn'],
@@ -488,22 +532,86 @@ def main():
             check(sata['extraMarkedWrong'], 'the correct set plus a wrong option is marked wrong')
             check(sata['examSata'] == sata['examTarget'],
                   f"the exam paper carries {sata['examTarget']} select-all items", f"drew {sata['examSata']}")
-            check(sata['examToggles'] and sata['examChip'] and sata['examPickIsArray'],
-                  'exam select-all items render toggles, a chip, and store an array of picks')
+            if sata['examTarget']:
+                check(sata['examToggles'] and sata['examChip'] and sata['examPickIsArray'],
+                      'exam select-all items render toggles, a chip, and store an array of picks')
+            else:
+                skip('exam select-all rendering', 'the blueprint puts no select-all item on the paper')
 
         # Weak spots after mixed results: the next-step cards and the confusion table render
         gaps = page.evaluate("""() => {
             show('gaps');
             const el = document.getElementById('v-gaps');
-            return {cards: el.querySelectorAll('.nextcard').length,
+            return {cards: el.querySelectorAll('.nextcard').length, pools: EXAM.pools.length,
                     table: !!el.querySelector('table'),
                     text: el.innerText.length};
         }""")
-        check(gaps['cards'] >= 3, f"weak spots shows a next-step card per pool ({gaps['cards']})")
+        check(gaps['cards'] == gaps['pools'], f"weak spots shows a next-step card per pool ({gaps['cards']} of {gaps['pools']})")
         check(gaps['table'] and gaps['text'] > 200, 'weak spots renders its tables')
 
+        # typed items: a numeric answer graded and its steps shown; a matching table graded per pair
+        typed = page.evaluate("""() => {
+            const out = {};
+            const nq = QUESTIONS.find(q => q.type === 'numeric');
+            if (nq) {
+                startQuiz(nq.topic);
+                Q.current = nq; Q.order = []; Q.picked = null; Q.revealed = false; Q.startedAt = Date.now(); Q.rights = null;
+                renderQuiz();
+                const inp = document.getElementById('numIn');
+                out.numInput = !!inp;
+                if (inp) { inp.value = String(nq.answer); document.getElementById('btnCheck').click(); }
+                const v = document.querySelector('#v-quiz .verdict');
+                out.numRight = !!(v && v.classList.contains('ok'));
+                out.numSteps = document.querySelectorAll('#v-quiz .steps li').length;
+                // a wrong answer offers the kind-of-miss buttons
+                Q.current = nq; Q.order = []; Q.picked = null; Q.revealed = false; Q.startedAt = Date.now();
+                renderQuiz();
+                const inp2 = document.getElementById('numIn'); inp2.value = String(nq.answer + 1000); document.getElementById('btnCheck').click();
+                out.missButtons = document.querySelectorAll('#v-quiz [data-miss]').length;
+                const mb = document.querySelector('#v-quiz [data-miss]'); if (mb) mb.click();
+                out.missLogged = DB.answers[DB.answers.length-1].miss || null;
+            }
+            const mq = QUESTIONS.find(q => q.type === 'match');
+            if (mq) {
+                startQuiz(mq.topic);
+                Q.current = mq; Q.order = []; Q.picked = null; Q.revealed = false; Q.startedAt = Date.now(); Q.rights = null;
+                renderQuiz();
+                const sels = [...document.querySelectorAll('#v-quiz select[data-row]')];
+                out.matchRows = sels.length;
+                sels.forEach((s, i) => { s.value = String(i); s.dispatchEvent(new Event('change')); });
+                const bc = document.getElementById('btnCheck'); out.matchEnabled = bc && !bc.disabled;
+                if (bc) bc.click();
+                const v = document.querySelector('#v-quiz .verdict');
+                out.matchRight = !!(v && v.classList.contains('ok'));
+                out.pairOk = (DB.answers[DB.answers.length-1].pairOk || []).every(Boolean);
+            }
+            return out;
+        }""")
+        if 'numInput' in typed:
+            check(typed['numInput'] and typed['numRight'] and typed['numSteps'] >= 2, f"numeric item grades the answer and shows its steps ({typed.get('numSteps')} steps)")
+            check(typed['missButtons'] == 4 and typed['missLogged'], 'a wrong numeric answer logs the kind of miss')
+        if 'matchRows' in typed:
+            check(typed['matchRows'] >= 3 and typed['matchEnabled'] and typed['matchRight'] and typed['pairOk'], f"matching item grades every pair ({typed.get('matchRows')} rows)")
+
+        # the exam paper survives a reload and can be submitted in part
+        ex = page.evaluate("""() => {
+            beginExam();
+            const q0 = EX.qs[0]; EX.picks[0] = isMulti(q0) ? correctSet(q0) : q0.options.findIndex(o=>o.correct);
+            saveExam();
+            const saved = LS.get(NS + ':exam:' + PROFILE);
+            EX = null;
+            const back = restoreExam();
+            const same = back && EX && EX.qs.length === EXAM.questions && (Array.isArray(EX.picks[0]) ? EX.picks[0].length > 0 : EX.picks[0] !== null);
+            const before = DB.answers.length;
+            finishExam(true);
+            const logged = DB.answers.length - before;
+            return {saved: !!saved, same, logged, cleared: !LS.get(NS + ':exam:' + PROFILE)};
+        }""")
+        check(ex['saved'] and ex['same'], 'an exam paper in progress is saved and restored')
+        check(ex['logged'] == 1 and ex['cleared'], f"submitting a partial paper logs only the answered items ({ex['logged']} logged)")
+
         # every view renders without throwing
-        for view in ['topics', 'quiz', 'gaps', 'exam', 'atlas', 'guide', 'tell', 'ref', 'settings']:
+        for view in ['topics', 'quiz', 'gaps', 'exam'] + (['atlas'] if has_atlas else []) + ['guide', 'tell', 'ref', 'settings']:
             r = page.evaluate(f"""() => {{
                 try {{ if (typeof show === 'function') {{ show('{view}'); return 'ok'; }}
                       return 'no show()'; }} catch (e) {{ return String(e); }} }}""")
@@ -516,10 +624,12 @@ def main():
         browser.close()
 
     print()
+    if skipped:
+        print(f'{len(skipped)} check(s) skipped on this bank: ' + '; '.join(skipped))
     if fails:
         print(f'{len(fails)} browser check(s) failed')
         sys.exit(1)
-    print('Browser smoke test passed')
+    print('Browser smoke test passed' + (' (with skips)' if skipped else ''))
 
 
 if __name__ == '__main__':

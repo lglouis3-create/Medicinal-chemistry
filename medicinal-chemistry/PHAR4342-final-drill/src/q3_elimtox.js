@@ -1,6 +1,6 @@
 QUESTIONS.push(
 /* ======================= ELIMINATION ======================= */
-{id:'el-1', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'elim-definition',
+{id:'el-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'elim-definition',
  tags:['definition'], source:'slide',
  stem:'How is elimination defined?',
  options:[
@@ -17,7 +17,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 5, 8; distribution in 090426_Distribution.pdf; metabolism in Lecture #10 (MCMet-9_4_26-9_9_26.pdf)',
  quote:'Irreversible physical removal of metabolized & unmetabolized xenobiotics from the body'},
 
-{id:'el-2', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'route-ranking',
+{id:'el-2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'route-ranking',
  tags:['ranking','reasoning'], source:'both',
  stem:'Rank the routes of elimination from major to minor.',
  options:[
@@ -35,7 +35,7 @@ QUESTIONS.push(
  quote:'Renal/Urinary Primary route for polar free or unbound drugs and metabolite(s)',
  source:'transcript'},
 
-{id:'el-3', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'polar-renal-lipophilic-biliary',
+{id:'el-3', skill:'tell', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'polar-renal-lipophilic-biliary',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Hydrophilic and lipophilic xenobiotics are eliminated predominantly by which routes, respectively?',
  options:[
@@ -52,7 +52,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 7, 16',
  quote:'Hepatic/Bile/Fecal Primary route for lipid-soluble drugs, metabolites'},
 
-{id:'el-4', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'gfr-requirements',
+{id:'el-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'gfr-requirements',
  tags:['reasoning'], source:'slide',
  stem:'Which two properties does a molecule need in order to be filtered at the glomerulus?',
  options:[
@@ -69,7 +69,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 11',
  quote:'Low MW (<60 kDa) are filtered · Unbound or free drugs are filtered'},
 
-{id:'el-5', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'tubular-reabsorption-ionization',
+{id:'el-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'tubular-reabsorption-ionization',
  tags:['reasoning','mechanism'], source:'slide',
  stem:'In the renal tubule, which species is reabsorbed and by what mechanism?',
  options:[
@@ -86,7 +86,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 12',
  quote:'The un-ionized drug is reabsorbed from the renal tubule back into circulation (mostly via passive back diffusion)'},
 
-{id:'el-6', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'probenecid-penicillin',
+{id:'el-6', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'probenecid-penicillin',
  tags:['case','transporter'], source:'slide',
  stem:'Probenecid slows the excretion of penicillin. What is the mechanism?',
  options:[
@@ -103,7 +103,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 13',
  quote:'Probenecid (inhibits renal OATPs & slows Penicillin excretion)'},
 
-{id:'el-7', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-definition',
+{id:'el-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-definition',
  tags:['definition','mechanism'], source:'slide',
  stem:'What is pH trapping?',
  options:[
@@ -120,7 +120,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 14',
  quote:'a drug ionizes in urine & cannot be reabsorbed - it is "trapped" & eliminated'},
 
-{id:'el-8', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-requirement',
+{id:'el-8', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-requirement',
  tags:['reasoning','exam-pattern'], source:'both',
  stem:'What must a drug possess for pH trapping to work on it?',
  options:[
@@ -137,7 +137,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 14',
  quote:'Key: Drugs/metabolites must have ionizable FGs'},
 
-{id:'el-9', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'aspirin-overdose-alkalinize',
+{id:'el-9', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'aspirin-overdose-alkalinize',
  tags:['case','reasoning'], source:'slide',
  stem:'Aspirin overdose is treated by alkalinizing the urine with sodium bicarbonate. Why does that help?',
  options:[
@@ -154,7 +154,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 14–15',
  quote:'Aspirin overdose is treated by alkalizing urine with NaHCO3'},
 
-{id:'el-10', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-direction-base',
+{id:'el-10', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'ph-trapping-direction-base',
  tags:['reasoning','exam-pattern'], source:'both',
  stem:'A patient has overdosed on a basic drug. How would you manipulate urine pH, and why?',
  options:[
@@ -173,7 +173,7 @@ QUESTIONS.push(
  source:'transcript',
  note:'One sentence covers both directions: the drug leaves when it is charged in urine, so match the urine pH to the opposite character of the drug.'},
 
-{id:'el-11', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-definition',
+{id:'el-11', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-definition',
  tags:['definition','mechanism'], source:'slide',
  stem:'What is enterohepatic recycling?',
  options:[
@@ -190,7 +190,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 18–19',
  quote:'Drugs excreted via bile into the intestine undergo reabsorption ("recycling") prior to fecal elim.'},
 
-{id:'el-12', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-glucuronidase',
+{id:'el-12', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-glucuronidase',
  tags:['mechanism','reasoning'], source:'both',
  stem:'A drug is glucuronidated and excreted in bile, yet parent drug reappears in circulation. What happened?',
  options:[
@@ -208,7 +208,7 @@ QUESTIONS.push(
  quote:'*Zetia undergoes repeated cycling - long DoA (t1/2= 22-24 h)',
  note:'Slide 19 names the recycling examples as ezetimibe (Zetia), isotretinoin and morphine.'},
 
-{id:'el-13', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'charcoal-interrupts-recycling',
+{id:'el-13', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'charcoal-interrupts-recycling',
  tags:['case','reasoning'], source:'slide',
  stem:'How can enterohepatic recycling be interrupted clinically?',
  options:[
@@ -225,7 +225,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 18',
  quote:'Can be clinically disrupted using PO charcoal or anion exchange resins to trap drugs in the GI tract for fecal elim.'},
 
-{id:'el-14', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'pulmonary-elimination',
+{id:'el-14', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'pulmonary-elimination',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which drugs leave primarily by exhalation, and by what mechanism?',
  options:[
@@ -242,7 +242,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 22',
  quote:'Lungs/Exhalation- Primary route for volatile or gaseous agents'},
 
-{id:'el-15', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'sweat-both-logp',
+{id:'el-15', skill:'tell', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'sweat-both-logp',
  tags:['reasoning'], source:'transcript',
  stem:'TRUE/FALSE: both high log P and low log P drugs can be eliminated in sweat.',
  options:[
@@ -259,7 +259,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 24',
  quote:'Skin/Sweat/Oil - Not a maj. route but may be used to monitor/test'},
 
-{id:'el-16', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'minor-routes-monitoring',
+{id:'el-16', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'minor-routes-monitoring',
  tags:['reasoning'], source:'slide',
  stem:'Hair and saliva are minor routes of elimination. What is their practical value?',
  options:[
@@ -277,7 +277,7 @@ QUESTIONS.push(
  quote:'Saliva (mouth swabs)- Not a maj. route of elimin. - may be used to monitor/test'},
 
 /* ======================= TOXICITY ======================= */
-{id:'tx-1', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-definition',
+{id:'tx-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-definition',
  tags:['definition'], source:'both',
  stem:'What is a toxicophore?',
  options:[
@@ -295,7 +295,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 29–30',
  quote:'Toxicophores (toxic/potentially toxic FGs)'},
 
-{id:'tx-2', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'causes-of-toxicity-list',
+{id:'tx-2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'causes-of-toxicity-list',
  tags:['recall'], source:'slide',
  stem:'Which of the following is a cause of on-target or off-target drug toxicity?',
  options:[
@@ -312,7 +312,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 29',
  quote:'Low deactivating Enzyme capacity (genetics, inhibitors, etc.)'},
 
-{id:'tx-3', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'toxicophore-categories',
+{id:'tx-3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'toxicophore-categories',
  tags:['recall','mechanism'], source:'slide',
  stem:'Which set lists the toxicophore categories?',
  options:[
@@ -330,7 +330,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 30',
  quote:'Electrophilic carbons · Electrophilic carbonyls · Electrophilic double bonds · Free radicals (ROS/RNS included) · Others: Haptens, Azo, N-OH, etc.'},
 
-{id:'tx-4', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'electrophile-nucleophile-adduct',
+{id:'tx-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'electrophile-nucleophile-adduct',
  tags:['mechanism','reasoning'], source:'both',
  stem:'Why does an electrophilic centre on a drug metabolite cause cellular damage?',
  options:[
@@ -348,7 +348,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 30–31',
  quote:'Existing or Bioactivated Toxicophores in parent drug, intermediates or metabolites'},
 
-{id:'tx-5', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'allylic-carbon',
+{id:'tx-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'allylic-carbon',
  tags:['structure','mechanism'], source:'both',
  stem:'An allylic carbon is flagged as an existing electrophilic toxicophore. What makes it electron deficient?',
  options:[
@@ -366,7 +366,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 31–32',
  quote:'Existing electrophilic carbons · Example: Allylic Carbons'},
 
-{id:'tx-6', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'carbamazepine-epoxide',
+{id:'tx-6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'carbamazepine-epoxide',
  tags:['case','mechanism'], source:'slide',
  stem:'A protein nucleophile attacks carbamazepine-10,11-epoxide; the adduct shows:',
  options:[
@@ -388,7 +388,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 33; toxicophore categories slide 30; enzyme defense slide 60',
  quote:'Bioactivated electrophilic carbons – Example: Epoxide Carbons'},
 
-{id:'tx-7', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'bap-bay-region',
+{id:'tx-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'bap-bay-region',
  tags:['case','mechanism'], source:'both',
  stem:'Benzo[a]pyrene from smoked and barbecued food becomes carcinogenic after bioactivation. What is formed?',
  options:[
@@ -405,7 +405,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 34–35',
  quote:'B[a]P – pro-carcinogen in smoke, charred foods, etc. Metabolized to BPDE which covalently binds to DNA'},
 
-{id:'tx-8', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'parallel-double-bonds',
+{id:'tx-8', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'parallel-double-bonds',
  tags:['structure','mechanism','exam-pattern'], source:'both',
  stem:'Which structural feature signals an electrophilic double bond toxicophore?',
  options:[
@@ -424,7 +424,7 @@ QUESTIONS.push(
  quote:'Bioactivated electrophilic double bond intermediates',
  note:'The same pattern explains three separate toxicities in this lecture: NAPQI from acetaminophen, the diclofenac intermediates, and the clozapine metabolite behind agranulocytosis.'},
 
-{id:'tx-9', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'hapten-definition',
+{id:'tx-9', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'hapten-definition',
  tags:['definition','mechanism'], source:'both',
  stem:'What is a hapten in the toxicity context?',
  options:[
@@ -441,7 +441,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 42',
  quote:'Hapten-immunogens can trigger hepatic hypersensitivity'},
 
-{id:'tx-10', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'ethanol-two-haptens',
+{id:'tx-10', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'ethanol-two-haptens',
  tags:['case','mechanism'], source:'transcript',
  stem:'Ethanol\'s two haptens implicated in liver cirrhosis are:',
  options:[
@@ -459,7 +459,7 @@ QUESTIONS.push(
  quote:'Example: Ethanol, Urushiol (in poison ivy) can form hapten- protein immunogens',
  note:'The slide 42 figure prints both: ADH gives CH3CHO, acetaldehyde, and 2E1 gives C2H5O•, the ethoxy radical. The 9/17 lecture named them aloud as well. The slide text names ethanol and urushiol as hapten formers without listing ethanol\'s two routes.'},
 
-{id:'tx-11', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi',
+{id:'tx-11', skill:'apply', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi',
  tags:['case','mechanism'], source:'both',
  stem:'At normal doses acetaminophen is safe, but in overdose it becomes hepatotoxic. What changes?',
  options:[
@@ -477,7 +477,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 49',
  quote:'Overdose: APAP exhausts UGTs/STs, and undergoes phase I bioactivation to NAPQI'},
 
-{id:'tx-12', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'nac-antidote',
+{id:'tx-12', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'nac-antidote',
  tags:['case','antidote'], source:'both',
  stem:'What is the antidote for acetaminophen toxicity and how does it work?',
  options:[
@@ -495,7 +495,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 63',
  quote:'NAC - antidote for APAP toxicity · Electrophile deactivation by NAC'},
 
-{id:'tx-13', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'2pam-organophosphate',
+{id:'tx-13', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'2pam-organophosphate',
  tags:['case','antidote','mechanism'], source:'both',
  stem:'Pralidoxime (2-PAM) treats organophosphate poisoning by:',
  options:[
@@ -513,7 +513,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 64',
  quote:'An Oxime used to regenerate ChEs (AChE and BuChE) · Disadvantages: 1) non-BBB penetrant; 2) admin. before "aging"'},
 
-{id:'tx-14', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'antioxidant-enzymes',
+{id:'tx-14', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'antioxidant-enzymes',
  tags:['recall','enzyme'], source:'slide',
  stem:'Which enzyme reduces the superoxide anion to hydrogen peroxide?',
  options:[
@@ -531,7 +531,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 61',
  quote:'Enzyme Defense- Oxidative Stress Defense by antioxidant enzymes'},
 
-{id:'tx-15', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'gst-eh-defense',
+{id:'tx-15', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'gst-eh-defense',
  tags:['reasoning','enzyme'], source:'slide',
  stem:'Which two enzymes provide the front-line defense against electrophilic intermediates?',
  options:[
@@ -549,7 +549,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 60',
  quote:'Enzyme Defense- Electrophile deactivation by GSTs and EHs'},
 
-{id:'tx-16', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'terfenadine-herg',
+{id:'tx-16', skill:'tell', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'terfenadine-herg',
  tags:['case','reasoning'], source:'both',
  stem:'Terfenadine was withdrawn but its metabolite fexofenadine was not, because:',
  options:[
@@ -566,7 +566,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 53',
  quote:'Parent Drug Accum. → off target pharmacology · Interactions with hERG = Cardiac Arrythmias'},
 
-{id:'tx-17', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'doxorubicin-cardiotoxicity',
+{id:'tx-17', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'doxorubicin-cardiotoxicity',
  tags:['case','mechanism'], source:'slide',
  stem:'Doxorubicin cardiotoxicity is due to:',
  options:[
@@ -584,7 +584,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 52',
  quote:'Cardiotoxicity (due to mitochondrial Fe & ROS, etc.) · Doxorubicin (Anticancer Anthracycline) · Induces Congestive Heart Failure (CHF) in 2-3 days'},
 
-{id:'tx-18', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'clozapine-agranulocytosis',
+{id:'tx-18', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'clozapine-agranulocytosis',
  tags:['case','mechanism'], source:'both',
  stem:'Clozapine hematotoxicity (agranulocytosis) results from:',
  options:[
@@ -602,7 +602,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 54',
  quote:'Hematotoxicity (Imine covalently binds to neutrophils) · Agranulocytocytosis (leukopenia - ↓ white blood cells)'},
 
-{id:'tx-19', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'amiodarone-pulmonary',
+{id:'tx-19', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'amiodarone-pulmonary',
  tags:['case','reasoning'], source:'both',
  stem:'Amiodarone pulmonary toxicity is explained by its:',
  options:[
@@ -619,7 +619,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 55',
  quote:'Amiodarone (antiarrhythmic drug, cLogP=9) · Toxicity - excessive Amiodarone & des-ethyl metabolite in lung tissue'},
 
-{id:'tx-20', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'ethylene-glycol-nephrotoxicity',
+{id:'tx-20', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'extra', concept:'ethylene-glycol-nephrotoxicity',
  tags:['case','mechanism'], source:'both',
  stem:'Ethylene glycol nephrotoxicity results from:',
  options:[
@@ -636,7 +636,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 57',
  quote:'Ethylene Glycol (EG) · A sweet & odor-less liquid, metabolized by ADH & ALDH to toxic species'},
 
-{id:'tx-21', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'hepatotox-risk-factors',
+{id:'tx-21', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'hepatotox-risk-factors',
  tags:['recall','reasoning'], source:'slide',
  stem:'Which of the following is a risk factor for drug-induced hepatotoxicity?',
  options:[
@@ -652,7 +652,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 46–47',
  quote:'Alcohol use: Induces liver cirrhosis, GSH depletion'},
 
-{id:'tx-22', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'nitrofurantoin-metabolites',
+{id:'tx-22', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'nitrofurantoin-metabolites',
  tags:['case','mechanism'], source:'slide',
  stem:'Which reactive intermediates are implicated in nitrofurantoin hepatotoxicity?',
  options:[
@@ -670,7 +670,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 48',
  quote:'Nitrofurantoin (NFT) Toxicity - Nitroso & hydroxylamine intermediates'},
 
-{id:'tx-23', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'nitrosamine-ndsri',
+{id:'tx-23', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'nitrosamine-ndsri',
  tags:['recall','case'], source:'slide',
  stem:'N-Nitrosodimethylamine (NDMA) impurity contamination led to the withdrawal of which drug?',
  options:[
@@ -687,7 +687,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 50',
  quote:'N-Nitrosodimethylamine (NDMA) in Ranitidine products · Hepatotoxic and implicated in other cancers · NDMA → (2E1/non-enzymatic) → reactive methyldiazonium ion → Nu-CH3'},
 
-{id:'tx-24', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'free-radical-teratogen',
+{id:'tx-24', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'free-radical-teratogen',
  tags:['case','mechanism'], source:'slide',
  stem:'Phenytoin teratogenicity is attributed to a bioactivated:',
  options:[
@@ -705,7 +705,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 40; fetal CYP3A7 and susceptibility Lecture #14 (MCMet-9_16_2026.pdf) slide 45',
  quote:'Bioactivated free radical teratogenic intermediates · Example: Phenytoin'},
 
-{id:'tx-25', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'isoniazid-radical',
+{id:'tx-25', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'isoniazid-radical',
  tags:['case','mechanism'], source:'slide',
  stem:'Isoniazid hepatotoxicity results from bioactivation to:',
  options:[
@@ -726,7 +726,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 39; categories slide 30; phenytoin slide 40; antioxidant defense slide 61',
  quote:'Bioactivated free radical reactive intermediates · Example: Isoniazid (INH) Anti-TB drug'},
 
-{id:'tx-26', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'azo-reduction-carcinogen',
+{id:'tx-26', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'azo-reduction-carcinogen',
  tags:['case','mechanism'], source:'slide',
  stem:'Solvent Red 1 was banned as a food dye because azo reduction gives:',
  options:[
@@ -744,7 +744,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 43',
  quote:'Azo reduction to carcinogens · Example: Solvent Red 1 (a banned food dye) · Undergoes reduction to carcinogenic aromatic amines · 1-Amino-2-naphthol + o-Anisidine'},
 
-{id:'tx-27', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'n-hydroxylation-carcinogen',
+{id:'tx-27', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'n-hydroxylation-carcinogen',
  tags:['mechanism','structure'], source:'slide',
  stem:'N-Hydroxylation of an aromatic amine such as acetylaminofluorene is a bioactivation to:',
  options:[
@@ -762,7 +762,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 44',
  quote:'N-hydroxylations to carcinogens · Example: Acetylaminofluorene (AAF) - N-OH AAF sulfation leads to the carcinogen'},
 
-{id:'tx-28', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'narrow-ti',
+{id:'tx-28', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'narrow-ti',
  tags:['reasoning','definition'], source:'both',
  stem:'Narrow therapeutic index drugs are a cause of toxicity because:',
  options:[
@@ -779,7 +779,7 @@ QUESTIONS.push(
  quote:'Dose (overdose, Narrow TI drugs, etc.)',
  note:'Slide 29 names the category without naming a drug; the narrow-index examples used elsewhere in the course are warfarin, phenytoin and digoxin.'},
 
-{id:'tx-29', lowYield:true, prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'charcoal-timing',
+{id:'tx-29', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'charcoal-timing',
  tags:['recall','case'], source:'slide',
  stem:'Oral activated charcoal is most useful within what window after ingestion?',
  options:[
@@ -796,7 +796,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 62',
  quote:'PO activated charcoal (within 1h of toxin ingestion)'},
 
-{id:'tx-30', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'enhanced-elimination-methods',
+{id:'tx-30', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'enhanced-elimination-methods',
  tags:['recall'], source:'slide',
  stem:'Which of these is a method of enhanced elimination in the treatment of toxicity?',
  options:[

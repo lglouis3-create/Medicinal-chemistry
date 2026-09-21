@@ -1,0 +1,30 @@
+{
+  "082426_DrugReceptorInteractions": {
+    "dr_ligand_residues":   {"slide": 9,  "mode": "auto", "for": "dr-1"},
+    "dr_covalent_ex":       {"slide": 5,  "mode": "auto", "for": "dr-2"},
+    "dr_ionic":             {"slide": 6,  "mode": "auto", "for": "dr-3"},
+    "dr_hbond":             {"slide": 7,  "mode": "auto", "for": "dr-4"},
+    "dr_captopril_ace":     {"slide": 12, "mode": "auto", "for": "dr-5"}
+  },
+  "082626_Bioisosterism": {
+    "bi_burger_def":        {"slide": 3,  "mode": "below_title", "for": "dd-2"},
+    "bi_classes":           {"slide": 5,  "mode": "below_title", "for": "dd-3"},
+    "bi_fluorouracil":      {"slide": 9,  "mode": "auto", "for": "dd-6"},
+    "bi_ranitidine":        {"slide": 11, "mode": "auto", "for": "dd-5"},
+    "bi_tetrazole":         {"slide": 14, "mode": "auto", "for": "dd-4"}
+  },
+  "082726_PhysicochemicalProp1": {
+    "pp_basic_groups":      {"slide": 15, "mode": "auto", "for": "pc-2"},
+    "pp_pka_trend":         {"slide": 18, "mode": "below_title", "for": "pc-1"},
+    "pp_neutral_groups":    {"slide": 19, "mode": "auto", "for": "pc-3"},
+    "pp_amobarbital_trend": {"slide": 30, "mode": "auto", "for": "pc-4"}
+  },
+  "090326_PhysicochemicalProp3": {
+    "pp_partition":         {"slide": 13, "mode": "below_title", "for": "pc-5"},
+    "pp_pi_fragments":      {"slide": 15, "mode": "below_title", "for": "pc-7"},
+    "pp_clogp_ibuprofen":   {"slide": 16, "mode": "below_title", "for": "pc-9 (new)"}
+  },
+  "082726_PracticeProblemAnswers": {
+    "pp_ionization_worked": {"slide": 2,  "mode": "below_title", "for": "pc-10 (new)"}
+  }
+}

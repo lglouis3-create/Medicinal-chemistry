@@ -1,6 +1,6 @@
 /* Scores how well each question explains itself.
  *
- * style_check.js catches phrasing Louis rejected. This checks something else:
+ * style_check.js catches phrasing the style rules reject. This checks something else:
  * whether an explanation does the teaching work. Four measures, all read off
  * the text rather than judged:
  *
@@ -19,10 +19,11 @@
  * so the ranking follows the blueprint rather than the raw count.
  */
 const fs = require('fs'), vm = require('vm');
-let c = [...fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html', 'utf8')
+const OUT = '/mnt/user-data/outputs/' + ((fs.readFileSync('course.js','utf8').match(/output:\s*'([^']+)'/)||[])[1] || 'exam_drill.html');
+let c = [...fs.readFileSync(OUT, 'utf8')
           .matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b = c.lastIndexOf('   BOOT'); c = c.slice(0, c.lastIndexOf('/* ===', b));
-c += '\nglobalThis.__Q=QUESTIONS;globalThis.GLOSS=typeof GLOSS!=="undefined"?GLOSS:[];';
+c += '\nglobalThis.__Q=QUESTIONS;globalThis.GLOSS=typeof GLOSS!=="undefined"?GLOSS:[];globalThis.__EXAM=EXAM;globalThis.__poolOf=poolOf;';
 const sb = {console, localStorage:{getItem:()=>null,setItem(){},removeItem(){}},
   document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{}},
   window:{}, prompt:()=>'x', setTimeout:()=>0, clearTimeout(){},
@@ -98,6 +99,10 @@ const VAGUE = [
  * which therefore reaches the page with no definition anywhere. The table is
  * read from the built page so the two can never drift apart. */
 const COVERED = new Set((sb.GLOSS || []).map(g => g.k));
+/* COURSE-SPECIFIC: [gloss key, regex] for the terms this course leans on. A
+ * term whose key is in the GLOSS table is covered; the rest are reported where
+ * they appear in an explanation with no definition. Empty until the course's
+ * vocabulary is known. */
 const WEIGHTY = [
   ['deloc','delocalis|delocaliz'], ['nucl','nucleophil'], ['elec','electrophil'],
   ['zwit','zwitterion'], ['cbase','conjugate base'], ['cacid','conjugate acid'],
@@ -114,15 +119,18 @@ const WEIGHTY = [
   ['induct','inductive effect'], ['chiral','chiral'],
 ];
 
-const POOL_WEIGHT = {'Sikazwe new': 38, 'Yendapally old': 8, 'Sikazwe older': 4, 'Sikazwe old': 4};
+/* Exam weight per pool, from the manifest: a pool's marks on the paper. */
+const EXAM = sb.__EXAM, poolOf = sb.__poolOf;
+const POOL_WEIGHT = Object.fromEntries(EXAM.pools.map(p => [p.key, p.marks]));
 
 const rows = [];
 for (const q of Q) {
-  const pool = q.prof + ' ' + q.tier;
+  const pool = (poolOf(q) || {}).key || 'none';
   const issues = [];
   const teach = Array.isArray(q.teach)
     ? q.teach.map(p => [p.h, p.t].filter(Boolean).join('. ')).join(' ')
     : (q.teach || '');
+  if (q.type) continue;
   const whole = [teach, ...q.options.map(o => o.why || '')].join(' ');
 
   if (!teach) issues.push(['no concept block', 3]);
@@ -184,7 +192,7 @@ const byPool = {};
 for (const r of rows) byPool[r.pool] = (byPool[r.pool] || 0) + 1;
 console.log('\n  by pool:');
 for (const k of Object.keys(byPool).sort((a, b) => byPool[b] - byPool[a]))
-  console.log(`  ${String(byPool[k]).padStart(4)}  ${k} (supplies ${POOL_WEIGHT[k] || '?'} of the 50)`);
+  console.log(`  ${String(byPool[k]).padStart(4)}  ${k} (supplies ${POOL_WEIGHT[k] || '?'} of the ${EXAM.questions})`);
 
 const LIMIT = Number(process.env.LIMIT || 30);
 console.log(`\n  worst ${Math.min(LIMIT, shown.length)}, ranked by severity x exam weight:\n`);

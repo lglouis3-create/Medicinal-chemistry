@@ -9,7 +9,7 @@
 QUESTIONS.push(
 
 /* ═══════════ LECTURE 13 — CYP ═══════════ */
-{id:'sa-cyp-5', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'cyp-endobiotic-substrates', multi:true,
+{id:'sa-cyp-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'why', concept:'cyp-endobiotic-substrates', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'CYPs metabolise the body\'s own molecules as well as foreign ones. Which of the following are endobiotic substrates of CYP metabolism? Select all that apply.',
  options:[
@@ -36,7 +36,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 5; substrate table slide 17; inducer table slide 33',
  quote:'Endobiotic metabolism: Cholesterol · Steroids · Bile Acids · Vitamin D · Fatty Acids · Retinoic Acid · Arachidonic Acid | Xenobiotic metabolism: Drug molecules · Chemical Pollutants · Pesticides (House hold vs. Agricultural) · Dietary chemicals'},
 
-{id:'sa-cyp-6', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'cyp2d6-pm-population-effects', multi:true,
+{id:'sa-cyp-6', skill:'apply', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'poly', concept:'cyp2d6-pm-population-effects', multi:true,
  tags:['reasoning','list'], source:'slide',
  stem:'Some 20 to 30 million people carry no functional CYP2D6, the poor metabolisers. Which of the following follow for them at an ordinary dose of a CYP2D6 substrate? Select all that apply.',
  options:[
@@ -61,7 +61,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 40; exposure curves slides 41–42; codeine O-demethylation Lecture #11 (MCMet-9_10_26.pdf) slide 17',
  quote:'20–30 million subjects have no CYP2D6 enzymes (PMs): Too slow drug metabolism · Too high drug levels at ordinary dosage · High risk for ADRs · No response from certain prodrugs (e.g. codeine) | 15–20 million subjects have CYP2D6 gene duplications (UMs): Too rapid drug metabolism · No drug response at ordinary dosage (non-responders)'},
 
-{id:'sa-cyp-7', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2d6-profile', multi:true,
+{id:'sa-cyp-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'fam', concept:'cyp2d6-profile', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are true of CYP2D6? Select all that apply.',
  options:[
@@ -89,7 +89,7 @@ QUESTIONS.push(
  quote:'CYP isoform 2D6: Minimal induction · Polymorphic phenotypes: UM; EM; IM; PM · Lots of DDIs due to low expression, i.e., 3% of liver CYPs · Stereo-selectivity · Lots of substrates (21% of clinical drugs): Codeine, Venlafaxine, etc.'},
 
 /* ═══════════ LECTURE 14 — functional groups and factors ═══════════ */
-{id:'fg-27', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'lactone-hydrolysis-product',
+{id:'fg-27', skill:'apply', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'lactone-hydrolysis-product',
  tags:['structure','reasoning'], source:'slide',
  stem:'A carboxylesterase hydrolyses a lactone (cyclic ester). What is the product?',
  options:[
@@ -110,7 +110,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 16; lactam slide 8; carbonate and carbamate slides 14–15',
  quote:'Esters: Esters undergo CE hydrolysis'},
 
-{id:'fa-12', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'first-pass-examples',
+{id:'fa-12', skill:'tell', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'first-pass-examples',
  tags:['matching','recall'], source:'slide',
  stem:'Isoproterenol, lidocaine and nitroglycerin are examples of drugs with a significant first-pass effect. Which pairing of drug and first-pass enzyme is correct?',
  options:[
@@ -131,7 +131,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 36; pre-systemic sites slide 35',
  quote:'Examples of Drugs with significant 1st pass effect: Isoproterenol (COMT/Sulfation) · Lidocaine (CYPs/CE, PO ineffective) · Nitroglycerin (GST/Bucal Admin.)'},
 
-{id:'fa-13', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'gfj-felodipine-plot',
+{id:'fa-13', skill:'read', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'gfj-felodipine-plot',
  tags:['case','reasoning'], source:'slide', img:'fa_gfj_felodipine',
  stem:'The plot shows felodipine plasma concentration after one oral dose taken with water and with grapefruit juice. What explains the difference between the two curves?',
  options:[
@@ -152,7 +152,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 66; furocoumarins slides 62–63; affected drugs Lecture #13 (MCMet-9_15_2026.pdf) slide 35',
  quote:'Q: Explain the inhibition plot below involving GFJ and Felodipine intake.'},
 
-{id:'fa-14', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'cyclosporin-induction-case',
+{id:'fa-14', skill:'apply', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'cyclosporin-induction-case',
  tags:['case','reasoning'], source:'slide',
  stem:'Cyclosporin A, an immunosuppressant given to prevent transplant rejection, is a CYP3A4 substrate. Co-administration with a CYP3A4 inducer can result in transplant failure. Explain.',
  options:[
@@ -173,7 +173,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 55; induction rule slide 53; inducers slide 54; ketoconazole pairing slide 65',
  quote:'Cyclosporin A (CsA, immunosuppressant used to prevent transplant rejection), is substrate of 3A4. Co-administration of CsA with 3A4 inducers can result in transplant failure. Explain?'},
 
-{id:'sa-fa-4', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'ddi-inhibition-outcomes', multi:true,
+{id:'sa-fa-4', skill:'tell', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'ddi-inhibition-outcomes', multi:true,
  tags:['matching','case'], source:'slide',
  stem:'Each of these pairs an enzyme inhibitor with a drug whose metabolism it blocks and the clinical outcome. Which pairings are correct? Select all that apply.',
  options:[
@@ -198,7 +198,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 65; inhibition rule slide 59; glyburide case Lecture #10 (MCMet-9_4_26-9_9_26.pdf) slide 53',
  quote:'Inhibitor · Affected Drug · Potential Outcome: Metronidazole · Coumadin · Hemorrhage | Erythromycin · Glyburide · Hypoglycemia | Ketoconazole · Cyclosporin · Immunosupression | Prozac & Paxil · Dextromethorphan · CNS depression'},
 
-{id:'sa-fa-5', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'dme-inhibitor-list', multi:true,
+{id:'sa-fa-5', skill:'tell', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'dme-inhibitor-list', multi:true,
  tags:['list','ddi'], source:'slide',
  stem:'Which of the following inhibit drug-metabolising enzymes, so that a co-administered substrate accumulates? Select all that apply.',
  options:[
@@ -225,7 +225,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 60; inducers slide 54; DDI table slide 65; Lecture #13 (MCMet-9_15_2026.pdf) slides 32–35',
  quote:'Inhibitors of DMEs include: Clarithromycin · Erythromycin · Azole Antifungals (Ketoconazole, Itraconazole) · Cimetidine · Protease inhibitors · Quinidine · Omeprazole | Isoniazid · Ciprofloxacin · Diltiazem · Verapamil · Amiodarone · Fluoxetine'},
 
-{id:'sa-fa-6', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'induction-consequences-list', multi:true,
+{id:'sa-fa-6', skill:'apply', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'induction-consequences-list', multi:true,
  tags:['reasoning','list'], source:'slide',
  stem:'A patient on an active drug starts an inducer of the enzyme that clears it. Which of the following follow? Select all that apply.',
  options:[
@@ -253,7 +253,7 @@ QUESTIONS.push(
  quote:'Enzyme Induction: ↑ Enzymatic levels (↑ mRNA translation) & activity · ↓ Protein degradation · CYPs, UDP-GT, GSTs – have inducible isoforms · Inducer + Drug substrates for same enzyme = DIs: ↓ drug efficacy · ↑ therapeutic effects of prodrugs · ↑ toxicity (bioactivation to toxicity) · Generally, induction ↑ DME activity & ↓ in drug blood levels plus ↓ DOA'},
 
 /* ═══════════ LECTURE 15 — reactive species ═══════════ */
-{id:'sa-tox-8', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'ros-rns-classification', multi:true,
+{id:'sa-tox-8', skill:'tell', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'ros-rns-classification', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Oxidative stress involves free radicals and non-radical reactive species. Which of the following are free radicals? Select all that apply.',
  options:[
@@ -280,7 +280,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 41; antioxidant enzymes slide 61',
  quote:'ROS: O2•− (superoxide anion); RO2• (peroxyl); •OH (hydroxyl); RO• (alkoxyl); HO2• (hydroperoxyl); LOO• (lipid peroxyl) · RNS: •NO (nitric oxide); •NO2 (nitrogen dioxide) · Non-Radical Species: H2O2 (hydrogen peroxide); ONOO− (peroxynitrite); HOCl (hypochlorous acid)'},
 
-{id:'cyp-e4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'expression-vs-drug-share',
+{id:'cyp-e4', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'expression-vs-drug-share',
  tags:['reasoning','data'], source:'slide',
  stem:'Which CYP isoform makes up the largest share of liver CYP, and which metabolises the largest share of clinical drugs?',
  options:[
