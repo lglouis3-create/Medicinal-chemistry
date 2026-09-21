@@ -325,6 +325,7 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
   <button data-v="gaps">Weak spots</button>
   <button data-v="exam">Exam sim</button>
   <button data-v="atlas">Atlas</button>
+  <button data-v="tell">Tell apart</button>
   <button data-v="ref">Reference</button>
   <button data-v="settings">Settings</button>
 </nav>
@@ -335,6 +336,7 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
   <section id="v-gaps" class="hide"></section>
   <section id="v-exam" class="hide"></section>
   <section id="v-atlas" class="hide"></section>
+  <section id="v-tell" class="hide"></section>
   <section id="v-ref" class="hide"></section>
   <section id="v-settings" class="hide"></section>
 </main>
@@ -545,9 +547,22 @@ function pickNext(pool, justAsked){
    || b.sub  - a.sub
    || a.r    - b.r);
   // sample from the top of the ranked list so the order is not identical every run
-  const top = cands.filter(c => c.tier===cands[0].tier && c.fresh===cands[0].fresh);
-  return top[Math.floor(Math.random()*Math.min(top.length,5))].q;
+  let top = cands.filter(c => c.tier===cands[0].tier && c.fresh===cands[0].fresh);
+  // Rule 5 puts a missed concept ahead of a never-seen one. Taken literally,
+  // a pool with many open misses serves them back to back and the never-seen
+  // material waits, so the "not yet seen" count in Weak spots stands still
+  // while the retests cycle. A missed concept now takes at most every other
+  // turn: after one retest the next pick goes to never-seen material when any
+  // remains in the pool. The GAP rule still holds for each concept.
+  if(cands[0].tier === 4 && LAST_TIER === 4){
+    const unseen = cands.filter(c => c.tier === 3);
+    if(unseen.length) top = unseen;
+  }
+  const pick = top[Math.floor(Math.random()*Math.min(top.length,5))];
+  LAST_TIER = pick.tier;
+  return pick.q;
 }
+let LAST_TIER = 0;   // tier of the question pickNext served last (4 = a missed concept's retest)
 
 /* ==========================================================================
    HELPERS
