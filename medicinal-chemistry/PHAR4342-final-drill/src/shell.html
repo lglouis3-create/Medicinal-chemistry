@@ -285,8 +285,12 @@ table.gap tr:last-child td{border-bottom:0}
 #v-atlas.namesoff .atfig::after{content:"name it";position:absolute;bottom:3px;right:7px;
   font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 #v-atlas.namesoff .attile.shown .atfig::after{content:""}
-.refnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px;padding:14px;
-  background:var(--surface);border:1px solid var(--line-soft);border-radius:8px}
+.refnav-wrap{margin:0 0 20px;border:1px solid var(--line-soft);border-radius:8px;background:var(--surface)}
+.refnav-wrap summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--accent);list-style:none}
+.refnav-wrap summary::-webkit-details-marker{display:none}
+.refnav-wrap summary::before{content:"\25B8  ";font-size:11px}
+.refnav-wrap[open] summary::before{content:"\25BE  "}
+.refnav{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:4px 14px 14px}
 .refnav a{font-size:12.5px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;
   background:var(--paper);color:var(--text);text-decoration:none;white-space:nowrap}
 .refnav a:hover{background:var(--line-soft)}

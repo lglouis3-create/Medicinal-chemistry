@@ -278,5 +278,27 @@ QUESTIONS.push(
    t:'Slide 61 chains the antioxidant enzymes to these species. Superoxide dismutase turns the superoxide radical into hydrogen peroxide, a non-radical; catalase then removes the peroxide before it can be turned back into a hydroxyl radical. Glutathione peroxidase reduces the lipid hydroperoxide that a lipid peroxyl radical leaves behind. A radical propagates a chain; a non-radical oxidant does not, but it is the raw material for the next radical, which is why the enzymes handle both.'}],
  teachImg:'tx_ros',
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 41; antioxidant enzymes slide 61',
- quote:'ROS: O2•− (superoxide anion); RO2• (peroxyl); •OH (hydroxyl); RO• (alkoxyl); HO2• (hydroperoxyl); LOO• (lipid peroxyl) · RNS: •NO (nitric oxide); •NO2 (nitrogen dioxide) · Non-Radical Species: H2O2 (hydrogen peroxide); ONOO− (peroxynitrite); HOCl (hypochlorous acid)'}
+ quote:'ROS: O2•− (superoxide anion); RO2• (peroxyl); •OH (hydroxyl); RO• (alkoxyl); HO2• (hydroperoxyl); LOO• (lipid peroxyl) · RNS: •NO (nitric oxide); •NO2 (nitrogen dioxide) · Non-Radical Species: H2O2 (hydrogen peroxide); ONOO− (peroxynitrite); HOCl (hypochlorous acid)'},
+
+{id:'cyp-e4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'expression-vs-drug-share',
+ tags:['reasoning','data'], source:'slide',
+ stem:'Lecture 13 shows two pie charts: the share of the liver\'s CYP that each isoform makes up, and the share of clinical drugs each isoform metabolises. Which isoform tops each chart?',
+ options:[
+  {t:'Expression: CYP2E1 at 21%. Drug share: CYP3A4/5 at 30%', correct:true,
+   why:'Slide 14, percent of CYP isoforms expressed by human liver, has CYP2E1 as its largest slice at 21%. Slide 16, percent of clinical drugs metabolised by human CYP isoforms, has CYP3A4/5 at 30%. The most abundant enzyme and the busiest enzyme are different isoforms.'},
+  {t:'Expression: CYP3A4 at 30%. Drug share: CYP2E1 at 21%', correct:false,
+   why:'The two numbers belong to the other charts. CYP3A4 is 11% of liver CYP on slide 14, and CYP2E1 metabolises 3% of clinical drugs on slide 16; each is large on one pie and small on the other.'},
+  {t:'Expression: CYP2D6 at 20%. Drug share: CYP2C9 at 15%', correct:false,
+   why:'CYP2D6 is 2% of liver CYP and 20% of drugs, which is the mismatch slide 26 records as 3% versus 21%. CYP2C9 is 15% of liver CYP and 13% of drugs; neither tops either chart.'},
+  {t:'CYP3A4 tops both charts, at one third each', correct:false,
+   why:'One third is what slide 30 says for CYP3A4, and it holds for drug share on slide 16 (30%). On the slide 14 pie CYP3A4 is 11%, with 3A5 and 3A7 bringing the CYP3A family to 16%; CYP2E1 is the largest slice there. The two slides disagree on expression and agree on drug share.'}],
+ teach:[
+  {h:'Two questions, two pies',
+   t:'A question about which isoform is most expressed, or most abundant, in the liver reads slide 14: CYP2E1 21%, then CYP2C9 15%, 2C8 12%, 3A4 11%, 2A6 and 4F 10%. A question about which isoform metabolises the most drugs reads slide 16: CYP3A4/5 30%, then 2D6 20%, 2C9 13%, 1A2 9%. Adding slices gives the family answers: CYP2 is the largest family on both, 66% of liver CYP and 61% of drugs, and CYP1 the smallest of families 1 to 3 on both, 6% and 9%.'},
+  {h:'The conflict, and which figure to give',
+   t:'Slide 30 states that CYP3A4 is one third of liver CYP isoforms and metabolises one third of drugs. The drug-share third matches slide 16. The expression third does not match the slide 14 pie, where CYP3A4 is 11%. If a question quotes slide 30, one third is the expected answer for both; if it shows or names the pie, CYP2E1 is the most expressed. The Reference tab holds both pies with every slice.'}],
+ teachImg:'cyp_liver_share',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 14 and 16; CYP2D6 mismatch slide 26; one-third statement slide 30',
+ quote:'% CYP isoforms expressed by human liver (slide 14) · % Clinical drugs metabolized by hCYP isoforms (slide 16)',
+ note:'Adding up the slide 14 slices for the CYP2 family gives 66%, not 52%: 2A6 10 + 2A13 1 + 2B6 3 + 2C8 12 + 2C9 15 + 2C19 2 + 2D6 2 + 2E1 21.'}
 );

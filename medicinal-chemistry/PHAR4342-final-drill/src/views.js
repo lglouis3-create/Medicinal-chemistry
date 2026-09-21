@@ -1130,9 +1130,11 @@ function renderRef(){
     .map(m => deEnt(m[1].replace(/<[^>]+>/g, '')).trim());
   let i = 0;
   const body = html.replace(/<h3([^>]*)>/g, (m, attrs) => `<h3 id="ref-${i++}"${attrs}>`);
+  // the jump list folds away so it does not sit between the reader and the
+  // tables while scrolling; it opens on tap and closes again after a jump
   const nav = heads.length
-    ? `<nav class="refnav">${heads.map((h, n) =>
-        `<a href="#ref-${n}">${esc(h)}</a>`).join('')}</nav>`
+    ? `<details class="refnav-wrap"><summary>Jump to a section</summary><nav class="refnav">${heads.map((h, n) =>
+        `<a href="#ref-${n}">${esc(h)}</a>`).join('')}</nav></details>`
     : '';
   const el = $('#v-ref');
   el.innerHTML = body.replace('</p>', '</p>' + nav);
@@ -1140,6 +1142,7 @@ function renderRef(){
   el.querySelectorAll('.refnav a').forEach(a => a.onclick = e => {
     e.preventDefault();
     const t = el.querySelector(a.getAttribute('href'));
+    const d = el.querySelector('.refnav-wrap'); if (d) d.open = false;
     if (t) t.scrollIntoView({behavior: 'smooth', block: 'start'});
   });
 }
