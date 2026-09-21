@@ -503,7 +503,7 @@ def main():
         check(gaps['table'] and gaps['text'] > 200, 'weak spots renders its tables')
 
         # every view renders without throwing
-        for view in ['topics', 'quiz', 'gaps', 'exam', 'atlas', 'tell', 'ref', 'settings']:
+        for view in ['topics', 'quiz', 'gaps', 'exam', 'atlas', 'guide', 'tell', 'ref', 'settings']:
             r = page.evaluate(f"""() => {{
                 try {{ if (typeof show === 'function') {{ show('{view}'); return 'ok'; }}
                       return 'no show()'; }} catch (e) {{ return String(e); }} }}""")

@@ -341,11 +341,11 @@ const ALL_TAGS = Object.keys(TYPE_LABEL).filter(k => QUESTIONS.some(q=>q.types.i
 function show(v){
   VIEW = v;
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.v===v));
-  ['topics','quiz','gaps','exam','atlas','tell','ref','settings'].forEach(k=>
+  ['topics','quiz','gaps','exam','atlas','guide','tell','ref','settings'].forEach(k=>
     document.getElementById('v-'+k).classList.toggle('hide', k!==v));
   window.scrollTo(0,0);
   ({topics:renderTopics, quiz:renderQuiz, gaps:renderGaps, exam:renderExam,
-    atlas:renderAtlas, tell:renderTell, ref:renderRef, settings:renderSettings}[v])();
+    atlas:renderAtlas, guide:renderGuide, tell:renderTell, ref:renderRef, settings:renderSettings}[v])();
 }
 
 /* ==========================================================================
@@ -1226,6 +1226,7 @@ function renderDoc(el, html, prefix){
 }
 function renderRef(){ renderDoc($('#v-ref'), refFigures(REFERENCE_HTML), 'ref'); }
 function renderTell(){ renderDoc($('#v-tell'), refFigures(TELL_HTML), 'tell'); }
+function renderGuide(){ renderDoc($('#v-guide'), refFigures(GUIDE_HTML), 'guide'); }
 
 /* ==========================================================================
    SETTINGS
