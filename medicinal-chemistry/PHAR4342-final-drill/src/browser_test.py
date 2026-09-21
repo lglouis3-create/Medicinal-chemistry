@@ -21,7 +21,7 @@ QSRC = sorted(glob.glob('q[0-9]*.js'))
 
 # A question object opens at column 0 and carries a prof field; the TOPICS
 # entries in q1_cyp.js are indented and have no prof, so they are not counted.
-QRE = re.compile(r"(?m)^\{id:'[^']+', *prof:'")
+QRE = re.compile(r"(?m)^\{id:'[^']+',(?: *(?:lowYield|dupOf):[^,]+,)* *prof:'")
 
 
 def source_counts():

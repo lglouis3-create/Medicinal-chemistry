@@ -16,7 +16,7 @@ QUESTIONS.push(
 /* ═══════════ TOXICITY — Sikazwe new ═══════════ */
 {id:'sa-tox-1', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-categories', multi:true,
  tags:['list','recall'], source:'slide',
- stem:'Which of the following are categories of toxicophore, structural features that are reactive as found or become reactive on bioactivation? Select all that apply.',
+ stem:'Which of the following are toxicophore categories? Select all that apply.',
  options:[
   {t:'Electrophilic carbons', correct:true,
    why:'First bullet on slide 30. Halogenated carbons are the existing example, the epoxide carbon the bioactivated one.'},
@@ -24,9 +24,9 @@ QUESTIONS.push(
    why:'Second bullet. A carbonyl carbon short of electrons, open to attack by a protein nucleophile.'},
   {t:'Electrophilic double bonds', correct:true,
    why:'Third bullet. The quinone-imine of NAPQI and the diclofenac intermediates on slide 37 are the examples.'},
-  {t:'Free radicals, including ROS and RNS', correct:true,
+  {t:'Free radicals (ROS and RNS)', correct:true,
    why:'Fourth bullet, and the one that works by propagation rather than by waiting to be attacked, which is why slide 61 keeps a separate antioxidant defense for it.'},
-  {t:'Others: haptens, azo groups and N-hydroxy groups', correct:true,
+  {t:'Haptens, azo and N-hydroxy groups', correct:true,
    why:'Fifth bullet. These act through an immune response or a carcinogenic pathway that needs a further step before harm appears.'},
   {t:'Nucleophilic amines', correct:false,
    why:'A nucleophile is what a toxicophore attacks, not a toxicophore itself. Protein and DNA nucleophiles are the targets on every mechanism slide; listing one as a toxicophore reverses the roles.'},
@@ -202,15 +202,15 @@ QUESTIONS.push(
 /* ═══════════ METABOLISM FOUNDATIONS — Sikazwe old, and prep-sheet Q2(ii) ═══════════ */
 {id:'sa-df-1', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'dm-consequences-list', multi:true,
  tags:['list','recall'], source:'slide',
- stem:'Metabolism can change a parent drug in several ways. Which of the following are consequences of drug metabolism? Select all that apply.',
+ stem:'Which of the following are consequences of drug metabolism? Select all that apply.',
  options:[
   {t:'Inactivation', correct:true,
    why:'The first arrow on slide 28, and the common case: the metabolite has no activity.'},
-  {t:'Bioactivation to a similarly acting drug, less, more or equally potent', correct:true,
+  {t:'Similarly acting metabolites', correct:true,
    why:'Under the bioactivation arrow: similarly acting drugs, with less than, greater than or equal to marked beside them. Morphine-6-glucuronide is more potent than morphine.'},
   {t:'Prodrug activation', correct:true,
    why:'Also under bioactivation. An inactive compound converted to the active drug: enalapril to enalaprilat, sulfasalazine to its components.'},
-  {t:'Bioactivation to a reactive, toxic, carcinogenic or teratogenic species', correct:true,
+  {t:'Reactive or toxic metabolites', correct:true,
    why:'Under bioactivation as well. Acetaminophen to NAPQI, benzo[a]pyrene to its diol epoxide.'},
   {t:'Altered drug activity', correct:true,
    why:'The last item under bioactivation: a metabolite with a different action from its parent, which slide 37 illustrates.'},
@@ -218,7 +218,7 @@ QUESTIONS.push(
    why:'The double-headed arrow on slide 28: a metabolite that converts back to the parent.'},
   {t:'Drug interactions', correct:true,
    why:'The final arrow. A drug that induces or inhibits the metabolism of another, which is a consequence of metabolism rather than a pattern of it.'},
-  {t:'Increased lipophilicity of the metabolite', correct:false,
+  {t:'Increased metabolite lipophilicity', correct:false,
    why:'Metabolism runs the other way: Phase 1 and Phase 2 raise polarity so the product can be excreted. A more lipophilic metabolite would be the exception, and it is not on the slide.'}],
  teach:[
   {h:'The slide, as drawn',

@@ -852,18 +852,22 @@ function renderExam(){
   <p><button class="btn" id="startExam">Start the 75-minute paper</button></p>`;
   $('#startExam').onclick = beginExam;
 }
-function drawN(pool, n){
-  const picked = [], used = new Set(), byConcept = {};
+/* A question marked dupOf:'x' tests the same fact as question x, so a paper
+   never carries both: taking either one blocks the other. */
+function drawN(pool, n, blocked){
+  const picked = [], used = blocked || new Set(), byConcept = {};
+  const take = q => { picked.push(q); used.add(q.id); if(q.dupOf) used.add(q.dupOf); };
+  const free = q => !used.has(q.id) && !(q.dupOf && used.has(q.dupOf));
   shuffle(pool.slice()).forEach(q => { (byConcept[q.concept] ||= []).push(q); });
   const concepts = shuffle(Object.keys(byConcept));
   for(const c of concepts){                       // one per concept first, for spread
     if(picked.length >= n) break;
-    const q = byConcept[c][0];
-    picked.push(q); used.add(q.id);
+    const q = byConcept[c].find(free);
+    if(q) take(q);
   }
   for(const q of shuffle(pool.slice())){          // top up if the bank is short on concepts
     if(picked.length >= n) break;
-    if(!used.has(q.id)){ picked.push(q); used.add(q.id); }
+    if(free(q)) take(q);
   }
   return picked.slice(0,n);
 }
@@ -877,15 +881,17 @@ const EXAM_SATA = 8;
    questions are drawn first so they are never crowded out, then single-answer
    questions fill the rest, one concept each before any concept repeats. */
 function drawMixed(pool, n, nSata){
-  const sata = drawN(pool.filter(isMulti), Math.min(nSata, n));
-  const taken = new Set(sata.map(q => q.id));
-  const rest = drawN(pool.filter(q => !isMulti(q) && !taken.has(q.id)), n - sata.length);
+  const used = new Set();
+  const sata = drawN(pool.filter(isMulti), Math.min(nSata, n), used);
+  const rest = drawN(pool.filter(q => !isMulti(q)), n - sata.length, used);
   return [...sata, ...rest];
 }
 function beginExam(){
-  const yenP = QUESTIONS.filter(q=>q.prof==='Yendapally');
-  const oldP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
-  const newP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
+  // lowYield items (slide asides never polled or listed for review) stay out of the paper
+  const examQ = QUESTIONS.filter(q => !q.lowYield);
+  const yenP = examQ.filter(q=>q.prof==='Yendapally');
+  const oldP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
+  const newP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
   // select-all items spread across the pools in the paper's 38 : 8 : 4 ratio
   const sNew = Math.round(EXAM_SATA * 38/50), sYen = Math.round(EXAM_SATA * 8/50);
   const sOld = Math.max(0, EXAM_SATA - sNew - sYen);
