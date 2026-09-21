@@ -2,7 +2,7 @@ const fs=require('fs'), vm=require('vm');
 const html=fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html','utf8');
 let code=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=code.lastIndexOf('   BOOT'); code=code.slice(0,code.lastIndexOf('/* ===',b));
-code+="\nglobalThis.__X={QUESTIONS,TOPICS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX};\n";
+code+="\nglobalThis.__X={QUESTIONS,TOPICS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX};\n";
 const store={}, sinks={};
 function mk(id){ return sinks[id] ||= {innerHTML:'',textContent:'',dataset:{},style:{},classList:{toggle(){},add(){},remove(){},contains(){return false}},setAttribute(){},querySelectorAll(){return []},onclick:null,click(){}}; }
 const sb={console,localStorage:{getItem:k=>k in store?store[k]:null,setItem:(k,v)=>{store[k]=String(v)},removeItem:k=>{delete store[k]}},
@@ -43,6 +43,8 @@ X.startQuiz(imgQ.topic,imgQ.sub);
 let tries=0; while(X.Qref().current && X.Qref().current.id!==imgQ.id && tries++<60){ X.answer(0); X.Qref().answered++; X.Qref().lastId=X.Qref().current.id; sb.nextQuestion&&sb.nextQuestion(); break; }
 X.renderGaps();          ok &= check('weak spots', sinks['#v-gaps'].innerHTML);
 X.renderRef();           ok &= check('reference', sinks['#v-ref'].innerHTML);
+X.renderTell();          ok &= check('tell apart', sinks['#v-tell'].innerHTML);
+X.renderGuide();         ok &= check('guides', sinks['#v-guide'].innerHTML);
 X.renderSettings();      ok &= check('settings', sinks['#v-settings'].innerHTML);
 X.beginExam();           ok &= check('exam paper', sinks['#v-exam'].innerHTML);
 console.log('         exam question count: '+X.EXref().qs.length);

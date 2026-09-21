@@ -91,11 +91,11 @@ QUESTIONS.push(
 /* ═══════════ LECTURE 14 — functional groups and factors ═══════════ */
 {id:'fg-27', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'lactone-hydrolysis-product',
  tags:['structure','reasoning'], source:'slide',
- stem:'A drug contains a lactone, an ester closed into a ring. A carboxylesterase hydrolyses it. What is the product?',
+ stem:'A carboxylesterase hydrolyses a lactone (cyclic ester). What is the product?',
  options:[
-  {t:'One molecule carrying both a carboxylic acid and an alcohol: the ring opens and nothing is released', correct:true,
+  {t:'One molecule with both acid and alcohol', correct:true,
    why:'Lecture 14 slide 16 draws it under the ester line: the lactone ring on the left, the opened chain on the right with a carboxylic acid at one end and a hydroxyl at the other. In an acyclic ester the acid and the alcohol are two molecules; in a lactone the same two groups are joined by the rest of the ring, so hydrolysis gives one larger, more polar molecule.'},
-  {t:'A carboxylic acid and a separate alcohol, as with any ester', correct:false,
+  {t:'A carboxylic acid and a separate alcohol', correct:false,
    why:'That is the top line of slide 16, the acyclic ester. The bond broken is the same, but in a lactone the acyl carbon and the alcohol oxygen are held in one ring, so cutting it opens the ring instead of separating two fragments.'},
   {t:'A carboxylic acid and a separate amine', correct:false,
    why:'An amine comes from an amide, slide 8, where the ring version is a lactam. A lactone has oxygen in the ring, so the product carries a hydroxyl, not an amine.'},
@@ -112,15 +112,15 @@ QUESTIONS.push(
 
 {id:'fa-12', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'first-pass-examples',
  tags:['matching','recall'], source:'slide',
- stem:'Isoproterenol, lidocaine and nitroglycerin are the three drugs with a significant first-pass effect. Which pairing of drug and first-pass route is correct?',
+ stem:'Isoproterenol, lidocaine and nitroglycerin are examples of drugs with a significant first-pass effect. Which pairing of drug and first-pass enzyme is correct?',
  options:[
-  {t:'Isoproterenol: COMT and sulfation. Lidocaine: CYPs and carboxylesterase, ineffective by mouth. Nitroglycerin: glutathione S-transferase, so it is given buccally', correct:true,
+  {t:'Isoproterenol: COMT and sulfation; lidocaine: CYPs and carboxylesterase; nitroglycerin: glutathione S-transferase (GST)', correct:true,
    why:'Lecture 14 slide 36 prints the three under the oral route, each with its enzymes: isoproterenol (COMT/sulfation), lidocaine (CYPs/CE, PO ineffective), nitroglycerin (GST/buccal admin.). Each drug is removed by a different enzyme system before it reaches the systemic circulation.'},
-  {t:'Isoproterenol: CYPs and carboxylesterase. Lidocaine: COMT and sulfation. Nitroglycerin: glutathione S-transferase', correct:false,
+  {t:'Isoproterenol: CYPs and carboxylesterase; lidocaine: COMT and sulfation; nitroglycerin: GST', correct:false,
    why:'The first two are swapped. Isoproterenol is a catechol, two adjacent phenolic hydroxyls, which is what catechol-O-methyltransferase and sulfotransferase act on. Lidocaine has an amide and a tertiary amine, the handles for a carboxylesterase and a CYP.'},
-  {t:'Isoproterenol: COMT and sulfation. Lidocaine: glutathione S-transferase. Nitroglycerin: CYPs, so it is given intravenously only', correct:false,
+  {t:'Isoproterenol: COMT and sulfation; lidocaine: GST; nitroglycerin: CYPs', correct:false,
    why:'Nitroglycerin is the glutathione S-transferase case, and the slide\'s answer to its first-pass loss is buccal administration, which enters the circulation without passing the liver first. Lidocaine has no electrophile for glutathione to attack.'},
-  {t:'All three are cleared by CYP3A4 in the gut wall, so all three are given intravenously', correct:false,
+  {t:'All three: gut-wall CYP3A4', correct:false,
    why:'The slide names a different route for each, and only one of the three involves a CYP at all. Nitroglycerin is given buccally rather than intravenously to escape the first pass.'}],
  teach:[
   {h:'Three drugs, three enzyme systems',
@@ -133,15 +133,15 @@ QUESTIONS.push(
 
 {id:'fa-13', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'gfj-felodipine-plot',
  tags:['case','reasoning'], source:'slide', img:'fa_gfj_felodipine',
- stem:'The plot shows felodipine plasma concentration after one oral dose taken with water and with grapefruit juice. Explain the difference between the two curves.',
+ stem:'The plot shows felodipine plasma concentration after one oral dose taken with water and with grapefruit juice. What explains the difference between the two curves?',
  options:[
-  {t:'Furocoumarins in the juice inactivate CYP3A4 in the gut wall, so less felodipine is lost to first-pass metabolism and the plasma concentration is several times higher', correct:true,
+  {t:'Furocoumarins inhibit gut-wall CYP3A4; less first-pass loss', correct:true,
    why:'Lecture 14 slides 62 and 63: grapefruit juice contains furocoumarins, bergamottin and 6\',7\'-dihydroxybergamottin the most abundant, and they are mechanism-based inhibitors of CYP3A4. Felodipine is a CYP3A4 substrate with a large first-pass loss, so blocking the enzyme lets more of the same oral dose through. On the plot the peak with juice is close to four times the peak with water, read from the axis at about 10 to 11 nmol/L against about 2.5.'},
-  {t:'The juice induces CYP3A4, so felodipine is cleared faster', correct:false,
+  {t:'The juice induces CYP3A4; faster clearance', correct:false,
    why:'Induction would lower the curve, not raise it, and it takes days, not one dose. The juice curve is higher, which is the signature of inhibition.'},
-  {t:'The acid in the juice improves felodipine dissolution in the stomach', correct:false,
+  {t:'Juice acid improves felodipine dissolution', correct:false,
    why:'The slides attribute the effect to furocoumarins acting on CYP3A4, an enzyme, not to pH or dissolution. Slide 35 of Lecture 13 lists which drugs are affected, and they are CYP3A4 substrates, not drugs with a solubility problem.'},
-  {t:'The juice blocks renal excretion of felodipine', correct:false,
+  {t:'The juice blocks renal excretion', correct:false,
    why:'Felodipine is a lipophilic dihydropyridine cleared by metabolism, not by the kidney, and nothing on the slides places the juice at the kidney. The difference is set in the first pass through the gut wall and liver.'}],
  teach:[
   {h:'Reading the plot',
@@ -156,13 +156,13 @@ QUESTIONS.push(
  tags:['case','reasoning'], source:'slide',
  stem:'Cyclosporin A, an immunosuppressant given to prevent transplant rejection, is a CYP3A4 substrate. Co-administration with a CYP3A4 inducer can result in transplant failure. Explain.',
  options:[
-  {t:'The inducer raises the amount of CYP3A4, cyclosporin is converted to its inactive metabolites faster, its blood level and its immunosuppression fall, and the graft is rejected', correct:true,
+  {t:'More CYP3A4; faster inactivation; immunosuppression lost', correct:true,
    why:'Lecture 14 slide 55 draws cyclosporin A going to inactive metabolites under CYP3A4. Slide 53 gives the rule: induction raises enzyme levels and activity, and for an active drug that means lower blood levels, shorter duration of action and reduced efficacy. Immunosuppression is the efficacy here, and losing it is what lets the transplant be rejected.'},
-  {t:'The inducer raises cyclosporin levels, and cyclosporin at high levels is toxic to the kidney of the graft', correct:false,
+  {t:'Higher cyclosporin levels; graft-kidney toxicity', correct:false,
    why:'Direction reversed. An inducer lowers the level of a drug that is metabolised by the induced enzyme. Raised cyclosporin levels are what an inhibitor produces: slide 65 pairs ketoconazole with cyclosporin and lists immunosuppression as the outcome.'},
-  {t:'The inducer competes with cyclosporin for CYP3A4, so cyclosporin accumulates', correct:false,
+  {t:'Inducer competes for CYP3A4; cyclosporin accumulates', correct:false,
    why:'Competition for the enzyme is inhibition, not induction, and it would raise cyclosporin rather than lower it. An inducer makes more enzyme; it does not occupy it.'},
-  {t:'The inducer converts cyclosporin into an active metabolite that attacks the graft', correct:false,
+  {t:'Inducer forms an active metabolite that attacks the graft', correct:false,
    why:'Slide 55 labels the CYP3A4 products inactive metabolites. Cyclosporin is an active drug, not a prodrug, so more metabolism means less drug, not a new active species.'}],
  teach:[
   {h:'The case, worked',
@@ -278,5 +278,27 @@ QUESTIONS.push(
    t:'Slide 61 chains the antioxidant enzymes to these species. Superoxide dismutase turns the superoxide radical into hydrogen peroxide, a non-radical; catalase then removes the peroxide before it can be turned back into a hydroxyl radical. Glutathione peroxidase reduces the lipid hydroperoxide that a lipid peroxyl radical leaves behind. A radical propagates a chain; a non-radical oxidant does not, but it is the raw material for the next radical, which is why the enzymes handle both.'}],
  teachImg:'tx_ros',
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 41; antioxidant enzymes slide 61',
- quote:'ROS: O2•− (superoxide anion); RO2• (peroxyl); •OH (hydroxyl); RO• (alkoxyl); HO2• (hydroperoxyl); LOO• (lipid peroxyl) · RNS: •NO (nitric oxide); •NO2 (nitrogen dioxide) · Non-Radical Species: H2O2 (hydrogen peroxide); ONOO− (peroxynitrite); HOCl (hypochlorous acid)'}
+ quote:'ROS: O2•− (superoxide anion); RO2• (peroxyl); •OH (hydroxyl); RO• (alkoxyl); HO2• (hydroperoxyl); LOO• (lipid peroxyl) · RNS: •NO (nitric oxide); •NO2 (nitrogen dioxide) · Non-Radical Species: H2O2 (hydrogen peroxide); ONOO− (peroxynitrite); HOCl (hypochlorous acid)'},
+
+{id:'cyp-e4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'expr', concept:'expression-vs-drug-share',
+ tags:['reasoning','data'], source:'slide',
+ stem:'Which CYP isoform makes up the largest share of liver CYP, and which metabolises the largest share of clinical drugs?',
+ options:[
+  {t:'Expression: CYP2E1; drugs: CYP3A4/5', correct:true,
+   why:'Slide 14, percent of CYP isoforms expressed by human liver, has CYP2E1 as its largest slice at 21%. Slide 16, percent of clinical drugs metabolised by human CYP isoforms, has CYP3A4/5 at 30%. The most abundant enzyme and the busiest enzyme are different isoforms.'},
+  {t:'Expression: CYP3A4; drugs: CYP2E1', correct:false,
+   why:'The two numbers belong to the other charts. CYP3A4 is 11% of liver CYP on slide 14, and CYP2E1 metabolises 3% of clinical drugs on slide 16; each is large on one pie and small on the other.'},
+  {t:'Expression: CYP2D6; drugs: CYP2C9', correct:false,
+   why:'CYP2D6 is 2% of liver CYP and 20% of drugs, which is the mismatch slide 26 records as 3% versus 21%. CYP2C9 is 15% of liver CYP and 13% of drugs; neither tops either chart.'},
+  {t:'CYP3A4 tops both', correct:false,
+   why:'One third is what slide 30 says for CYP3A4, and it holds for drug share on slide 16 (30%). On the slide 14 pie CYP3A4 is 11%, with 3A5 and 3A7 bringing the CYP3A family to 16%; CYP2E1 is the largest slice there. The two slides disagree on expression and agree on drug share.'}],
+ teach:[
+  {h:'Two questions, two pies',
+   t:'A question about which isoform is most expressed, or most abundant, in the liver reads slide 14: CYP2E1 21%, then CYP2C9 15%, 2C8 12%, 3A4 11%, 2A6 and 4F 10%. A question about which isoform metabolises the most drugs reads slide 16: CYP3A4/5 30%, then 2D6 20%, 2C9 13%, 1A2 9%. Adding slices gives the family answers: CYP2 is the largest family on both, 66% of liver CYP and 61% of drugs, and CYP1 the smallest of families 1 to 3 on both, 6% and 9%.'},
+  {h:'The conflict, and which figure to give',
+   t:'Slide 30 states that CYP3A4 is one third of liver CYP isoforms and metabolises one third of drugs. The drug-share third matches slide 16. The expression third does not match the slide 14 pie, where CYP3A4 is 11%. If a question quotes slide 30, one third is the expected answer for both; if it shows or names the pie, CYP2E1 is the most expressed. The Reference tab holds both pies with every slice.'}],
+ teachImg:'cyp_liver_share',
+ cite:'Lecture #13 (MCMet-9_15_2026.pdf) slides 14 and 16; CYP2D6 mismatch slide 26; one-third statement slide 30',
+ quote:'% CYP isoforms expressed by human liver (slide 14) · % Clinical drugs metabolized by hCYP isoforms (slide 16)',
+ note:'Adding up the slide 14 slices for the CYP2 family gives 66%, not 52%: 2A6 10 + 2A13 1 + 2B6 3 + 2C8 12 + 2C9 15 + 2C19 2 + 2D6 2 + 2E1 21.'}
 );

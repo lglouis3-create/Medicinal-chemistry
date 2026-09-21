@@ -12,7 +12,21 @@ const REFERENCE_HTML = `
 <tr><td>-CO<sub>2</sub>H</td><td>Acyl synthetase</td><td>Acetyl-CoA + glycine or glutamine</td><td>Amino acid conjugate</td></tr>
 <tr><td>-OH, -NH<sub>2</sub>, -SH</td><td>Methyltransferases (MTs)</td><td>S-adenosylmethionine (SAM)</td><td>Methylated product</td></tr>
 </tbody></table>
-<p class="sub">Lecture #11 slides 46–57; Lecture #14 slides 29–30. NAT2 is polymorphic: slow and fast acetylators.</p>
+<p class="sub">Lecture #11 slides 46–57; Lecture #14 slides 29–30. NAT2 is polymorphic: slow and fast acetylators. The two decks differ on two rows: the Lecture 14 table lists only -OH for sulfotransferases and only -NH<sub>2</sub> for N-acetyltransferases, while Lecture 11 slide 47 adds aromatic amines for sulfotransferases and Lecture 11 names sulfonamides for NAT. A question drawn from Lecture 14 follows its table.</p>
+
+<h3>Phase 2: how to carry the target group without another list</h3>
+<p class="prose">The six enzyme names and their six cofactors are the part most people already hold. The target groups follow from those by two rules, read off the Lecture 14 slide 29–30 table.</p>
+<p class="prose"><b>The split.</b> Five of the six enzymes attach their tag to a nucleophilic handle on the drug: an O–H, an N–H, an S–H or a carboxylic acid. Glutathione S-transferase is the one whose cofactor is itself the nucleophile (the thiol of glutathione), so it needs the opposite on the drug, an electrophilic carbon: an alkyl halide (R–X) or an epoxide. That is the same chemistry as Lecture 15 slide 60, where GSTs and EHs are the enzyme defense against electrophiles.</p>
+<p class="prose"><b>4-3-1-1-1.</b> UGT takes all four handles (-OH, -CO<sub>2</sub>H, -NH<sub>2</sub>, -SH). Methyltransferase takes three (-OH, -NH<sub>2</sub>, -SH; not the acid). The other three take one each, and the one is already in the name or the cofactor: sulfotransferase makes a sulfate <i>ester</i>, R–O–SO<sub>3</sub><sup>&minus;</sup>, so the drug supplies an -OH; <i>N</i>-acetyltransferase puts the acetyl on a nitrogen, so -NH<sub>2</sub>; acylsynthetase joins an <i>amino acid</i> to the drug's <i>acid</i> (the -CO<sub>2</sub>H is activated by acetyl-CoA and the amino acid's nitrogen forms the amide; benzoic acid + glycine gives hippuric acid), so -CO<sub>2</sub>H.</p>
+<table class="reftab"><thead><tr><th>Enzyme</th><th>-OH</th><th>-NH<sub>2</sub></th><th>-SH</th><th>-CO<sub>2</sub>H</th><th>R–X, epoxide</th><th>Count</th></tr></thead><tbody>
+<tr><td>UGT (UDPGA)</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td></td><td>4</td></tr>
+<tr><td>MT (SAM)</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td></td><td></td><td>3</td></tr>
+<tr><td>ST / SULT (PAPS)</td><td>&#10003;</td><td></td><td></td><td></td><td></td><td>1</td></tr>
+<tr><td>NAT (acetyl-CoA)</td><td></td><td>&#10003;</td><td></td><td></td><td></td><td>1</td></tr>
+<tr><td>Acylsynthetase (acetyl-CoA + glycine or glutamine)</td><td></td><td></td><td></td><td>&#10003;</td><td></td><td>1</td></tr>
+<tr><td>GST (GSH)</td><td></td><td></td><td></td><td></td><td>&#10003;</td><td>the opposite kind</td></tr>
+</tbody></table>
+<p class="sub">Lecture #14 slides 29–30. On a reaction scheme, read it the other way: name the tag that appeared (glucuronide, sulfate, glutathione, acetyl, methyl, glycine), then the handle it sits on, and the enzyme follows.</p>
 
 <h3>Phase 1 enzymes and what they do</h3>
 <table class="reftab"><thead><tr><th>Enzyme</th><th>Reaction</th><th>Note</th></tr></thead><tbody>
@@ -44,6 +58,22 @@ const REFERENCE_HTML = `
 <tr><td>2E1</td><td>Environmental chemicals; induced by ethanol and ketones; key in halogenated hydrocarbon toxicity</td><td>Ethanol, acetaminophen (toxicity), halogenated HCs</td></tr>
 <tr><td>3A4</td><td>~1/3 of liver CYPs and ~1/3 of drugs; drives first-pass; in liver, intestine and lungs; induction and inhibition are major issues</td><td>Large substrate list; grapefruit juice interaction</td></tr>
 </tbody></table>
+
+<h3>Expressed in the liver vs. share of clinical drugs &mdash; two different pies</h3>
+<p class="prose">Lecture 13 gives two pie charts that are easy to run together. Slide 14 is how much of the liver's CYP is each isoform (expression). Slide 16 is what fraction of clinical drugs each isoform metabolises (workload). The isoform that tops one is not the isoform that tops the other, and a question that says <i>expressed</i> is asking about the first pie while one that says <i>metabolizes</i> is asking about the second. Family and subfamily figures below are the slices added up; the slides print only the isoforms.</p>
+<table class="reftab"><thead><tr><th></th><th>% of liver CYP (slide 14, expression)</th><th>% of clinical drugs metabolised (slide 16)</th></tr></thead><tbody>
+<tr><td><b>Isoform, highest</b></td><td>CYP2E1 21%</td><td>CYP3A4/5 30%</td></tr>
+<tr><td><b>Isoform, lowest</b></td><td>CYP2A13 1% (then 2C19, 2D6, 3A7 at 2% each)</td><td>CYP2A6, 2E1, 2J2 at 3% each</td></tr>
+<tr><td><b>Subfamily, highest</b></td><td>2C = 29% (2C8 12 + 2C9 15 + 2C19 2); 2E = 21%</td><td>3A = 30%</td></tr>
+<tr><td><b>Subfamily, lowest</b></td><td>2D = 2%</td><td>2A, 2E, 2J = 3% each</td></tr>
+<tr><td><b>Family, highest</b></td><td>CYP2 = 66% (2A6 10 + 2A13 1 + 2B6 3 + 2C8 12 + 2C9 15 + 2C19 2 + 2D6 2 + 2E1 21)</td><td>CYP2 = 61% (2A6 3 + 2B6 7 + 2C8 5 + 2C9 13 + 2C19 7 + 2D6 20 + 2E1 3 + 2J2 3)</td></tr>
+<tr><td><b>Family, lowest of 1, 2, 3</b></td><td>CYP1 = 6% (1A2 only)</td><td>CYP1 = 9% (1A2 only)</td></tr>
+<tr><td><b>CYP3 family</b></td><td>16% (3A4 11 + 3A5 3 + 3A7 2)</td><td>30% (3A4/5)</td></tr>
+<tr><td><b>CYP2D6</b></td><td>2% of liver CYP</td><td>20% of drugs &mdash; the mismatch slide 26 gives as ~3% vs 21%, the reason it causes so many interactions</td></tr>
+</tbody></table>
+<p class="prose">Every slice, for adding up. Slide 14 (liver): 1A2 6, 2A6 10, 2A13 1, 2B6 3, 2C8 12, 2C9 15, 2C19 2, 2D6 2, 2E1 21, 3A4 11, 3A5 3, 3A7 2, 4F 10, other P450s 2 (sum 100). Slide 16 (drugs): 1A2 9, 2A6 3, 2B6 7, 2C8 5, 2C9 13, 2C19 7, 2D6 20, 2E1 3, 2J2 3, 3A4/5 30 (sum 100). Slide 19 adds that families 1, 2 and 3 together metabolise 80% of clinical drugs. One conflict to know: slide 30 says CYP3A4 is one third of liver CYP, while the slide 14 pie gives it 11% (16% for all of CYP3A); the drug-share figure, one third, is the one both slides agree on.</p>
+{{fig:cyp_liver_share|Expression: % of CYP isoforms in human liver, Lecture 13 (MCMet-9_15_2026.pdf) slide 14}}
+{{fig:cyp_drug_share|Workload: % of clinical drugs metabolised by each isoform, Lecture 13 (MCMet-9_15_2026.pdf) slide 16}}
 
 <h3>Inducers and inhibitors</h3>
 <table class="reftab"><thead><tr><th>Common inducers</th><th>Common inhibitors</th></tr></thead><tbody>

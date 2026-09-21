@@ -307,6 +307,23 @@ const TYPE_LABEL = {
   structure:'read a structure', enzyme:'name the enzyme or cofactor',
   predict:'predict the outcome', define:'define a term',
   list:'list or rank', tf:'true or false'};
+/* What a question asks the student to do. One class per question, judged from
+   the stem and the figure, in this order: a scheme or structure to read; a
+   patient or drug scenario to work; two similar things to tell apart; the
+   fact itself. Used by Weak spots to say which kind of thinking is failing. */
+const SKILLS = [['read','Read a structure or scheme'], ['apply','Apply to a case'],
+                ['tell','Tell apart'], ['recall','Recall the fact']];
+const SKILL_SHORT = {read:'Read', apply:'Apply', tell:'Tell apart', recall:'Recall'};
+function skillOf(q){
+  if(q._skill) return q._skill;
+  const s = q.stem, tags = q.tags || [];
+  let k;
+  if(q.img || q.fg || /\bshown\b|scheme below|plot shows|reaction below|circled|which number/i.test(s)) k = 'read';
+  else if(tags.includes('case') || /patient|dialysis|is given|starts (a |an |taking |smoking|rifamp)|receives|takes |co-administ|overdose|what happens|expect|outcome|likely|develops|prescrib|a drug (that|with|has|is)|two drugs|two highly/i.test(s)) k = 'apply';
+  else if(tags.includes('compare') || /differ|distinguish|\bboth\b|rather than|instead of|versus|\bvs\b|respectively|EXCEPT|WRONG|\bNOT\b|compared|in common|tell|which (one|two) of|same|apart|which of the (two|four)|only\b/i.test(s)) k = 'tell';
+  else k = 'recall';
+  return (q._skill = k);
+}
 function typesOf(q){
   const s = q.stem, t = new Set();
   if (/^true or false/i.test(s)) t.add('tf');
@@ -324,11 +341,11 @@ const ALL_TAGS = Object.keys(TYPE_LABEL).filter(k => QUESTIONS.some(q=>q.types.i
 function show(v){
   VIEW = v;
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.v===v));
-  ['topics','quiz','gaps','exam','atlas','ref','settings'].forEach(k=>
+  ['topics','quiz','gaps','exam','atlas','guide','tell','ref','settings'].forEach(k=>
     document.getElementById('v-'+k).classList.toggle('hide', k!==v));
   window.scrollTo(0,0);
   ({topics:renderTopics, quiz:renderQuiz, gaps:renderGaps, exam:renderExam,
-    atlas:renderAtlas, ref:renderRef, settings:renderSettings}[v])();
+    atlas:renderAtlas, guide:renderGuide, tell:renderTell, ref:renderRef, settings:renderSettings}[v])();
 }
 
 /* ==========================================================================
@@ -719,6 +736,32 @@ function renderGaps(){
   }
   h += `</div>`;
 
+  /* ---- Which kind of question is failing ---------------------------------
+     Every question is classed by what it asks the student to do. A miss on a
+     recall item and a miss on a case item call for different repairs (reread
+     the slide, or work the reasoning again), so the split is shown before the
+     topic table, and each topic row carries its own split. */
+  const bySkill = {};
+  SKILLS.forEach(([k]) => bySkill[k] = {n:0, r:0, w:0, g:0, atRisk:0});
+  for(const a of DB.answers){
+    const q = byId(a.qid); if(!q) continue;
+    const b = bySkill[skillOf(q)];
+    b.n++; if(a.result==='correct') b.r++; else if(a.result==='wrong') b.w++; else b.g++;
+    b.atRisk += a.result==='correct' ? 0 : (a.result==='wrong' ? 1 : 0.5) * markWeight(q);
+  }
+  h += `<h3>Which kind of question is failing</h3>
+  <p class="sub">Recall is the fact itself. Tell apart is choosing between things with similar wording. Apply is a patient or drug scenario. Read is a structure or reaction scheme.</p>
+  <table class="gap"><thead><tr><th>Kind</th><th>Seen</th><th>Missed</th><th>Guessed</th><th>Marks at risk</th><th style="width:30%">Accuracy</th></tr></thead><tbody>`;
+  for(const [k, label] of SKILLS){
+    const b = bySkill[k]; if(!b.n) continue;
+    const pct = Math.round(100*b.r/b.n);
+    const col = pct>=80 ? 'var(--ok)' : pct>=60 ? 'var(--warn)' : 'var(--bad)';
+    h += `<tr><td>${esc(label)}</td><td>${b.n}</td><td${b.w?' style="color:var(--bad);font-weight:600"':''}>${b.w}</td>
+      <td${b.g?' style="color:var(--warn)"':''}>${b.g}</td><td${b.atRisk>=0.5?' style="font-weight:600"':''}>${b.atRisk.toFixed(1)}</td>
+      <td><div class="bar"><i style="width:${pct}%;background:${col}"></i></div><span style="font-size:12px;color:var(--text-dim)">${pct}%</span></td></tr>`;
+  }
+  h += `</tbody></table>`;
+
   /* ---- Accuracy by topic, ordered by marks at risk -------------------
      A miss in a 137-question pool that supplies 38 marks costs 38/137 of a
      mark; a miss in the 129-question pool that supplies 4 costs 4/129. Sorting
@@ -734,9 +777,39 @@ function renderGaps(){
     const w = as.filter(a=>a.result==='wrong').length;
     const g = as.filter(a=>a.result==='guessed').length;
     const atRisk = as.reduce((acc,a)=> acc + (a.result==='correct' ? 0 : (a.result==='wrong' ? 1 : 0.5) * markWeight(ids.get(a.qid))), 0);
-    rows.push({t, n:as.length, r, w, g, pct: Math.round(100*r/as.length), atRisk});
+    // the same answers split by kind, for the line under the topic name
+    const sk = {};
+    for(const a of as){ const k = skillOf(ids.get(a.qid)); (sk[k] ||= {n:0,r:0}).n++; if(a.result==='correct') sk[k].r++; }
+    rows.push({t, n:as.length, r, w, g, pct: Math.round(100*r/as.length), atRisk, sk});
   }
   rows.sort((a,b)=> b.atRisk - a.atRisk || a.pct - b.pct);
+
+  /* ---- Weakest topics on a comparable footing ------------------------------
+     Raw accuracy favours the topic answered least. Each topic with three or
+     more answers is compared with the accuracy of its own pool (the 38-, 8-
+     or 4-mark pool), and the gap in percentage points is what ranks it. The
+     kind of question missed most inside that topic is named beside it. */
+  const poolAcc = {};
+  for(const a of DB.answers){ const q = byId(a.qid); if(!q) continue;
+    const k = poolKey(q); (poolAcc[k] ||= {n:0,r:0}).n++; if(a.result==='correct') poolAcc[k].r++; }
+  const weakest = rows.filter(r => r.n >= 3).map(r => {
+    const pk = poolKey(QUESTIONS.find(q=>q.topic===r.t.id));
+    const pa = poolAcc[pk] ? Math.round(100*poolAcc[pk].r/poolAcc[pk].n) : r.pct;
+    let worst = null;
+    for(const [sk, label] of SKILLS){ const s = r.sk[sk]; if(!s || s.n < 2) continue;
+      const p = Math.round(100*s.r/s.n); if(!worst || p < worst.p) worst = {label, p, n:s.n}; }
+    return {r, gap: pa - r.pct, pa, worst};
+  }).filter(x => x.gap > 0).sort((a,b) => b.gap - a.gap).slice(0, 5);
+  if(weakest.length){
+    h += `<h3>Weakest topics, on a comparable footing</h3>
+    <p class="sub">Topics with three or more answers, ranked by how far they sit below the accuracy of their own pool. The kind of question missed most in that topic is named beside it.</p>
+    <table class="gap"><thead><tr><th>Topic</th><th>Yours</th><th>Pool</th><th>Gap</th><th>Weakest kind</th></tr></thead><tbody>`;
+    for(const x of weakest){
+      h += `<tr><td>${esc(x.r.t.name)}</td><td>${x.r.pct}%</td><td>${x.pa}%</td><td style="color:var(--bad);font-weight:600">&minus;${x.gap}</td>
+        <td>${x.worst ? `${esc(x.worst.label)} (${x.worst.p}% of ${x.worst.n})` : '<i>too few of any one kind</i>'}</td></tr>`;
+    }
+    h += `</tbody></table>`;
+  }
 
   h += `<h3>Where you are losing marks</h3>
   <p class="sub">Marks at risk = each miss weighted by what one question in that pool is worth on the paper (a guess counts half).</p>
@@ -746,7 +819,8 @@ function renderGaps(){
   for(const r of rows){
     const col = r.pct>=80 ? 'var(--ok)' : r.pct>=60 ? 'var(--warn)' : 'var(--bad)';
     h += `<tr>
-      <td>${esc(r.t.name)}<br><span style="font-size:11.5px;color:var(--text-dim)">${r.t.prof}</span></td>
+      <td>${esc(r.t.name)}<br><span style="font-size:11.5px;color:var(--text-dim)">${r.t.prof}</span><br>
+          <span style="font-size:11.5px;color:var(--text-dim)">${SKILLS.filter(([k]) => r.sk[k]).map(([k,label]) => `${SKILL_SHORT[k]} ${r.sk[k].r}/${r.sk[k].n}`).join(' &middot; ')}</span></td>
       <td>${r.n}</td>
       <td${r.w?' style="color:var(--bad);font-weight:600"':''}>${r.w}</td>
       <td${r.g?' style="color:var(--warn)"':''}>${r.g}</td>
@@ -852,18 +926,22 @@ function renderExam(){
   <p><button class="btn" id="startExam">Start the 75-minute paper</button></p>`;
   $('#startExam').onclick = beginExam;
 }
-function drawN(pool, n){
-  const picked = [], used = new Set(), byConcept = {};
+/* A question marked dupOf:'x' tests the same fact as question x, so a paper
+   never carries both: taking either one blocks the other. */
+function drawN(pool, n, blocked){
+  const picked = [], used = blocked || new Set(), byConcept = {};
+  const take = q => { picked.push(q); used.add(q.id); if(q.dupOf) used.add(q.dupOf); };
+  const free = q => !used.has(q.id) && !(q.dupOf && used.has(q.dupOf));
   shuffle(pool.slice()).forEach(q => { (byConcept[q.concept] ||= []).push(q); });
   const concepts = shuffle(Object.keys(byConcept));
   for(const c of concepts){                       // one per concept first, for spread
     if(picked.length >= n) break;
-    const q = byConcept[c][0];
-    picked.push(q); used.add(q.id);
+    const q = byConcept[c].find(free);
+    if(q) take(q);
   }
   for(const q of shuffle(pool.slice())){          // top up if the bank is short on concepts
     if(picked.length >= n) break;
-    if(!used.has(q.id)){ picked.push(q); used.add(q.id); }
+    if(free(q)) take(q);
   }
   return picked.slice(0,n);
 }
@@ -877,15 +955,17 @@ const EXAM_SATA = 8;
    questions are drawn first so they are never crowded out, then single-answer
    questions fill the rest, one concept each before any concept repeats. */
 function drawMixed(pool, n, nSata){
-  const sata = drawN(pool.filter(isMulti), Math.min(nSata, n));
-  const taken = new Set(sata.map(q => q.id));
-  const rest = drawN(pool.filter(q => !isMulti(q) && !taken.has(q.id)), n - sata.length);
+  const used = new Set();
+  const sata = drawN(pool.filter(isMulti), Math.min(nSata, n), used);
+  const rest = drawN(pool.filter(q => !isMulti(q)), n - sata.length, used);
   return [...sata, ...rest];
 }
 function beginExam(){
-  const yenP = QUESTIONS.filter(q=>q.prof==='Yendapally');
-  const oldP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
-  const newP = QUESTIONS.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
+  // lowYield items (slide asides never polled or listed for review) stay out of the paper
+  const examQ = QUESTIONS.filter(q => !q.lowYield);
+  const yenP = examQ.filter(q=>q.prof==='Yendapally');
+  const oldP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='old');
+  const newP = examQ.filter(q=>q.prof==='Sikazwe' && q.tier==='new');
   // select-all items spread across the pools in the paper's 38 : 8 : 4 ratio
   const sNew = Math.round(EXAM_SATA * 38/50), sYen = Math.round(EXAM_SATA * 8/50);
   const sOld = Math.max(0, EXAM_SATA - sNew - sYen);
@@ -1121,28 +1201,32 @@ function renderAtlas(){
   });
 }
 
-function renderRef(){
-  const html = refFigures(REFERENCE_HTML);
+function renderDoc(el, html, prefix){
   // a jump list, built from the section headings that are actually present
   // headings are authored as HTML, so entities are decoded before the label is
   // re-escaped for the link; otherwise a chip reads "&mdash;" literally
   const heads = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)]
     .map(m => deEnt(m[1].replace(/<[^>]+>/g, '')).trim());
   let i = 0;
-  const body = html.replace(/<h3([^>]*)>/g, (m, attrs) => `<h3 id="ref-${i++}"${attrs}>`);
+  const body = html.replace(/<h3([^>]*)>/g, (m, attrs) => `<h3 id="${prefix}-${i++}"${attrs}>`);
+  // the jump list folds away so it does not sit between the reader and the
+  // tables while scrolling; it opens on tap and closes again after a jump
   const nav = heads.length
-    ? `<nav class="refnav">${heads.map((h, n) =>
-        `<a href="#ref-${n}">${esc(h)}</a>`).join('')}</nav>`
+    ? `<details class="refnav-wrap"><summary>Jump to a section</summary><nav class="refnav">${heads.map((h, n) =>
+        `<a href="#${prefix}-${n}">${esc(h)}</a>`).join('')}</nav></details>`
     : '';
-  const el = $('#v-ref');
   el.innerHTML = body.replace('</p>', '</p>' + nav);
   // anchor links inside a scrolling panel need handling rather than a page jump
   el.querySelectorAll('.refnav a').forEach(a => a.onclick = e => {
     e.preventDefault();
     const t = el.querySelector(a.getAttribute('href'));
+    const d = el.querySelector('.refnav-wrap'); if (d) d.open = false;
     if (t) t.scrollIntoView({behavior: 'smooth', block: 'start'});
   });
 }
+function renderRef(){ renderDoc($('#v-ref'), refFigures(REFERENCE_HTML), 'ref'); }
+function renderTell(){ renderDoc($('#v-tell'), refFigures(TELL_HTML), 'tell'); }
+function renderGuide(){ renderDoc($('#v-guide'), refFigures(GUIDE_HTML), 'guide'); }
 
 /* ==========================================================================
    SETTINGS

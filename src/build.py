@@ -20,7 +20,7 @@ DATA_FILES = ['atlas.js', 'diagrams.js',
 # Everything that has to parse before a build is allowed to proceed. Derived
 # from DATA_FILES rather than listed again, so adding a question file cannot
 # leave it syntax-checked in one place and unchecked in the other.
-SOURCES = DATA_FILES + ['reference.js', 'views.js']
+SOURCES = DATA_FILES + ['reference.js', 'tell.js', 'guide.js', 'views.js']
 
 
 def node_check(path, label):
@@ -46,6 +46,8 @@ parts.append('const IMAGES = ' + json.dumps(images) + ';\n')
 for f in DATA_FILES:
     parts.append(open(f, encoding='utf-8').read() + '\n')
 parts.append(open('reference.js', encoding='utf-8').read() + '\n')
+parts.append(open('tell.js', encoding='utf-8').read() + '\n')
+parts.append(open('guide.js', encoding='utf-8').read() + '\n')
 DATA = ''.join(parts)
 
 # replace the three placeholder declarations in the shell with the real data

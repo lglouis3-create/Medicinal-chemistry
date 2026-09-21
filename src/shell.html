@@ -285,8 +285,34 @@ table.gap tr:last-child td{border-bottom:0}
 #v-atlas.namesoff .atfig::after{content:"name it";position:absolute;bottom:3px;right:7px;
   font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 #v-atlas.namesoff .attile.shown .atfig::after{content:""}
-.refnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px;padding:14px;
-  background:var(--surface);border:1px solid var(--line-soft);border-radius:8px}
+/* objective guides */
+.gobj{margin:0 0 34px;padding:0 0 22px;border-bottom:2px solid var(--line)}
+.gobj h3{margin:26px 0 10px;font-size:19px}
+.gobj h4{margin:20px 0 8px;font-size:14.5px;color:var(--accent);letter-spacing:.01em}
+.gbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;background:var(--accent);color:#fff;border-radius:8px;padding:9px 14px;margin:0 0 6px}
+.gbar span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.gbar b{font-size:15px}
+.gbar i{margin-left:auto;font-size:12.5px;opacity:.9}
+.gwords{display:grid;grid-template-columns:minmax(120px,max-content) 1fr;gap:5px 14px;margin:0 0 10px;font-size:13.5px}
+.gwords dt{font-weight:600}
+.gwords dd{margin:0;color:var(--text)}
+.gobj .prose{font-size:14.5px;margin:0 0 10px}
+.gobj .reftab{margin:8px 0 14px}
+.gobj .reffig img{max-width:620px;width:100%}
+.ghook,.gpoll,.gask{border:1px solid;border-radius:9px;padding:11px 14px;margin:14px 0;font-size:14px;line-height:1.55}
+.ghook{border-color:#d9822b;background:rgba(217,130,43,.08)}
+.gpoll{border-color:#3b62c4;background:rgba(59,98,196,.07)}
+.gask{border-color:#2f8f5b;background:rgba(47,143,91,.07)}
+.ghook>b,.gpoll>b,.gask>b{display:block;margin-bottom:4px}
+.gask ul{margin:6px 0 6px 18px;padding:0}
+.gask li{margin:3px 0}
+@media (max-width:600px){.gwords{grid-template-columns:1fr}.gwords dd{margin:0 0 6px 10px}}
+.refnav-wrap{margin:0 0 20px;border:1px solid var(--line-soft);border-radius:8px;background:var(--surface)}
+.refnav-wrap summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--accent);list-style:none}
+.refnav-wrap summary::-webkit-details-marker{display:none}
+.refnav-wrap summary::before{content:"\25B8  ";font-size:11px}
+.refnav-wrap[open] summary::before{content:"\25BE  "}
+.refnav{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:4px 14px 14px}
 .refnav a{font-size:12.5px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;
   background:var(--paper);color:var(--text);text-decoration:none;white-space:nowrap}
 .refnav a:hover{background:var(--line-soft)}
@@ -321,6 +347,8 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
   <button data-v="gaps">Weak spots</button>
   <button data-v="exam">Exam sim</button>
   <button data-v="atlas">Atlas</button>
+  <button data-v="guide">Guides</button>
+  <button data-v="tell">Tell apart</button>
   <button data-v="ref">Reference</button>
   <button data-v="settings">Settings</button>
 </nav>
@@ -331,6 +359,8 @@ input[type=text]{font:inherit;padding:8px 11px;border:1px solid var(--line);bord
   <section id="v-gaps" class="hide"></section>
   <section id="v-exam" class="hide"></section>
   <section id="v-atlas" class="hide"></section>
+  <section id="v-guide" class="hide"></section>
+  <section id="v-tell" class="hide"></section>
   <section id="v-ref" class="hide"></section>
   <section id="v-settings" class="hide"></section>
 </main>
@@ -541,9 +571,22 @@ function pickNext(pool, justAsked){
    || b.sub  - a.sub
    || a.r    - b.r);
   // sample from the top of the ranked list so the order is not identical every run
-  const top = cands.filter(c => c.tier===cands[0].tier && c.fresh===cands[0].fresh);
-  return top[Math.floor(Math.random()*Math.min(top.length,5))].q;
+  let top = cands.filter(c => c.tier===cands[0].tier && c.fresh===cands[0].fresh);
+  // Rule 5 puts a missed concept ahead of a never-seen one. Taken literally,
+  // a pool with many open misses serves them back to back and the never-seen
+  // material waits, so the "not yet seen" count in Weak spots stands still
+  // while the retests cycle. A missed concept now takes at most every other
+  // turn: after one retest the next pick goes to never-seen material when any
+  // remains in the pool. The GAP rule still holds for each concept.
+  if(cands[0].tier === 4 && LAST_TIER === 4){
+    const unseen = cands.filter(c => c.tier === 3);
+    if(unseen.length) top = unseen;
+  }
+  const pick = top[Math.floor(Math.random()*Math.min(top.length,5))];
+  LAST_TIER = pick.tier;
+  return pick.q;
 }
+let LAST_TIER = 0;   // tier of the question pickNext served last (4 = a missed concept's retest)
 
 /* ==========================================================================
    HELPERS

@@ -190,6 +190,20 @@ const dupes = new Set(); let dupCount=0;
 [...y,...o,...n].forEach(q=>{ if(dupes.has(q.id)) dupCount++; dupes.add(q.id); });
 if (dupCount) bad(`${dupCount} duplicate questions on one exam paper`);
 else console.log('  ok    no duplicate questions on a single paper');
+// dupOf: every target exists, and 20 papers never carry a question with its dupOf partner or a lowYield item
+const allIds = new Set(QUESTIONS.map(q=>q.id));
+QUESTIONS.filter(q=>q.dupOf && !allIds.has(q.dupOf)).forEach(q=>bad(`${q.id} dupOf points at missing ${q.dupOf}`));
+{ let clash=0, low=0;
+  for(let k=0;k<20;k++){
+    const paper=[...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Yendapally'),8,sYen),
+                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='old'),4,sOld),
+                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='new'),38,sNew)];
+    const on=new Set(paper.map(q=>q.id));
+    paper.forEach(q=>{ if(q.dupOf && on.has(q.dupOf)) clash++; if(q.lowYield) low++; });
+  }
+  if(clash) bad(`${clash} dupOf pairs drawn together across 20 papers`);
+  else console.log(`  ok    dupOf partners never share a paper (${QUESTIONS.filter(q=>q.dupOf).length} marked; ${QUESTIONS.filter(q=>q.lowYield).length} lowYield kept off the paper)`);
+}
 const nSata = [...y,...o,...n].filter(X.isMulti).length;
 const bankSata = {yen: QUESTIONS.filter(q=>q.prof==='Yendapally' && X.isMulti(q)).length,
                   old: QUESTIONS.filter(q=>q.prof==='Sikazwe'&&q.tier==='old' && X.isMulti(q)).length,
