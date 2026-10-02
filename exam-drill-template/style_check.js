@@ -3,7 +3,7 @@ const fs=require('fs'), vm=require('vm');
 const OUT = '/mnt/user-data/outputs/' + ((require('fs').readFileSync('course.js','utf8').match(/output:\s*'([^']+)'/)||[])[1] || 'exam_drill.html');
 let c=[...fs.readFileSync(OUT,'utf8').matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=c.lastIndexOf('   BOOT'); c=c.slice(0,c.lastIndexOf('/* ===',b)); c+='\nglobalThis.__Q=QUESTIONS;';
-const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{}},window:{},prompt:()=>'x',setTimeout:()=>0,clearTimeout(){},Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
+const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{},addEventListener(){}},window:{},prompt:()=>'x',setTimeout:()=>0,clearTimeout(){},Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
 sb.globalThis=sb;vm.createContext(sb);vm.runInContext(c,sb);
 const Q=sb.__Q;
 
@@ -33,7 +33,7 @@ function scan(txt, where){
   }
 }
 const STEM_RE=/\b(the deck|the slide|the lecture|lecture (gives|asks|notes|states)|deck note|is listed|are listed|according to|as presented in lecture|given as|named as|described as)\b/i;
-console.log('\n=== Stem check (all questions ask chemistry, not "what does the deck say") ===');
+console.log('\n=== Stem check (every stem asks the subject, not "what does the deck say") ===');
 let stemHits=0;
 for(const q of Q){ const m=q.stem.match(STEM_RE);
   if(m){ console.log(`  ${q.id}: "${q.stem}"`); stemHits++; } }
@@ -51,6 +51,23 @@ for(const q of rebuilt){
 }
 console.log(`\n  scanned ${rebuilt.length} rebuilt questions`);
 console.log(hits ? `  ${hits} phrasing issues found\n` : '  no flagged phrasing found\n');
+
+/* The change log is what the reader sees on the Topics page as "What's new", a
+   few bullets at a time, so a bullet that runs to a paragraph defeats it. The
+   limit is one short line. */
+console.log('=== Change log ===');
+const CL = 'CHANGELOG.md';
+if(!fs.existsSync(CL)){
+  console.log('  no CHANGELOG.md: the page will show no What\'s new card\n');
+}else{
+  const lines = fs.readFileSync(CL, 'utf8').split('\n');
+  const bullets = lines.filter(l => l.startsWith('- '));
+  const heads = lines.filter(l => /^##\s/.test(l));
+  const long = bullets.filter(l => l.length > 120);
+  long.forEach(l => { console.log(`  [bullet longer than one short line] ${l.slice(0, 70)}…`); hits++; });
+  if(!heads.length){ console.log('  no "## date (title)" heading, so no entry can be shown'); hits++; }
+  console.log(`  ${heads.length} entries, ${bullets.length} bullets${long.length ? `, ${long.length} too long` : ', all within one line'}\n`);
+}
 
 /* Citation coverage. The rule is that a citation names the file and the slide.
    A slide can be named two ways: by number, where the deck was paged through

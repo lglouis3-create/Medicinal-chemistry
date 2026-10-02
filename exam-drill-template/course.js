@@ -18,6 +18,10 @@
                       and the pools with their marks. A pool `filter` is an object
                       of field:value that a question must match; a value may be
                       an array meaning "one of". Pools' marks add up to `questions`.
+                      `date` is the string shown in the header; add `when` (ISO)
+                      and the page counts the days down to it.
+                      Optional `blueprint`: use it only when the professor has
+                      announced counts per topic. See the commented example.
    activeExam         which exam the simulator and the weighted pass follow
    skills             this course's taxonomy of what a question asks the student
                       to do; every question carries one `skill`; Weak spots groups
@@ -40,12 +44,27 @@ const COURSE = {
   ],
 
   exams: [
-    {id:'exam1', name:'Exam 1', date:'',
+    {id:'exam1', name:'Exam 1', date:'', when:'',   // when: '2026-10-14T09:00' turns on the countdown
      questions:4, minutes:10, sata:0,          // sample values for the sample bank; set the real blueprint
      blurb:'',
      pools:[
        {key:'all', name:'Lectures 1–4', marks:4, filter:{exam:1}},
-     ]},
+     ],
+     /* Only when the professor has announced counts per topic. Each part takes
+        its questions from the category whose `match` pattern fits the stem,
+        concept, subtopic and tags; `n` is a count or a [min,max] range, `min` is
+        a floor, and one part carries `rest`. `sata` is how many select-all items
+        the paper ends up with.
+     blueprint: {
+       sata: 2,
+       cats: [{key:'regulation', match:'up-?regulat|down-?regulat|desensiti'},
+              {key:'index',      match:'therapeutic index|safety index'}],
+       rest: 'other',
+       parts: [{key:'regulation', name:'receptor regulation', n:5},
+               {key:'index',      name:'therapeutic index',   n:[2,3]},
+               {key:'other',      name:'everything else',     rest:true}],
+     },
+     */},
   ],
   activeExam: 'exam1',
 

@@ -12,12 +12,11 @@ kept under `<key>_labeled` for the concept block, where the answer is wanted.
 import base64, csv, io, json, subprocess, sys
 from PIL import Image, ImageDraw
 
+# One entry per crop that prints its own answer: the images.json key, and the
+# phrases to white out. Course-specific — fill it in as such crops appear.
 # key                       phrases to mask on the question image
 SPEC = [
-  ("rx_allylic_pentazocine", ["Allylic OH metabolite"]),
-  ("rx_adh",                 ["ADH"]),
-  ("rx_akr",                 ["AKRs"]),
-  ("rx_gluc_sulf",           ["UGT", "STs", "Morphine 6-O-Glucuronide", "Labetolol sulfate"]),
+  # ("rx_oxidation", ["the enzyme name the slide prints", "the product name"]),
 ]
 SCALE = 2       # OCR upscale
 PAD = 4         # px of margin around each masked word, at crop scale

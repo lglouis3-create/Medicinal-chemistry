@@ -503,7 +503,9 @@ def main():
             show('exam');
             document.getElementById('startExam').click();
             out.examSata = EX.qs.filter(isMulti).length;
-            out.examTarget = EXAM_SATA;
+            // the blueprint's own select-all count governs when the course has one
+            out.examTarget = (EXAM.blueprint && (EXAM.blueprint.parts || []).length)
+              ? (EXAM.blueprint.sata || 0) : EXAM_SATA;
             const first = EX.qs.findIndex(isMulti);
             if (first >= 0) {
                 EX.i = first; renderExamQ();
@@ -610,8 +612,176 @@ def main():
         check(ex['saved'] and ex['same'], 'an exam paper in progress is saved and restored')
         check(ex['logged'] == 1 and ex['cleared'], f"submitting a partial paper logs only the answered items ({ex['logged']} logged)")
 
+        # ---- What's new card and the change log ----------------------------
+        news = page.evaluate("""() => {
+            const log = BUILD.changelog || [];
+            if (!log.length) return {none: true};
+            LS.set(NS + ':newsSeen', '');
+            show('topics');
+            const card = document.getElementById('news');
+            const out = {items: card ? card.querySelectorAll('li').length : 0, card: !!card};
+            if (card) { document.getElementById('newsok').click();
+                        out.dismissed = !document.getElementById('news');
+                        out.remembered = LS.get(NS + ':newsSeen') === log[0].date + '|' + log[0].items.join('').length; }
+            show('settings');
+            out.inSettings = !!document.getElementById('changelog');
+            show('topics');
+            out.staysDismissed = !document.getElementById('news');
+            return out;
+        }""")
+        if news.get('none'):
+            skip("What's new card", 'the build carries no change log')
+        else:
+            check(news['card'] and news['items'] > 0, f"What's new card shows the newest entries ({news.get('items')} bullets)")
+            check(news.get('dismissed') and news.get('remembered'), '"Got it" dismisses the card and remembers the entry')
+            check(news.get('staysDismissed'), 'the card stays dismissed on the next visit to Topics')
+            check(news.get('inSettings'), 'Settings lists the whole change log')
+
+        # ---- session progress and the review plan --------------------------
+        sess = page.evaluate("""() => {
+            // answer a handful through the real UI, getting one wrong on purpose
+            startQuiz(TOPICS[0].id);
+            const out = {};
+            for (let i = 0; i < 4; i++) {
+                if (!Q || !Q.current) break;
+                answerCurrent(i !== 1);
+                // read the session line while a question is still on screen: a
+                // short topic can run out before the loop does
+                if (!out.strip) out.strip = (document.getElementById('sess') || {}).textContent || '';
+                const nx = document.getElementById('btnNext'); if (nx) nx.click();
+            }
+            out.logged = sessionLog().length;
+            show('gaps');
+            const el = document.getElementById('v-gaps');
+            out.sessionCard = !!el.querySelector('.sdots10');
+            out.dots = el.querySelectorAll('.sdots10 i').length;
+            out.plan = el.querySelectorAll('.panel.plan').length;
+            out.planText = el.innerText.includes('What to review next');
+            const drill = el.querySelector('[data-area]');
+            out.drills = !!drill;
+            if (drill) { drill.click(); out.drilled = !!(Q && Q.current); show('gaps'); }
+            return out;
+        }""")
+        check(sess['logged'] >= 2, f"answers land in this session ({sess['logged']} logged)")
+        check('This session' in sess['strip'], 'the quiz carries a session line', sess['strip'][:60])
+        check(sess['sessionCard'] and sess['dots'] >= 2, f"Weak spots shows this session's dots ({sess['dots']})")
+        check(sess['planText'], 'Weak spots shows the review plan')
+        check(sess['plan'] >= 1, f"the plan groups what is not solid ({sess['plan']} section(s))")
+        check(sess.get('drills') and sess.get('drilled'), 'a plan section drills its own questions')
+
+        # ---- Explain more links, and the way back -------------------------
+        links = page.evaluate("""() => {
+            const q = QUESTIONS.find(x => linksFor(x).length);
+            if (!q) return {none: true};
+            startQuiz(q.topic);
+            Q.current = q; Q.order = (q.options || []).map((o, i) => i); Q.picked = null; Q.revealed = false;
+            renderQuiz(); answerCurrent(true);
+            const chip = document.querySelector('#v-quiz [data-jump]');
+            const out = {chip: !!chip};
+            if (chip) {
+                const [v, a] = chip.dataset.jump.split(':');
+                chip.click();
+                out.view = VIEW; out.want = v;
+                out.target = !!document.getElementById(a);
+                const back = document.getElementById('backbtn');
+                out.back = !!back;
+                if (back) { back.click(); out.returned = VIEW; }
+            }
+            return out;
+        }""")
+        if links.get('none'):
+            skip('Explain more links', 'no question in this bank resolves to a reading section')
+        else:
+            check(links['chip'], 'an answered question offers its reading sections')
+            check(links.get('view') == links.get('want'), f"the chip opens that tab ({links.get('view')})")
+            check(links.get('target'), 'the section it names exists in that tab')
+            check(links.get('back') and links.get('returned') == 'quiz', 'the floating button comes back to the question')
+
+        # ---- Explain-one cards in a table ---------------------------------
+        xp = page.evaluate("""() => {
+            show('ref');
+            const btn = document.querySelector('#v-ref [data-xpick]');
+            if (!btn) return {none: true};
+            const [g] = btn.dataset.xpick.split(':');
+            btn.click();
+            const out = {filled: (document.querySelector(`[data-xout="${g}"]`) || {}).innerHTML.length > 20};
+            const sel = document.querySelector(`select[data-xsel="${g}"]`);
+            if (sel && sel.options.length > 2) {
+                sel.value = sel.options[2].value; sel.dispatchEvent(new Event('change'));
+                out.viaSelect = (document.querySelector(`[data-xout="${g}"]`) || {}).innerHTML.length > 20;
+            }
+            const go = document.querySelector(`[data-xout="${g}"] [data-xgo]`);
+            if (go) { go.click(); out.xback = !!document.getElementById('xback'); }
+            return out;
+        }""")
+        if xp.get('none'):
+            skip('Explain-one cards', 'no table in this bank carries one')
+        else:
+            check(xp['filled'], 'a Why? button fills the explanation card')
+            check(xp.get('viaSelect', True), 'the Explain-one select fills it too')
+            check(xp.get('xback', True), 'following a card to its figure offers a way back')
+
+        # ---- step-through figures -----------------------------------------
+        st = page.evaluate("""() => {
+            const keys = (typeof DIA === 'undefined' ? [] : Object.keys(DIA).filter(k => /data-anim/.test(DIA[k])));
+            if (!keys.length) return {none: true};
+            show('diagrams');
+            const fig = document.querySelector('#v-diagrams .fig');
+            if (!fig) return {err: 'no figure rendered in the Diagrams tab'};
+            const steps = fig.querySelectorAll('.st').length;
+            const shown = () => [...fig.querySelectorAll('.st')].findIndex(s => s.classList.contains('on'));
+            const first = shown();
+            fig.querySelector('[data-go="1"]').click();
+            const after = shown();
+            fig.querySelector('[data-go="dot"][data-i="0"]').click();
+            return {keys: keys.length, steps, first, after, back: shown(),
+                    dots: fig.querySelectorAll('.sdot').length,
+                    chips: document.querySelectorAll('#v-diagrams [data-dg]').length};
+        }""")
+        if st.get('none'):
+            skip('step-through figures', 'no figure in DIA carries step controls')
+        else:
+            check(not st.get('err'), 'the Diagrams tab renders its figures', st.get('err', ''))
+            check(st.get('steps', 0) >= 2, f"a step-through has its steps ({st.get('steps')})")
+            check(st.get('first') == 0 and st.get('after') == 1, 'Next moves one step on')
+            check(st.get('back') == 0, 'a step dot jumps back to that step')
+            check(st.get('dots') == st.get('steps'), 'one dot per step')
+            check(st.get('chips', 0) > 0, 'the contents chips list the figures')
+
+        # ---- figure labels stay inside their figure ------------------------
+        # A label that overflows the SVG box is invisible on a phone and cut off
+        # on a desktop, and nothing else in the suite notices.
+        overflow = page.evaluate("""() => {
+            const bad = [];
+            const keys = (typeof DIA === 'undefined' ? [] : Object.keys(DIA));
+            const host = document.getElementById('v-topics');
+            const old = host.innerHTML;
+            for (const k of keys) {
+                host.innerHTML = '<div style="max-width:620px">' + DIA[k] + '</div>';
+                const svg = host.querySelector('svg'); if (!svg) continue;
+                const steps = [...host.querySelectorAll('.st')];
+                const groups = steps.length ? steps : [svg];
+                groups.forEach((g, gi) => {
+                    steps.forEach((s, j) => s.classList.toggle('on', j === gi));
+                    const box = svg.getBoundingClientRect();
+                    g.querySelectorAll('text').forEach(t => {
+                        const r = t.getBoundingClientRect();
+                        if (!r.width) return;
+                        if (r.left < box.left - 1 || r.right > box.right + 1 || r.bottom > box.bottom + 1 || r.top < box.top - 1)
+                            bad.push(k + (steps.length ? ' step ' + (gi + 1) : '') + ': "' + t.textContent.slice(0, 24) + '"');
+                    });
+                });
+            }
+            host.innerHTML = old;
+            return [...new Set(bad)];
+        }""")
+        if not page.evaluate("() => typeof DIA !== 'undefined' && Object.keys(DIA).length"):
+            skip('figure labels inside the box', 'no drawn figures in this bank')
+        else:
+            check(not overflow, 'every figure label sits inside its figure', ', '.join(overflow[:5]))
+
         # every view renders without throwing
-        for view in ['topics', 'quiz', 'gaps', 'exam'] + (['atlas'] if has_atlas else []) + ['guide', 'tell', 'ref', 'settings']:
+        for view in ['topics', 'quiz', 'gaps', 'exam'] + (['atlas'] if has_atlas else []) + (['diagrams'] if page.evaluate("() => !!document.querySelector('#nav button[data-v=\"diagrams\"]')") else []) + ['guide', 'tell', 'ref', 'settings']:
             r = page.evaluate(f"""() => {{
                 try {{ if (typeof show === 'function') {{ show('{view}'); return 'ok'; }}
                       return 'no show()'; }} catch (e) {{ return String(e); }} }}""")
@@ -621,6 +791,36 @@ def main():
         check(not errors, 'no uncaught error after interaction', '; '.join(errors[:2]))
 
         page.screenshot(path='/tmp/drill_screenshot.png', full_page=False)
+
+        # ---- every tab, on a phone and on a desktop, light and dark --------
+        # Three faults live only here: a page that scrolls sideways on a phone,
+        # a value that renders as "undefined" or "NaN" in one view only, and a
+        # colour that is only defined for one theme.
+        tabs = page.evaluate("() => [...document.querySelectorAll('#nav button')].map(b => b.dataset.v)")
+        for w, label in ((375, 'phone'), (1100, 'desktop')):
+            for scheme in ('light', 'dark'):
+                p2 = browser.new_page(viewport={'width': w, 'height': 820}, color_scheme=scheme)
+                errs2 = []
+                p2.on('pageerror', lambda e: errs2.append(str(e)))
+                p2.add_init_script("window.prompt = () => 'TestUser'")
+                p2.goto(path.as_uri())
+                p2.wait_for_timeout(700)
+                worst, wide = [], []
+                for v in tabs:
+                    p2.evaluate(f"() => show('{v}')")
+                    p2.wait_for_timeout(180)
+                    over = p2.evaluate("() => document.documentElement.scrollWidth - window.innerWidth")
+                    if over > 2:
+                        wide.append(f'{v} by {over}px')
+                    txt = p2.inner_text('body')
+                    for token in ('undefined', 'NaN', '[object Object]'):
+                        if token in txt:
+                            worst.append(f'{v}: {token}')
+                check(not wide, f'no sideways scroll on {label} ({scheme})', ', '.join(wide))
+                check(not worst, f'no undefined or NaN on screen on {label} ({scheme})', ', '.join(worst[:4]))
+                check(not errs2, f'no page error on {label} ({scheme})', '; '.join(errs2[:2]))
+                p2.close()
+
         browser.close()
 
     print()

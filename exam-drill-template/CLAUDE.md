@@ -18,6 +18,13 @@ Standing rules for every question, table and guide written here:
   the longest; every option has a `why`; every question a `skill` from
   `course.js`.
 - No metaphors, no study advice, no sentence about the drill itself.
+- Every update adds its bullets to `CHANGELOG.md` in the same commit, one short
+  line each, in the reader's terms. The build embeds the file and the Topics
+  page shows what is new since the reader's last visit.
+- A figure of a process is drawn in `diagrams.js`, not described in prose; a
+  multi-stage one is a step-through, written to the rules in `STEPPERS.md`.
+- A new question gets its reading section in `links.js` when one fits, which is
+  what the Weak spots review plan groups by.
 - Build and run every check before delivering; never report a check that did
   not run as passed.
 - Tokens live only in `.git/config`; grep the tree before packaging anything.
@@ -25,4 +32,5 @@ Standing rules for every question, table and guide written here:
   shared build unless asked for.
 
 Checks: `python3 build.py && node test.js && node style_check.js && node
-render_test.js && python3 cite_check.py && python3 browser_test.py`.
+render_test.js && node stepper_test.js && python3 cite_check.py && python3
+browser_test.py`. `node explain_check.js` is a report, not a gate.

@@ -20,7 +20,8 @@ const el = () => ({ innerHTML:'', textContent:'', classList:{toggle(){},add(){},
 const sandbox = {
   console,
   localStorage:{ getItem:k=>(k in store?store[k]:null), setItem:(k,v)=>{store[k]=String(v)}, removeItem:k=>{delete store[k]} },
-  document:{ querySelector:el, querySelectorAll:()=>[], getElementById:el, createElement:el, body:el() },
+  document:{ querySelector:el, querySelectorAll:()=>[], getElementById:el, createElement:el, body:el(),
+             addEventListener(){} },   // the page delegates clicks and changes from document
   window:{ scrollTo(){} },
   prompt:()=> 'TestUser',
   alert:()=>{}, confirm:()=>true,
@@ -30,7 +31,7 @@ const sandbox = {
 };
 sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
-code += "\nglobalThis.__X={QUESTIONS,TOPICS,IMAGES,COURSE,EXAM,record,pickNext,st,score,drawN,drawMixed,drawPaper,EXAM_SATA,askProfile,markGuessed,markShaky,isMulti,gradeMulti,correctSet,gradeNumeric,lecOf,skillOf,getDB:()=>DB};\n";
+code += "\nglobalThis.__X={QUESTIONS,TOPICS,IMAGES,COURSE,EXAM,DIA,DIAGRAMS,READ_LINKS,BUILD,record,pickNext,st,score,drawN,drawMixed,drawPaper,drawBlueprint,bpCat,EXAM_SATA,askProfile,markGuessed,markShaky,isMulti,gradeMulti,correctSet,gradeNumeric,lecOf,skillOf,linksFor,sessionLog,solidEntry,getDB:()=>DB};\n";
 try { vm.runInContext(code, sandbox); }
 catch (e) { console.error('FAIL: script threw at load — ' + e.message + '\n' + e.stack); process.exit(1); }
 
@@ -191,13 +192,21 @@ if (fresh && mastered) {
 }
 
 console.log('\n=== 5. Exam simulation draw ===');
-// the paper follows the manifest: each pool supplies its marks, select-all in proportion
+/* Two shapes a paper can have. By default each pool supplies its marks and the
+   select-all items are spread across the pools in proportion. When the course
+   has announced counts per topic, `exams[].blueprint` governs instead, and the
+   select-all target is the blueprint's own. */
 const EXAMQ = X.EXAM.questions, POOLS = X.EXAM.pools;
-console.log(`  blueprint: ${X.EXAM.name} — ${POOLS.map(p=>`${p.name} ${p.marks}`).join(', ')} (${POOLS.reduce((n,p)=>n+p.marks,0)} of ${EXAMQ})`);
-if (POOLS.reduce((n,p)=>n+p.marks,0) !== EXAMQ) bad('pool marks do not add up to the paper length');
-for (const p of POOLS){
-  const n = QUESTIONS.filter(q => !q.lowYield && !q.type && p.test(q)).length;
-  if (n < p.marks) bad(`pool "${p.name}" holds ${n} eligible questions, fewer than its ${p.marks} marks`);
+const BP = (X.EXAM.blueprint && (X.EXAM.blueprint.parts || []).length) ? X.EXAM.blueprint : null;
+const SATA_TARGET = BP ? (BP.sata || 0) : X.EXAM_SATA;
+if (BP) console.log(`  blueprint (announced counts): ${BP.parts.map(p => `${p.name} ${p.rest ? '(the rest)' : p.min ? '≥' + p.min : Array.isArray(p.n) ? p.n.join('–') : p.n}`).join(', ')} · ${SATA_TARGET} select-all`);
+else {
+  console.log(`  blueprint: ${X.EXAM.name} — ${POOLS.map(p=>`${p.name} ${p.marks}`).join(', ')} (${POOLS.reduce((n,p)=>n+p.marks,0)} of ${EXAMQ})`);
+  if (POOLS.reduce((n,p)=>n+p.marks,0) !== EXAMQ) bad('pool marks do not add up to the paper length');
+  for (const p of POOLS){
+    const n = QUESTIONS.filter(q => !q.lowYield && !q.type && p.test(q)).length;
+    if (n < p.marks) bad(`pool "${p.name}" holds ${n} eligible questions, fewer than its ${p.marks} marks`);
+  }
 }
 const paper = X.drawPaper();
 console.log(`  drew ${paper.length}`);
@@ -213,7 +222,7 @@ QUESTIONS.filter(q=>q.dupOf && !allIds.has(q.dupOf)).forEach(q=>bad(`${q.id} dup
     const pp = X.drawPaper();
     const on=new Set(pp.map(q=>q.id));
     pp.forEach(q=>{ if(q.dupOf && on.has(q.dupOf)) clash++; if(q.lowYield) low++; });
-    if (pp.length!==EXAMQ || on.size!==EXAMQ || pp.filter(X.isMulti).length!==X.EXAM_SATA) shape++;
+    if (pp.length!==EXAMQ || on.size!==EXAMQ || pp.filter(X.isMulti).length!==SATA_TARGET) shape++;
   }
   if(clash) bad(`${clash} dupOf pairs drawn together across 20 papers`);
   else console.log(`  ok    dupOf partners never share a paper (${QUESTIONS.filter(q=>q.dupOf).length} marked; ${QUESTIONS.filter(q=>q.lowYield).length} lowYield kept off the paper)`);
@@ -222,8 +231,8 @@ QUESTIONS.filter(q=>q.dupOf && !allIds.has(q.dupOf)).forEach(q=>bad(`${q.id} dup
   else console.log('  ok    20 repeated draws all kept the paper shape');
 }
 const nSata = paper.filter(X.isMulti).length;
-console.log(`  select-all on the paper: ${nSata} of ${EXAMQ} (target ${X.EXAM_SATA})`);
-if (nSata !== X.EXAM_SATA) bad(`paper carries ${nSata} select-all items, expected ${X.EXAM_SATA}`);
+console.log(`  select-all on the paper: ${nSata} of ${EXAMQ} (target ${SATA_TARGET})`);
+if (nSata !== SATA_TARGET) bad(`paper carries ${nSata} select-all items, expected ${SATA_TARGET}`);
 else console.log('  ok    the paper carries the intended number of select-all items');
 // labels: every question resolves to a lecture in the manifest
 { const unl = QUESTIONS.filter(q => !X.lecOf(q));
@@ -302,6 +311,63 @@ console.log('=== 8. Small pools end instead of looping ===');
   console.log(more>0 ? `  ok    "Ask everything" still serves (${more} more)` : '  FAIL  "Ask everything" stopped too');
   if(!more) process.exitCode=1;
   X.getDB().settings.mode='cram';
+})();
+
+console.log('\n=== 9. Figures, read links, change log, blueprint ===');
+(function(){
+  const ok = (c, msg) => { console.log(`  ${c ? 'ok   ' : 'FAIL '} ${msg}`); if(!c) fails++; };
+
+  // every key the Diagrams tab lists is a figure that exists
+  const missing = (X.DIAGRAMS || []).flatMap(([name, keys]) => keys.filter(k => !X.DIA[k]));
+  ok(!missing.length, `every DIAGRAMS key is in DIA${missing.length ? ' — missing ' + missing.join(', ') : ''}`);
+  const steppers = Object.keys(X.DIA || {}).filter(k => /data-anim/.test(X.DIA[k]));
+  // a step-through needs at least two steps and one dot per step
+  const badSteps = steppers.filter(k => {
+    const n = (X.DIA[k].match(/class="st[ "]/g) || []).length;
+    const d = (X.DIA[k].match(/class="sdot[ "]/g) || []).length;   // not "sdots", the wrapper
+    return n < 2 || n !== d;
+  });
+  ok(!badSteps.length, `${steppers.length} step-through figure(s), each with a dot per step${badSteps.length ? ' — ' + badSteps.join(', ') : ''}`);
+
+  // read links point at a real tab, and resolve for at least the questions they name
+  const views = new Set(['guide', 'tell', 'ref']);
+  const L = X.READ_LINKS || {};
+  const all = [].concat((L.byKey || []).flatMap(([, ls]) => ls),
+                        Object.values(L.bySub || {}), Object.values(L.byLecture || {}));
+  const badView = all.filter(l => !views.has(l[0]));
+  ok(!badView.length, `${all.length} read link(s), every one naming guide, tell or ref${badView.length ? ' — ' + badView.map(l=>l[0]).join(', ') : ''}`);
+  const resolved = QUESTIONS.filter(q => X.linksFor(q).length).length;
+  console.log(`  ${resolved} of ${QUESTIONS.length} questions resolve to a reading section (the rest group by topic in the review plan)`);
+
+  // the session rule: a gap over half an hour starts a new session
+  const db = X.getDB();
+  db.answers = [{qid:'a', result:'correct', at: Date.now() - 3*3600*1000},
+                {qid:'b', result:'correct', at: Date.now() - 40*60*1000},
+                {qid:'c', result:'wrong',   at: Date.now() - 5*60*1000},
+                {qid:'d', result:'correct', at: Date.now() - 60*1000, conf:'shaky'}];
+  const ses = X.sessionLog();
+  ok(ses.length === 2 && ses[0].qid === 'c', `a session is the run with no half-hour gap (${ses.length} of 4 answers)`);
+  ok(!X.solidEntry(ses[1]) && X.solidEntry({result:'correct'}), 'a correct answer marked "not sure" does not count as solid');
+  db.answers = [];
+
+  // the blueprint draw, when the course has one
+  const bp = X.EXAM.blueprint;
+  if(!bp || !bp.parts || !bp.parts.length){
+    console.log('  skip  blueprint draw (this course draws by pool marks, not announced counts)');
+  }else{
+    const paper = X.drawBlueprint(bp);
+    ok(paper.length <= X.EXAM.questions, `the blueprint paper is no longer than the exam (${paper.length} of ${X.EXAM.questions})`);
+    const fixed = bp.parts.filter(p => typeof p.n === 'number');
+    const counts = {}; paper.forEach(q => { const k = X.bpCat(q); counts[k] = (counts[k]||0)+1; });
+    const off = fixed.filter(p => (counts[p.key]||0) > p.n);
+    ok(!off.length, `no part takes more than its count${off.length ? ' — ' + off.map(p=>p.key).join(', ') : ''}`);
+    ok(paper.filter(q => q.multi).length === (bp.sata||0), `the paper carries ${bp.sata||0} select-all item(s)`);
+  }
+
+  // the change log reached the page
+  const log = X.BUILD.changelog || [];
+  if(!log.length) console.log('  skip  change log (no CHANGELOG.md at build time)');
+  else ok(log.every(c => c.date && c.items.length), `${log.length} change log entr${log.length===1?'y':'ies'} embedded, each with bullets`);
 })();
 
 console.log(`\n${fails ? 'FAILURES: '+fails : 'All checks passed'}${warns ? '  (warnings: '+warns+')' : ''}\n`);

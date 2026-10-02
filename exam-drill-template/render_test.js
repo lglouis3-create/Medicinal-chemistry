@@ -3,11 +3,11 @@ const OUT = '/mnt/user-data/outputs/' + ((require('fs').readFileSync('course.js'
 const html=fs.readFileSync(OUT,'utf8');
 let code=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=code.lastIndexOf('   BOOT'); code=code.slice(0,code.lastIndexOf('/* ===',b));
-code+="\nglobalThis.__X={QUESTIONS,TOPICS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX};\n";
+code+="\nglobalThis.__X={QUESTIONS,TOPICS,DIA,DIAGRAMS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderDiagrams,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX,sessionLog,linksFor,drawPaper};\n";
 const store={}, sinks={};
 function mk(id){ return sinks[id] ||= {innerHTML:'',textContent:'',dataset:{},style:{},classList:{toggle(){},add(){},remove(){},contains(){return false}},setAttribute(){},querySelectorAll(){return []},onclick:null,click(){}}; }
 const sb={console,localStorage:{getItem:k=>k in store?store[k]:null,setItem:(k,v)=>{store[k]=String(v)},removeItem:k=>{delete store[k]}},
- document:{querySelector:s=>mk(s),querySelectorAll:()=>[],getElementById:i=>mk(i),createElement:()=>mk('tmp'),body:mk('body')},
+ document:{querySelector:s=>mk(s),querySelectorAll:()=>[],getElementById:i=>mk(i),createElement:()=>mk('tmp'),body:mk('body'),addEventListener(){}},
  window:{scrollTo(){}},prompt:()=>'Student',alert:m=>console.log('ALERT:',m),confirm:()=>true,
  setTimeout:f=>{f();return 0},clearTimeout(){},setInterval:()=>0,clearInterval(){},
  Blob:function(){},URL:{createObjectURL:()=>'',revokeObjectURL(){}},FileReader:function(){},
@@ -49,6 +49,9 @@ X.renderGaps();          ok &= check('weak spots', sinks['#v-gaps'].innerHTML);
 X.renderRef();           ok &= check('reference', sinks['#v-ref'].innerHTML);
 X.renderTell();          ok &= check('tell apart', sinks['#v-tell'].innerHTML);
 X.renderGuide();         ok &= check('guides', sinks['#v-guide'].innerHTML);
+X.renderDiagrams();      ok &= check('diagrams', sinks['#v-diagrams'].innerHTML);
+console.log('         figures registered: ' + Object.keys(X.DIA).length +
+            ', step-throughs: ' + Object.keys(X.DIA).filter(k => /data-anim/.test(X.DIA[k])).length);
 X.renderSettings();      ok &= check('settings', sinks['#v-settings'].innerHTML);
 X.beginExam();           ok &= check('exam paper', sinks['#v-exam'].innerHTML);
 console.log('         exam question count: '+X.EXref().qs.length);

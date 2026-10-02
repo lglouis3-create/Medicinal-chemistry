@@ -25,7 +25,7 @@ let c = [...fs.readFileSync(OUT, 'utf8')
 const b = c.lastIndexOf('   BOOT'); c = c.slice(0, c.lastIndexOf('/* ===', b));
 c += '\nglobalThis.__Q=QUESTIONS;globalThis.GLOSS=typeof GLOSS!=="undefined"?GLOSS:[];globalThis.__EXAM=EXAM;globalThis.__poolOf=poolOf;';
 const sb = {console, localStorage:{getItem:()=>null,setItem(){},removeItem(){}},
-  document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{}},
+  document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{},addEventListener(){}},
   window:{}, prompt:()=>'x', setTimeout:()=>0, clearTimeout(){},
   Date, Math, JSON, Object, Array, String, Number, Boolean, RegExp, Error, isNaN, parseInt, parseFloat};
 sb.globalThis = sb; vm.createContext(sb); vm.runInContext(c, sb);

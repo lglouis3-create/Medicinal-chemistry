@@ -1,125 +1,3 @@
-/* ==========================================================================
-   TERM GLOSSES
-   ==========================================================================
-   Terms that carry conceptual weight in this course get a short definition the
-   first time they appear in a question's explanation. `p` is what to match,
-   `d` is the definition, and `skip` recognises a question that already defines
-   the term in its own prose, so a hand-written gloss is never doubled.
-   Definitions follow the course's wording where the decks give one.
-   ========================================================================== */
-const GLOSS = [
- {k:'deloc',  p:'delocalis\\w*|delocaliz\\w*',
-  d:'spread across several atoms rather than held on one',
-  skip:/spread (across|over)|not (held|sitting) on one|shared (across|between)/i},
- {k:'nucl',   p:'nucleophil\\w*',
-  d:'electron-rich, so it attacks electron-poor centres',
-  skip:/electron[- ]rich|donates? (an? )?electron|attacks? .*(electron[- ]poor|positive)/i},
- {k:'elec',   p:'electrophil\\w*',
-  d:'electron-poor, so electron-rich groups attack it',
-  skip:/electron[- ]poor|electron[- ]deficient|accepts? (an? )?electron|short of electrons/i},
- {k:'zwit',   p:'zwitterion\\w*',
-  d:'carrying a positive and a negative charge at the same time',
-  skip:/both .*charges?|positive and .*negative/i},
- {k:'cbase',  p:'conjugate base',
-  d:'what is left once an acid has donated its proton',
-  skip:/what (is )?(left|remains) after|after (it )?(loses|donat)|deprotonated form/i},
- {k:'cacid',  p:'conjugate acid',
-  d:'what is formed once a base has accepted a proton',
-  skip:/after (it )?accepts?|protonated form/i},
- {k:'enant',  p:'enantiomers?',
-  d:'mirror images that cannot be superimposed',
-  skip:/mirror image|non[- ]?superimposable/i},
- {k:'diast',  p:'diastereomers?',
-  d:'stereoisomers that are not mirror images of each other',
-  skip:/differ at (some|one)|not mirror images/i},
- {k:'racem',  p:'racemic|racemate',
-  d:'an equal mixture of both enantiomers',
-  skip:/equal (amounts|parts|mixture)|fifty[- ]fifty|50:50|both enantiomers/i},
- {k:'efflux', p:'efflux',
-  d:'pumped back out of the cell',
-  skip:/pumps? .*(out|back)|moves? .*out of the cell|expels?/i},
- {k:'fpass',  p:'first[- ]pass',
-  d:'removed by the liver before reaching the systemic circulation',
-  skip:/before (it )?reaches|liver .*before|removed .*on the (first|way)/i},
- {k:'vd',     p:'volume of distribution',
-  d:'a hypothetical volume rather than a physical one, showing how widely the drug leaves the bloodstream',
-  skip:/apparent volume|hypothetical volume|not (an? )?actual physical volume/i},
- {k:'ehc',    p:'enterohepatic',
-  d:'excreted in bile, then reabsorbed from the gut',
-  skip:/bile .*(back|reabsorb|gut)|recycl/i},
- {k:'toxo',   p:'toxicophor\\w*',
-  d:'the structural feature that makes a molecule toxic',
-  skip:/structural (feature|group) .*(toxic|harm)|part of the molecule .*toxic/i},
- {k:'bioact', p:'bioactivat\\w*',
-  d:'metabolism turning the drug into a more reactive species instead of a safer one',
-  skip:/(turned|converted|changed) into .*(reactive|toxic)|metabolism (makes|creates) .*(reactive|toxic)/i},
- {k:'sat',    p:'saturab\\w*|saturated enzyme',
-  d:'having a fixed capacity that a large enough dose overwhelms',
-  skip:/runs? out|fixed (amount|capacity)|can be overwhelmed|limited (amount|capacity)|exhaust/i},
- {k:'free',   p:'free fraction',
-  d:'the share not bound to plasma protein, and the only share that is active',
-  skip:/not bound|unbound/i},
- {k:'pc',     p:'partition coefficient',
-  d:'how a drug divides between a lipid phase and water',
-  skip:/ratio of .*concentrations?|how .*(divides?|distributes?) between|movement of molecules from one phase/i},
- {k:'poly',   p:'polymorphis\\w*',
-  d:'an inherited variation in the gene, so the enzyme differs between people',
-  skip:/genetic (variation|difference)|differs? between people|inherited (variation|difference)/i},
- {k:'steric', p:'steric\\w*',
-  d:'to do with the physical size and bulk of a group',
-  skip:/size|bulk|physically (blocks?|in the way)|too (big|large)/i},
- {k:'val',    p:'valence|valency',
-  d:'how many bonds an atom forms to reach a closed shell',
-  skip:/outer[- ]shell|bonds? it (can )?(form|make)|number of bonds|closed shell/i},
- {k:'adduct', p:'adducts?',
-  d:'a covalent addition product, here the drug bound onto a protein or DNA',
-  skip:/covalent\w* (bound|bond|attach|add)|binds? covalently/i},
- {k:'prodrug',p:'prodrugs?',
-  d:'an inactive form that metabolism converts into the active drug',
-  skip:/inactive (form|until)|converted .*into the active|activated by metabolism/i},
- {k:'isoform',p:'isoforms?',
-  d:'one variant within an enzyme family',
-  skip:/variant|member of the .*family|one of the .*enzymes in/i},
- {k:'cofac',  p:'cofactors?|co-factors?',
-  d:'a molecule the enzyme must have on hand for the reaction to run at all',
-  skip:/will not (occur|run|proceed) without|must (be present|have)|required for the reaction/i},
- {k:'glomer', p:'glomerul\\w*',
-  d:'filtration at the kidney, driven by blood pressure and molecular size rather than by any enzyme',
-  skip:/blood pressure and (molecular )?size|physical process|filtered by size/i},
- {k:'chiral', p:'chiral\\w*|chirality',
-  d:'having a carbon with four different groups, so the molecule and its mirror image differ',
-  skip:/four different (groups|substituents)|mirror image/i},
- {k:'reson',  p:'resonance',
-  d:'the same structure drawn with electrons in more than one position, the real molecule being the average',
-  skip:/more than one position|average of|shared between the/i},
- {k:'taut',   p:'tautomer\\w*',
-  d:'two forms that interconvert by moving a proton and a double bond',
-  skip:/moving a proton|proton shifts?|interconvert/i},
- {k:'regio',  p:'regioselectiv\\w*|regiochemistr\\w*',
-  d:'which position on the molecule the reaction happens at',
-  skip:/which position|where on the molecule/i},
- {k:'hepext', p:'hepatic extraction',
-  d:'the share of drug the liver removes from the blood passing through it',
-  skip:/share .*liver removes|fraction removed/i},
- {k:'epimer', p:'epimers?',
-  d:'stereoisomers differing at exactly one centre',
-  skip:/one (stereo)?cent(re|er)|single cent(re|er)/i},
- {k:'induct', p:'inductive effects?',
-  d:'electrons pulled along the bonds by a nearby electronegative atom',
-  skip:/pulled along the bonds|electron withdrawal through/i},
- {k:'mother', p:'mother carbon',
-  d:'the carbon the functional group is attached to, not the chain around it',
-  skip:/carbon (the|that) .*(attached|carries|holding|holds)/i},
- {k:'bioiso', p:'bioisoster\\w*',
-  d:'a different group chosen because it behaves like the one it replaces',
-  skip:/behaves? like|same (behaviour|properties) as|replacement for|swapped (in|for)/i},
- {k:'lipo',  p:'lipophilic\\w*|lipophilicity',
-  d:'how readily the molecule dissolves in fat rather than in water',
-  skip:/dissolves? in (fat|lipid)|fat[- ]soluble|oil[- ]soluble|greasi|water soluble/i},
- {k:'arom',  p:'aromaticity',
-  d:'a flat ring whose electrons circulate around it, which makes it unusually stable',
-  skip:/flat ring|electrons? (circulate|move around)|H(u|ü)ckel/i},
-];
 
 /* ==========================================================================
    STRUCTURE SHOWN WITH A QUESTION
@@ -340,15 +218,105 @@ function typesOf(q){
 QUESTIONS.forEach(q => { q.types = typesOf(q); });
 const ALL_TAGS = Object.keys(TYPE_LABEL).filter(k => QUESTIONS.some(q=>q.types.includes(k)));
 
+const VIEWS = ['topics','quiz','gaps','exam','atlas','diagrams','guide','tell','ref','settings'];
 function show(v){
   VIEW = v;
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.v===v));
-  ['topics','quiz','gaps','exam','atlas','guide','tell','ref','settings'].forEach(k=>
-    document.getElementById('v-'+k).classList.toggle('hide', k!==v));
+  VIEWS.forEach(k=> document.getElementById('v-'+k).classList.toggle('hide', k!==v));
   window.scrollTo(0,0);
   ({topics:renderTopics, quiz:renderQuiz, gaps:renderGaps, exam:renderExam,
-    atlas:renderAtlas, guide:renderGuide, tell:renderTell, ref:renderRef, settings:renderSettings}[v])();
+    atlas:renderAtlas, diagrams:renderDiagrams, guide:renderGuide, tell:renderTell,
+    ref:renderRef, settings:renderSettings}[v])();
 }
+
+/* ==========================================================================
+   JUMPING TO A READING SECTION, AND BACK
+   ==========================================================================
+   A question's "Explain more" chip and the review plan's "Read" chip both open
+   the section of a reading tab that teaches the item. The stack remembers where
+   the reader came from, and a floating button walks back down it, because
+   otherwise following a link out of a half-answered question loses the place. */
+/* Scroll so the target sits below the sticky header and nav rather than under
+   them, which is what scrollIntoView on its own does here. */
+const headerOffset = () => {
+  const h = document.querySelector('header'), n = document.getElementById('nav');
+  return (h ? h.getBoundingClientRect().height : 0) + (n ? n.getBoundingClientRect().height : 0) + 8;
+};
+const reduceMotion = () => !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+function scrollToEl(el){
+  if(!el) return;
+  window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - headerOffset(),
+                   behavior: reduceMotion() ? 'auto' : 'smooth'});
+}
+const RET = [];
+const VIEW_NAME = {quiz:'the question', exam:'the exam', gaps:'weak spots', diagrams:'the diagrams',
+                   topics:'the topics', ref:'the reference', tell:'tell apart', guide:'the guides'};
+function jump(view, anchor){
+  RET.push({view: VIEW, y: window.scrollY});
+  show(view);
+  const t = anchor && document.getElementById(anchor);
+  if(t) scrollToEl(t);
+  backBtn();
+}
+function backBtn(){
+  let b = document.getElementById('backbtn');
+  if(!RET.length){ if(b) b.remove(); return; }
+  if(!b){
+    b = document.createElement('button');
+    b.id = 'backbtn'; b.type = 'button'; b.className = 'btn';
+    document.body.appendChild(b);
+    b.onclick = () => { const r = RET.pop(); backBtn(); show(r.view); window.scrollTo(0, r.y); };
+  }
+  b.textContent = '← Back to ' + (VIEW_NAME[RET[RET.length-1].view] || 'where you were');
+}
+document.addEventListener('click', e => {
+  const j = e.target.closest('[data-jump]');
+  if(j){ const [v, a] = j.dataset.jump.split(':'); jump(v, a); }
+});
+
+/* The sections that explain a question: its own `read`, then the course's table
+   in links.js, then its subtopic, then its lecture. */
+function linksFor(q){
+  if(Array.isArray(q.read) && q.read.length) return q.read;
+  const L = (typeof READ_LINKS !== 'undefined') ? READ_LINKS : {};
+  const key = [q.concept, q.fg, q.sub, (q.tags||[]).join(' ')].join(' ').toLowerCase();
+  for(const [re, links] of (L.byKey || [])) if(re.test(key)) return links;
+  if(L.bySub && L.bySub[q.sub]) return [L.bySub[q.sub]];
+  const lec = lecOf(q);
+  if(L.byLecture && lec && L.byLecture[lec.id]) return [L.byLecture[lec.id]];
+  return [];
+}
+const explainRow = q => {
+  const l = linksFor(q);
+  return l.length ? `<div class="row explain" style="display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px">
+    <span class="meta">Explain more:</span>${l.map(([v,a,t]) =>
+      `<button type="button" class="chip" data-jump="${esc(v)}:${esc(a)}">${esc(t)}</button>`).join('')}</div>` : '';
+};
+
+/* ==========================================================================
+   THIS SESSION
+   ==========================================================================
+   A session is the run of answers with no gap longer than 30 minutes, ending
+   with the latest one, so it survives a reload and a break of a few minutes but
+   does not quietly merge yesterday's work into today's score. An answer counts
+   as solid when it was correct and was not marked a guess or "not sure". */
+const SESSION_GAP = 30*60*1000;
+const solidEntry = e => e.result === 'correct' && e.conf !== 'shaky';
+function sessionLog(){
+  const L = DB.answers;
+  if(!L.length) return [];
+  let k = L.length - 1;
+  while(k > 0 && L[k].at - L[k-1].at < SESSION_GAP) k--;
+  return Date.now() - L[L.length-1].at < SESSION_GAP ? L.slice(k) : [];
+}
+function sessStrip(){
+  const s = sessionLog();
+  if(!s.length) return `<span class="meta" id="sess">This session: no answers yet</span>`;
+  const ok = s.filter(solidEntry).length, last = s.slice(-10);
+  return `<span class="meta" id="sess">This session: ${ok}/${s.length} (${Math.round(100*ok/s.length)}%) · last ${last.length}:
+    <span class="sdots10">${last.map(e => `<i class="${solidEntry(e)?'y':'n'}" title="${esc(e.qid)}"></i>`).join('')}</span></span>`;
+}
+const refreshSess = () => { const el = $('#sess'); if(el) el.outerHTML = sessStrip(); };
 
 /* ==========================================================================
    TOPICS
@@ -371,22 +339,66 @@ function filterBar(){
   </div>`;
 }
 
+/* ---------- What's new ----------
+   The change log entries newer than the one this browser last marked as seen.
+   One key per course, so clearing it is "show me everything since my last
+   visit" rather than per-entry bookkeeping. The id carries the entry's bullet
+   count, so bullets added under today's heading count as new. */
+const NEWS_KEY = () => NS + ':newsSeen';
+const newsId = c => c ? c.date + '|' + c.items.join('').length : '';
+function newsCard(){
+  const log = (BUILD.changelog || []);
+  if(!log.length) return '';
+  const seen = LS.get(NEWS_KEY());
+  const i = seen ? log.findIndex(c => newsId(c) === seen) : 1;
+  const fresh = log.slice(0, i < 0 ? 1 : i);
+  if(!fresh.length) return '';
+  const items = fresh.flatMap(c => c.items), shown = items.slice(0, 8);
+  return `<div class="panel news" id="news">
+    <div class="row spread"><b>What's new</b><span class="meta">${esc(fresh[0].date.replace(/\s*\(.*\)$/, ''))}</span></div>
+    <ul>${shown.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+    ${items.length > shown.length ? `<p class="meta" style="margin:0 0 8px">+ ${items.length - shown.length} more</p>` : ''}
+    <div class="row"><button class="btn" id="newsok">Got it</button>
+      <button class="btn ghost" id="newsall">All changes</button></div></div>`;
+}
+/* Calendar days to the exam, from an optional ISO `when` on the active exam
+   (`date` is the human string shown in the header). Counted as whole days
+   rather than hours rounded up, so the morning of the exam says "today". */
+function daysToExam(){
+  if(!EXAM.when) return null;
+  const day = d => { const x = new Date(d); x.setHours(0,0,0,0); return x.getTime(); };
+  const t = day(EXAM.when);
+  return isNaN(t) ? null : Math.round((t - day(Date.now())) / 86400000);
+}
+function examCountdown(){
+  const d = daysToExam();
+  if(d === null) return '';
+  const start = new Date(EXAM.when).getTime(), end = start + (EXAM.minutes || 0)*60000, now = Date.now();
+  if(now >= end) return 'This exam is over.';
+  if(now >= start) return 'The exam is in progress.';
+  if(d <= 0) return 'Exam day is today.';
+  return `${d} day${d === 1 ? '' : 's'} until the exam.`;
+}
+
 function renderTopics(){
   const counts = {};
   QUESTIONS.forEach(q => counts[q.prof] = (counts[q.prof]||0)+1);
 
   let h = `<h2>Pick a topic</h2>
   <p class="sub">${esc(EXAM.name)}: ${EXAM.questions} questions, ${EXAM.minutes} minutes${EXAM.date ? ', ' + esc(EXAM.date) : ''}.
-  ${EXAM.blurb ? esc(EXAM.blurb) + '. ' : ''}Question bank: ${QUESTIONS.length} across ${conceptsIn(QUESTIONS).length} concepts.</p>`;
+  ${EXAM.blurb ? esc(EXAM.blurb) + '. ' : ''}Question bank: ${QUESTIONS.length} across ${conceptsIn(QUESTIONS).length} concepts.
+  ${examCountdown() ? '<b>' + esc(examCountdown()) + '</b>' : ''}</p>
+  <p class="stamp">Built ${esc(BUILD.stamp || '')}${(BUILD.changelog||[]).length ? ' · <a href="#" id="whatsnew">all changes</a>' : ''}</p>
+  ${newsCard()}`;
 
   h += filterBar();
 
-  // The featured pass follows the paper. The bank holds 129 questions in the
-  // pool that supplies 4 of the 50 marks and 137 in the pool that supplies 38,
-  // so a pass through everything spends most of its time on the least-weighted
-  // material. This one samples the three pools in the paper's own proportion,
-  // anchored on the whole of the 38-mark pool, so the evening goes where the
-  // marks are. The full pass is still here, second.
+  // The featured pass follows the paper rather than the bank. A bank usually
+  // holds far more questions on the material worth few marks than on the
+  // material worth many, so a straight pass through everything spends the
+  // evening in the wrong place. This one takes the whole of the heaviest pool
+  // and samples the others in the paper's own proportion. The full pass is
+  // still here, second.
   const nAll = QUESTIONS.length, nFiltered = poolFor(null, null).length;
   const wp = weightedPool();
   h += `<div class="topic sweepcard"><div class="subs">
@@ -443,7 +455,13 @@ function renderTopics(){
 
   $('#v-topics').innerHTML = h;
 
-  $('#v-topics').querySelectorAll('.chip').forEach(b => b.onclick = () => {
+  const wn = $('#whatsnew'); if(wn) wn.onclick = e => { e.preventDefault(); show('settings'); };
+  const nok = $('#newsok'); if(nok) nok.onclick = () => {
+    LS.set(NEWS_KEY(), newsId(BUILD.changelog[0]));
+    const c = $('#news'); if(c) c.remove();
+  };
+  const nall = $('#newsall'); if(nall) nall.onclick = () => show('settings');
+  $('#v-topics').querySelectorAll('.chip[data-f]').forEach(b => b.onclick = () => {
     FILTER[b.dataset.f] = b.dataset.v; renderTopics();
   });
   $('#v-topics').querySelectorAll('.subrow button[data-t]').forEach(b => b.onclick = () => {
@@ -605,6 +623,7 @@ function renderQuiz(){
     <span class="pbar"><i style="width:${Q.sweep ? Math.round(100*Q.i/Q.sweep.length) : pctDone}%"></i></span>
     <span>${Q.sweep ? `${Q.sweep.length - Q.i} to go` : `${left} concept${left===1?'':'s'} to go`}</span>
   </div>
+  <div class="qprog" style="border-top:0;padding-top:0">${sessStrip()}</div>
   <div class="qbody">
     <p class="stem">${esc(q.stem)}</p>`;
 
@@ -618,6 +637,7 @@ function renderQuiz(){
   const kind = q.type || 'mc';
   if(kind !== 'mc'){
     h += kind === 'numeric' ? numericBody(q) : matchBody(q);
+    if(Q.revealed) h += explainRow(q);
     h += `</div><div class="qfoot">`;
     if(!Q.revealed){
       h += kind === 'numeric'
@@ -684,6 +704,7 @@ function renderQuiz(){
     if(q.note) h += `<p class="prose" style="margin:13px 0 0;font-size:14.5px">${esc(q.note)}</p>`;
     h += `<div class="cite">${q.quote ? `<span class="quote">\u201c${esc(q.quote)}\u201d</span>` : ''}${
         srcFlag(q)}${esc(q.cite)}</div>`;
+    h += explainRow(q);
     h += `</div>`;
   }
   h += `</div><div class="qfoot">`;
@@ -717,12 +738,14 @@ function wireConfidence(){
     Q.guessedLogged = true;
     bg.textContent = 'Marked as a guess'; bg.disabled = true;
     const bs = $('#btnShaky'); if(bs) bs.remove();
+    refreshSess();            // the answer stops counting as solid, so the dots change
   };
   const bs = $('#btnShaky'); if(bs) bs.onclick = () => {
     markShaky(Q.current);
     Q.guessedLogged = true;
     bs.textContent = 'Coming back soon'; bs.disabled = true;
     const g = $('#btnGuess'); if(g) g.remove();
+    refreshSess();
   };
 }
 
@@ -858,6 +881,14 @@ function submitMulti(){
 /* ==========================================================================
    WEAK SPOTS
    ========================================================================== */
+/* Drill an arbitrary list of questions once each, in shuffled order: what every
+   "drill these" button on this page does. */
+function drillList(pool, label){
+  if(!pool || !pool.length) return;
+  Q = {pool, label, sweep: shuffle(pool.map(q => q.id)), i:0,
+       current:null, answered:0, lastId:null, examMode:false, picked:null, revealed:false};
+  nextQuestion(); show('quiz');
+}
 function renderGaps(){
   const el = $('#v-gaps');
   const tot = DB.answers.length;
@@ -882,6 +913,116 @@ function renderGaps(){
     <div><b style="color:var(--warn)">${guess}</b><span>guessed</span></div>
     <div><b>${m.mastered}</b><span>of ${m.total} concepts mastered</span></div>
   </div>`;
+
+  /* ---- This session ---------------------------------------------------
+     The run of answers with no half-hour gap. Shown first because it is the
+     only number on this page that answers "is this sitting going well", and
+     the two halves tell the reader whether they are warming up or tiring. */
+  const ses = sessionLog();
+  let retryList = [];
+  if(ses.length){
+    const ok = ses.filter(solidEntry).length, pct = Math.round(100*ok/ses.length);
+    const half = Math.floor(ses.length/2), a = ses.slice(0, half), b = ses.slice(half);
+    const pa = a.length ? Math.round(100*a.filter(solidEntry).length/a.length) : null;
+    const pb = b.length ? Math.round(100*b.filter(solidEntry).length/b.length) : null;
+    const mins = Math.max(1, Math.round((ses[ses.length-1].at - ses[0].at)/60000));
+    retryList = [...new Set(ses.filter(e => !solidEntry(e)).map(e => e.qid))]
+      .map(id => byId(id)).filter(Boolean);
+    h += `<h3>This session</h3>
+    <div class="panel">
+      <div class="row spread">
+        <span><b style="font-size:22px">${pct}%</b> <span class="meta">${ok} of ${ses.length} solid in ${mins} min</span></span>
+        ${pa !== null && ses.length >= 6 ? `<span class="meta">first half ${pa}% → second half ${pb}%</span>` : ''}
+      </div>
+      <div class="sdots10 big" style="margin:11px 0 5px">${ses.slice(-20).map(e =>
+        `<i class="${solidEntry(e)?'y':'n'}" title="${esc(e.qid)}${e.result==='guessed'?' (guessed)':e.conf==='shaky'?' (not sure)':''}"></i>`).join('')}</div>
+      <p class="meta" style="margin:0">Last ${Math.min(20, ses.length)} answers, oldest on the left; filled means solid,
+        outlined means missed, guessed or marked "not sure". A session ends after 30 minutes with no answer.</p>
+      ${retryList.length ? `<div class="row" style="margin-top:11px"><button class="btn" id="retrysess">Retry the ${retryList.length} missed this session</button></div>` : ''}
+    </div>`;
+  }
+
+  /* ---- What to review next --------------------------------------------
+     A question is "not solid" when its last three answers are not all solid.
+     They are grouped by the section that teaches them (links.js), so the
+     reader is sent to one piece of reading rather than a list of scattered
+     questions, and the group with the most missing comes first. Each concept
+     shows the option actually chosen with why it is wrong, the right answer,
+     and the first lines of the concept block. */
+  const recent = {};
+  DB.answers.forEach(e => (recent[e.qid] = recent[e.qid] || []).push(e));
+  const scoreOf = q => {
+    const r = (recent[q.id] || []).slice(-3);
+    return r.length ? r.filter(solidEntry).length / r.length : null;
+  };
+  const notSolid = QUESTIONS.filter(q => { const s = scoreOf(q); return s !== null && s < 1; });
+  const topicName = id => (TOPICS.find(t => t.id === id) || {}).name || id;
+  const areas = {};
+  notSolid.forEach(q => {
+    const l = linksFor(q)[0];
+    const name = l ? l[2] : topicName(q.topic);
+    const A = areas[name] = areas[name] || {name, links: l ? linksFor(q) : [], qs:[], gap:0, concepts:{}};
+    A.qs.push(q); A.gap += 1 - scoreOf(q);
+    const c = A.concepts[q.concept] = A.concepts[q.concept] || {qs:[], last:null};
+    c.qs.push(q);
+    const lastMiss = (recent[q.id] || []).filter(e => !solidEntry(e)).pop();
+    if(lastMiss && (!c.last || lastMiss.at > c.last.e.at)) c.last = {e:lastMiss, q};
+  });
+  const ranked = Object.values(areas).sort((x, y) => y.gap - x.gap);
+  /* the first sentence or two of a concept block, which is as much as a plan
+     card can carry without becoming the reading itself */
+  const firstSentences = t => {
+    const flat = teachText(t).replace(/<[^>]+>/g, '').trim();
+    const m = flat.match(/^(.*?[.!?](\s|$)){1,2}/);
+    const r = (m ? m[0] : flat).trim();
+    return r.length > 320 ? r.slice(0, 317) + '…' : r;
+  };
+  const chosenOpts = (q, e) => {
+    if(q.type || e.picked === undefined || e.picked === null) return [];
+    return [].concat(e.picked).map(i => q.options && q.options[i]).filter(Boolean);
+  };
+  /* what a typed item's miss was, since those carry no option text */
+  const typedMiss = (q, e) => q.type === 'numeric'
+      ? `you wrote ${e.picked === undefined ? '—' : e.picked}${e.miss ? ' · ' + (MISS_KINDS[e.miss] || e.miss) : ''}`
+      : q.type === 'match' && Array.isArray(e.pairOk)
+        ? `${e.pairOk.filter(x => !x).length} of ${e.pairOk.length} pairs wrong` : '';
+  if(ranked.length){
+    h += `<h3>What to review next</h3>
+    <p class="sub">${notSolid.length} question${notSolid.length===1?'':'s'} not yet solid on the last three answers,
+      grouped by the section that teaches them, most missing first. Read the section, then drill its questions.</p>`;
+    ranked.slice(0, 6).forEach((A, ai) => {
+      const cs = Object.entries(A.concepts).sort((x, y) => y[1].qs.length - x[1].qs.length);
+      h += `<div class="panel plan"><div class="row spread"><b>${ai+1}. ${esc(A.name)}</b>
+        <span class="meta">${A.qs.length} question${A.qs.length===1?'':'s'} · ${cs.length} concept${cs.length===1?'':'s'}</span></div>`;
+      cs.slice(0, 4).forEach(([cid, c]) => {
+        const q = (c.last && c.last.q) || c.qs[0];
+        const wrong = c.last ? chosenOpts(c.last.q, c.last.e).filter(o => !o.correct) : [];
+        const right = q.type === 'numeric' ? [`${fmtNum(q.answer)}${q.units ? ' ' + q.units : ''}`]
+          : q.type === 'match' ? q.pairs.map(p => `${p.l} → ${p.r}`)
+          : (q.options || []).filter(o => o.correct).map(o => o.t);
+        h += `<div class="pconcept"><div class="pq">${esc(q.stem.length > 160 ? q.stem.slice(0,160) + '…' : q.stem)}</div>`;
+        if(wrong.length) h += `<div class="pw"><b>You chose:</b> ${esc(wrong.map(o => o.t).join(' · '))}
+          <br><span class="meta">Why it is not the answer: ${esc(wrong.map(o => o.why || '').join(' '))}</span></div>`;
+        else if(c.last && c.last.q.type) {
+          const t = typedMiss(c.last.q, c.last.e);
+          if(t) h += `<div class="pw"><b>Your attempt:</b> ${esc(t)}</div>`;
+        } else if(c.last && (c.last.e.result === 'guessed' || c.last.e.conf === 'shaky'))
+          h += `<div class="pw"><b>Right, but you marked it ${c.last.e.result === 'guessed' ? 'a guess' : 'not sure'}.</b></div>`;
+        if(right.length) h += `<div class="pr"><b>Answer:</b> ${esc(right.join(' · '))}</div>`;
+        if(q.teach) h += `<div class="pi"><b>The idea:</b> ${esc(firstSentences(q.teach))}</div>`;
+        if(c.qs.length > 1) h += `<p class="meta" style="margin:3px 0 0">${c.qs.length} questions on this concept are not solid.</p>`;
+        h += `</div>`;
+      });
+      if(cs.length > 4) h += `<p class="meta">+ ${cs.length-4} more concept${cs.length-4===1?'':'s'} in this section.</p>`;
+      h += `<div class="row" style="margin-top:9px">${A.links.map(([v,a,t]) =>
+          `<button type="button" class="chip" data-jump="${esc(v)}:${esc(a)}">Read: ${esc(t)}</button>`).join('')}
+        <button class="btn" data-area="${ai}">Drill these ${A.qs.length}</button></div></div>`;
+    });
+    if(ranked.length > 6) h += `<p class="meta">${ranked.length-6} more section${ranked.length-6===1?'':'s'} have questions to review; they appear here as these are cleared.</p>`;
+    h += `<p style="margin:7px 0 16px"><button class="btn ghost" id="missall">Drill all ${notSolid.length} not-solid questions</button></p>`;
+  }else{
+    h += `<h3>What to review next</h3><div class="panel">Every question you have answered is solid on its last three answers.</div>`;
+  }
 
   /* ---- What to do next ------------------------------------------------
      Three pools, ranked by marks. For each: concepts never seen, concepts
@@ -1097,6 +1238,13 @@ function renderGaps(){
   }
   el.innerHTML = h;
 
+  const rs = $('#retrysess');
+  if(rs) rs.onclick = () => drillList(retryList, 'Missed this session');
+  const ma = $('#missall');
+  if(ma) ma.onclick = () => drillList(notSolid, 'Not yet solid');
+  el.querySelectorAll('[data-area]').forEach(b => b.onclick = () => {
+    const A = ranked[+b.dataset.area]; if(A) drillList(A.qs, A.name);
+  });
   el.querySelectorAll('[data-next]').forEach(b => b.onclick = () => {
     const pl = pools.find(x=>x.key===b.dataset.pool);
     const pool = QUESTIONS.filter(pl.filter);
@@ -1125,7 +1273,7 @@ function renderGaps(){
 }
 
 /* ==========================================================================
-   EXAM SIMULATION — 50 questions at the real 8 / 4 / 38 blueprint, 75 minutes
+   EXAM SIMULATION — a paper drawn to the blueprint in course.js
    ========================================================================== */
 let EX = null;
 function renderExam(){
@@ -1182,7 +1330,64 @@ function drawMixed(pool, n, nSata){
    questions, and the select-all target is split across the pools in the same
    proportion (largest pool takes the rounding remainder). lowYield items and
    typed items (numeric, matching) stay out of the paper. */
+/* ---- the paper -----------------------------------------------------------
+   Two ways to draw one. By default each pool supplies its own marks' worth of
+   questions, which is what the manifest's pools already say. When the professor
+   has announced counts per topic instead ("five on receptor regulation, two or
+   three on the therapeutic index"), `exams[].blueprint` names those parts and
+   drawBlueprint fills them: each part takes its questions from the category its
+   pattern matches, one question per concept before any concept repeats, and the
+   select-all count is then corrected by swapping within a category so the paper
+   carries exactly the announced number. */
+function bpCat(q){
+  const bp = EXAM.blueprint;
+  const t = [q.stem, q.concept, q.sub, (q.tags||[]).join(' ')].join(' ');
+  for(const c of (bp.cats || [])) if(new RegExp(c.match, 'i').test(t)) return c.key;
+  return bp.rest || 'other';
+}
+function drawBlueprint(bp){
+  const elig = QUESTIONS.filter(q => !q.lowYield && !q.type);
+  const by = {};
+  elig.forEach(q => (by[bpCat(q)] ||= []).push(q));
+  const out = [], used = new Set(), cat = new Map();
+  const free = q => !used.has(q.id) && !(q.dupOf && used.has(q.dupOf)) &&
+                    ![...used].some(u => byId(u) && byId(u).dupOf === q.id);
+  const take = (key, n) => {
+    const list = shuffle((by[key] || []).slice()), seen = new Set();
+    const firsts = list.filter(q => !seen.has(q.concept) && seen.add(q.concept));
+    for(const q of firsts.concat(list)){
+      if(n <= 0) break;
+      if(!free(q)) continue;
+      out.push(q); used.add(q.id); cat.set(q.id, key); n--;
+    }
+  };
+  let left = EXAM.questions;
+  // fixed parts first (a count, or a range to pick from), then a floor, then the rest
+  bp.parts.forEach(p => {
+    if(p.rest || p.min) return;
+    const n = Array.isArray(p.n) ? p.n[0] + Math.floor(Math.random()*(p.n[1]-p.n[0]+1)) : p.n;
+    take(p.key, n); left -= n;
+  });
+  const g = bp.parts.find(p => p.min);
+  if(g){ take(g.key, g.min); left -= g.min; }
+  const r = bp.parts.find(p => p.rest);
+  if(r) take(r.key, Math.max(0, left));
+  const wantSata = bp.sata || 0;
+  const swap = (from, wantMulti) => {
+    for(const q of shuffle(out.filter(x => !!x.multi === from))){
+      const k = cat.get(q.id);
+      const alt = shuffle((by[k] || []).slice()).find(x => !!x.multi === wantMulti && free(x));
+      if(alt){ out[out.indexOf(q)] = alt; used.delete(q.id); used.add(alt.id); cat.set(alt.id, k); return true; }
+    }
+    return false;
+  };
+  while(out.filter(q => q.multi).length > wantSata && swap(true, false));
+  while(out.filter(q => q.multi).length < wantSata && swap(false, true));
+  return shuffle(out);
+}
 function drawPaper(){
+  if(EXAM.blueprint && Array.isArray(EXAM.blueprint.parts) && EXAM.blueprint.parts.length)
+    return drawBlueprint(EXAM.blueprint);
   const examQ = QUESTIONS.filter(q => !q.lowYield && !q.type);
   const total = EXAM.pools.reduce((n, p) => n + p.marks, 0) || 1;
   const main = mainPool();
@@ -1328,6 +1533,191 @@ function renderExamResult(){
 }
 
 /* ==========================================================================
+   STEP-THROUGH FIGURES
+   ==========================================================================
+   A step-through figure (diagrams.js `stepper`) holds one SVG group per step and
+   shows one at a time. Moving between two steps animates the difference: a shape
+   that is in both glides from where it was to where it now is, a shape that is
+   new fades in, and a shape that is gone fades out from a ghost copy of the old
+   step. Only end positions are set here; the CSS does the motion, and
+   prefers-reduced-motion turns all of it off.
+
+   Matching is by `data-k` where the author supplied one, and otherwise by tag
+   plus class plus text or fill. The animation classes have to be stripped out of
+   that signature: a shape still carrying `glide` from the previous move would
+   otherwise look like a different shape and fade out and back in. */
+let ANIM = null;                      // the one figure playing: {t:interval, b:its Play button}
+const LEAF = 'text,circle,rect,ellipse,line,polyline,polygon,path';
+const sigOf = el => el.getAttribute('data-k') || [
+  el.tagName,
+  (el.getAttribute('class') || '').replace(/\b(fadein|glide)\b/g, '').trim(),
+  el.tagName === 'text' ? el.textContent : (el.getAttribute('fill') || '')].join('|');
+const centreOf = el => { const r = el.getBoundingClientRect();
+  return [r.left + r.width/2, r.top + r.height/2, r.width + r.height]; };
+
+function stepTo(fig, from, to){
+  const steps = [...fig.querySelectorAll('.st')], svg = fig.querySelector('svg');
+  if(!steps.length || !svg) return;
+  fig.querySelectorAll('.st-out').forEach(n => n.remove());
+  const old = (from !== null && from !== undefined && from !== to) ? steps[from] : null;
+  const before = new Map();                       // signature -> queue of old screen positions
+  if(old && !reduceMotion()) old.querySelectorAll(LEAF).forEach(el => {
+    if(el.classList.contains('capt')) return;     // captions fade, they do not travel
+    const k = sigOf(el), c = centreOf(el);
+    if(c[2]){ if(!before.has(k)) before.set(k, []); before.get(k).push({el, c}); }
+  });
+  steps.forEach((s, j) => s.classList.toggle('on', j === to));
+  fig.querySelectorAll('.sdot').forEach((d, j) => {
+    d.classList.toggle('on', j === to);
+    d.setAttribute('aria-current', j === to ? 'step' : 'false');
+  });
+  if(reduceMotion()) return;
+  const now = steps[to];
+  const scale = svg.viewBox.baseVal.width / (svg.getBoundingClientRect().width || 1);
+  const used = new Set(), leaves = [...now.querySelectorAll(LEAF)];
+  leaves.forEach(el => { el.classList.remove('fadein', 'glide'); el.style.transform = ''; });
+  svg.getBoundingClientRect();                    // restart the fade-in animations
+  leaves.forEach(el => {
+    if(el.classList.contains('capt')){ el.classList.add('fadein'); return; }
+    const q = before.get(sigOf(el)), m = q && q.shift();
+    if(!m){ el.classList.add('fadein'); return; }
+    used.add(m.el);
+    if(el.hasAttribute('transform')) return;      // a CSS transform would replace its own rotate()
+    const c = centreOf(el), dx = (m.c[0]-c[0])*scale, dy = (m.c[1]-c[1])*scale;
+    if(Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
+    el.style.transform = `translate(${dx}px,${dy}px)`;
+    el.getBoundingClientRect();                   // commit the start position
+    el.classList.add('glide'); el.style.transform = '';
+  });
+  if(!old) return;
+  const ghost = old.cloneNode(true);
+  ghost.classList.remove('on', 'st'); ghost.classList.add('st-out'); ghost.removeAttribute('data-step');
+  const oldLeaves = [...old.querySelectorAll(LEAF)], ghostLeaves = [...ghost.querySelectorAll(LEAF)];
+  oldLeaves.forEach((el, k) => {
+    if(used.has(el) || el.classList.contains('capt')) ghostLeaves[k].remove();
+  });
+  svg.appendChild(ghost);
+  setTimeout(() => ghost.remove(), 600);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-anim] button'); if(!b) return;
+  const fig = b.closest('figure'); if(!fig) return;
+  const steps = [...fig.querySelectorAll('.st')]; if(!steps.length) return;
+  const cur = steps.findIndex(s => s.classList.contains('on')), n = steps.length;
+  const playBtn = fig.querySelector('[data-go="play"]');
+  const stop = () => { if(ANIM){ clearInterval(ANIM.t); ANIM.b.textContent = '▶ Play all'; ANIM = null; } };
+  const go = b.dataset.go;
+  if(go === 'play'){
+    const same = ANIM && ANIM.b === b; stop(); if(same) return;
+    b.textContent = '❚❚ Pause'; stepTo(fig, null, 0);
+    ANIM = {b, t: setInterval(() => {
+      if(!document.body.contains(fig)) return stop();
+      const i = steps.findIndex(s => s.classList.contains('on'));
+      if(i >= n-1) return stop();
+      stepTo(fig, i, i+1);
+      if(i+1 === n-1) stop();
+    }, 3200)};
+    return;
+  }
+  if(ANIM && ANIM.b === playBtn) stop();
+  if(go === 'replay') return stepTo(fig, cur > 0 ? cur-1 : null, cur);
+  if(go === 'dot') return stepTo(fig, cur, +b.dataset.i);
+  stepTo(fig, cur, (cur + (+go) + n) % n);
+});
+
+/* ==========================================================================
+   EXPLAIN ONE — a card under a table, for one row at a time
+   ==========================================================================
+   A reference table with a row per drug or per class cannot carry a paragraph
+   of reasoning in every row without becoming unreadable. Instead each row has a
+   Why? button, the table has one select and one output area, and each row's
+   explanation sits in a <template> in the content file:
+
+     <td><button class="whybtn" data-xpick="classes:atenolol">Why?</button> …
+     <div class="xpick">
+       <label>Explain one: <select data-xsel="classes">…</select></label>
+       <div class="xout" data-xout="classes"></div>
+     </div>
+     <template data-x="classes:atenolol"> … card markup … </template>
+
+   A card may carry <button data-xgo="fig-id"> to jump to the figure that shows
+   it; a floating button then comes back to the card. */
+function showExplain(group, key){
+  const out = document.querySelector(`[data-xout="${group}"]`);
+  const sel = document.querySelector(`[data-xsel="${group}"]`);
+  if(!out) return null;
+  const t = key && document.querySelector(`template[data-x="${group}:${key}"]`);
+  out.innerHTML = t ? t.innerHTML : '';
+  if(sel) sel.value = key || '';
+  return out;
+}
+document.addEventListener('change', e => {
+  const s = e.target.closest('select[data-xsel]');
+  if(s) showExplain(s.dataset.xsel, s.value);
+});
+document.addEventListener('click', e => {
+  const w = e.target.closest('[data-xpick]');
+  if(w){
+    const [g, k] = w.dataset.xpick.split(':');
+    const out = showExplain(g, k);
+    if(out) scrollToEl(out.closest('.xpick') || out);
+    return;
+  }
+  const g = e.target.closest('[data-xgo]');
+  if(g){
+    const el = document.getElementById(g.dataset.xgo);
+    if(el){ xBack(g.closest('.xpick') || g.parentElement); scrollToEl(el); }
+  }
+});
+function xBack(target){
+  let b = document.getElementById('xback');
+  if(!target){ if(b) b.remove(); return; }
+  if(!b){
+    b = document.createElement('button');
+    b.id = 'xback'; b.type = 'button'; b.className = 'btn';
+    b.textContent = '↑ Back to the explanation';
+    document.body.appendChild(b);
+  }
+  b.onclick = () => { if(document.body.contains(target)) scrollToEl(target); xBack(null); };
+}
+
+/* ==========================================================================
+   DIAGRAMS TAB
+   ==========================================================================
+   Every drawn figure in one place, grouped as DIAGRAMS in diagrams.js, with a
+   contents card per group whose chips jump to a figure. A figure that is also
+   shown inside a question appears here too, which is where a reader goes to
+   work through a process without being asked anything. */
+const DIA_LIST = () => (typeof DIAGRAMS !== 'undefined' ? DIAGRAMS : [])
+  .map(([name, keys]) => [name, keys.filter(k => DIA && DIA[k])])
+  .filter(([, keys]) => keys.length);
+function renderDiagrams(){
+  const el = $('#v-diagrams');
+  const groups = DIA_LIST();
+  if(!groups.length){
+    el.innerHTML = `<h2>Diagrams</h2><div class="empty">No figures are registered yet.
+      Add them to DIA in diagrams.js and list them in DIAGRAMS.</div>`;
+    return;
+  }
+  const titleOf = html => { const m = html.match(/<text class="title"[^>]*>([^<]*)</); return m ? m[1] : ''; };
+  let toc = '', body = '';
+  groups.forEach(([name, keys], gi) => {
+    const figs = keys.map(k => ({k, html: DIA[k],
+      t: (typeof DIA_NAMES !== 'undefined' && DIA_NAMES[k]) || titleOf(DIA[k]) || k}));
+    toc += `<div class="panel"><b>${esc(name)}</b><div class="row" style="margin-top:7px">${figs.map(f =>
+      `<a class="chip" href="#dg-${esc(f.k)}" data-dg="${esc(f.k)}">${esc(f.t)}${/data-anim/.test(f.html) ? ' ▶' : ''}</a>`).join('')}</div></div>`;
+    body += `<h3 id="dgg-${gi}">${esc(name)}</h3><div class="diagrid">${figs.map(f =>
+      `<div id="dg-${esc(f.k)}">${f.html}</div>`).join('')}</div>`;
+  });
+  el.innerHTML = `<h2>Diagrams</h2>
+    <p class="sub">Every drawn figure in one place. ▶ marks a step-through: use Next, Play all or the step dots under it.</p>${toc}${body}`;
+  el.querySelectorAll('[data-dg]').forEach(a => a.onclick = e => {
+    e.preventDefault();
+    scrollToEl(document.getElementById('dg-' + a.dataset.dg));
+  });
+}
+
+/* ==========================================================================
    REFERENCE
    ========================================================================== */
 /* The reference text carries {{fig:key|caption}} tokens rather than the base64
@@ -1350,12 +1740,16 @@ const deEnt = t => String(t)
   .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n));
 
 function refFigures(html){
-  return html.replace(/\{\{fig:([a-z0-9_]+)\|([^}]*)\}\}/gi, (_, key, cap) => {
-    if(!IMAGES[key]) return '';
-    const c = esc(deEnt(cap));
-    return `<figure class="reffig"><img src="${IMAGES[key]}" alt="${c}">` +
-           `<figcaption>${c}</figcaption></figure>`;
-  });
+  return html
+    // a slide crop stored in images.json
+    .replace(/\{\{fig:([a-z0-9_]+)\|([^}]*)\}\}/gi, (_, key, cap) => {
+      if(!IMAGES[key]) return '';
+      const c = esc(deEnt(cap));
+      return `<figure class="reffig"><img src="${IMAGES[key]}" alt="${c}">` +
+             `<figcaption>${c}</figcaption></figure>`;
+    })
+    // a figure drawn in diagrams.js, step-through controls and all
+    .replace(/<!--DIA:([\w-]+)-->/g, (_, key) => (DIA && DIA[key]) ? DIA[key] : '');
 }
 
 /* ==========================================================================
@@ -1458,23 +1852,29 @@ function renderDoc(el, html, prefix){
   // a jump list, built from the section headings that are actually present
   // headings are authored as HTML, so entities are decoded before the label is
   // re-escaped for the link; otherwise a chip reads "&mdash;" literally
-  const heads = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)]
-    .map(m => deEnt(m[1].replace(/<[^>]+>/g, '')).trim());
+  const heads = [...html.matchAll(/<h3([^>]*)>([\s\S]*?)<\/h3>/g)]
+    .map((m, n) => ({id: (m[1].match(/id="([^"]+)"/) || [])[1] || `${prefix}-${n}`,
+                     label: deEnt(m[2].replace(/<[^>]+>/g, '')).trim()}));
+  // A heading that already carries an id keeps it: links.js points the review
+  // plan and the "Explain more" chips at those, and a hand-written id stays put
+  // when a section is inserted above it, while the generated numbering shifts.
   let i = 0;
-  const body = html.replace(/<h3([^>]*)>/g, (m, attrs) => `<h3 id="${prefix}-${i++}"${attrs}>`);
+  const body = html.replace(/<h3([^>]*)>/g, (m, attrs) =>
+    /\bid=/.test(attrs) ? `<h3${attrs}>` : `<h3 id="${prefix}-${i++}"${attrs}>`);
   // the jump list folds away so it does not sit between the reader and the
   // tables while scrolling; it opens on tap and closes again after a jump
   const nav = heads.length
-    ? `<details class="refnav-wrap"><summary>Jump to a section</summary><nav class="refnav">${heads.map((h, n) =>
-        `<a href="#${prefix}-${n}">${esc(h)}</a>`).join('')}</nav></details>`
+    ? `<details class="refnav-wrap"><summary>Jump to a section</summary><nav class="refnav">${heads.map(h =>
+        `<a href="#${h.id}">${esc(h.label)}</a>`).join('')}</nav></details>`
     : '';
   el.innerHTML = body.replace('</p>', '</p>' + nav);
-  // anchor links inside a scrolling panel need handling rather than a page jump
+  // anchor links inside a scrolling panel need handling rather than a page jump,
+  // and the target has to clear the sticky header and nav
   el.querySelectorAll('.refnav a').forEach(a => a.onclick = e => {
     e.preventDefault();
     const t = el.querySelector(a.getAttribute('href'));
     const d = el.querySelector('.refnav-wrap'); if (d) d.open = false;
-    if (t) t.scrollIntoView({behavior: 'smooth', block: 'start'});
+    scrollToEl(t);
   });
 }
 function renderRef(){ renderDoc($('#v-ref'), refFigures(REFERENCE_HTML), 'ref'); }
@@ -1534,6 +1934,11 @@ function renderSettings(){
       Clears every answer and schedule for “${esc(PROFILE)}”. Other people's profiles are untouched.
     </p>
   </div>
+
+  ${(BUILD.changelog || []).length ? `<h3 id="changelog">What has changed</h3>
+  <div class="panel">${BUILD.changelog.map(c => `<p style="margin:0 0 4px"><b>${esc(c.date)}</b></p>
+    <ul style="margin:0 0 12px;padding-left:20px;font-size:14px">${c.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
+    <p class="meta" style="margin:0">Every update to this drill is listed here, newest first.</p></div>` : ''}
 
   <p class="sub" style="margin-top:18px">Build ${esc(BUILD.stamp || '')} · ${BUILD.questions || QUESTIONS.length} questions · ${BUILD.images || Object.keys(IMAGES).length} figures · ${esc(COURSE.title)}</p>
   <div class="note" style="margin-top:20px">
@@ -1636,5 +2041,11 @@ document.title = COURSE.title.replace(/\u2014.*/, '').trim() + ' — exam drill'
 document.getElementById('courseTitle').textContent = COURSE.title;
 document.querySelectorAll('#nav button').forEach(b => b.onclick = () => show(b.dataset.v));
 document.getElementById('btnWho').onclick = () => { askProfile(true); show(VIEW); };
+/* A tab with nothing in it is removed rather than left to open on an empty
+   page: the atlas when the course draws no structures, the Diagrams tab when no
+   figure is registered. */
+const dropTab = v => { const b = document.querySelector(`#nav button[data-v="${v}"]`); if(b) b.remove(); };
+if(COURSE.atlas === false || typeof ATLAS === 'undefined' || !ATLAS.boards || !ATLAS.boards.length) dropTab('atlas');
+if(!DIA_LIST().length) dropTab('diagrams');
 askProfile(false);
 show(restoreExam() ? 'exam' : 'topics');
