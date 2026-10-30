@@ -953,9 +953,10 @@ const EXAM_SATA = 8;
 
 /* Draw n from a pool with a target number of select-all items in it. Select-all
    questions are drawn first so they are never crowded out, then single-answer
-   questions fill the rest, one concept each before any concept repeats. */
-function drawMixed(pool, n, nSata){
-  const used = new Set();
+   questions fill the rest, one concept each before any concept repeats.
+   Pass the same `used` set to every pool drawn for one paper, so a dupOf pair
+   split across pools still cannot both appear. */
+function drawMixed(pool, n, nSata, used = new Set()){
   const sata = drawN(pool.filter(isMulti), Math.min(nSata, n), used);
   const rest = drawN(pool.filter(q => !isMulti(q)), n - sata.length, used);
   return [...sata, ...rest];
@@ -969,9 +970,13 @@ function beginExam(){
   // select-all items spread across the pools in the paper's 38 : 8 : 4 ratio
   const sNew = Math.round(EXAM_SATA * 38/50), sYen = Math.round(EXAM_SATA * 8/50);
   const sOld = Math.max(0, EXAM_SATA - sNew - sYen);
-  const yen = drawMixed(yenP, 8, sYen);
-  const old = drawMixed(oldP, 4, sOld);
-  const nw  = drawMixed(newP, 38, sNew);
+  // One blocked set across all three pools: a dupOf pair can span two pools
+  // (ad-7 is Yendapally, its partner df-6 is earlier Sikazwe material), and a
+  // set per pool let both onto the same paper about once in 300 papers.
+  const used = new Set();
+  const yen = drawMixed(yenP, 8, sYen, used);
+  const old = drawMixed(oldP, 4, sOld, used);
+  const nw  = drawMixed(newP, 38, sNew, used);
   const qs  = shuffle([...yen, ...old, ...nw]);
   EX = {qs, i:0, picks:qs.map(q => isMulti(q) ? [] : null), running:true, done:false,
         ends: Date.now() + 75*60000, orders: qs.map(q=>shuffle(q.options.map((o,k)=>k)))};
@@ -1320,3 +1325,55 @@ document.querySelectorAll('#nav button').forEach(b => b.onclick = () => show(b.d
 document.getElementById('btnWho').onclick = () => { askProfile(true); show(VIEW); };
 askProfile(false);
 show('topics');
+
+/* ==========================================================================
+   OFFLINE — the service worker (hosted copy only)
+   Opened from disk the file is already self-contained, and a service worker
+   cannot register on file://, so this does nothing there. It never reloads on
+   its own: a student mid-way through an exam sim decides when to reload.
+   ========================================================================== */
+(function offline(){
+  const sw = navigator.serviceWorker;
+  const hosted = location.protocol === 'https:' ||
+                 location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if (!sw || !hosted) return;
+
+  const firstTime = !sw.controller;
+
+  function bar(text, action, onAction, hideAfter){
+    let el = document.getElementById('swbar');
+    if (el) el.remove();
+    el = document.createElement('div');
+    el.id = 'swbar'; el.setAttribute('role', 'status');
+    const msg = document.createElement('span'); msg.textContent = text; el.appendChild(msg);
+    if (action){
+      const b = document.createElement('button'); b.textContent = action; b.onclick = onAction;
+      el.appendChild(b);
+    }
+    const x = document.createElement('button');
+    x.className = 'swx'; x.setAttribute('aria-label', 'Dismiss'); x.textContent = '×';
+    const hide = () => { el.remove(); document.body.classList.remove('swbar-on'); };
+    x.onclick = hide; el.appendChild(x);
+    document.body.appendChild(el);
+    document.body.classList.add('swbar-on');
+    if (hideAfter) setTimeout(hide, hideAfter);
+  }
+
+  // The worker sends this when it served the saved copy because the network
+  // was slow, and the network copy then turned out to be newer.
+  sw.addEventListener('message', e => {
+    if (e.data && e.data.type === 'drill-updated')
+      bar('A newer version of the drill is ready.', 'Reload', () => location.reload());
+  });
+
+  sw.register('./sw.js').then(() => {
+    if (!firstTime) return;
+    // Fires once the drill is actually saved, not merely requested.
+    sw.addEventListener('controllerchange', () => {
+      const key = NS + ':offline-ready';
+      let told = false;
+      try { told = localStorage.getItem(key) === '1'; localStorage.setItem(key, '1'); } catch(_){}
+      if (!told) bar('Saved for offline use — the drill now opens with no connection.', null, null, 7000);
+    }, { once: true });
+  }).catch(() => {});
+})();

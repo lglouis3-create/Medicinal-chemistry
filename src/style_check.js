@@ -1,6 +1,8 @@
 /* Flags phrasing Louis rejected: study meta-commentary, metaphor, and appeals to the deck. */
 const fs=require('fs'), vm=require('vm');
-let c=[...fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html','utf8').matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
+// the built page, resolved from this file so a fresh clone works
+const BUILT = require('path').join(__dirname, '..', 'index.html');
+let c=[...fs.readFileSync(BUILT,'utf8').matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=c.lastIndexOf('   BOOT'); c=c.slice(0,c.lastIndexOf('/* ===',b)); c+='\nglobalThis.__Q=QUESTIONS;';
 const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),createElement:()=>({}),body:{}},window:{},prompt:()=>'x',setTimeout:()=>0,clearTimeout(){},Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
 sb.globalThis=sb;vm.createContext(sb);vm.runInContext(c,sb);

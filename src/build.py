@@ -17,6 +17,20 @@ DATA_FILES = ['atlas.js', 'diagrams.js',
               'q8_atlas.js', 'q9_gaps.js', 'q10_sata.js', 'q11_sata2.js',
               'q12_figures.js', 'q13_quizlet.js']
 
+# What the build writes into the repo root. index.html is the app itself, so the
+# GitHub Pages site root opens the drill; LEGACY_NAME is the name the drill was
+# published under before and is kept as a redirect.
+OUTPUT_NAME = 'index.html'
+LEGACY_NAME = 'PHAR4342_Final_Drill.html'
+REDIRECT_HTML = (
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+    '<title>PHAR 4342 Final Drill</title>'
+    '<link rel="canonical" href="./index.html">'
+    '<meta http-equiv="refresh" content="0; url=./index.html">'
+    '</head><body><p>This drill now lives at <a href="./index.html">index.html</a>.</p>'
+    '<script>location.replace("./index.html" + location.hash);</script>'
+    '</body></html>\n')
+
 # Everything that has to parse before a build is allowed to proceed. Derived
 # from DATA_FILES rather than listed again, so adding a question file cannot
 # leave it syntax-checked in one place and unchecked in the other.
@@ -34,7 +48,10 @@ def node_check(path, label):
 print('checking sources...')
 for f in SOURCES:
     node_check(f, f)
-print(f'  {len(SOURCES)} sources parse cleanly')
+# the service worker ships beside the page, not inside it, but a broken one
+# would still ship, so it is held to the same check
+node_check(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sw.js'), 'sw.js')
+print(f'  {len(SOURCES)} sources and sw.js parse cleanly')
 
 shell = open('shell.html', encoding='utf-8').read()
 images = json.load(open('images.json'))
@@ -78,12 +95,20 @@ finally:
     os.unlink(tmp_js)
 print('  assembled script parses cleanly')
 
-# write to a temporary file first, so a failed build never leaves a half-written
-# or truncated HTML in place of the last good one
-out = '/mnt/user-data/outputs/PHAR4342_Final_Drill.html'
-os.makedirs('/mnt/user-data/outputs', exist_ok=True)
+# The repo root is what GitHub Pages serves, so the build writes there: the app
+# becomes index.html (so the site root opens the drill, not the README) and the
+# old file name is kept as a redirect so existing links and bookmarks still work.
+# Write to a temporary file first, so a failed build never leaves a half-written
+# or truncated HTML in place of the last good one.
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+out = os.path.join(ROOT, OUTPUT_NAME)
 tmp_out = out + '.tmp'
 with open(tmp_out, 'w', encoding='utf-8') as fh:
     fh.write(shell)
 os.replace(tmp_out, out)
-print(f'wrote {out}  ({len(shell)/1024/1024:.2f} MB)')
+print(f'wrote {os.path.relpath(out, ROOT)}  ({len(shell)/1024/1024:.2f} MB)')
+
+legacy = os.path.join(ROOT, LEGACY_NAME)
+with open(legacy, 'w', encoding='utf-8') as fh:
+    fh.write(REDIRECT_HTML)
+print(f'wrote {os.path.relpath(legacy, ROOT)}  (redirect to {OUTPUT_NAME})')

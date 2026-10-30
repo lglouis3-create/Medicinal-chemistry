@@ -29,7 +29,9 @@ BODY_PT = 19.0        # a character at least this tall is title/bullet text
                       # measured on this deck: titles 36-80pt, bullets 20-32pt,
                       # table cells and figure labels 8-18pt, footer 10pt
 MAX_W = 820           # output width cap, per the brief
-QUALITY = 66          # JPEG quality, per the brief
+QUALITY = 80          # WebP quality. Not the same scale as JPEG: 80 here
+                      # holds slide text and handwriting, and matches the
+                      # setting the existing images.json was encoded at.
 WHITE = 246           # pixels at or above this grey count as background
 PAD = 14              # padding kept around a detected box, in raster px
 TEXT_PAD = 5          # padding added when masking a body-text word, in raster px
@@ -199,14 +201,18 @@ def detect(page, png_path, mode="auto", footer_pt=None):
 
 
 def encode(crop):
-    """Downscale to the width cap and return a base64 JPEG data URL."""
+    """Downscale to the width cap and return a base64 WebP data URL.
+
+    WebP holds slide text and handwritten annotation as well as JPEG does at
+    this quality, for roughly 30% fewer bytes, and the page carries every
+    image inline — so the format choice is most of the page weight."""
     if crop.size[0] > MAX_W:
         ratio = MAX_W / crop.size[0]
         crop = crop.resize((MAX_W, max(1, int(crop.size[1] * ratio))), Image.LANCZOS)
     buf = io.BytesIO()
-    crop.save(buf, "JPEG", quality=QUALITY, optimize=True)
+    crop.save(buf, "WEBP", quality=QUALITY, method=6)
     raw = buf.getvalue()
-    return "data:image/jpeg;base64," + base64.b64encode(raw).decode("ascii"), crop.size, len(raw)
+    return "data:image/webp;base64," + base64.b64encode(raw).decode("ascii"), crop.size, len(raw)
 
 
 def main():

@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2F5FA8">
+<meta name="description" content="PHAR 4342 Medicinal Chemistry cumulative final drill: 386 questions with worked explanations, an exam simulator and a functional group atlas.">
+<!-- Installable from the hosted site. Absent when the file is opened from disk,
+     which is harmless: the drill is self-contained either way. -->
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="4342 Drill">
 <title>PHAR 4342 — Cumulative Final Drill</title>
 <style>
 :root{
@@ -34,6 +43,17 @@ body{
 .prose .gloss{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:.86em}
 button{font:inherit;cursor:pointer}
 a{color:var(--accent)}
+
+/* ---------- offline / update notice (service worker) ---------- */
+#swbar{position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;
+  display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100% - 24px);
+  background:var(--ink);color:#fff;border-radius:var(--r);padding:8px 8px 8px 14px;
+  font-size:14px;line-height:1.35;box-shadow:0 6px 24px rgba(22,32,46,.28)}
+#swbar button{background:var(--accent);color:#fff;border:0;border-radius:6px;
+  padding:6px 12px;font-size:14px;font-weight:600;flex:none;cursor:pointer}
+#swbar .swx{background:none;color:#9FB0C4;font-size:20px;line-height:1;padding:2px 6px;font-weight:400}
+body.swbar-on{padding-bottom:76px}
 
 /* ---------- chrome ---------- */
 header{

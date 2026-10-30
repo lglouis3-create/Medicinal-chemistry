@@ -1,8 +1,10 @@
 /* Validate the built app: parse the script, check the question bank, exercise the SRS. */
 const fs = require('fs');
+// the built page, resolved from this file so a fresh clone works
+const BUILT = require('path').join(__dirname, '..', 'index.html');
 const vm = require('vm');
 
-const html = fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html', 'utf8');
+const html = fs.readFileSync(BUILT, 'utf8');
 const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
 if (scripts.length !== 1) { console.error('FAIL: expected 1 script block, got ' + scripts.length); process.exit(1); }
 let code = scripts[0];
@@ -194,15 +196,36 @@ else console.log('  ok    no duplicate questions on a single paper');
 const allIds = new Set(QUESTIONS.map(q=>q.id));
 QUESTIONS.filter(q=>q.dupOf && !allIds.has(q.dupOf)).forEach(q=>bad(`${q.id} dupOf points at missing ${q.dupOf}`));
 { let clash=0, low=0;
-  for(let k=0;k<20;k++){
-    const paper=[...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Yendapally'),8,sYen),
-                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='old'),4,sOld),
-                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='new'),38,sNew)];
+  const PAPERS = 500;
+  for(let k=0;k<PAPERS;k++){
+    const used = new Set();   // as beginExam does: one blocked set for the whole paper
+    const paper=[...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Yendapally'),8,sYen,used),
+                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='old'),4,sOld,used),
+                 ...X.drawMixed(QUESTIONS.filter(q=>!q.lowYield&&q.prof==='Sikazwe'&&q.tier==='new'),38,sNew,used)];
     const on=new Set(paper.map(q=>q.id));
     paper.forEach(q=>{ if(q.dupOf && on.has(q.dupOf)) clash++; if(q.lowYield) low++; });
   }
-  if(clash) bad(`${clash} dupOf pairs drawn together across 20 papers`);
-  else console.log(`  ok    dupOf partners never share a paper (${QUESTIONS.filter(q=>q.dupOf).length} marked; ${QUESTIONS.filter(q=>q.lowYield).length} lowYield kept off the paper)`);
+  if(clash) bad(`${clash} dupOf pairs drawn together across ${PAPERS} papers`);
+  else console.log(`  ok    dupOf partners never share a paper across ${PAPERS} papers (${QUESTIONS.filter(q=>q.dupOf).length} marked; ${QUESTIONS.filter(q=>q.lowYield).length} lowYield kept off the paper)`);
+}
+// The random papers above catch a clash only when the dice put both halves of a
+// pair on one paper, which for a pair split across pools is rare. So also force
+// it: put one half on the paper, then draw the other half's whole pool.
+{ const poolOf = q => QUESTIONS.filter(x => !x.lowYield && x.prof === q.prof && (q.prof === 'Yendapally' || x.tier === q.tier));
+  const byId = Object.fromEntries(QUESTIONS.map(q => [q.id, q]));
+  let leaks = [];
+  QUESTIONS.filter(q => q.dupOf && byId[q.dupOf]).forEach(q => {
+    for (const [first, other] of [[q, byId[q.dupOf]], [byId[q.dupOf], q]]) {
+      if (first.lowYield || other.lowYield) continue;
+      const used = new Set();
+      X.drawMixed([first], 1, X.isMulti(first) ? 1 : 0, used);
+      const pool = poolOf(other);
+      const drawn = X.drawMixed(pool, pool.length, pool.filter(X.isMulti).length, used);
+      if (drawn.some(x => x.id === other.id)) leaks.push(first.id + ' then ' + other.id);
+    }
+  });
+  if (leaks.length) bad(`a dupOf partner was drawn after its pair was already on the paper: ${leaks.join(', ')}`);
+  else console.log('  ok    every dupOf pair is blocked in both directions, across pools included');
 }
 const nSata = [...y,...o,...n].filter(X.isMulti).length;
 const bankSata = {yen: QUESTIONS.filter(q=>q.prof==='Yendapally' && X.isMulti(q)).length,

@@ -71,9 +71,9 @@ written into the file, so adding questions does not mean editing this test.
 
     python3 browser_test.py   # run after the three node checks
 
-Run the build FIRST. All three `node` checks read the built file at
-`/mnt/user-data/outputs/PHAR4342_Final_Drill.html`, so on a fresh checkout they
-fail with ENOENT until `build.py` has written it.
+The checks read the built page as `index.html` in the repository root,
+resolved relative to the script that reads it, so they run on a fresh
+clone as soon as `python3 build.py` has been run once.
 
     python3 build.py      # writes the single HTML file
     node test.js          # question integrity + 8 engine rules incl. the no-loop rule
