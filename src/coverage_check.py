@@ -12,9 +12,11 @@ ask to be covered, and both are checked.
 
     python3 coverage_check.py
 """
+import os
 import json, re, subprocess, sys
 
-HTML = '/mnt/user-data/outputs/PHAR4342_Final_Drill.html'
+# the built page, resolved from this file so a fresh clone works
+HTML = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'index.html')
 
 # ---------------------------------------------------------------- exam scope
 # Each entry: label, the (topic, sub) buckets that serve it, and the phrases

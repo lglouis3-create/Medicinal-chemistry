@@ -1,8 +1,10 @@
 /* Validate the built app: parse the script, check the question bank, exercise the SRS. */
 const fs = require('fs');
+// the built page, resolved from this file so a fresh clone works
+const BUILT = require('path').join(__dirname, '..', 'index.html');
 const vm = require('vm');
 
-const html = fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html', 'utf8');
+const html = fs.readFileSync(BUILT, 'utf8');
 const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
 if (scripts.length !== 1) { console.error('FAIL: expected 1 script block, got ' + scripts.length); process.exit(1); }
 let code = scripts[0];

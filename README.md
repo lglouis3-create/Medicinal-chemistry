@@ -4,7 +4,15 @@ An offline quiz app for the PHAR 4342 Medicinal Chemistry cumulative final
 (Exam 4). One HTML file, no server, no network: open it in a browser and it
 runs, including from a phone.
 
-Open **`PHAR4342_Final_Drill.html`**.
+**Published at <https://lglouis3-create.github.io/medicinal-chemistry/>** — the
+site root is the drill itself. The old `PHAR4342_Final_Drill.html` link still
+works; it redirects.
+
+On a phone, use the browser's **Add to Home Screen**: the drill then opens
+full-screen like an app, and the browser keeps it cached between sessions.
+
+To use it offline, save `index.html` and open it from your files. Everything —
+all 386 questions and all 189 slide images — is inside that one file.
 
 ## What is in it
 
@@ -48,6 +56,11 @@ The single file is assembled from the sources in `src/`:
     cd src
     python3 build.py
 
+The build writes into the repository root, which is what GitHub Pages serves:
+`index.html` (the app) and `PHAR4342_Final_Drill.html` (a redirect to it, so
+links shared before the rename keep working). Push those and Pages redeploys
+within a few minutes; progress survives because question ids do not change.
+
 `build.py` syntax-checks every source before assembling and checks the
 assembled script before replacing the output, so a stray comma stops the build
 instead of shipping a file that loads to a blank screen.
@@ -59,7 +72,8 @@ or the generator:
 
 ## Checks
 
-Build first — the node checks read the built page.
+Build first — every check reads `index.html` from the repository root, resolved
+relative to the script, so they run on a fresh clone.
 
     node test.js            # bank integrity, blueprint coverage, the scheduler
     node style_check.js     # the phrasing rules, and that every citation is located
@@ -84,3 +98,15 @@ from, by number where the deck was paged through and by the slide's own title
 where only extracted text was available. Material taken from lecture audio
 rather than a slide is marked as such, because auto-captions garble drug names
 and numbers.
+
+## Page weight
+
+The drill carries its 189 slide crops inline, so the page is large by design —
+that is what makes it work with no network. The images are WebP at quality 80,
+which holds slide text and the professor's handwritten annotations while
+costing about 30% fewer bytes than the JPEGs used before. The page is 6.5 MB on
+disk and about 4.3 MB over the wire once GitHub Pages compresses it.
+
+If you add images, keep them WebP: `harvest.py`, `harvest_mask.py` and
+`mkimg.py` all emit it, and `build.py` simply inlines whatever `images.json`
+holds.

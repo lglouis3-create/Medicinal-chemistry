@@ -6,7 +6,7 @@ from PIL import Image, ImageChops
 TITLE_CUT = 196          # px of title band to remove from the top
 FOOTER_CUT = 60          # px of footer/copyright band to remove from the bottom
 MAX_W = 940              # output width cap
-QUALITY = 72
+QUALITY = 80          # WebP quality; see harvest.py
 
 
 def trim_white(im, tol=246):
@@ -41,7 +41,7 @@ def make(deck, slide, title_cut=TITLE_CUT, footer_cut=FOOTER_CUT, box=None):
         r = MAX_W / im.size[0]
         im = im.resize((MAX_W, max(1, int(im.size[1] * r))), Image.LANCZOS)
     buf = io.BytesIO()
-    im.save(buf, "JPEG", quality=QUALITY, optimize=True)
+    im.save(buf, "WEBP", quality=QUALITY, method=6)
     return base64.b64encode(buf.getvalue()).decode("ascii"), im.size, len(buf.getvalue())
 
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
                                  v.get("title_cut", TITLE_CUT),
                                  v.get("footer_cut", FOOTER_CUT),
                                  v.get("box"))
-        out[key] = "data:image/jpeg;base64," + b64
+        out[key] = "data:image/webp;base64," + b64
         total += nbytes
         print(f"  {key:28s} {v['deck']}/{v['slide']:>3}  {size[0]}x{size[1]}  {nbytes/1024:6.1f} KB")
     json.dump(out, open(sys.argv[2], "w"))

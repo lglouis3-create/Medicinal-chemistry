@@ -9,10 +9,11 @@ runs — a boot error, a view that throws on click, an image that does not decod
 
     python3 browser_test.py [path-to-html]
 """
+import os
 import glob, json, pathlib, re, sys
 from playwright.sync_api import sync_playwright
 
-HTML = sys.argv[1] if len(sys.argv) > 1 else '/mnt/user-data/outputs/PHAR4342_Final_Drill.html'
+HTML = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'index.html')
 
 # Every question file, found rather than listed, so a new one is picked up here
 # the moment it is built into the page instead of quietly going uncounted.

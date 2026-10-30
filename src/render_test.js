@@ -1,5 +1,7 @@
 const fs=require('fs'), vm=require('vm');
-const html=fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html','utf8');
+// the built page, resolved from this file so a fresh clone works
+const BUILT = require('path').join(__dirname, '..', 'index.html');
+const html=fs.readFileSync(BUILT,'utf8');
 let code=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b=code.lastIndexOf('   BOOT'); code=code.slice(0,code.lastIndexOf('/* ===',b));
 code+="\nglobalThis.__X={QUESTIONS,TOPICS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX};\n";

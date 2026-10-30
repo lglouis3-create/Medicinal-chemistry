@@ -103,7 +103,7 @@ def load_questions():
         whys:q.options.map(o=>o.why||'')}))));
     """
     out = subprocess.run(
-        ["node", "-e", js, "/mnt/user-data/outputs/PHAR4342_Final_Drill.html"],
+        ["node", "-e", js, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'index.html')],
         capture_output=True, text=True)
     if out.returncode != 0:
         sys.exit("ERROR: could not read the built page\n" + out.stderr.strip())

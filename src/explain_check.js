@@ -19,7 +19,9 @@
  * so the ranking follows the blueprint rather than the raw count.
  */
 const fs = require('fs'), vm = require('vm');
-let c = [...fs.readFileSync('/mnt/user-data/outputs/PHAR4342_Final_Drill.html', 'utf8')
+// the built page, resolved from this file so a fresh clone works
+const BUILT = require('path').join(__dirname, '..', 'index.html');
+let c = [...fs.readFileSync(BUILT, 'utf8')
           .matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
 const b = c.lastIndexOf('   BOOT'); c = c.slice(0, c.lastIndexOf('/* ===', b));
 c += '\nglobalThis.__Q=QUESTIONS;globalThis.GLOSS=typeof GLOSS!=="undefined"?GLOSS:[];';
