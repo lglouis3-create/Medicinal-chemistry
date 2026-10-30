@@ -8,11 +8,18 @@ runs, including from a phone.
 site root is the drill itself. The old `PHAR4342_Final_Drill.html` link still
 works; it redirects.
 
-On a phone, use the browser's **Add to Home Screen**: the drill then opens
-full-screen like an app, and the browser keeps it cached between sessions.
+**It works offline.** After one visit to the site, the drill opens with no
+connection — on a phone, in a basement lecture hall, on a plane. On a phone, use
+the browser's **Add to Home Screen** and it opens full-screen like an app.
 
-To use it offline, save `index.html` and open it from your files. Everything —
-all 386 questions and all 189 slide images — is inside that one file.
+It never holds you on an old copy. Each time you open it with a connection, it
+loads the current version, so a corrected answer reaches you on your next visit.
+If the connection is slow, it shows the saved copy straight away instead of
+making you wait, and offers a **Reload** if a newer version then arrives. It
+never reloads by itself, so an exam sim in progress is never cut off.
+
+You can also save `index.html` and open it from your files. Everything — all
+386 questions and all 189 slide images — is inside that one file.
 
 ## What is in it
 
@@ -79,9 +86,17 @@ relative to the script, so they run on a fresh clone.
     node style_check.js     # the phrasing rules, and that every citation is located
     node render_test.js     # every view renders
     node explain_check.js   # explanation quality, ranked by exam weight
-    python3 cite_check.py   # every cited slide number exists in its deck
+    python3 cite_check.py   # every cited slide number exists in its deck (see below)
     python3 coverage_check.py   # the bank against the stated exam scope
     python3 browser_test.py # drives the real file in Chromium, select-all items included
+    python3 sw_test.py      # the offline service worker, served the way GitHub Pages serves it
+
+`cite_check.py` needs the lecture deck PDFs, which are course material and are
+not kept in this repository. They are in the course's Google Drive folder
+(Intro Med Chem › Slides). Run the check from a folder holding them, named the
+way the citations spell them (the table at the top of `cite_check.py` lists
+the spellings): `cd decks && python3 ../src/cite_check.py`. With the decks
+missing it reports NOT RUN rather than passing.
 
 Passing all of them does not mean the content is right. They check that it
 parses, renders, runs, cites a real slide and covers the stated scope. The
@@ -98,6 +113,16 @@ from, by number where the deck was paged through and by the slide's own title
 where only extracted text was available. Material taken from lecture audio
 rather than a slide is marked as such, because auto-captions garble drug names
 and numbers.
+
+## Offline: how the service worker behaves
+
+`sw.js` sits beside `index.html` and is limited to this drill's folder. It
+fetches the page network-first and keeps a saved copy, falling back to it when
+the network is down or slower than 3.5 seconds. Its cache is named
+`phar4342-drill-…`; this GitHub Pages address also serves other sites and they
+share one cache store, so it only ever deletes caches carrying its own name.
+Content updates need no change to `sw.js`. Change `CACHE` in it only if what it
+saves changes shape.
 
 ## Page weight
 

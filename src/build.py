@@ -48,7 +48,10 @@ def node_check(path, label):
 print('checking sources...')
 for f in SOURCES:
     node_check(f, f)
-print(f'  {len(SOURCES)} sources parse cleanly')
+# the service worker ships beside the page, not inside it, but a broken one
+# would still ship, so it is held to the same check
+node_check(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sw.js'), 'sw.js')
+print(f'  {len(SOURCES)} sources and sw.js parse cleanly')
 
 shell = open('shell.html', encoding='utf-8').read()
 images = json.load(open('images.json'))
