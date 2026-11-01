@@ -121,5 +121,50 @@ const COURSE = {
 
   scheduler: {model:'concept'},
 
-  kit: {core:'2c648fa'},   // lglouis3-create/exam-drill-kit main, 9f2f2a47fdb3e32a50967d479c77aadac2d03bbb
+  // The course's tables for three core tools (kit core/README.md "Course tables"),
+  // moved unchanged from the tops of this course's cite_check.py (ALIASES,
+  // BARE_MAP), explain_check.js (WEIGHTY) and harvest_mask.py (SPEC).
+  tools: {
+    citeAliases: {
+      'mcmet-9_4_26.pdf':        'MCMet-9_4_26-9_9_26.pdf',
+      'mcmet9_4_26__9_9_26.pdf': 'MCMet-9_4_26-9_9_26.pdf',
+      'ex4-prep-work.pdf': null,
+    },
+    citeBareMap: {
+      'Absorption I': '090326_ADMETAbsorption_I.pdf', 'Absorption II': '090426_ADMETAbsorption_II.pdf',
+      'Distribution': '090426_Distribution.pdf',
+      'Stereochemistry': '081926_Stereochemistry.pdf',
+      'Bioisosterism': '082626_Bioisosterism.pdf',
+      'Physicochemical Properties 1': '082726_PhysicochemicalProp1.pdf',
+      'Physicochemical Properties 2': null,
+      'Physicochemical Properties 3': '090326_PhysicochemicalProp3.pdf',
+      'Drug Discovery': '082026_Drugdiscovery.pdf',
+      'Drug–Receptor Interactions': '082426_DrugReceptorInteractions.pdf',
+      'Introduction to SAR': null,
+      'Practice Problem Answers': '082726_PracticeProblemAnswers.pdf',
+      'Functional group deck': 'MCFGs8_1718_26.pdf',
+    },
+    explainTerms: [
+      ['deloc','delocalis|delocaliz'], ['nucl','nucleophil'], ['elec','electrophil'],
+      ['zwit','zwitterion'], ['cbase','conjugate base'], ['cacid','conjugate acid'],
+      ['enant','enantiomer'], ['diast','diastereomer'], ['racem','racemic|racemate'],
+      ['efflux','efflux'], ['fpass','first-pass'], ['vd','volume of distribution'],
+      ['ehc','enterohepatic'], ['toxo','toxicophor'], ['bioact','bioactivat'],
+      ['sat','saturab'], ['free','free fraction'], ['pc','partition coefficient'],
+      ['poly','polymorphis'], ['steric','steric'], ['val','valence|valency'],
+      ['adduct','adduct'], ['prodrug','prodrug'], ['isoform','isoform'],
+      ['cofac','cofactor|co-factor'],
+      // no GLOSS entry yet — these are the ones the report should surface
+      ['tautomer','tautomer'], ['resonance','resonance'], ['regio','regioselectiv'],
+      ['hepext','hepatic extraction'], ['glomer','glomerul'], ['epimer','epimer'],
+      ['induct','inductive effect'], ['chiral','chiral'],
+    ],
+    harvestMasks: [
+      ['rx_allylic_pentazocine', ['Allylic OH metabolite']],
+      ['rx_adh',                 ['ADH']],
+      ['rx_akr',                 ['AKRs']],
+      ['rx_gluc_sulf',           ['UGT', 'STs', 'Morphine 6-O-Glucuronide', 'Labetolol sulfate']],
+    ],
+  },
+  kit: {core:'4616994'},   // lglouis3-create/exam-drill-kit, head of pull request #4
 };

@@ -41,18 +41,18 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `2c648fa` (the
-  head of kit pull request #3, merged into the kit's `main` as 47bf534;
-  `course.js` `kit:{core:'2c648fa'}`). Only Mode 7 of the kit's skill changes the pin.
-- The question files are listed in `course.js` `files` (the kit's build reads it), so a
-  core update cannot drop them. Exception, until the kit fixes it: `cite_check.py`,
-  `explain_check.js` and `harvest_mask.py` hold this course's tables at their top, so a
-  core update must not copy those three over.
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `4616994` (the
+  head of kit pull request #4; `course.js` `kit:{core:'4616994'}`). Only Mode 7 of the
+  kit's skill changes the pin.
+- The question files are listed in `course.js` `files`, and this course's tables for
+  `cite_check.py`, `explain_check.js` and `harvest_mask.py` are in `course.js` `tools`
+  (moved unchanged from the tops of those files on 2026-11-01), so a core update can
+  copy every core file without losing either.
 - Course content: `src/course.js`, `src/q*.js`, `atlas.js`, `diagrams.js`,
   `glossary.js` (the GLOSS table, moved out of the old `views.js` unchanged),
   `links.js` (empty), `reference.js`, `tell.js`, `guide.js` with `src/guides/`,
-  `images.json`, `icons/`, `CHANGELOG.md`, and the course tables at the top of
-  `cite_check.py`, `harvest_mask.py` and `explain_check.js`.
+  `images.json`, `icons/`, `CHANGELOG.md`; the course tables for three core tools are
+  in `course.js` `tools`.
 - Storage namespace `ns: 'phar4342final'` and every question id are unchanged
   (KIT_DESIGN §7.4). The old service worker's caches (`phar4342-drill-v<n>`) are deleted
   by the core's worker (`oldCachePrefix: 'phar4342-drill-'`). Scheduler:
@@ -134,5 +134,5 @@ the files named:
   `1CFjN_Q7EZXPRgR_edtC5ZSOHz1urYRyl`; syllabus
   `11X96cwuKvkIB55yBBMqOw4N8fUQrRN2D`; transcripts in "Intro to Med Transcripts"
   `1qVlkZXfHxG_7lWr7OJczgynDE8QvwzMz` (ids read 2026-11-01). Put the decks under
-  `src/decks/`, named as the citations spell them (`cite_check.py` tables); the check
+  `src/decks/`, named as the citations spell them (`course.js` `tools`); the check
   also needs `pdfplumber`.

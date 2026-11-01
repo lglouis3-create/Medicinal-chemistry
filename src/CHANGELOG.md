@@ -11,6 +11,7 @@ Every update adds its bullets here in the same commit that makes the change.
 ## 2026-11-01 (the 09/21 questions, and the shared drill engine)
 - Slide references that pointed at the wrong lecture now name the right one (9 places).
 - The site opens without asking for a name; wide tables scroll inside their own box on a phone.
+- The Home Screen steps are now a closed section in Settings instead of a card on Topics.
 - 92 more questions: 89 tell-apart items, 2 typed calculations with worked steps, and 1 matching table.
 - Each question now names the skill it tests: recall, tell apart, apply, read a structure or scheme, or calculate.
 - After a right answer, "Not sure, ask again soon" brings that concept back at the shortest interval.
