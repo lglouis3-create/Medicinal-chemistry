@@ -9,7 +9,7 @@
 QUESTIONS.push(
 
 /* ═══════════ CYP — Lecture 13 ═══════════ */
-{id:'sa-cyp-3', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'cyp3a-inhibitor-list', multi:true,
+{id:'sa-cyp-3', skill:'tell', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'indinh', concept:'cyp3a-inhibitor-list', multi:true,
  tags:['list','ddi'], source:'slide',
  stem:'Which of the following inhibit CYP3A4, so that a co-administered CYP3A4 substrate accumulates? Select all that apply.',
  options:[
@@ -36,7 +36,7 @@ QUESTIONS.push(
  cite:'Lecture #13 (MCMet-9_15_2026.pdf) slide 32; inducer table slide 33; inhibitor table slide 34; grapefruit juice table slide 35',
  quote:'Common Inducers: Barbiturates · Carbamazepine · Phenytoin · Rifampin · St Johns Wort · Ethanol · Tobacco · Nevirapine | Common Inhibitors: Clarithromycin · Erythromycin · Azole Antifungals (Ketoconazole, Itraconazole) · Cimetidine · Protease inhibitors · Grape Fruit Juice · Quinidine · Omeprazole'},
 
-{id:'sa-cyp-4', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-location-structure', multi:true,
+{id:'sa-cyp-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'cyp', sub:'char', concept:'cyp-location-structure', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Which of the following are characteristics of cytochrome P450 (CYP) enzymes? Select all that apply.',
  options:[
@@ -64,7 +64,7 @@ QUESTIONS.push(
  quote:'CyPs are in the ER (liver & other cells) · CyPs are membrane bound proteins · Porphyrin with Fe-Cysteine catalytic site · CYP + CO complex absorbs light @ 450 nm'},
 
 /* ═══════════ ELIMINATION — Lecture 15 ═══════════ */
-{id:'sa-el-2', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'renal-factors-list', multi:true,
+{id:'sa-el-2', skill:'tell', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'renal-factors-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following change how much of a drug the kidney eliminates? Select all that apply.',
  options:[
@@ -91,7 +91,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 9; slides 10–14 for each factor; hepatic factors slides 17–18',
  quote:'Kidney Disease · Glomerular Filtration Rate · Reabsorption or Back Diffusion of un-ionized drug · Active Tubular Secretion · Urinary pH'},
 
-{id:'sa-el-3', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'tubular-secretion-transporters', multi:true,
+{id:'sa-el-3', skill:'tell', prof:'Sikazwe', tier:'new', topic:'elim', sub:'renal', concept:'tubular-secretion-transporters', multi:true,
  tags:['list','enzyme'], source:'slide',
  stem:'Which of these renal tubular transporters secrete cationic drugs into the urine? Select all that apply.',
  options:[
@@ -114,7 +114,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 13',
  quote:'Anions: OATP1 & 3; MRP2 & 4 · Cations: OCT2; MDR1; MATE1/MATE2K · Probenecid (inhibits renal OATPs & slows Penicillin excretion)'},
 
-{id:'sa-el-4', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'urinary-ph-rules', multi:true,
+{id:'sa-el-4', skill:'apply', prof:'Sikazwe', tier:'new', topic:'elim', sub:'ph', concept:'urinary-ph-rules', multi:true,
  tags:['reasoning','acidbase'], source:'slide',
  stem:'Which of the following statements about urinary pH and drug elimination are correct? Select all that apply.',
  options:[
@@ -139,7 +139,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 14 and 15; reabsorption slide 12; phenytoin slide 7',
  quote:'Acidic urine: ↓ elim. of acidic drugs & ↑ elim. of basic drugs · Basic urine: ↓ elim. of basic drugs & ↑ elim. of acidic drugs · Key: Drugs/metabolites must have ionizable FGs'},
 
-{id:'sa-el-5', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-recycling-facts', multi:true,
+{id:'sa-el-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'hep', concept:'enterohepatic-recycling-facts', multi:true,
  tags:['reasoning','recall'], source:'slide',
  stem:'Which of the following are true of enterohepatic recycling? Select all that apply.',
  options:[
@@ -165,7 +165,7 @@ QUESTIONS.push(
  quote:'Drugs excreted via bile into the intestine undergo reabsorption ("recycling") prior to fecal elim. · Can be clinically disrupted using PO charcoal or anion exchange resins · Examples: Ezetimibe (Zetia), Isotretinoin, Morphine'},
 
 /* ═══════════ TOXICITY — Lecture 15 ═══════════ */
-{id:'sa-tox-3', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'causes-of-toxicity-list', multi:true,
+{id:'sa-tox-3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'causes-of-toxicity-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are causes of a drug\'s on-target or off-target toxicity? Select all that apply.',
  options:[
@@ -194,7 +194,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 29; overdose slide 49; haptens slide 42',
  quote:'Toxicophores (toxic/potentially toxic FGs) · Dose (overdose, Narrow TI drugs, etc.) · Drug Interactions (polypharmacy, distribution related, etc.) · Low deactivating Enzyme capacity (genetics, inhibitors, etc.) · Idiosyncratic reactions (unpredictable toxicity) · Hypersensitivity & Immune response related'},
 
-{id:'sa-tox-4', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'hepatotox-risk-factors', multi:true,
+{id:'sa-tox-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'hepatotox-risk-factors', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following raise a patient\'s risk of drug-induced liver injury? Select all that apply.',
  options:[
@@ -223,7 +223,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 47; hapten slide 42',
  quote:'Genetics: polymorphisms (DME phenotypes – UM to PM) · Age: Elderly are vulnerable · Gender: F>>M (Acetaminophen/Halothane/Diclofenac/Sulindac) · Alcohol use: Induces liver cirrhosis, GSH depletion · Liver disease · Pharmacokinetics: SR-drugs, long-acting drugs, polypharmacy · Pharmacodynamics: Overdose, narrow TI drugs · Herbal remedies'},
 
-{id:'sa-tox-5', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi', multi:true,
+{id:'sa-tox-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'hep', concept:'apap-napqi', multi:true,
  tags:['reasoning','mechanism'], source:'slide',
  stem:'Which of the following statements about acetaminophen (APAP) are correct? Select all that apply.',
  options:[
@@ -248,7 +248,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 49; antidote slide 63; aspirin slide 15; alcohol slide 47',
  quote:'Safe at < 4g/day; hepatotoxic at higher doses · Normal dose: APAP forms Sulfates & Glucuronides as maj. metabolites · Overdose: APAP exhausts UGTs/STs, and undergoes phase I bioactivation to NAPQI'},
 
-{id:'sa-tox-6', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'other-bioactivations', multi:true,
+{id:'sa-tox-6', skill:'tell', prof:'Sikazwe', tier:'new', topic:'tox', sub:'mech', concept:'other-bioactivations', multi:true,
  tags:['reasoning','mechanism'], source:'slide',
  stem:'Which of the following are examples of toxicity through a hapten, an azo group or an N-hydroxy group? Select all that apply.',
  options:[
@@ -272,7 +272,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slides 42, 43 and 44; category list slide 30; isoniazid slide 39; aflatoxin slide 34',
  quote:'Hapten-immunogens can trigger hepatic hypersensitivity: Ethanol, Urushiol · Azo reduction to carcinogens: Solvent Red 1 · N-hydroxylations to carcinogens: Acetylaminofluorene (AAF)'},
 
-{id:'sa-tox-7', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'toxicity-treatments-list', multi:true,
+{id:'sa-tox-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'toxicity-treatments-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are general treatments for drug toxicity? Select all that apply.',
  options:[
@@ -298,7 +298,7 @@ QUESTIONS.push(
  quote:'Antidotes to reverse or reduce toxicity · Supportive care · PO activated charcoal (within 1h of toxin ingestion) · Enhanced elimination (forced diuresis, ion trapping, dialysis, hemoperfusion, hemofiltration, exchange transfusion, etc.)'},
 
 /* ═══════════ FUNCTIONAL GROUPS AND METABOLISM — Lecture 14 ═══════════ */
-{id:'sa-fg-2', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'ce-hydrolysis-groups', multi:true,
+{id:'sa-fg-2', skill:'tell', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'ce-hydrolysis-groups', multi:true,
  tags:['list','enzyme'], source:'slide',
  stem:'Which of these functional groups are hydrolysed by carboxylesterases (CE)? Select all that apply.',
  options:[
@@ -327,7 +327,7 @@ QUESTIONS.push(
  quote:'Amides: Undergo carboxylesterase (CE) hydrolysis, but are more stable in vivo than esters · Carbonates undergo CE hydrolysis · Carbamates: Undergo CE hydrolysis to give amines and … · Esters undergo CE hydrolysis'},
 
 /* ═══════════ FACTORS INFLUENCING METABOLISM — Lecture 14 ═══════════ */
-{id:'sa-fa-1', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'intrinsic-factor-list', multi:true,
+{id:'sa-fa-1', skill:'tell', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'intrinsic-factor-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are physiological (patient) factors that influence drug metabolism? Select all that apply.',
  options:[
@@ -356,7 +356,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 33; tissue enzymes slide 41; co-factors slide 42; disease slide 43; age slides 44–47; gender slide 48; genetics slides 49–50; extrinsic factors slides 51–66',
  quote:'Physiological: DME presence · DME co-factors · Disease · Age · Gender · Genetics | Parent Drug (PD): Dose (overdosing) · Route of Administration · Absorption · Distribution (protein or tissue binding) · *Physicochemical (PC) properties'},
 
-{id:'sa-fa-2', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'liver-disease-effect', multi:true,
+{id:'sa-fa-2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'liver-disease-effect', multi:true,
  tags:['reasoning','recall'], source:'slide',
  stem:'Which of the following correctly describe how a disease state changes drug-metabolising enzyme (DME) activity? Select all that apply.',
  options:[
@@ -381,7 +381,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 43',
  quote:'Liver disease: Decreased DME activity · Cardiac disease (blood flow): Decreased DME activity due to reduced liver blood flow · Inflammation/Infections: Decreased DME activity · Thyroid disease (↑ protein synthesis in hyperthyroidism): Elevated DME activity · Effects on DM are not always predictable'},
 
-{id:'sa-fa-3', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'protein-binding-metabolism', multi:true,
+{id:'sa-fa-3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'protein-binding-metabolism', multi:true,
  tags:['reasoning','recall'], source:'slide',
  stem:'Which of the following statements about serum protein binding and drug metabolism are correct? Select all that apply.',
  options:[

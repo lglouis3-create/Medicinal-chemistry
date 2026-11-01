@@ -11,7 +11,7 @@
        python3 gen_atlas_q.py > q8_atlas.js
    ========================================================================== */
 QUESTIONS.push(
-{id:'fga-1', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-primary-alcohol',
+{id:'fga-1', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-primary-alcohol',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Primary alcohol',
@@ -36,7 +36,7 @@ QUESTIONS.push(
  note:'From lecture audio (Mon 08/17, 1:24:19), Dr. Sikazwe gives the mechanism in one line: "you can decrease polarity by just increasing how much you cover ... that hydroxy group."',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–26 ("ALCOHOLS", "ALCOHOL FG Examples 1" and "2")'},
 
-{id:'fga-2', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-secondary-alcohol',
+{id:'fga-2', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-secondary-alcohol',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Secondary alcohol',
@@ -61,7 +61,7 @@ QUESTIONS.push(
  note:'From lecture audio (Mon 08/17, 1:24:19), Dr. Sikazwe gives the mechanism in one line: "you can decrease polarity by just increasing how much you cover ... that hydroxy group."',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–26 ("ALCOHOLS", "ALCOHOL FG Examples 1" and "2")'},
 
-{id:'fga-3', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-tertiary-alcohol',
+{id:'fga-3', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-tertiary-alcohol',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Tertiary alcohol',
@@ -86,7 +86,7 @@ QUESTIONS.push(
  note:'From lecture audio (Mon 08/17, 1:24:19), Dr. Sikazwe gives the mechanism in one line: "you can decrease polarity by just increasing how much you cover ... that hydroxy group."',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–26 ("ALCOHOLS", "ALCOHOL FG Examples 1" and "2")'},
 
-{id:'fga-4', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-primary-amine',
+{id:'fga-4', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-primary-amine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Primary amine',
@@ -108,7 +108,7 @@ QUESTIONS.push(
    t:'An aryl amine is named by where the nitrogen sits: bonded straight to the ring. The ring pulls the nitrogen\'s lone pair into its own electron system, so that pair is less available to accept a proton and the amine is far less basic than an alkyl one. Put even a single carbon between the nitrogen and the ring and the group reverts to an ordinary alkyl amine.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 40–43 ("AMINES", "ALKYL AMINE Examples", "AROMATIC AMINE Examples", "QUATERNARY AMINE Examples")'},
 
-{id:'fga-5', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-secondary-amine',
+{id:'fga-5', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-secondary-amine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Secondary amine',
@@ -130,7 +130,7 @@ QUESTIONS.push(
    t:'An aryl amine is named by where the nitrogen sits: bonded straight to the ring. The ring pulls the nitrogen\'s lone pair into its own electron system, so that pair is less available to accept a proton and the amine is far less basic than an alkyl one. Put even a single carbon between the nitrogen and the ring and the group reverts to an ordinary alkyl amine.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 40–43 ("AMINES", "ALKYL AMINE Examples", "AROMATIC AMINE Examples", "QUATERNARY AMINE Examples")'},
 
-{id:'fga-6', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-tertiary-amine',
+{id:'fga-6', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-tertiary-amine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Tertiary amine',
@@ -152,7 +152,7 @@ QUESTIONS.push(
    t:'An aryl amine is named by where the nitrogen sits: bonded straight to the ring. The ring pulls the nitrogen\'s lone pair into its own electron system, so that pair is less available to accept a proton and the amine is far less basic than an alkyl one. Put even a single carbon between the nitrogen and the ring and the group reverts to an ordinary alkyl amine.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 40–43 ("AMINES", "ALKYL AMINE Examples", "AROMATIC AMINE Examples", "QUATERNARY AMINE Examples")'},
 
-{id:'fga-7', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-alcohol-hydroxy',
+{id:'fga-7', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-alcohol-hydroxy',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Alcohol hydroxy',
@@ -174,7 +174,7 @@ QUESTIONS.push(
    t:'An aldehyde carbon is exposed and reactive: it oxidises onward to a carboxylic acid, or reacts with other aldehyde molecules. Few marketed drugs carry one, which is itself a clue when an aldehyde appears among the options.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–38 (alcohols 24, phenol 28, ether 31, aldehyde 35, ketone 37)'},
 
-{id:'fga-8', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-phenol',
+{id:'fga-8', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-phenol',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Phenol',
@@ -196,7 +196,7 @@ QUESTIONS.push(
    t:'An aldehyde carbon is exposed and reactive: it oxidises onward to a carboxylic acid, or reacts with other aldehyde molecules. Few marketed drugs carry one, which is itself a clue when an aldehyde appears among the options.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–38 (alcohols 24, phenol 28, ether 31, aldehyde 35, ketone 37)'},
 
-{id:'fga-9', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-ether',
+{id:'fga-9', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-ether',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Ether',
@@ -218,7 +218,7 @@ QUESTIONS.push(
    t:'An aldehyde carbon is exposed and reactive: it oxidises onward to a carboxylic acid, or reacts with other aldehyde molecules. Few marketed drugs carry one, which is itself a clue when an aldehyde appears among the options.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 24–38 (alcohols 24, phenol 28, ether 31, aldehyde 35, ketone 37)'},
 
-{id:'fga-10', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-catechol-ortho',
+{id:'fga-10', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-catechol-ortho',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Catechol ortho',
@@ -240,7 +240,7 @@ QUESTIONS.push(
    t:'A phenolic oxidises to a quinone, and quinones are coloured. A white tablet that has turned pink or brown has been through this reaction, and the patient reports that the drug has stopped working.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 28–30 ("PHENOL & PHENOLICS", "PHENOL & PHENOLIC FG Examples", "PHENOL Note")'},
 
-{id:'fga-11', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-resorcinol-meta',
+{id:'fga-11', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-resorcinol-meta',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Resorcinol meta',
@@ -262,7 +262,7 @@ QUESTIONS.push(
    t:'A phenolic oxidises to a quinone, and quinones are coloured. A white tablet that has turned pink or brown has been through this reaction, and the patient reports that the drug has stopped working.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 28–30 ("PHENOL & PHENOLICS", "PHENOL & PHENOLIC FG Examples", "PHENOL Note")'},
 
-{id:'fga-12', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-hydroquinone-para',
+{id:'fga-12', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'fgname-hydroquinone-para',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Hydroquinone para',
@@ -284,7 +284,7 @@ QUESTIONS.push(
    t:'A phenolic oxidises to a quinone, and quinones are coloured. A white tablet that has turned pink or brown has been through this reaction, and the patient reports that the drug has stopped working.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 28–30 ("PHENOL & PHENOLICS", "PHENOL & PHENOLIC FG Examples", "PHENOL Note")'},
 
-{id:'fga-13', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-carboxylic-acid',
+{id:'fga-13', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-carboxylic-acid',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Carboxylic acid',
@@ -308,7 +308,7 @@ QUESTIONS.push(
    t:'A carbamate is O–C(=O)–N. Read only the left half and it looks like an ester; read only the right half and it looks like an amide. Both wrong answers come from stopping at one side of the carbonyl.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 46–52 ("CARBOXYLIC ACID" 46, "ESTER" 48, "CARBONATE" 49, "AMIDES" 50, "CARBAMATE" 51)'},
 
-{id:'fga-14', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-ester',
+{id:'fga-14', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-ester',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Ester',
@@ -332,7 +332,7 @@ QUESTIONS.push(
    t:'A carbamate is O–C(=O)–N. Read only the left half and it looks like an ester; read only the right half and it looks like an amide. Both wrong answers come from stopping at one side of the carbonyl.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 46–52 ("CARBOXYLIC ACID" 46, "ESTER" 48, "CARBONATE" 49, "AMIDES" 50, "CARBAMATE" 51)'},
 
-{id:'fga-15', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-amide',
+{id:'fga-15', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-amide',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Amide',
@@ -356,7 +356,7 @@ QUESTIONS.push(
    t:'A carbamate is O–C(=O)–N. Read only the left half and it looks like an ester; read only the right half and it looks like an amide. Both wrong answers come from stopping at one side of the carbonyl.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 46–52 ("CARBOXYLIC ACID" 46, "ESTER" 48, "CARBONATE" 49, "AMIDES" 50, "CARBAMATE" 51)'},
 
-{id:'fga-16', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-urea',
+{id:'fga-16', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-urea',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Urea',
@@ -376,7 +376,7 @@ QUESTIONS.push(
    t:'In an imide the N–H sits between two carbonyls, both withdrawing electron density from it, so that hydrogen comes off and the group is acidic. Phenytoin salts are made at exactly this position. In a guanidine the extra nitrogen donates electron density instead, and the protonated form delocalises its positive charge over all three nitrogens, which makes a simple alkyl guanidine strongly basic and charged throughout the physiological range. Putting the guanidine on a ring pulls that electron density away again: clonidine is an aryl guanidine and is about half un-ionised at pH 7.4, which is how it reaches the central nervous system (CNS).'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53–55 ("UREA", "IMIDE", "GUANIDINE")'},
 
-{id:'fga-17', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-imide',
+{id:'fga-17', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-imide',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Imide',
@@ -396,7 +396,7 @@ QUESTIONS.push(
    t:'In an imide the N–H sits between two carbonyls, both withdrawing electron density from it, so that hydrogen comes off and the group is acidic. Phenytoin salts are made at exactly this position. In a guanidine the extra nitrogen donates electron density instead, and the protonated form delocalises its positive charge over all three nitrogens, which makes a simple alkyl guanidine strongly basic and charged throughout the physiological range. Putting the guanidine on a ring pulls that electron density away again: clonidine is an aryl guanidine and is about half un-ionised at pH 7.4, which is how it reaches the central nervous system (CNS).'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53–55 ("UREA", "IMIDE", "GUANIDINE")'},
 
-{id:'fga-18', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-guanidine',
+{id:'fga-18', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fgname-guanidine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Guanidine',
@@ -416,7 +416,7 @@ QUESTIONS.push(
    t:'In an imide the N–H sits between two carbonyls, both withdrawing electron density from it, so that hydrogen comes off and the group is acidic. Phenytoin salts are made at exactly this position. In a guanidine the extra nitrogen donates electron density instead, and the protonated form delocalises its positive charge over all three nitrogens, which makes a simple alkyl guanidine strongly basic and charged throughout the physiological range. Putting the guanidine on a ring pulls that electron density away again: clonidine is an aryl guanidine and is about half un-ionised at pH 7.4, which is how it reaches the central nervous system (CNS).'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53–55 ("UREA", "IMIDE", "GUANIDINE")'},
 
-{id:'fga-19', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-nitro',
+{id:'fga-19', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-nitro',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Nitro',
@@ -438,7 +438,7 @@ QUESTIONS.push(
    t:'An azo group is N=N joining two rings, and any molecule containing one is coloured red, orange or yellow — prontosil rubrum is the example. A halogenated hydrocarbon is a halogen bonded to carbon and nothing further, which raises lipophilicity and changes the electron distribution around it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 44–45 ("CYANO or NITRILE", "NITRO"), with halogenated hydrocarbons on slides 22–23'},
 
-{id:'fga-20', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-nitrile-cyano',
+{id:'fga-20', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-nitrile-cyano',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Nitrile cyano',
@@ -460,7 +460,7 @@ QUESTIONS.push(
    t:'An azo group is N=N joining two rings, and any molecule containing one is coloured red, orange or yellow — prontosil rubrum is the example. A halogenated hydrocarbon is a halogen bonded to carbon and nothing further, which raises lipophilicity and changes the electron distribution around it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 44–45 ("CYANO or NITRILE", "NITRO"), with halogenated hydrocarbons on slides 22–23'},
 
-{id:'fga-21', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-azo',
+{id:'fga-21', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'fgname-azo',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Azo',
@@ -482,7 +482,7 @@ QUESTIONS.push(
    t:'An azo group is N=N joining two rings, and any molecule containing one is coloured red, orange or yellow — prontosil rubrum is the example. A halogenated hydrocarbon is a halogen bonded to carbon and nothing further, which raises lipophilicity and changes the electron distribution around it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 44–45 ("CYANO or NITRILE", "NITRO"), with halogenated hydrocarbons on slides 22–23'},
 
-{id:'fga-22', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-thiol',
+{id:'fga-22', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-thiol',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Thiol',
@@ -504,7 +504,7 @@ QUESTIONS.push(
    t:'A sulfone is drawn with its two oxygens at right angles, or skewed, or one up and one down, depending on how the rest of the molecule is laid out. The number of oxygens is what names it, not the angle they are drawn at.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 64–67 ("SULFIDES (Thioethers)", "SULFOXIDES", "SULFONES", "SULFONIC ACIDS")'},
 
-{id:'fga-23', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfide-thioether',
+{id:'fga-23', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfide-thioether',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Sulfide thioether',
@@ -526,7 +526,7 @@ QUESTIONS.push(
    t:'A sulfone is drawn with its two oxygens at right angles, or skewed, or one up and one down, depending on how the rest of the molecule is laid out. The number of oxygens is what names it, not the angle they are drawn at.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 64–67 ("SULFIDES (Thioethers)", "SULFOXIDES", "SULFONES", "SULFONIC ACIDS")'},
 
-{id:'fga-24', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfoxide',
+{id:'fga-24', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfoxide',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Sulfoxide',
@@ -548,7 +548,7 @@ QUESTIONS.push(
    t:'A sulfone is drawn with its two oxygens at right angles, or skewed, or one up and one down, depending on how the rest of the molecule is laid out. The number of oxygens is what names it, not the angle they are drawn at.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 64–67 ("SULFIDES (Thioethers)", "SULFOXIDES", "SULFONES", "SULFONIC ACIDS")'},
 
-{id:'fga-25', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfonamide',
+{id:'fga-25', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfonamide',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Sulfonamide',
@@ -570,7 +570,7 @@ QUESTIONS.push(
    t:'Phosphonate and phosphate are built on phosphorus rather than sulfur, so neither can name a structure with no P in it. A phosphonate carries three oxygens on the phosphorus and a phosphate carries four. The bisphosphonates for bone density are phosphonates; a phosphate ester is a standard way to build a water-soluble prodrug.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 68–70 ("SULFONAMIDES & SULFONYLUREAS", "PHOSPHONATES", "PHOSPHATES")'},
 
-{id:'fga-26', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfonylurea',
+{id:'fga-26', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-sulfonylurea',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Sulfonylurea',
@@ -592,7 +592,7 @@ QUESTIONS.push(
    t:'Phosphonate and phosphate are built on phosphorus rather than sulfur, so neither can name a structure with no P in it. A phosphonate carries three oxygens on the phosphorus and a phosphate carries four. The bisphosphonates for bone density are phosphonates; a phosphate ester is a standard way to build a water-soluble prodrug.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 68–70 ("SULFONAMIDES & SULFONYLUREAS", "PHOSPHONATES", "PHOSPHATES")'},
 
-{id:'fga-27', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-phosphonate',
+{id:'fga-27', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'fgname-phosphonate',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Phosphonate',
@@ -614,7 +614,7 @@ QUESTIONS.push(
    t:'Phosphonate and phosphate are built on phosphorus rather than sulfur, so neither can name a structure with no P in it. A phosphonate carries three oxygens on the phosphorus and a phosphate carries four. The bisphosphonates for bone density are phosphonates; a phosphate ester is a standard way to build a water-soluble prodrug.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 68–70 ("SULFONAMIDES & SULFONYLUREAS", "PHOSPHONATES", "PHOSPHATES")'},
 
-{id:'fga-28', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-epoxide-oxirane',
+{id:'fga-28', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-epoxide-oxirane',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Epoxide oxirane',
@@ -636,7 +636,7 @@ QUESTIONS.push(
    t:'Azetidine and β-lactam are both four-membered nitrogen rings, and the carbonyl is the only difference: the β-lactam has one inside the ring, the azetidine has none.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 73–74 ("Heterocyclics 3-SIDED RINGS", "4-SIDED RINGS")'},
 
-{id:'fga-29', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-aziridine',
+{id:'fga-29', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-aziridine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Aziridine',
@@ -658,7 +658,7 @@ QUESTIONS.push(
    t:'Azetidine and β-lactam are both four-membered nitrogen rings, and the carbonyl is the only difference: the β-lactam has one inside the ring, the azetidine has none.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 73–74 ("Heterocyclics 3-SIDED RINGS", "4-SIDED RINGS")'},
 
-{id:'fga-30', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-azetidine',
+{id:'fga-30', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-azetidine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Azetidine',
@@ -680,7 +680,7 @@ QUESTIONS.push(
    t:'Azetidine and β-lactam are both four-membered nitrogen rings, and the carbonyl is the only difference: the β-lactam has one inside the ring, the azetidine has none.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 73–74 ("Heterocyclics 3-SIDED RINGS", "4-SIDED RINGS")'},
 
-{id:'fga-31', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-furan',
+{id:'fga-31', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-furan',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Furan',
@@ -702,7 +702,7 @@ QUESTIONS.push(
    t:'Thiophene is close enough to benzene in size and electron distribution to be swapped in without losing activity, which makes it a standard bioisostere.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 75–77 ("5-SIDED RINGS (1 O atom)", "(1 N atom)", "(1 S atom)")'},
 
-{id:'fga-32', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-tetrahydrofuran-thf',
+{id:'fga-32', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-tetrahydrofuran-thf',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Tetrahydrofuran THF',
@@ -724,7 +724,7 @@ QUESTIONS.push(
    t:'Thiophene is close enough to benzene in size and electron distribution to be swapped in without losing activity, which makes it a standard bioisostere.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 75–77 ("5-SIDED RINGS (1 O atom)", "(1 N atom)", "(1 S atom)")'},
 
-{id:'fga-33', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrrole',
+{id:'fga-33', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrrole',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Pyrrole',
@@ -746,7 +746,7 @@ QUESTIONS.push(
    t:'Thiophene is close enough to benzene in size and electron distribution to be swapped in without losing activity, which makes it a standard bioisostere.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 75–77 ("5-SIDED RINGS (1 O atom)", "(1 N atom)", "(1 S atom)")'},
 
-{id:'fga-34', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-imidazole',
+{id:'fga-34', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-imidazole',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Imidazole',
@@ -768,7 +768,7 @@ QUESTIONS.push(
    t:'Losing that double bond costs the ring its aromaticity, which changes how the nitrogens behave — oxymetazoline is built on it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 78–80 ("5-SIDED RINGS (1 O + 1 N atoms)", "(2 N atoms)", "(1 S + 1 N atoms)")'},
 
-{id:'fga-35', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrazole',
+{id:'fga-35', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrazole',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Pyrazole',
@@ -790,7 +790,7 @@ QUESTIONS.push(
    t:'Losing that double bond costs the ring its aromaticity, which changes how the nitrogens behave — oxymetazoline is built on it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 78–80 ("5-SIDED RINGS (1 O + 1 N atoms)", "(2 N atoms)", "(1 S + 1 N atoms)")'},
 
-{id:'fga-36', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-imidazoline',
+{id:'fga-36', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-imidazoline',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Imidazoline',
@@ -812,7 +812,7 @@ QUESTIONS.push(
    t:'Losing that double bond costs the ring its aromaticity, which changes how the nitrogens behave — oxymetazoline is built on it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 78–80 ("5-SIDED RINGS (1 O + 1 N atoms)", "(2 N atoms)", "(1 S + 1 N atoms)")'},
 
-{id:'fga-37', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrimidine',
+{id:'fga-37', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrimidine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Pyrimidine',
@@ -832,7 +832,7 @@ QUESTIONS.push(
    t:'Pyrimidine is the ring of cytosine, thymine and uracil, so drugs built to interfere with nucleic acid synthesis are built on it — 5-fluorouracil is one. Phenobarbital and sulfadiazine carry the same ring for unrelated reasons.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–85 ("6-SIDED RINGS (2 N atoms)…#1 and #2", "6-SIDED RINGS")'},
 
-{id:'fga-38', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrazine',
+{id:'fga-38', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-pyrazine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Pyrazine',
@@ -852,7 +852,7 @@ QUESTIONS.push(
    t:'Pyrimidine is the ring of cytosine, thymine and uracil, so drugs built to interfere with nucleic acid synthesis are built on it — 5-fluorouracil is one. Phenobarbital and sulfadiazine carry the same ring for unrelated reasons.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–85 ("6-SIDED RINGS (2 N atoms)…#1 and #2", "6-SIDED RINGS")'},
 
-{id:'fga-39', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-piperazine',
+{id:'fga-39', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-piperazine',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Piperazine',
@@ -872,7 +872,7 @@ QUESTIONS.push(
    t:'Pyrimidine is the ring of cytosine, thymine and uracil, so drugs built to interfere with nucleic acid synthesis are built on it — 5-fluorouracil is one. Phenobarbital and sulfadiazine carry the same ring for unrelated reasons.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–85 ("6-SIDED RINGS (2 N atoms)…#1 and #2", "6-SIDED RINGS")'},
 
-{id:'fga-40', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-indole',
+{id:'fga-40', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-indole',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Indole',
@@ -892,7 +892,7 @@ QUESTIONS.push(
    t:'Purine contains no benzene ring at all: it is an imidazole fused to a pyrimidine, so both rings carry nitrogen. It is the ring of adenine and guanine, which is why purine-based drugs such as azathioprine and acyclovir act on nucleic acids.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 86–88 ("5/6 BICYCLIC RINGS…#1 through #3")'},
 
-{id:'fga-41', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-benzimidazole',
+{id:'fga-41', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-benzimidazole',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Benzimidazole',
@@ -912,7 +912,7 @@ QUESTIONS.push(
    t:'Purine contains no benzene ring at all: it is an imidazole fused to a pyrimidine, so both rings carry nitrogen. It is the ring of adenine and guanine, which is why purine-based drugs such as azathioprine and acyclovir act on nucleic acids.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 86–88 ("5/6 BICYCLIC RINGS…#1 through #3")'},
 
-{id:'fga-42', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-benzofuran',
+{id:'fga-42', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-benzofuran',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Benzofuran',
@@ -932,7 +932,7 @@ QUESTIONS.push(
    t:'Purine contains no benzene ring at all: it is an imidazole fused to a pyrimidine, so both rings carry nitrogen. It is the ring of adenine and guanine, which is why purine-based drugs such as azathioprine and acyclovir act on nucleic acids.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 86–88 ("5/6 BICYCLIC RINGS…#1 through #3")'},
 
-{id:'fga-43', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-naphthalene',
+{id:'fga-43', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-naphthalene',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Naphthalene',
@@ -954,7 +954,7 @@ QUESTIONS.push(
    t:'The name states the structure: benzo is the benzene ring, azepine is a seven-membered ring containing nitrogen, and di says there are two nitrogens in it. Diazepam and chlordiazepoxide are built on it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 90–92 ("6/6 BICYCLIC RINGS…#1 and #2", "6/7 BICYCLIC RINGS")'},
 
-{id:'fga-44', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-quinoline',
+{id:'fga-44', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-quinoline',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Quinoline',
@@ -976,7 +976,7 @@ QUESTIONS.push(
    t:'The name states the structure: benzo is the benzene ring, azepine is a seven-membered ring containing nitrogen, and di says there are two nitrogens in it. Diazepam and chlordiazepoxide are built on it.'}],
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 90–92 ("6/6 BICYCLIC RINGS…#1 and #2", "6/7 BICYCLIC RINGS")'},
 
-{id:'fga-45', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-quinazoline',
+{id:'fga-45', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'fgname-quinazoline',
  tags:['structure','recall'], source:'slide',
  stem:'Name the functional group shown below.',
  fg:'Quinazoline',

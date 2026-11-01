@@ -14,7 +14,7 @@
 QUESTIONS.push(
 
 /* ═══════════ TOXICITY — Sikazwe new ═══════════ */
-{id:'sa-tox-1', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-categories', multi:true,
+{id:'sa-tox-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'tox', sub:'causes', concept:'toxicophore-categories', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are toxicophore categories? Select all that apply.',
  options:[
@@ -41,7 +41,7 @@ QUESTIONS.push(
  cite:'Lecture #15 (MCMet-9_17_2026.pdf) slide 30',
  quote:'Electrophilic carbons · Electrophilic carbonyls · Electrophilic double bonds · Free radicals (ROS/RNS included) · Others: Haptens, Azo, N-OH, etc.'},
 
-{id:'sa-tox-2', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'antioxidant-enzymes', multi:true,
+{id:'sa-tox-2', skill:'tell', prof:'Sikazwe', tier:'new', topic:'tox', sub:'def', concept:'antioxidant-enzymes', multi:true,
  tags:['list','enzyme'], source:'slide',
  stem:'Which of these enzymes defend a cell against oxidative stress by acting on reactive oxygen species or the peroxides they form? Select all that apply.',
  options:[
@@ -69,7 +69,7 @@ QUESTIONS.push(
  quote:'Enzyme Defense - Oxidative Stress Defense by antioxidant enzymes'},
 
 /* ═══════════ ELIMINATION — Sikazwe new ═══════════ */
-{id:'sa-el-1', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'non-renal-routes', multi:true,
+{id:'sa-el-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'elim', sub:'routes', concept:'non-renal-routes', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of these are non-renal routes by which a drug or its metabolites leave the body? Select all that apply.',
  options:[
@@ -96,7 +96,7 @@ QUESTIONS.push(
  quote:'Renal · Non-Renal: Hepatic (via Bile), Intestinal, Lung, Mammary (Breast Milk), Skin (Sweat/Oil), Tears, Hair, Saliva'},
 
 /* ═══════════ CYP — Sikazwe new ═══════════ */
-{id:'sa-cyp-1', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'cyp-reaction-types', multi:true,
+{id:'sa-cyp-1', skill:'tell', prof:'Sikazwe', tier:'old', topic:'paths', sub:'cypox', concept:'cyp-reaction-types', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of these reactions are CYP-catalysed oxidations? Select all that apply.',
  options:[
@@ -122,7 +122,7 @@ QUESTIONS.push(
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 11; nitroreduction slide 33; glucuronidation slides 42–46',
  quote:'Aliphatic, Allylic, Benzylic, Aryl carbons · Heteroatom · N-dealkylations · O-dealkylations · S-dealkylations · Dehalogenations · Double bonds (dbs) to form Epoxides'},
 
-{id:'sa-cyp-2', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'non-cyp-oxidases', multi:true,
+{id:'sa-cyp-2', skill:'tell', prof:'Sikazwe', tier:'old', topic:'paths', sub:'nonc', concept:'non-cyp-oxidases', multi:true,
  tags:['list','enzyme'], source:'slide',
  stem:'Which of these enzymes carry out Phase 1 oxidations without being a cytochrome P450? Select all that apply.',
  options:[
@@ -146,7 +146,7 @@ QUESTIONS.push(
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 21; slide 26 for FMO',
  quote:'Non-CYP Oxidation Reactions: ADH oxidation of OH groups · ALDH oxidation of Aldehydes · MAO oxidation of Amines (1o or 2o) · FMO oxidations of Amines & Thiols'},
 
-{id:'sa-p2-1', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'phase2-enzyme-list', multi:true,
+{id:'sa-p2-1', skill:'tell', prof:'Sikazwe', tier:'old', topic:'paths', sub:'p2', concept:'phase2-enzyme-list', multi:true,
  tags:['list','enzyme'], source:'slide',
  stem:'Which of these enzyme families catalyse Phase 2 conjugation? Select all that apply.',
  options:[
@@ -174,7 +174,7 @@ QUESTIONS.push(
  cite:'Lecture #11 (MCMet-9_10_26.pdf) slide 43; hydrolyses on slides 34–39',
  quote:'Phase 2 Enzymes: UGTs · STs or SULTs · GSTs · NAT · Acylsynthatases · MTs (e.g., COMT, TPMT)'},
 
-{id:'sa-p2-2', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrate-groups', multi:true,
+{id:'sa-p2-2', skill:'tell', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrate-groups', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Which of these functional groups can be conjugated directly by a UDP-glucuronosyltransferase? Select all that apply.',
  options:[
@@ -200,7 +200,7 @@ QUESTIONS.push(
  quote:'-OH; -CO2H; -NH2; -SH | UDP-Glucuronosyl transferases (UGTs) | UDPGA | Glucuronide'},
 
 /* ═══════════ METABOLISM FOUNDATIONS — Sikazwe old, and prep-sheet Q2(ii) ═══════════ */
-{id:'sa-df-1', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'dm-consequences-list', multi:true,
+{id:'sa-df-1', skill:'recall', prof:'Sikazwe', tier:'old', topic:'dmfound', sub:'conseq', concept:'dm-consequences-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of the following are consequences of drug metabolism? Select all that apply.',
  options:[
@@ -229,7 +229,7 @@ QUESTIONS.push(
  quote:'Inactivation · Bioactivation (Similarly Acting Drugs; Prodrug Activation; Reactive; Altered Drug Activity) · Reversible Metabolites · Drug Interactions'},
 
 /* ═══════════ FUNCTIONAL GROUPS — Sikazwe old ═══════════ */
-{id:'sa-fg-1', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'ca-derivative-list', multi:true,
+{id:'sa-fg-1', skill:'tell', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'ca-derivative-list', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Which of these functional groups belong to the carboxylic acid derivative family? Select all that apply.',
  options:[
@@ -256,7 +256,7 @@ QUESTIONS.push(
  quote:'CA & Derivatives: CA, Esters, Carbonates, Amides, Carbamates, Ureas, Imides, Guanidines'},
 
 /* ═══════════ YENDAPALLY — physicochemical ═══════════ */
-{id:'sa-pc-1', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'acidic-groups-list', multi:true,
+{id:'sa-pc-1', skill:'tell', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'acidic-groups-list', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Which of these functional groups are acidic, able to give up a proton and leave a stabilised anion? Select all that apply.',
  options:[
@@ -286,7 +286,7 @@ QUESTIONS.push(
  cite:'082726_PhysicochemicalProp1.pdf slides 11, 12, 13; basic groups slide 15',
  quote:'Alkylcarboxylic acid (5-6) · Arylcarboxylic acid (4-5) · Sulfonamide (9-10) · Imide (9-10) · Alkylthiol (10-11) · Thiophenol (9-10) · N-Arylsulfonamide (6-7)'},
 
-{id:'sa-pc-2', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'neutral-groups-list', multi:true,
+{id:'sa-pc-2', skill:'tell', prof:'Yendapally', tier:'old', topic:'physchem', sub:'acidbase', concept:'neutral-groups-list', multi:true,
  tags:['list','structure'], source:'slide',
  stem:'Which of these functional groups are neutral, neither donating nor accepting a proton in the body? Select all that apply.',
  options:[
@@ -315,7 +315,7 @@ QUESTIONS.push(
  quote:'Neutral Functional Groups: Alkyl alcohol, Ether, Ester, Amide, Aldehyde, Ketone, Sulfoxide, Sulfone, Amine oxide, Quaternary amine, Nitrile'},
 
 /* ═══════════ YENDAPALLY — Absorption II ═══════════ */
-{id:'sa-ab2-1', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ddi-mechanisms-list', multi:true,
+{id:'sa-ab2-1', skill:'tell', prof:'Yendapally', tier:'old', topic:'admet', sub:'ddi', concept:'ddi-mechanisms-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'By which of these mechanisms can a co-administered substance change how much of an oral drug is absorbed? Select all that apply.',
  options:[
@@ -339,7 +339,7 @@ QUESTIONS.push(
  cite:'090426_ADMETAbsorption_II.pdf, "Oral Route of Drug Administration" and "Key Concepts"',
  quote:'Have a large surface area upon which the drug can be adsorbed · Specifically form chelates with metal ions · Alter gastrointestinal motility · Affect transport proteins in the GI tract'},
 
-{id:'sa-ab2-2', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'prodrug-purposes-list', multi:true,
+{id:'sa-ab2-2', skill:'recall', prof:'Yendapally', tier:'old', topic:'admet', sub:'prodrug', concept:'prodrug-purposes-list', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of these are purposes for which a prodrug is made? Select all that apply.',
  options:[
@@ -364,7 +364,7 @@ QUESTIONS.push(
  quote:'Improved Lipophilicity and Permeability · Carrier-Mediated Absorption · Prolonged Duration of Action · Enhanced Parenteral Administration · Improved Ophthalmic Delivery'},
 
 /* ═══════════ YENDAPALLY — drug discovery ═══════════ */
-{id:'sa-dd-1', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'natural-product-sources', multi:true,
+{id:'sa-dd-1', skill:'recall', prof:'Yendapally', tier:'old', topic:'disc', sub:'sources', concept:'natural-product-sources', multi:true,
  tags:['list','recall'], source:'slide',
  stem:'Which of these are sources of natural-product drugs? Select all that apply.',
  options:[

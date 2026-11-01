@@ -800,7 +800,7 @@ def main():
                 note = ("\n note:'%s'," % js_str(cfg["note"])) if cfg.get("note") else ""
 
                 out.append(
-                    "{id:'fga-%d', prof:'Sikazwe', tier:'old', topic:'fgs', "
+                    "{id:'fga-%d', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', "
                     "sub:'%s', concept:'fgname-%s',\n"
                     " tags:['structure','recall'], source:'slide',\n"
                     " stem:'Name the functional group shown below.',\n"

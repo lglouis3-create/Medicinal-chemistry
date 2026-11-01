@@ -1,0 +1,40 @@
+{
+  "MCFGs8_1718_26": {
+    "fgd_relevance":     {"slide": 4,  "mode": "below_title", "for": "fgx-25"},
+    "fgd_alkanes":       {"slide": 10, "mode": "auto", "for": "fgx-6"},
+    "fgd_alkenes":       {"slide": 16, "mode": "auto", "for": "fgx-7"},
+    "fgd_halogenated":   {"slide": 22, "mode": "auto", "for": "fgx-8"},
+    "fgd_phenol":        {"slide": 30, "mode": "auto", "for": "fgx-9"},
+    "fgd_ether_peg":     {"slide": 33, "mode": "auto", "for": "fgx-10"},
+    "fgd_aldehyde":      {"slide": 36, "mode": "auto", "for": "fgx-11"},
+    "fgd_amines":        {"slide": 40, "mode": "auto", "for": "fgx-13"},
+    "fgd_quat_amine":    {"slide": 43, "mode": "auto", "for": "fgx-12"},
+    "fgd_nitrile":       {"slide": 44, "mode": "auto", "for": "fgx-14"},
+    "fgd_ce_substrates": {"slide": 52, "mode": "auto", "for": "fgx-26"},
+    "fgd_urea":          {"slide": 53, "mode": "auto", "for": "fgx-27"},
+    "fgd_sulfur_list":   {"slide": 62, "mode": "below_title", "for": "fgx-15"},
+    "fgd_sulfonamide":   {"slide": 68, "mode": "auto", "for": "fgx-16"},
+    "fgd_phosphonate":   {"slide": 69, "mode": "auto", "for": "fgx-17"},
+    "fgd_ring_5_o":      {"slide": 75, "mode": "auto", "for": "fgx-30"},
+    "fgd_ring_5_n":      {"slide": 76, "mode": "auto", "for": "fgx-18"},
+    "fgd_ring_5_s":      {"slide": 77, "mode": "auto", "for": "fgx-21b"},
+    "fgd_ring_5_2n":     {"slide": 79, "mode": "auto", "for": "fgx-22"},
+    "fgd_ring_5_sn":     {"slide": 80, "mode": "auto", "for": "fgx-21"},
+    "fgd_ring_6_n":      {"slide": 82, "mode": "auto", "for": "fgx-19 / fgx-31"},
+    "fgd_ring_6_2n_1":   {"slide": 83, "mode": "auto", "for": "fgx-20"},
+    "fgd_ring_6_2n_2":   {"slide": 84, "mode": "auto", "for": "fgx-28"},
+    "fgd_ring_6_pip":    {"slide": 85, "mode": "auto", "for": "fgx-29"},
+    "fgd_edg_ewg":       {"slide": 94, "mode": "below_title", "for": "fgx-24"}
+  },
+  "081926_Stereochemistry": {
+    "st_chiral_centre":  {"slide": 8,  "mode": "auto", "for": "st-1"},
+    "st_cip_rules":      {"slide": 9,  "mode": "below_title", "for": "st-2"},
+    "st_cip_rules2":     {"slide": 10, "mode": "auto", "for": "v-st-3b"},
+    "st_rs_worked":      {"slide": 13, "mode": "auto", "for": "st-3"},
+    "st_optical":        {"slide": 16, "mode": "auto", "for": "st-6"},
+    "st_config_rotation":{"slide": 18, "mode": "auto", "for": "st-4"},
+    "st_biological":     {"slide": 19, "mode": "auto", "for": "st-7"},
+    "st_diastereomers":  {"slide": 21, "mode": "auto", "for": "st-5 / v-st-5b"},
+    "st_ez":             {"slide": 24, "mode": "auto", "for": "st-8"}
+  }
+}

@@ -1,7 +1,7 @@
 /* ==========================================================================
    FUNCTIONAL GROUP ATLAS
    ==========================================================================
-   Ported from Louis's Functional Group Atlas artifact
+   Ported from the student's own Functional Group Atlas artifact
    (claude.ai/artifact/Qx3Zq6gMVACWS17UBnJiTi). The skeletal-structure renderer
    and the board data are carried over unchanged; only the page-building code
    is left behind, because this file supplies data to the drill's own views

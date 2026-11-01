@@ -1,6 +1,6 @@
 QUESTIONS.push(
 /* ======================= FGs & DM ======================= */
-{id:'fg-1', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'alkane-stability',
+{id:'fg-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'alkane-stability',
  tags:['reasoning'], source:'slide',
  stem:'Why are simple alkanes and alkenes largely excreted unchanged?',
  options:[
@@ -17,7 +17,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 5–6',
  quote:'Alkanes: Are mostly metabolically stable in vivo and excreted unchanged'},
 
-{id:'fg-2', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'halogenated-hc-lipophilicity',
+{id:'fg-2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hc', concept:'halogenated-hc-lipophilicity',
  tags:['reasoning','toxicity'], source:'slide',
  stem:'Halogenated hydrocarbons are very lipophilic and are not readily converted to hydrophilic metabolites. What is the consequence?',
  options:[
@@ -34,7 +34,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 21',
  quote:'Very lipophilic and not readily metabolized to hydrophilic metabolites · Their long t1/2 increases the potential for toxicity (hepatotoxicity) by some HHCs'},
 
-{id:'fg-3', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'namide', concept:'amide-vs-ester-stability',
+{id:'fg-3', skill:'tell', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'namide', concept:'amide-vs-ester-stability',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'Both esters and amides are hydrolyzed by carboxylesterases. Which is more stable in vivo, and why does it matter?',
  options:[
@@ -51,7 +51,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 8–9',
  quote:'Amides: Undergo carboxylesterase (CE) hydrolysis, but are more stable in vivo than esters'},
 
-{id:'fg-4', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'namide', concept:'amine-oxidative-deamination',
+{id:'fg-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'namide', concept:'amine-oxidative-deamination',
  tags:['recall','reasoning'], source:'slide',
  stem:'What biotransformation do 1° amines undergo?',
  options:[
@@ -69,7 +69,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 10–11',
  quote:'1o amines undergo oxidative deaminations · 3o & 2o N with Methyl/Ethyl groups undergo N-dealkylations'},
 
-{id:'fg-5', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbamate-hydrolysis-products',
+{id:'fg-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbamate-hydrolysis-products',
  tags:['reasoning','mechanism'], source:'slide',
  stem:'Carboxylesterase hydrolysis of a carbamate releases:',
  options:[
@@ -88,7 +88,7 @@ QUESTIONS.push(
  quote:'Carbamates: Undergo CE hydrolysis to give amines and',
  note:'Sorting these four by what sits on the carbonyl carbon settles the products every time: ester = one O, amide = one N, carbamate = O and N, carbonate = two O.'},
 
-{id:'fg-6', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbonate-hydrolysis-products',
+{id:'fg-6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ester', concept:'carbonate-hydrolysis-products',
  tags:['reasoning','mechanism'], source:'slide',
  stem:'Carbonates undergo carboxylesterase hydrolysis. What are the products?',
  options:[
@@ -106,7 +106,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 14',
  quote:'Carbonates: Carbonates undergo CE hydrolysis'},
 
-{id:'fg-7', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ether', concept:'thioether-oxidation',
+{id:'fg-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ether', concept:'thioether-oxidation',
  tags:['recall','mechanism'], source:'slide',
  stem:'What two biotransformations do thioethers undergo?',
  options:[
@@ -123,7 +123,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 18–19; Lecture #11 (MCMet-9_10_26.pdf) slide 26 (FMO oxidises sulfur to sulfoxides and sulfones)',
  quote:'Thioethers: Undergo oxidative biotransformations · Thioethers: S-Dealkylations'},
 
-{id:'fg-8', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ether', concept:'epoxide-dual-fate',
+{id:'fg-8', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'ether', concept:'epoxide-dual-fate',
  tags:['reasoning','toxicity'], source:'slide',
  stem:'Epoxides undergo which two fates?',
  options:[
@@ -140,7 +140,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 20',
  quote:'Epoxides are hydrolyzed by EHs (epoxide hydrolases) · Epoxides are also conjugated by phase 2 GSTs'},
 
-{id:'fg-9', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'xanthine-oxidase-allopurinol',
+{id:'fg-9', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'xanthine-oxidase-allopurinol',
  tags:['recall','enzyme'], source:'slide',
  stem:'Which enzyme oxidizes purines to uric acid, and what inhibits it?',
  options:[
@@ -157,7 +157,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 24',
  quote:'XO (Xanthine Oxidase) oxidize purine to uric Acid · Inhibited by Allopurinol (anti-gout)'},
 
-{id:'fg-10', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'dpd-pyrimidine',
+{id:'fg-10', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'hetero', concept:'dpd-pyrimidine',
  tags:['recall','enzyme'], source:'slide',
  stem:'Which enzyme deactivates pyrimidines?',
  options:[
@@ -174,7 +174,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 25',
  quote:'DPD is polymorphic (some patients may be deficient) · > 80% of 5-FU, a cytotoxic uracil pyrimidine, is inactivated by DPD'},
 
-{id:'fg-11', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrates',
+{id:'fg-11', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'ugt-substrates',
  tags:['cofactor','recall'], source:'slide',
  stem:'Which set of functional groups does UDP-glucuronosyltransferase act on?',
  options:[
@@ -191,7 +191,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
  quote:'-OH; -CO2H; NH2; -SH | UDP-Glucuronosyl transferases (UGTs) | Uridine-5\'-diphospho-D-glucuronic Acid (UDPGA) | Glucuronide'},
 
-{id:'fg-12', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'papso4-cofactor',
+{id:'fg-12', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'papso4-cofactor',
  tags:['cofactor','recall'], source:'slide',
  stem:'What is the cofactor for sulfotransferases?',
  options:[
@@ -208,7 +208,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29',
  quote:'-OH | Sulfotransferases (STs/SULTs) | 3\'-Phosphoadenosine-5\'-phosphosulfate (PAPS) | Sulfate'},
 
-{id:'fg-13', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'gst-target',
+{id:'fg-13', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'gst-target',
  tags:['cofactor','reasoning'], source:'slide',
  stem:'Which enzyme family is essential for deactivating electrophilic xenobiotics?',
  options:[
@@ -225,7 +225,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30',
  quote:'R-X; Epoxide | Glutathione S-transferases | Glutathione (GSH) | Glutathione-S'},
 
-{id:'fg-14', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'aa-conjugation-cofactors',
+{id:'fg-14', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'aa-conjugation-cofactors',
  tags:['cofactor','recall'], source:'slide',
  stem:'List the three co-factors required for amino acid conjugation.',
  options:[
@@ -242,7 +242,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 29; Lecture #11 (MCMet-9_10_26.pdf) slide 55 (acetyl CoA activates the -COOH; three co-factors)',
  quote:'- CO2H | Acylsynthatases | Acetyl Co-A & an Amino Acid (e.g., Glycine, Glutamine) | Amino Acid (Glycine/Glutamine)'},
 
-{id:'fg-15', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'nat-targets-polymorphism',
+{id:'fg-15', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'nat-targets-polymorphism',
  tags:['cofactor','polymorphism'], source:'slide',
  stem:'N-acetyltransferases act on:',
  options:[
@@ -259,7 +259,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30; Lecture #11 (MCMet-9_10_26.pdf) slide 53 (NAT2 slow and fast acetylators)',
  quote:'-NH2 | N-Acetyltransferases | Acetyl Co-enzyme A | N-Acetylated'},
 
-{id:'fg-16', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
+{id:'fg-16', skill:'read', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'methylation-sam',
  tags:['cofactor','recall'], source:'slide', img:'rx_dimercaprol',
  stem:'Dimercaprol is converted to its inactive metabolite as shown. What enzyme family and cofactor are involved?',
  options:[
@@ -275,7 +275,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 30',
  quote:'-OH; -NH2; -SH | Methyltransferases | S- Adenosyl methionine (SAM) | Methylated'},
 
-{id:'fg-17', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'match-enzyme-cofactor',
+{id:'fg-17', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'p2map', concept:'match-enzyme-cofactor',
  tags:['cofactor','matching'], source:'slide',
  stem:'Which enzyme and cofactor pair is correctly matched?',
  options:[
@@ -292,7 +292,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 29–30',
  quote:'- CO2H | Acylsynthatases | Acetyl Co-A & an Amino Acid (e.g., Glycine, Glutamine)'},
 
-{id:'fg-18', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'oh', concept:'phenol-phase2',
+{id:'fg-18', skill:'recall', prof:'Sikazwe', tier:'new', topic:'fgdm', sub:'oh', concept:'phenol-phase2',
  tags:['reasoning'], source:'slide',
  stem:'A phenolic -OH is present on a drug. Which Phase 2 routes are available to it?',
  options:[
@@ -309,7 +309,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 22–23',
  quote:'Hydroxy (OH): Phenolic OHs can undergo phase 2 metabolism'},
 
-{id:'fa-1', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'dose-overwhelms-capacity',
+{id:'fa-1', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'dose-overwhelms-capacity',
  tags:['reasoning','toxicity'], source:'slide',
  stem:'Overdosing affects drug metabolism by:',
  options:[
@@ -327,7 +327,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 34',
  quote:'Overdosing can overwhelm DME capacity leading to toxicity · Example – APAP toxicity'},
 
-{id:'fa-2', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'route-presystemic',
+{id:'fa-2', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'route-presystemic',
  tags:['reasoning'], source:'slide',
  stem:'An oral dose meets more metabolism than an IV dose because of:',
  options:[
@@ -344,7 +344,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 35–36',
  quote:'Pre-systemic metabolism occurs in: i) gut (stomach, intestine mucosa & micro biome) ii) 1st time the drug passes through the liver'},
 
-{id:'fa-3', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'protein-binding-metabolism',
+{id:'fa-3', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'pd', concept:'protein-binding-metabolism',
  tags:['reasoning'], source:'slide',
  stem:'What effect does extensive plasma protein binding have on metabolism?',
  options:[
@@ -362,7 +362,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 38',
  quote:'Protein binding ↓ metabolism and increases drug t1/2 · Note: Only the Free or un-bound drug is available for metabolism'},
 
-{id:'fa-4', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'neonate-ugt',
+{id:'fa-4', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'neonate-ugt',
  tags:['reasoning','age'], source:'slide',
  stem:'Why are neonates particularly vulnerable to bilirubin accumulation?',
  options:[
@@ -379,7 +379,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 46',
  quote:'Low UGT (i.e., UGT1A1) conjugation of bilirubin (hemoglobin metabolite) leads to Jaundice or hyperbilirubinemia'},
 
-{id:'fa-5', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'elderly-metabolism',
+{id:'fa-5', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'elderly-metabolism',
  tags:['reasoning','age'], source:'slide',
  stem:'Which changes in the elderly reduce metabolic capacity?',
  options:[
@@ -396,7 +396,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 47',
  quote:'Slow metabolism = toxicity susceptibility - so "Start low & go slow"'},
 
-{id:'fa-6', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'liver-disease-effect',
+{id:'fa-6', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'liver-disease-effect',
  tags:['reasoning','disease'], source:'slide',
  stem:'What is the effect of liver disease on drug metabolism?',
  options:[
@@ -413,7 +413,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 43',
  quote:'Liver disease | Decreased DME activity · Cardiac disease (blood flow) | Decreased DME activity due to reduced liver blood flow'},
 
-{id:'fa-7', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'dietary-inducers',
+{id:'fa-7', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'induce', concept:'dietary-inducers',
  tags:['recall','induction','diet'], source:'slide',
  stem:'Dietary enzyme inducers include:',
  options:[
@@ -430,7 +430,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 56–57',
  quote:'Indoles from cruciferous vegetables (sprouts, cabbage, broccoli, cauliflower) ↑ CYP1A1 & 1A2'},
 
-{id:'fa-8', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'tyramine-maoi',
+{id:'fa-8', skill:'apply', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'tyramine-maoi',
  tags:['case','inhibition','diet'], source:'slide',
  stem:'Why does eating aged cheese while taking an MAO inhibitor risk a hypertensive crisis?',
  options:[
@@ -447,7 +447,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 61',
  quote:'Tyramine promotes the release of hypertensive monoamines (i.e.,Epi, Norepi)'},
 
-{id:'fa-9', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'inhibition-types',
+{id:'fa-9', skill:'recall', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'inhibition-types',
  tags:['mechanism','inhibition'], source:'slide',
  stem:'Enzyme inhibition is classified as:',
  options:[
@@ -464,7 +464,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 59',
  quote:'Reversible inhibition - lasts 2 - 3 days · Irreversible inhibition – substrate is bound for longer times'},
 
-{id:'fa-10', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'inhibition-onset-vs-induction',
+{id:'fa-10', skill:'tell', prof:'Sikazwe', tier:'new', topic:'factors', sub:'inhib', concept:'inhibition-onset-vs-induction',
  tags:['reasoning','exam-pattern'], source:'slide',
  stem:'A patient starts an interacting drug today. Which interaction shows an effect soonest, and why?',
  options:[
@@ -481,7 +481,7 @@ QUESTIONS.push(
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slides 53, 59',
  quote:'Generally, induction ↑ DME activity & ↓ in drug blood levels plus ↓ DOA'},
 
-{id:'fa-11', lowYield:true, prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'interspecies-differences',
+{id:'fa-11', skill:'apply', lowYield:true, prof:'Sikazwe', tier:'new', topic:'factors', sub:'phys', concept:'interspecies-differences',
  tags:['recall'], source:'slide', teachImg:'fa_species',
  stem:'Cats have STs but lack UGTs, so a drug humans clear by glucuronidation:',
  options:[

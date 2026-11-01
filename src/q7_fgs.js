@@ -3,7 +3,7 @@
 QUESTIONS.push(
 
 /* ───────── picking groups out of a drug (his slide 56 format) ───────── */
-{id:'fgx-1', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-urea',
+{id:'fgx-1', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-urea',
  tags:['structure'], source:'slide', img:'fg_drugX',
  stem:'In drug X above, which number marks the urea?',
  options:[
@@ -20,7 +20,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 53, 56; carboxylic acid derivatives slides 9 and 60',
  quote:'Carboxylic Acid (CA) & derivatives: CA/Esters/Amides/Carbamates/Ureas/Imides/Guanidines'},
 
-{id:'fgx-2', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbamate',
+{id:'fgx-2', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbamate',
  tags:['structure'], source:'slide', img:'fg_drugX',
  stem:'In drug X above, which number marks the carbamate?',
  options:[
@@ -37,7 +37,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 51–52, 56',
  quote:'Esters/Carbonates/Amides/Carbamates undergo hydrolytic metabolism by Carboxyesterase or CE enzymes'},
 
-{id:'fgx-3', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-combination',
+{id:'fgx-3', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-combination',
  tags:['structure','list'], source:'slide', img:'fg_drugX',
  stem:'Which answer combination correctly identifies the urea, amide and ester FGs in drug X?',
  options:[
@@ -53,7 +53,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 56',
  quote:'Q: What answer combination correctly identifies the urea, ester and amide FGs in drug X?'},
 
-{id:'fgx-4', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbonate',
+{id:'fgx-4', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-carbonate',
  tags:['structure'], source:'slide', img:'fg_drugX',
  stem:'In drug X above, which number marks the carbonate, and which marks the ether?',
  options:[
@@ -69,7 +69,7 @@ QUESTIONS.push(
  teach:'An ether is an oxygen with a carbon on each side and no double bond to oxygen anywhere on that carbon. A carbonate also has oxygens on both sides, but the central carbon carries a C=O as well. Looking for the C=O first sorts the whole carboxylic acid derivative family away from the ethers and alcohols.',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 31, 49, 56'},
 
-{id:'fgx-5', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'ca-derivative-family',
+{id:'fgx-5', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'ca-derivative-family',
  tags:['structure','list'], source:'slide', img:'fg_az2357',
  stem:'AZ2357 activity is linked to FGs derived from carboxylic acid. Which set lists those derivatives?',
  options:[
@@ -86,7 +86,7 @@ QUESTIONS.push(
  quote:'Q: AZ2357 drug activity is linked to FGs derived from carboxylic acid (CA). Circle and list all such FGs.'},
 
 /* ───────── hydrocarbons and halogenated ───────── */
-{id:'fgx-6', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'alkane-lipophilicity',
+{id:'fgx-6', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'alkane-lipophilicity',
  tags:['define'], source:'slide',
  stem:'What property does an alkyl chain add to a drug molecule?',
  options:[
@@ -103,7 +103,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 10–11',
  quote:'Introduce lipophilicity in the drug molecule'},
 
-{id:'fgx-7', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'alkene-notes',
+{id:'fgx-7', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'alkene-notes',
  tags:['define'], source:'slide',
  stem:'Which two consequences follow from a C=C in a drug structure?',
  options:[
@@ -121,7 +121,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 16',
  quote:'Cis (Z)/Trans (E) geometric isomerism · Alkenes can undergo metabolic epoxidation'},
 
-{id:'fgx-8', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'halogenated-hc-definition',
+{id:'fgx-8', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'hc', concept:'halogenated-hc-definition',
  tags:['define'], source:'slide',
  stem:'Which halogens appear in the halogenated hydrocarbon (HHC) group?',
  options:[
@@ -139,7 +139,7 @@ QUESTIONS.push(
  quote:'Halogenated HCs: Hydrocarbons + Halogens (F, Cl, Br, I)'},
 
 /* ───────── oxygenated groups ───────── */
-{id:'fgx-9', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'phenol-storage',
+{id:'fgx-9', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'phenol-storage',
  tags:['predict'], source:'slide',
  stem:'Why should phenolic drugs be protected from air and light?',
  options:[
@@ -156,7 +156,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 30',
  quote:'Protect phenolic drugs from air/light because they oxidize to o,p-quinones'},
 
-{id:'fgx-10', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'pegylation',
+{id:'fgx-10', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ox', concept:'pegylation',
  tags:['predict'], source:'slide',
  stem:'What is PEGylation used for?',
  options:[
@@ -173,7 +173,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 32–34',
  quote:'PEGylation of small or large molecules is used to improve drug PK and safety profiles'},
 
-{id:'fgx-11', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'carbonyl', concept:'aldehyde-rarity',
+{id:'fgx-11', skill:'recall', lowYield:true, prof:'Sikazwe', tier:'old', topic:'fgs', sub:'carbonyl', concept:'aldehyde-rarity',
  tags:['predict'], source:'slide',
  stem:'Why are aldehydes uncommon in drug molecules?',
  options:[
@@ -191,7 +191,7 @@ QUESTIONS.push(
  quote:'Few in drug molecules. Why? Because this is a reactive FG – it can oxidize or even polymerize.'},
 
 /* ───────── nitrogen groups ───────── */
-{id:'fgx-12', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'quaternary-amine-properties',
+{id:'fgx-12', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'quaternary-amine-properties',
  tags:['predict'], source:'slide',
  stem:'A quaternary amine in a drug structure means:',
  options:[
@@ -209,7 +209,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 43',
  quote:'The charge on the N-atom is permanent, regardless of pH and prevents passive absorption into CNS. These molecules also have a neutral acid/base character.'},
 
-{id:'fgx-13', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'amine-class-counting',
+{id:'fgx-13', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'amine-class-counting',
  tags:['structure'], source:'slide',
  stem:'A nitrogen in a drug carries two carbon substituents and one hydrogen. What class is it, and what Phase 1 reaction does it undergo?',
  options:[
@@ -226,7 +226,7 @@ QUESTIONS.push(
  teachImg:'fgd_amines',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 40–43; Lecture #14 (MCMet-9_16_2026.pdf) slide 10'},
 
-{id:'fgx-14', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'nitro-vs-nitrile',
+{id:'fgx-14', skill:'tell', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'n', concept:'nitro-vs-nitrile',
  tags:['structure'], source:'slide',
  stem:'Which correctly distinguishes a nitro group from a nitrile?',
  options:[
@@ -243,7 +243,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 44–45'},
 
 /* ───────── sulfur and phosphorus ───────── */
-{id:'fgx-15', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfur-oxidation-series',
+{id:'fgx-15', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfur-oxidation-series',
  tags:['structure'], source:'slide',
  stem:'A sulfur atom sits between two carbons with no oxygens on it. Adding one oxygen, then a second, produces which sequence?',
  options:[
@@ -261,7 +261,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 62–68',
  quote:'Sulfur: Sulfide, Oxygenated Sulfur & Derivatives'},
 
-{id:'fgx-16', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfonamide-nat',
+{id:'fgx-16', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'sulfonamide-nat',
  tags:['enzyme'], source:'slide',
  stem:'A drug carries a sulfonamide (SO₂NH₂). Which Phase 2 enzyme acts on it?',
  options:[
@@ -279,7 +279,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 68; Lecture #11 (MCMet-9_10_26.pdf) slide 53',
  quote:'Target FGs: 1o N (Alkyl- & Aryl-amines) · SO2NH2 (Sulfonamides)'},
 
-{id:'fgx-17', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'phosphate-hydrolysis',
+{id:'fgx-17', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'sulf', concept:'phosphate-hydrolysis',
  tags:['enzyme'], source:'slide',
  stem:'Phosphate esters such as fosphenytoin are hydrolysed by which enzyme?',
  options:[
@@ -296,7 +296,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 69–70; Lecture #14 (MCMet-9_16_2026.pdf) slides 27–28'},
 
 /* ───────── heterocyclic rings (drawn structures) ───────── */
-{id:'fgx-18', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrrole-vs-pyrrolidine',
+{id:'fgx-18', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrrole-vs-pyrrolidine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -313,7 +313,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_5_n',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 75–76'},
 
-{id:'fgx-19', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperidine',
+{id:'fgx-19', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperidine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -330,7 +330,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_6_n',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 82, 85'},
 
-{id:'fgx-20', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrimidine-vs-pyrazine',
+{id:'fgx-20', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrimidine-vs-pyrazine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -347,7 +347,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_6_2n_1',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–84'},
 
-{id:'fgx-21', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-thiazole',
+{id:'fgx-21', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-thiazole',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -364,7 +364,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_5_sn',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 77, 80'},
 
-{id:'fgx-22', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-imidazole',
+{id:'fgx-22', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-imidazole',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -382,7 +382,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 79'},
 
 /* ───────── EDG vs EWG ───────── */
-{id:'fgx-23', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'edg-list',
+{id:'fgx-23', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'edg-list',
  tags:['list'], source:'slide', img:'fg_edg_ewg',
  stem:'Using the chart above, which set contains only electron-donating groups (EDGs)?',
  options:[
@@ -398,7 +398,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 94',
  quote:'EDGs vs. EWGs · Electron density influencing FGs or moieties'},
 
-{id:'fgx-24', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'ewg-effect-on-acidity',
+{id:'fgx-24', skill:'apply', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'edg', concept:'ewg-effect-on-acidity',
  tags:['predict'], source:'slide',
  stem:'A nitro group (EWG) is added to a ring bearing a phenol. The phenol becomes:',
  options:[
@@ -415,7 +415,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 94; Physicochemical Properties 1 slide 16'},
 
 /* ───────── relevance and classification ───────── */
-{id:'fgx-25', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fg-relevance-three-areas',
+{id:'fgx-25', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'fg-relevance-three-areas',
  tags:['list'], source:'slide',
  stem:'In what three areas do FGs matter in pharmacy?',
  options:[
@@ -432,7 +432,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 4',
  quote:'Physicochemical: Reactivity (stability/toxicity), Acid, Base, Neutral, Amphoteric, Stereochemistry, Melting Point · Pharmacodynamics · Pharmacokinetics'},
 
-{id:'fgx-26', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'ce-four-substrates-fg',
+{id:'fgx-26', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'ce-four-substrates-fg',
  tags:['enzyme'], source:'slide',
  stem:'Which four FGs undergo hydrolytic metabolism by CE?',
  options:[
@@ -450,7 +450,7 @@ QUESTIONS.push(
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 52',
  quote:'Esters/Carbonates/Amides/Carbamates undergo hydrolytic metabolism by Carboxyesterase or CE enzymes'},
 
-{id:'fgx-27', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'imide-guanidine-recognition',
+{id:'fgx-27', skill:'recall', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'acyl', concept:'imide-guanidine-recognition',
  tags:['structure'], source:'slide',
  stem:'A nitrogen sits between two carbonyl groups, so that one N carries two C=O. Which FG is this?',
  options:[
@@ -469,7 +469,7 @@ QUESTIONS.push(
 );
 
 QUESTIONS.push(
-{id:'fgx-28', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrazine-vs-piperazine',
+{id:'fgx-28', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyrazine-vs-piperazine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -487,7 +487,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_6_2n_2',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slides 83–84'},
 
-{id:'fgx-29', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperazine',
+{id:'fgx-29', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-piperazine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -504,7 +504,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_6_pip',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 85'},
 
-{id:'fgx-30', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-furan',
+{id:'fgx-30', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-furan',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -522,7 +522,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_5_o',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 75; Bioisosterism deck slide 11'},
 
-{id:'fgx-31', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyridine',
+{id:'fgx-31', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'rings', concept:'ring-pyridine',
  tags:['structure'], source:'slide',
  stem:'Name the ring shown.',
  options:[
@@ -540,7 +540,7 @@ QUESTIONS.push(
  teachImg:'fgd_ring_6_n',
  cite:'Functional group deck (MCFGs8_1718_26.pdf) slide 82; Physicochemical Properties 1 slide 16'},
 
-{id:'fgx-32', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-amide-vs-acid',
+{id:'fgx-32', skill:'read', prof:'Sikazwe', tier:'old', topic:'fgs', sub:'ident', concept:'drugx-amide-vs-acid',
  tags:['structure'], source:'slide', img:'fg_drugX',
  stem:'In drug X above, which numbers mark the amide and the carboxylic acid?',
  options:[

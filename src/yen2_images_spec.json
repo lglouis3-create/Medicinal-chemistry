@@ -1,0 +1,16 @@
+{
+  "090426_Distribution": {
+    "ad_vd_definition":   {"slide": 4,  "mode": "below_title", "for": "ad-10"},
+    "ad_vd_high_low":     {"slide": 5,  "mode": "below_title", "for": "ad-11"},
+    "ad_dist_factors":    {"slide": 6,  "mode": "below_title", "for": "ad-12"},
+    "ad_vd_amiodarone":   {"slide": 10, "mode": "auto", "for": "ad-13"},
+    "ad_bbb_transport":   {"slide": 12, "mode": "auto", "for": "ad-16"},
+    "ad_bbb_loperamide":  {"slide": 14, "mode": "auto", "for": "ad-9"},
+    "ad_sequestration":   {"slide": 18, "mode": "below_title", "for": "ad-17"},
+    "ad_protein_binding": {"slide": 22, "mode": "below_title", "for": "ad-14"},
+    "ad_binding_extent":  {"slide": 24, "mode": "below_title", "for": "ad-15"}
+  },
+  "082026_Drugdiscovery": {
+    "dd_drug_sources":    {"slide": 9,  "mode": "below_title", "for": "dd-7"}
+  }
+}
