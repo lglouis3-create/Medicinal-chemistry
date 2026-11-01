@@ -1,0 +1,14 @@
+
+=== Preview stage: old live page and worker, new preview beside them ===
+  live: 6 answers, 5 concepts, keys phar4342final:data:TestUser, phar4342final:offline-ready, phar4342final:profile
+  ok    the preview page opens at /preview/ under phar4342final-preview
+  ok    the preview says it is a preview
+  ok    the preview shows the live answers (6) and counter (6)
+  ok    every answered concept's state is in the preview (5)
+  ok    answering in the preview changed no live key
+  ok    only the live worker is registered (none for /preview/)
+  ok    the old worker's cache is untouched and no new cache exists
+  ok    the live page is still the old one (387 questions)
+  ok    the live progress reads back unchanged after the preview visit
+  ok    no script error
+PASS: preview_stage_test: 10 checks passed

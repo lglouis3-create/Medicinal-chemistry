@@ -1,0 +1,23 @@
+PASS     build.py          wrote index.html  (6.86 MB)
+PASS     test.js           479 questions checked
+PASS     style_check.js    479 stems and 479 explanations clean
+PASS     render_test.js    every view rendered clean
+REPORT   explain_check.js  363 of 479 questions carry at least one explanation issue
+NOT RUN  stepper_test.js   no step-through figures in DIA
+NOT RUN  cite_check.py     no lecture PDFs found under decks/ or src/
+PASS     device_lint.js    3 checks passed
+PASS     output_test.js    12 checks passed
+PASS     checks_test.js    30 checks passed
+PASS     draw_test.js      9 checks passed
+FAIL     browser_test.js   2 of 93 checks failed: no sideways scroll on phone (light); no sideways scroll on phone (dark)
+PASS     storage_test.js   18 checks passed
+FAIL     update_test.js    1 of 37 checks failed: with the tab left open, nothing is offered before 15 minutes
+FAIL     offline_test.js   1 of 27 checks failed: another site's cache phar4342-drill-v1 is kept
+PASS     home_test.js      22 checks passed
+PASS     history_test.js   26 checks passed
+PASS     scheduler_test.js 109 checks passed
+FAIL     preview_test.js   1 of 13 checks failed: no live key was written or removed (2 live keys compared)
+PASS     state_check.js    2 checks passed
+PASS     state_check_test.js 8 checks passed
+FAIL     oldcache_test.js  7 of 12 checks failed: without oldCachePrefix the worker deletes no other prefix; with oldCachePrefix 'old-drill-' the build passes it to the worker; the build refuses oldCachePrefix 'phar4342final-' 
+14 PASS, 5 FAIL, 2 NOT RUN, 1 REPORT; logs in /tmp/drill-checks-OU3n9l

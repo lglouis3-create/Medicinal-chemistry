@@ -1,0 +1,45 @@
+
+=== 1. The live page, used through its own screens ===
+  ok    the live page saved its offline copy as phar4342-drill-v1
+  answered: cyp-x4:right, sa-cyp-7:wrong(select-all), cyp-y4:right, cyp-p1:right+guess, cyp-p3:wrong, cyp-f3:right, sa-cyp-7:wrong(select-all), cyp-f4:right, cyp-p1:right, cyp-i1:wrong, cyp-p3:right, cyp-y2:right, sa-cyp-5:right(select-all), exam paper: 5 answered of 50, submitted
+  live keys: phar4342final:data:TestUser, phar4342final:offline-ready, phar4342final:profile
+  live DB: qn 63, 63 answers, 59 concepts, settings {"mode":"long"}
+  live Weak spots: {"gaps":["63 answered","17% correct","51 missed","1 guessed","0 of 345 concepts mastered","Sikazwe, lectures 13–15 38 of 50 marks · 148 concepts"],"missed":"50","counts":{"answers":63,"correct":11,"wrong":51,"guessed":1,"qn":63}}
+
+=== 2. The new build at the same address, same browser ===
+  worker after two navigations to the new build (3.1 s of polling): {"installing":false,"waiting":false,"active":true,"caches":["phar4342final-v1"],"activeIsCore":true,"controlled":true}
+  ok    the core's worker replaced the old one and controls the page
+  ok    the old worker's cache phar4342-drill-v1 is deleted
+  ok    the core's worker saved its copy as phar4342final-v1
+  ok    live key phar4342final:offline-ready is unchanged
+  ok    live key phar4342final:profile is unchanged
+  ok    the same profile opens (TestUser)
+  ok    every answered concept keeps its state (59 of 59 concepts, fields seen, correct, wrong, guessed, streak, box, dueAt, dueQ, lastQ, asked)
+  ok    the answer log is unchanged (63 entries: question, result, time, counter, option picked, time taken)
+  ok    the question counter is unchanged (63)
+  ok    the profile's creation time is unchanged
+  ok    the settings are unchanged ({"mode":"long"})
+  ok    "Long term" reads as the Semester pace (the same days, 1, 3, 7, 14, 30, 60)
+  ok    every answered question id is in the new bank (60 ids)
+  ok    the core's converter ran on the old save (v 2, `last` rebuilt for every concept)
+  new Weak spots:  {"gaps":["63 answered","17% correct","51 missed","1 guessed","0 of 398 concepts mastered","17% 11 of 63 solid in 1 min"],"missed":"50","counts":{"answers":63,"correct":11,"wrong":51,"guessed":1,"qn":63}}
+  ok    the same counts of right, wrong and guessed answers
+  ok    Weak spots lists the same number of missed questions (50)
+  next CYP question the scheduler picks: {"id":"cyp-p2","box":0,"seen":1}
+  ok    after the new page saves, every field of the old save is still there with its value
+  ok    a live "Exam cram" setting reads as Exam cram
+  ok    a live "Ask everything" setting reads as Ask everything
+  ok    a live "Long term" setting shows Semester selected in Settings
+
+=== 3. The /preview/ build on the same origin ===
+  ok    the preview keeps its own namespace (phar4342final-preview)
+  ok    every live key is copied into the preview once (3 keys)
+  ok    the preview shows the same answers and counter
+  ok    the preview shows every answered concept's state
+  ok    the preview's Weak spots counts are the live ones
+  answered in the preview: v-fg-12b
+  ok    answering in the preview changed no live key
+  ok    the preview counted its own answer (64)
+  ok    the preview registered no service worker
+  ok    no script error on any page
+PASS: progress_test: 30 checks passed

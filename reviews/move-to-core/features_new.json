@@ -1,0 +1,270 @@
+{
+ "label": "new",
+ "tabs": [
+  "Topics",
+  "Quiz",
+  "Weak spots",
+  "Exam sim",
+  "Atlas",
+  "Guides",
+  "Tell apart",
+  "Reference",
+  "Settings"
+ ],
+ "title": "PHAR 4342 — exam drill",
+ "header": "PHAR 4342 — Medicinal Chemistry | TestUser | Switch",
+ "profileSwitch": true,
+ "questions": 479,
+ "images": 189,
+ "glossEntries": 37,
+ "byType": {
+  "mc": 428,
+  "multi": 48,
+  "numeric": 2,
+  "match": 1
+ },
+ "withSkill": 479,
+ "manifestLink": true,
+ "appleIcon": true,
+ "swCode": true,
+ "versionCheck": true,
+ "topics": {
+  "cards": 14,
+  "examLine": "Exam 4 (cumulative final): 50 questions, 75 minutes, Mon 9/21, 9:00–10:15 am. 8 Yendapally, 4 Sikazwe older, 38 Sikazwe new. Question bank: ",
+  "sweepWeighted": true,
+  "sweepAll": true,
+  "sweepFiltered": false,
+  "filterChips": [
+   "Both",
+   "Sikazwe",
+   "Yendapally",
+   "All",
+   "New (38 marks)",
+   "Older (12 marks)",
+   "Any",
+   "read a structure",
+   "name the enzyme or cofactor",
+   "predict the outcome",
+   "define a term",
+   "list or rank",
+   "true or false"
+  ],
+  "whatsNew": true,
+  "homeCard": false,
+  "countdown": false
+ },
+ "atlas": {
+  "tiles": 86,
+  "boards": 11,
+  "hideNames": true,
+  "count": "86 groups"
+ },
+ "atlasHide": {
+  "afterClick": "namesoff show-button"
+ },
+ "ref": {
+  "tables": 21,
+  "rows": 123,
+  "figures": 12,
+  "sections": 0,
+  "bullets": 0,
+  "prose": 5,
+  "jumpList": true,
+  "whyButtons": 0,
+  "h3": 23,
+  "chars": 18326
+ },
+ "tell": {
+  "tables": 3,
+  "rows": 54,
+  "figures": 0,
+  "sections": 0,
+  "bullets": 0,
+  "prose": 0,
+  "jumpList": true,
+  "whyButtons": 0,
+  "h3": 3,
+  "chars": 19897
+ },
+ "guide": {
+  "tables": 38,
+  "rows": 220,
+  "figures": 28,
+  "sections": 8,
+  "bullets": 110,
+  "prose": 0,
+  "jumpList": true,
+  "whyButtons": 0,
+  "h3": 8,
+  "chars": 117180
+ },
+ "diagramsTab": "absent",
+ "settings": {
+  "chips": [
+   "Exam cram",
+   "Weekly exams",
+   "Semester",
+   "Ask everything"
+  ],
+  "buttons": [
+   "Exam cram",
+   "Weekly exams",
+   "Semester",
+   "Ask everything",
+   "Questions as text (Markdown)",
+   "Questions as data (JSON)",
+   "Guides + Tell apart + Reference (HTML)",
+   "Export progress",
+   "Import progress",
+   "Erase my history"
+  ],
+  "changelog": true,
+  "homeCard": true,
+  "build": "Build 2026-11-01 07:21 CT · 551 questions · 189 figures · PHAR 4342 — Medicinal Chemistry"
+ },
+ "quizAtlasWrong": {
+  "before": {
+   "svg": 1,
+   "img": 0,
+   "checkboxes": 4,
+   "numInput": false,
+   "selects": 0,
+   "checkBtn": false,
+   "sataTag": false
+  },
+  "after": {
+   "buttons": [
+    "btnNext:Next question",
+    "btnSure:I was sure of that"
+   ],
+   "cmpStrip": true,
+   "optFigs": 4,
+   "gloss": 0,
+   "teach": true,
+   "cite": "Functional group deck (MCFGs8_1718_26.pdf) slides 24–26 (\"AL",
+   "why": 1,
+   "explainMore": false
+  }
+ },
+ "quizAtlasRight": {
+  "before": {
+   "svg": 1,
+   "img": 0,
+   "checkboxes": 4,
+   "numInput": false,
+   "selects": 0,
+   "checkBtn": false,
+   "sataTag": false
+  },
+  "after": {
+   "buttons": [
+    "btnNext:Next question",
+    "btnShaky:Not sure, ask again soon",
+    "btnGuess:I guessed that one"
+   ],
+   "cmpStrip": true,
+   "optFigs": 4,
+   "gloss": 0,
+   "teach": true,
+   "cite": "Functional group deck (MCFGs8_1718_26.pdf) slides 24–26 (\"AL",
+   "why": 1,
+   "explainMore": false
+  }
+ },
+ "quizSata": {
+  "before": {
+   "svg": 0,
+   "img": 0,
+   "checkboxes": 4,
+   "numInput": false,
+   "selects": 0,
+   "checkBtn": true,
+   "sataTag": true
+  }
+ },
+ "quizNumeric": {
+  "before": {
+   "svg": 0,
+   "img": 0,
+   "checkboxes": 0,
+   "numInput": true,
+   "selects": 0,
+   "checkBtn": true,
+   "sataTag": false
+  }
+ },
+ "quizMatch": "mt-1",
+ "quizMatchRender": {
+  "before": {
+   "svg": 0,
+   "img": 0,
+   "checkboxes": 0,
+   "numInput": false,
+   "selects": 6,
+   "checkBtn": true,
+   "sataTag": false
+  }
+ },
+ "quizImageId": "fg-16",
+ "quizImage": {
+  "before": {
+   "svg": 0,
+   "img": 1,
+   "checkboxes": 4,
+   "numInput": false,
+   "selects": 0,
+   "checkBtn": false,
+   "sataTag": false
+  },
+  "after": {
+   "buttons": [
+    "btnNext:Next question",
+    "btnSure:I was sure of that"
+   ],
+   "cmpStrip": false,
+   "optFigs": 0,
+   "gloss": 3,
+   "teach": true,
+   "cite": "“-OH; -NH2; -SH | Methyltransferases | S- Adenosyl methionin",
+   "why": 1,
+   "explainMore": false
+  }
+ },
+ "gaps": {
+  "h3": [
+   "Weak spots",
+   "This session",
+   "What to review next",
+   "What to do next",
+   "Which kind of question is failing",
+   "Where you are losing marks",
+   "What you keep choosing instead",
+   "Every question you have missed (2)"
+  ],
+  "buttons": [
+   "retrysess",
+   "missall",
+   "drillMissed"
+  ]
+ },
+ "examIntro": "Exam simulation 50 questions drawn at the blueprint of Exam 4 (cumulative final) — 8 Yendapally, 4 Sikazwe older, 38 Sikazwe new — with a 75-minute clock. The paper mixes single-answer and select-all ",
+ "exam": {
+  "n": 50,
+  "multi": 8,
+  "typed": 0,
+  "pools": {
+   "Sikazwe|new": 38,
+   "Sikazwe|old": 4,
+   "Yendapally|old": 8
+  },
+  "clock": "75:00",
+  "endButton": "Submit what I have answered",
+  "secondsLeft": 4500
+ },
+ "examAfterReload": {
+  "examRunning": true,
+  "view": "Exam sim",
+  "n": 50
+ },
+ "errors": []
+}

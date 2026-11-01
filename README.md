@@ -4,46 +4,46 @@ An offline quiz app for the PHAR 4342 Medicinal Chemistry cumulative final
 (Exam 4). One HTML file, no server, no network: open it in a browser and it
 runs, including from a phone.
 
-**Published at <https://lglouis3-create.github.io/medicinal-chemistry/>** — the
+**Published at <https://lglouis3-create.github.io/Medicinal-chemistry/>** — the
 site root is the drill itself. The old `PHAR4342_Final_Drill.html` link still
 works; it redirects.
 
 **It works offline.** After one visit to the site, the drill opens with no
-connection — on a phone, in a basement lecture hall, on a plane. On a phone, use
-the browser's **Add to Home Screen** and it opens full-screen like an app.
+connection. On a phone, use the browser's **Add to Home Screen** and it opens
+full-screen like an app; on iPhone and iPad the drill shows the steps to carry
+your progress into the Home Screen copy.
 
 It never holds you on an old copy. Each time you open it with a connection, it
-loads the current version, so a corrected answer reaches you on your next visit.
-If the connection is slow, it shows the saved copy straight away instead of
-making you wait, and offers a **Reload** if a newer version then arrives. It
-never reloads by itself, so an exam sim in progress is never cut off.
-
-You can also save `index.html` and open it from your files. Everything — all
-386 questions and all 189 slide images — is inside that one file.
+loads the current version. If the connection is slow, it shows the saved copy
+straight away and offers a **Reload** if a newer version then arrives; a page
+left open also offers it when a newer version is published. It never reloads by
+itself, so an exam paper in progress is never cut off.
 
 ## What is in it
 
-**386 questions** across 13 topics, every one carrying a worked explanation for
-each answer choice, a concept block, and a citation naming the deck file and the
-slide it came from. 36 are select-all-that-apply items, marked all-or-nothing,
-because the paper mixes single-answer and select-all questions.
+**479 questions** across 13 topics, every one carrying a worked explanation for
+each answer choice, a concept block, a citation naming the deck file and the
+slide it came from, and the skill it tests (recall, tell apart, apply, read a
+structure or scheme, calculate). 48 are select-all-that-apply items, marked
+all-or-nothing; 89 are tell-apart items written from the Tell apart tables; 2
+are typed calculations with worked steps and 1 is a matching table.
 
 | view | what it is for |
 |---|---|
-| Topics | pick a topic, take the exam-weighted pass, or one straight pass through all 386 |
-| Quiz | spaced repetition — missed concepts return sooner, mastered ones are held |
-| Weak spots | what to do next per pool, marks at risk by topic, and the wrong options you keep choosing |
-| Exam sim | a 50-question paper drawn to the real blueprint, about 8 of them select-all, timed at 1:15 |
+| Topics | pick a topic, take the exam-weighted pass, or one straight pass through all 479; what is new since your last visit |
+| Quiz | spaced repetition with "Not sure", "I guessed that one" and "I was sure of that"; cram, weekly or semester pace |
+| Weak spots | this session, what to review next, what to do next per pool, the kind of question failing, marks at risk, the wrong options you keep choosing |
+| Exam sim | a 50-question paper drawn to the real blueprint, 8 of them select-all, timed at 1:15; it survives a reload and can be submitted in part |
 | Atlas | 86 functional group structures, with a Hide names recall mode |
+| Guides | one guide per objective of lectures 13–15, in bullets |
+| Tell apart | the confusable pairs of lectures 13–15: what separates them and where the slide says so |
 | Reference | the course's tables and figures in one place |
+| Settings | profile, pace, progress export and import (with the answer history), exports of the bank and the reading tabs, the change log |
 
 The exam blueprint is 50 questions: Dr. Yendapally 8, Dr. Sikazwe 42 (38 from
 lectures 13–15, 4 from the earlier material). The exam simulator draws to that
-split, spreads its select-all items across the three pools in the same 38:8:4
-ratio, and the weighting chips on the topics view filter the quiz to match it.
-A question marked "I guessed that one" is reset and comes back before anything
-never seen, and the answer log keeps which option was picked, so Weak spots can
-show the wrong answer you keep choosing against the right one.
+split, spreads its select-all items across the three pools, and keeps two
+wordings of one fact off the same paper, across pools too.
 
 Structures are drawn, not described. A question that asks you to name a group
 shows it; after answering, the compared groups appear side by side with the
@@ -53,20 +53,22 @@ explanation.
 ## Progress is stored per profile
 
 Answers are kept in the browser's local storage under a profile name, so two
-people on one machine keep separate histories, and the app still runs when
-storage is denied — it falls back to memory for that session.
+people on one machine keep separate histories. If the browser refuses to save,
+the drill keeps your answers for the visit and says so once, pointing to
+Settings → Export progress. Progress saved by the earlier version of this drill
+(before 2026-11-01) is read as it is: the storage name and the question ids did
+not change.
 
 ## Building it
 
-The single file is assembled from the sources in `src/`:
+The engine is the shared exam-drill-kit core (`lglouis3-create/exam-drill-kit`,
+`core/`), copied into `src/` at the kit commit named in `src/course.js`
+`kit.core`; the course's own content is `src/course.js` and the content files
+listed in `src/README.md`.
 
     cd src
-    python3 build.py
-
-The build writes into the repository root, which is what GitHub Pages serves:
-`index.html` (the app) and `PHAR4342_Final_Drill.html` (a redirect to it, so
-links shared before the rename keep working). Push those and Pages redeploys
-within a few minutes; progress survives because question ids do not change.
+    python3 build.py              # index.html, the redirect, sw.js, manifest and icons at the root
+    python3 build.py --preview    # preview/ only: the next version, tried at <site>/preview/
 
 `build.py` syntax-checks every source before assembling and checks the
 assembled script before replacing the output, so a stray comma stops the build
@@ -79,24 +81,16 @@ or the generator:
 
 ## Checks
 
-Build first — every check reads `index.html` from the repository root, resolved
-relative to the script, so they run on a fresh clone.
+    cd src
+    export NODE_PATH=$(npm root -g)
+    ./run_checks.sh               # build, then every check, one line each
 
-    node test.js            # bank integrity, blueprint coverage, the scheduler
-    node style_check.js     # the phrasing rules, and that every citation is located
-    node render_test.js     # every view renders
-    node explain_check.js   # explanation quality, ranked by exam weight
-    python3 cite_check.py   # every cited slide number exists in its deck (see below)
-    python3 coverage_check.py   # the bank against the stated exam scope
-    python3 browser_test.py # drives the real file in Chromium, select-all items included
-    python3 sw_test.py      # the offline service worker, served the way GitHub Pages serves it
-
+Each line is PASS, FAIL, NOT RUN (with the reason, never a pass) or REPORT.
 `cite_check.py` needs the lecture deck PDFs, which are course material and are
-not kept in this repository. They are in the course's Google Drive folder
-(Intro Med Chem › Slides). Run the check from a folder holding them, named the
-way the citations spell them (the table at the top of `cite_check.py` lists
-the spellings): `cd decks && python3 ../src/cite_check.py`. With the decks
-missing it reports NOT RUN rather than passing.
+not kept in this repository; they are in the course's Google Drive folder
+(Intro Med Chem › Slides). Put them under `src/decks/`, named the way the
+citations spell them. `python3 coverage_check.py` maps the bank against the two
+documents that define the exam.
 
 Passing all of them does not mean the content is right. They check that it
 parses, renders, runs, cites a real slide and covers the stated scope. The
@@ -116,22 +110,17 @@ and numbers.
 
 ## Offline: how the service worker behaves
 
-`sw.js` sits beside `index.html` and is limited to this drill's folder. It
-fetches the page network-first and keeps a saved copy, falling back to it when
-the network is down or slower than 3.5 seconds. Its cache is named
-`phar4342-drill-…`; this GitHub Pages address also serves other sites and they
-share one cache store, so it only ever deletes caches carrying its own name.
-Content updates need no change to `sw.js`. Change `CACHE` in it only if what it
-saves changes shape.
+`sw.js` sits beside `index.html`. It fetches the page network-first and keeps a
+saved copy, falling back to it when the network is down or slower than 3.5
+seconds. Its caches are named `phar4342final-v<n>`; this GitHub Pages address
+also serves other sites and they share one cache store, so it only ever deletes
+caches of exactly that form, plus the earlier version's `phar4342-drill-*`
+caches.
 
 ## Page weight
 
 The drill carries its 189 slide crops inline, so the page is large by design —
-that is what makes it work with no network. The images are WebP at quality 80,
-which holds slide text and the professor's handwritten annotations while
-costing about 30% fewer bytes than the JPEGs used before. The page is 6.5 MB on
-disk and about 4.3 MB over the wire once GitHub Pages compresses it.
-
-If you add images, keep them WebP: `harvest.py`, `harvest_mask.py` and
-`mkimg.py` all emit it, and `build.py` simply inlines whatever `images.json`
-holds.
+that is what makes it work with no network. The images are WebP at quality 80.
+The page is 7.2 MB on disk. If you add images with `harvest.py` or
+`harvest_mask.py` (which write JPEG), run `python3 src/reencode_webp.py`
+afterwards so they are stored as WebP like the rest.
