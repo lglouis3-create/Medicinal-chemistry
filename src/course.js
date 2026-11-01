@@ -57,8 +57,8 @@
    ========================================================================== */
 const COURSE = {
   id: 'phar4342',
-  title: 'PHAR 4342 — Medicinal Chemistry',
-  short: 'PHAR 4342',
+  title: 'Intro to Medicinal Chemistry (P2 Fall 2026)',   // Louis, 2026-11-01
+  short: 'Intro to Medicinal Chemistry (P2 Fall 2026)',
   ns: 'phar4342final',
   // the live page on main (03a314d) ran its own service worker, whose caches
   // are named phar4342-drill-v<n> (sw.js `PREFIX`); the core's worker deletes them
