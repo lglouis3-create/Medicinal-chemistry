@@ -63,6 +63,13 @@ const COURSE = {
   // the live page on main (03a314d) ran its own service worker, whose caches
   // are named phar4342-drill-v<n> (sw.js `PREFIX`); the core's worker deletes them
   oldCachePrefix: 'phar4342-drill-',
+  // The data files, in build order (the kit's build.py reads this list; before
+  // 2026-11-01 it lived inside build.py, where a core update would replace it).
+  files: ['atlas.js', 'diagrams.js',
+          'q1_topics.js', 'q2_fgdm.js', 'q3_elimtox.js', 'q4_paths.js',
+          'q5_yendapally.js', 'q6_variants.js', 'q7_fgs.js',
+          'q8_atlas.js', 'q9_gaps.js', 'q10_sata.js', 'q11_sata2.js',
+          'q12_figures.js', 'q13_quizlet.js', 'q14_tell.js', 'q15_types.js'],
   output: 'PHAR4342_Final_Drill.html',   // the built file's name (the site serves it under this name)
   atlas: true,                           // this course has a functional-group atlas (atlas.js); a course without one sets false
   professors: ['Sikazwe', 'Yendapally'],
@@ -114,5 +121,5 @@ const COURSE = {
 
   scheduler: {model:'concept'},
 
-  kit: {core:'9f2f2a4'},   // lglouis3-create/exam-drill-kit main, 9f2f2a47fdb3e32a50967d479c77aadac2d03bbb
+  kit: {core:'2c648fa'},   // lglouis3-create/exam-drill-kit main, 9f2f2a47fdb3e32a50967d479c77aadac2d03bbb
 };
