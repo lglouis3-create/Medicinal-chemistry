@@ -3,9 +3,30 @@
 Newest first. Each item says what is waiting, the evidence, and what happens if
 nothing is decided.
 
+## 2026-11-01 (later): the slide check
+
+The decks were checked against every slide reference (`reviews/move-to-core/cite_check_2026-11-01.md`).
+Louis decided on 2026-11-01: the 9 references that pointed at the wrong lecture now name
+the right one; the Guides' FMO line now cites L11 slides 26–27; the Tell-apart row marks
+"*4 the allele" as from the lecture audio (T). Two claims no slide prints wait here
+until the lecture audio is checked:
+
+### Q5. `ta-58`: induction "builds over weeks" / "builds over days"
+- Where: option 3 why and teach, cited to Lecture 14 (MCMet-9_16_2026.pdf) slide 53.
+- Slide 53 prints the mechanism (more mRNA translation, less protein degradation) and
+  the outcomes, and no time course. The keyed answer (2 to 3 days, slide 59) is printed.
+- Decide: keep with an audio source once found, re-cite, or remove the phrase. Until
+  then it stays as written.
+
+### Q6. `ta-86`: "fexofenadine keeps the antihistamine effect without the channel block (slide 53)"
+- Where: option 4 why, cited to Lecture 15 (MCMet-9_17_2026.pdf) slide 53.
+- Slide 53 prints terfenadine's hERG interaction and fexofenadine "(similarly acting)";
+  it does not say fexofenadine lacks the hERG block.
+- Decide as for Q5. Until then it stays as written.
+
 ## 2026-11-01: moving the drill onto the shared kit core
 
-Prepared on the local branch `kit/move-to-core` (not pushed). Nothing below is live.
+Prepared on branch `kit/move-to-core` (pushed as a branch; the preview is at `/preview/`). Nothing below is live yet.
 
 ### Q1. Questions that differ between the live site and the 09/21 round (387 ids)
 

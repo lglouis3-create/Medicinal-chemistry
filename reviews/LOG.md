@@ -108,3 +108,25 @@ in the progress's own answer log.
 count (551 for 479, counts `TOPICS` entries); `harvest.py` and `harvest_mask.py` still
 write JPEG; `DATA_FILES` lives in `build.py`, so a core copy overwrites the course's
 list; the three test defects above and `scheduler_test.js`'s fixed file name.
+
+## 2026-11-01 (later): engine fixes, preview, slide check, citation fixes
+
+- Kit pull requests #2 (old cache prefix) and #3 (core fixes found by this move, and no
+  name prompt) merged after Louis said yes. This branch carries the core at 2c648fa
+  (the #3 head; main is 47bf534 after the merge) with `files` in `course.js`;
+  `cite_check.py`, `explain_check.js` and `harvest_mask.py` kept as the course had them.
+- Course name set by Louis: "Intro to Medicinal Chemistry (P2 Fall 2026)".
+- Preview published at `/preview/` (Louis approved) and updated with the fixes;
+  "pages build and deployment" succeeded for 4cca02f and 341750d.
+- `run_checks.sh` with the new core: 20 PASS, 0 FAIL, 2 NOT RUN (stepper_test.js: no
+  step-through figures; cite_check.py: decks not in the tree), 1 REPORT.
+- Slide check (`reviews/move-to-core/cite_check_2026-11-01.md`): decks downloaded from
+  Drive into scratch, not committed. `cite_check.py` PASS (1,191 slide references, 20
+  decks). The wider check found 9 wrong-lecture references and 4 claims the cited slide
+  does not print; the Tell-apart row's two cut-offs are as written.
+- Citation fixes Louis approved: the lecture named in `ta-20`, `ta-24` (2), `ta-25` (2),
+  `ta-40`, `ta-47`, `cyp-i2` (2), `sa-cyp-3`, `sa-fa-5` (2) and the Guides' L14
+  objective 2; the Guides' L13 objective 1 FMO source (L11 slides 26–27); the Tell-apart
+  row's allele point marked (T). No answer key, stem or option text changed.
+  `ta-58` and `ta-86` wait in `reviews/OPEN_QUESTIONS.md` Q5 and Q6.
+

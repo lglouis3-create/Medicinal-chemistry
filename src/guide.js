@@ -155,7 +155,7 @@ const GUIDE_HTML = `
 <li>Family vs subfamily: stop at the number for the family (2), add the letter for the subfamily (D); 3A is a subfamily, not a family (point 5).</li>
 <li>Fe<sup>3+</sup> vs Fe<sup>2+</sup>: the cycle starts at oxidised Fe<sup>3+</sup> complexing the drug; Fe<sup>2+</sup> appears only after NADPH&rsquo;s first electron (slide 12, point 8).</li>
 <li>UGT vs CYP and FMO: UGTs are phase two, the separate slice on slide 6; CYP and FMO oxidise in phase 1 (points 2 and 9).</li>
-<li>CYP vs FMO on N-oxidation and sulfoxidation: both do them (slide 13, point 9), so &ldquo;only CYP&rdquo; is false.</li>
+<li>CYP vs FMO on N-oxidation and sulfoxidation: both do them (CYP: slide 13, point 9; FMO: L11 slides 26&ndash;27), so &ldquo;only CYP&rdquo; is false.</li>
 <li>O-dealkylation vs N-dealkylation: the same alkyl removal, from oxygen or from nitrogen (slide 13, point 9).</li>
 </ul></div>
 
@@ -1124,7 +1124,7 @@ const GUIDE_HTML = `
 <li>&uarr; systemic tyramine, due to inhibition of its metabolic inactivation by MAOs, can precipitate a fatal hypertensive crisis.</li>
 <li>(T) The "cheese crisis": "you want the monoamine oxidases to be left alone."</li>
 <li>(T) He cited St. John's Wort, "over the counter," as an MAO inhibitor.</li>
-<li>The printed lists (L13 slide 32, slide 54 figure) file it as an inducer, which is what an exam keys.</li>
+<li>The printed lists (L13 slide 32, L14 slide 54 figure) file it as an inducer, which is what an exam keys.</li>
 </ul>
 </div>
 

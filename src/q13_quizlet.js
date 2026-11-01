@@ -218,9 +218,9 @@ QUESTIONS.push(
    why:'Also on slide 54, the inducers. A rifamycin like rifampin, and Lecture 13 slide 33 lists it inducing 2C8 and 3A4.'}],
  teach:[
   {h:'Slide 60 adds a second column to the familiar list',
-   t:'The left column repeats the CYP3A inhibitors of Lecture 13 slide 32: clarithromycin, erythromycin, ketoconazole, itraconazole, cimetidine, protease inhibitors, quinidine, omeprazole. The right column adds isoniazid, ciprofloxacin, diltiazem, verapamil, amiodarone and fluoxetine. Slide 54 does the same for inducers, adding efavirenz, ritonavir and rifabutin to the Lecture 13 list.'},
+   t:'The left column repeats the CYP3A inhibitors of Lecture 13 slide 32: clarithromycin, erythromycin, ketoconazole, itraconazole, cimetidine, protease inhibitors, quinidine, omeprazole. The right column adds isoniazid, ciprofloxacin, diltiazem, verapamil, amiodarone and fluoxetine. Lecture 14 slide 54 does the same for inducers, adding efavirenz, ritonavir and rifabutin to the Lecture 13 list.'},
   {h:'Ritonavir sits on both lists',
-   t:'Slide 54 lists ritonavir among the inducers, while slide 32 of Lecture 13 lists protease inhibitors among the CYP3A inhibitors. Both are printed in the course, so ritonavir is left out of this question; if it appears on the paper, the answer depends on which list the question is drawn from.'}],
+   t:'Lecture 14 slide 54 lists ritonavir among the inducers, while slide 32 of Lecture 13 lists protease inhibitors among the CYP3A inhibitors. Both are printed in the course, so ritonavir is left out of this question; if it appears on the paper, the answer depends on which list the question is drawn from.'}],
  teachImg:'fa_inhibitor_list',
  cite:'Lecture #14 (MCMet-9_16_2026.pdf) slide 60; inducers slide 54; DDI table slide 65; Lecture #13 (MCMet-9_15_2026.pdf) slides 32–35',
  quote:'Inhibitors of DMEs include: Clarithromycin · Erythromycin · Azole Antifungals (Ketoconazole, Itraconazole) · Cimetidine · Protease inhibitors · Quinidine · Omeprazole | Isoniazid · Ciprofloxacin · Diltiazem · Verapamil · Amiodarone · Fluoxetine'},

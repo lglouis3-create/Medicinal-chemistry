@@ -1,8 +1,11 @@
 # PHAR 4342 Medicinal Chemistry drill: state for Claude
 
-**State as of 2026-11-01, after the move onto the exam-drill-kit core was prepared
-(branch `kit/move-to-core`, local only: not pushed, not live).** The live site is still
-`main` at 03a314d until Louis approves the preview.
+**State as of 2026-11-01: the move onto the exam-drill-kit core is prepared on branch
+`kit/move-to-core` (pushed as a branch, not live) and published as a preview at
+https://lglouis3-create.github.io/Medicinal-chemistry/preview/.** The live page is
+still `main`'s root files (the drill of 03a314d) until Louis approves the preview; only
+`preview/` has been added to `main`. Course name (Louis, 2026-11-01): "Intro to
+Medicinal Chemistry (P2 Fall 2026)".
 
 Site: https://lglouis3-create.github.io/Medicinal-chemistry/ (GitHub Pages from `main`,
 repository root). Repository: `lglouis3-create/Medicinal-chemistry`. Course: PHAR 4342
@@ -38,10 +41,13 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `9f2f2a4`
-  (`course.js` `kit:{core:'9f2f2a4'}`). Only Mode 7 of the kit's skill changes the pin.
-- The one course edit to a core file: `DATA_FILES` in `src/build.py` lists this
-  course's 15 question files. A core update that copies `build.py` again must keep it.
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `2c648fa` (the
+  head of kit pull request #3, merged into the kit's `main` as 47bf534;
+  `course.js` `kit:{core:'2c648fa'}`). Only Mode 7 of the kit's skill changes the pin.
+- The question files are listed in `course.js` `files` (the kit's build reads it), so a
+  core update cannot drop them. Exception, until the kit fixes it: `cite_check.py`,
+  `explain_check.js` and `harvest_mask.py` hold this course's tables at their top, so a
+  core update must not copy those three over.
 - Course content: `src/course.js`, `src/q*.js`, `atlas.js`, `diagrams.js`,
   `glossary.js` (the GLOSS table, moved out of the old `views.js` unchanged),
   `links.js` (empty), `reference.js`, `tell.js`, `guide.js` with `src/guides/`,
@@ -94,17 +100,17 @@ the files named:
 
 ## Known issues
 
-- Settings footer says 551 questions (the core counts `TOPICS` entries); needs a kit
-  core fix. `reviews/OPEN_QUESTIONS.md` Q3.2.
-- Sideways scroll at 375 px on Guides, Tell apart and Reference, the same on the live
-  page; `browser_test.js` fails on it. Q3.3.
-- Three core checks fail on this course for kit reasons (see `reviews/LOG.md`
-  2026-11-01): `offline_test.js` (its "another site's cache" list contains
-  `phar4342-drill-v1`), `oldcache_test.js` (it assumes a course without
-  `oldCachePrefix`) and `preview_test.js` (a timing race with the live worker on a page
-  this size, and an order-dependent key comparison). `update_test.js` failed once in
-  three full runs and passed 6 of 6 runs alone on 2026-11-01; cause not found.
-- `cite_check.py` has not been run on the 92 questions of the 09/21 round.
+- `run_checks.sh` on 2026-11-01 with the 2c648fa core: 20 PASS, 0 FAIL, 2 NOT RUN
+  (`stepper_test.js`: no step-through figures; `cite_check.py`: decks not in the tree),
+  1 REPORT (`explain_check.js`). The footer count, the phone overflow and the test
+  faults listed earlier are fixed in the kit core.
+- The slide check of 2026-11-01 (`reviews/move-to-core/cite_check_2026-11-01.md`):
+  citations fixed with Louis's approval; `ta-58` and `ta-86` wait in
+  `reviews/OPEN_QUESTIONS.md` Q5 and Q6 (claims no slide prints); claims marked as
+  from the lecture audio were not checked against transcripts.
+- `cite_check.py` confirms only that a cited slide exists, and reads a slide number
+  only when a deck is named before it in the same field; the wider check is in the
+  report above.
 
 ## History
 
@@ -115,7 +121,7 @@ the files named:
   which never reached `main` (`2ebfade`), and the template port (`baed236`, now in the
   kit). Split from `main` at `697ae8b`.
 - `kit/move-to-core`: the 09/21 content plus `main`'s later non-engine work, on the kit
-  core. Not pushed.
+  core. Pushed as a branch; `main` carries only its `preview/` build.
 
 ## Restore after a container restart
 

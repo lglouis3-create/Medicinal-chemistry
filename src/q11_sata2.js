@@ -22,7 +22,7 @@ QUESTIONS.push(
   {t:'Quinidine', correct:true,
    why:'On the slide 32 inhibitor list, and again in the CYP2C9 column of the slide 34 table, so it inhibits more than one CYP.'},
   {t:'Rifampin', correct:false,
-   why:'Rifampin is an inducer: more enzyme is made, the substrate is cleared faster, and its level falls. Lecture 10 slide 49 shows the triazolam curve collapsing when rifampin is added. Slide 33 gives its induced CYPs as 2C8, 2C9, 2C19, 2D6, 3A4 and 2B6.'},
+   why:'Rifampin is an inducer: more enzyme is made, the substrate is cleared faster, and its level falls. Lecture 10 slide 49 shows the triazolam curve collapsing when rifampin is added. Lecture 13 slide 33 gives its induced CYPs as 2C8, 2C9, 2C19, 2D6, 3A4 and 2B6.'},
   {t:'Carbamazepine', correct:false,
    why:'An inducer on slide 32, and slide 33 lists 1A2, 3A4, 2C8, 2C9, 2C19, 2D6 and 2B6 for it. It lowers the level of a co-administered substrate, the opposite direction from an inhibitor.'},
   {t:'St John\'s wort', correct:false,
