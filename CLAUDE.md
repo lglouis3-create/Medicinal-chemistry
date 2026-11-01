@@ -41,8 +41,8 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `4616994` (the
-  head of kit pull request #4; `course.js` `kit:{core:'4616994'}`). Only Mode 7 of the
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `c4da6c6` (the
+  head of kit pull request #4; `course.js` `kit:{core:'c4da6c6'}`). Only Mode 7 of the
   kit's skill changes the pin.
 - The question files are listed in `course.js` `files`, and this course's tables for
   `cite_check.py`, `explain_check.js` and `harvest_mask.py` are in `course.js` `tools`
