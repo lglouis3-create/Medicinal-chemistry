@@ -130,3 +130,11 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
   row's allele point marked (T). No answer key, stem or option text changed.
   `ta-58` and `ta-86` wait in `reviews/OPEN_QUESTIONS.md` Q5 and Q6.
 
+## 2026-11-01 (later): live on the kit core
+
+- Kit pull request #4 (course tables in `course.js` `tools`; Home Screen card as a closed
+  section in Settings) merged after Louis said yes; kit `main` is ff7bd51, whose core is
+  identical to c4da6c6, the core the preview ran. Pin set to ff7bd51.
+- Louis approved the switch ("Yes merge and make it live"). `kit/move-to-core` merged
+  `main`'s preview commits, removed `preview/`, rebuilt the root page and went to `main`.
+

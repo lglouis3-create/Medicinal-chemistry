@@ -1,11 +1,9 @@
 # PHAR 4342 Medicinal Chemistry drill: state for Claude
 
-**State as of 2026-11-01: the move onto the exam-drill-kit core is prepared on branch
-`kit/move-to-core` (pushed as a branch, not live) and published as a preview at
-https://lglouis3-create.github.io/Medicinal-chemistry/preview/.** The live page is
-still `main`'s root files (the drill of 03a314d) until Louis approves the preview; only
-`preview/` has been added to `main`. Course name (Louis, 2026-11-01): "Intro to
-Medicinal Chemistry (P2 Fall 2026)".
+**State as of 2026-11-01: live on the exam-drill-kit core.** Louis approved the preview
+and the switch on 2026-11-01; `kit/move-to-core` was merged into `main` and the preview
+folder removed. Course name (Louis, 2026-11-01): "Intro to Medicinal Chemistry (P2 Fall
+2026)".
 
 Site: https://lglouis3-create.github.io/Medicinal-chemistry/ (GitHub Pages from `main`,
 repository root). Repository: `lglouis3-create/Medicinal-chemistry`. Course: PHAR 4342
@@ -25,7 +23,7 @@ PT I, Intro to Medicinal Chemistry, Fall 2026, cumulative final (Exam 4) on Mon 
 
 ## Counts
 
-| | live (`main` 03a314d) | this branch (`kit/move-to-core`) |
+| | before the move (`main` 03a314d) | live since 2026-11-01 |
 |---|---|---|
 | questions | 387 | 479 (all 387 live ids kept; 92 new) |
 | select-all / numeric / matching | 36 / 0 / 0 | 48 / 2 / 1 |
@@ -41,9 +39,10 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit commit `c4da6c6` (the
-  head of kit pull request #4; `course.js` `kit:{core:'c4da6c6'}`). Only Mode 7 of the
-  kit's skill changes the pin.
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit `main` at `ff7bd51` (the
+  merge of kit pull request #4; `course.js` `kit:{core:'ff7bd51'}`). Only Mode 7 of the
+  kit's skill, or the nightly kit-update run under `KIT_DESIGN.md` §12.9, changes the
+  pin.
 - The question files are listed in `course.js` `files`, and this course's tables for
   `cite_check.py`, `explain_check.js` and `harvest_mask.py` are in `course.js` `tools`
   (moved unchanged from the tops of those files on 2026-11-01), so a core update can
@@ -121,7 +120,7 @@ the files named:
   which never reached `main` (`2ebfade`), and the template port (`baed236`, now in the
   kit). Split from `main` at `697ae8b`.
 - `kit/move-to-core`: the 09/21 content plus `main`'s later non-engine work, on the kit
-  core. Pushed as a branch; `main` carries only its `preview/` build.
+  core; merged into `main` on 2026-11-01 when Louis approved the switch.
 
 ## Restore after a container restart
 
