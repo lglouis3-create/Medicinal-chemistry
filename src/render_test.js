@@ -1,15 +1,12 @@
 const fs=require('fs'), vm=require('vm');
-// the built page, resolved from this file so a fresh clone works
-const BUILT = require('path').join(__dirname, '..', 'index.html');
-const html=fs.readFileSync(BUILT,'utf8');
-let code=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
-const b=code.lastIndexOf('   BOOT'); code=code.slice(0,code.lastIndexOf('/* ===',b));
-code+="\nglobalThis.__X={QUESTIONS,TOPICS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX};\n";
+const PAGE=require('./built_page'); PAGE.need('render_test.js');
+let code=PAGE.engine();
+code+="\nglobalThis.__X={QUESTIONS,TOPICS,DIA,DIAGRAMS,startQuiz,renderTopics,renderQuiz,renderGaps,renderRef,renderTell,renderGuide,renderDiagrams,renderSettings,answer,Qref:()=>Q,askProfile,record,beginExam,renderExamQ,EXref:()=>EX,sessionLog,linksFor,drawPaper};\n";
 const store={}, sinks={};
 function mk(id){ return sinks[id] ||= {innerHTML:'',textContent:'',dataset:{},style:{},classList:{toggle(){},add(){},remove(){},contains(){return false}},setAttribute(){},querySelectorAll(){return []},onclick:null,click(){}}; }
 const sb={console,localStorage:{getItem:k=>k in store?store[k]:null,setItem:(k,v)=>{store[k]=String(v)},removeItem:k=>{delete store[k]}},
- document:{querySelector:s=>mk(s),querySelectorAll:()=>[],getElementById:i=>mk(i),createElement:()=>mk('tmp'),body:mk('body')},
- window:{scrollTo(){}},prompt:()=>'Louis',alert:m=>console.log('ALERT:',m),confirm:()=>true,
+ document:{querySelector:s=>mk(s),querySelectorAll:()=>[],getElementById:i=>mk(i),createElement:()=>mk('tmp'),body:mk('body'),addEventListener(){}},
+ window:{scrollTo(){}},prompt:()=>'Student',alert:m=>console.log('ALERT:',m),confirm:()=>true,
  setTimeout:f=>{f();return 0},clearTimeout(){},setInterval:()=>0,clearInterval(){},
  Blob:function(){},URL:{createObjectURL:()=>'',revokeObjectURL(){}},FileReader:function(){},
  Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
@@ -34,24 +31,31 @@ function check(name, html){
 let ok=true;
 console.log('\n=== Render smoke test ===');
 X.renderTopics();        ok &= check('topics list', sinks['#v-topics'].innerHTML);
-X.startQuiz('cyp','poly');ok &= check('quiz, unanswered', sinks['#v-quiz'].innerHTML);
+X.startQuiz(X.TOPICS[0].id, X.TOPICS[0].subs[0].id);ok &= check('quiz, unanswered', sinks['#v-quiz'].innerHTML);
 X.answer(0);              ok &= check('quiz, answered', sinks['#v-quiz'].innerHTML);
 const qh=sinks['#v-quiz'].innerHTML;
 console.log('         explanations rendered: '+((qh.match(/class="wrow"/g)||[]).length)+' option rows');
 console.log('         citation present: '+/class="cite"/.test(qh));
 // image question
 const imgQ=X.QUESTIONS.find(q=>q.img);
-X.startQuiz(imgQ.topic,imgQ.sub);
-let tries=0; while(X.Qref().current && X.Qref().current.id!==imgQ.id && tries++<60){ X.answer(0); X.Qref().answered++; X.Qref().lastId=X.Qref().current.id; sb.nextQuestion&&sb.nextQuestion(); break; }
+if(imgQ){
+  X.startQuiz(imgQ.topic,imgQ.sub);
+  let tries=0; while(X.Qref().current && X.Qref().current.id!==imgQ.id && tries++<60){ X.answer(0); X.Qref().answered++; X.Qref().lastId=X.Qref().current.id; sb.nextQuestion&&sb.nextQuestion(); break; }
+  ok &= check('quiz, image item', sinks['#v-quiz'].innerHTML);
+} else console.log('  skip  quiz, image item        no question in this bank carries an image');
 X.renderGaps();          ok &= check('weak spots', sinks['#v-gaps'].innerHTML);
 X.renderRef();           ok &= check('reference', sinks['#v-ref'].innerHTML);
 X.renderTell();          ok &= check('tell apart', sinks['#v-tell'].innerHTML);
 X.renderGuide();         ok &= check('guides', sinks['#v-guide'].innerHTML);
+X.renderDiagrams();      ok &= check('diagrams', sinks['#v-diagrams'].innerHTML);
+console.log('         figures registered: ' + Object.keys(X.DIA).length +
+            ', step-throughs: ' + Object.keys(X.DIA).filter(k => /data-anim/.test(X.DIA[k])).length);
 X.renderSettings();      ok &= check('settings', sinks['#v-settings'].innerHTML);
 X.beginExam();           ok &= check('exam paper', sinks['#v-exam'].innerHTML);
 console.log('         exam question count: '+X.EXref().qs.length);
 // verify an image actually embeds
 const withImg = X.QUESTIONS.filter(q=>q.img).length;
-console.log(`         ${withImg} questions carry a reaction image`);
+console.log(`         ${withImg} questions carry an image`);
 console.log(ok?'\nRender smoke test passed\n':'\nRENDER PROBLEMS FOUND\n');
+console.log(ok?'PASS: render_test.js: every view rendered clean':'FAIL: render_test.js: a view rendered undefined, NaN, [object Object] or unbalanced markup');
 process.exit(ok?0:1);

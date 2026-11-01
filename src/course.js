@@ -1,35 +1,68 @@
 /* ==========================================================================
    COURSE MANIFEST — everything that is specific to this course lives here.
    The engine (shell.html, views.js) reads COURSE and nothing else about the
-   course, so a new course is a new copy of this file plus its own content.
+   course. Fill this in first; the checks read it too.
    ==========================================================================
-   Fields:
-     id, title, short   names shown in the header and the page title
-     output             file name of the built page
-     atlas              true when atlas.js carries drawn structures for an Atlas tab
-     ns                 storage namespace; keep it stable across exams so
-                        progress carries through the semester
-     professors         names as the questions' `prof` field spells them
-     lectures           one entry per deck; `deck` is the file name as the
-                        citations spell it (dots as underscores), `exam` the
-                        exam it was tested on, `module` the block the course
-                        groups it under. Questions are labelled by matching
-                        the deck named in their `cite`.
-     exams              blueprint per exam: questions, minutes, select-all
-                        count, and the pools with their marks. A pool `filter`
-                        is an object of field:value (a value may be an array)
-                        that a question must match.
-     activeExam         which exam the simulator and the weighted pass follow
-     skills             the course's own taxonomy of what a question asks the
-                        student to do; questions carry `skill`, Weak spots
-                        groups by it
-     paceDefault        review pace for a new profile: cram | weekly | semester
+   id, title, short   names shown in the header and the page title
+   output             file name of the built page (the site serves it under this name)
+   atlas              true only when atlas.js carries drawn structures for an Atlas tab
+   ns                 storage namespace: keep it the same for the whole course so
+                      progress carries from Exam 1 through the final
+   oldCachePrefix     optional, only for a drill that had its own service worker
+                      before it moved onto the core: that worker's cache name
+                      prefix (for example 'phar4342-drill-'); the core's worker
+                      deletes those caches. It must end with '-'.
+   professors         names exactly as the questions' `prof` field spells them
+   lectures           one entry per deck: `deck` is the file name as the citations
+                      spell it (dots in the stem become underscores), `exam` the
+                      exam it is tested on, `module` the block the course groups
+                      it under. Questions are labelled by the deck their `cite`
+                      names, so every cite must name its deck.
+   exams              blueprint per exam: questions, minutes, select-all count,
+                      and the pools with their marks. A pool `filter` is an object
+                      of field:value that a question must match; a value may be
+                      an array meaning "one of". Pools' marks add up to `questions`.
+                      `date` is the string shown in the header; add `when` (ISO)
+                      and the page counts the days down to it.
+                      Optional `blueprint`: use it only when the professor has
+                      announced counts per topic. See the commented example.
+   activeExam         which exam the simulator and the weighted pass follow
+   skills             this course's taxonomy of what a question asks the student
+                      to do; every question carries one `skill`; Weak spots groups
+                      by it. Replace the defaults with the kinds this course
+                      tests (a drug course: brand, generic, category, indication,
+                      essential; a calculation course: setup, unit, algebra, …).
+   paceDefault        review pace for a new profile: cram | weekly | semester
+   scheduler          which scheduler picks the next question (core/README.md
+                      "The scheduler"). model 'concept' (the default when the
+                      field is absent): concepts are scheduled by box, and an
+                      exam with a `when` shortens the day-clock gap for the
+                      concepts its pools cover. preset:'calc' for a
+                      calculation course: no two questions of one skill in a
+                      row, and due questions of earlier lectures mixed in.
+                      model 'fsrs': FSRS-7 per question (ts-fsrs, from the
+                      kit's core/vendor/, which the build then inlines).
+                      model 'concept-fsrs' (off by default): FSRS-7 per
+                      concept with question rotation; it ships with
+                      compare:true, which assigns each concept at random to
+                      it or to 'concept' and logs which.
+   kit                the kit commit this course's src/ engine was copied from
+                      (exam-drill-kit core/); only Mode 7 changes it
+   ==========================================================================
+   PHAR 4342: the values below are the course manifest of the 09/21 round
+   (restore/2026-09-21-round, 2ebfade), unchanged, with oldCachePrefix,
+   scheduler and kit added when the course moved onto the kit core
+   (2026-11-01). `ns` and `output` are what the live page on main used
+   (src/shell.html `NS`, build.py `LEGACY_NAME` at 03a314d).
    ========================================================================== */
 const COURSE = {
   id: 'phar4342',
   title: 'PHAR 4342 — Medicinal Chemistry',
   short: 'PHAR 4342',
   ns: 'phar4342final',
+  // the live page on main (03a314d) ran its own service worker, whose caches
+  // are named phar4342-drill-v<n> (sw.js `PREFIX`); the core's worker deletes them
+  oldCachePrefix: 'phar4342-drill-',
   output: 'PHAR4342_Final_Drill.html',   // the built file's name (the site serves it under this name)
   atlas: true,                           // this course has a functional-group atlas (atlas.js); a course without one sets false
   professors: ['Sikazwe', 'Yendapally'],
@@ -78,4 +111,8 @@ const COURSE = {
   ],
 
   paceDefault: 'cram',
+
+  scheduler: {model:'concept'},
+
+  kit: {core:'9f2f2a4'},   // lglouis3-create/exam-drill-kit main, 9f2f2a47fdb3e32a50967d479c77aadac2d03bbb
 };

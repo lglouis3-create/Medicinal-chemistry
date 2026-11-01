@@ -12,6 +12,8 @@ kept under `<key>_labeled` for the concept block, where the answer is wanted.
 import base64, csv, io, json, subprocess, sys
 from PIL import Image, ImageDraw
 
+# One entry per crop that prints its own answer: the images.json key, and the
+# phrases to white out. Course-specific — fill it in as such crops appear.
 # key                       phrases to mask on the question image
 SPEC = [
   ("rx_allylic_pentazocine", ["Allylic OH metabolite"]),
@@ -21,7 +23,7 @@ SPEC = [
 ]
 SCALE = 2       # OCR upscale
 PAD = 4         # px of margin around each masked word, at crop scale
-QUALITY = 80          # WebP quality; see harvest.py
+QUALITY = 70
 
 
 def ocr_words(img):
@@ -75,8 +77,8 @@ def main():
                 sys.exit(f"ERROR: {key}: {ph!r} still readable after masking")
         if key + "_labeled" not in images:
             images[key + "_labeled"] = images[key]
-        buf = io.BytesIO(); img.save(buf, "WEBP", quality=QUALITY, method=6)
-        images[key] = "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+        buf = io.BytesIO(); img.save(buf, "JPEG", quality=QUALITY, optimize=True)
+        images[key] = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
         print(f"  {key:24s} {img.size[0]}x{img.size[1]}  {len(buf.getvalue())//1024} KB  masked: {'; '.join(found)}")
     json.dump(images, open("images.json", "w"))
     print(f"images.json now holds {len(images)} figures")

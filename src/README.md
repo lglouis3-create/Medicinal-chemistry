@@ -1,13 +1,29 @@
 # PHAR 4342 Final Drill — build sources
 
 Single-file offline quiz app. `python3 build.py` assembles everything into
-`PHAR4342_Final_Drill.html`.
+`index.html` at the repository root (with `PHAR4342_Final_Drill.html` as a
+redirect to it).
+
+**Since 2026-11-01 the engine is the exam-drill-kit core** (kit commit `9f2f2a4`,
+`course.js` `kit.core`). `shell.html`, `views.js`, `build.py`, `sw.js`,
+`harvest.py`, `harvest_mask.py`, `ingest.py`, `STEPPERS.md`, `vendor/` and the
+checks (`run_checks.sh` and the files it runs) are copies of the kit's `core/`;
+the kit's `core/README.md` describes them. Course content is `course.js`,
+`q*.js`, `atlas.js`, `diagrams.js`, `glossary.js` (the GLOSS table, moved out of
+`views.js`), `links.js`, `reference.js`, `tell.js`, `guide.js`, `images.json`,
+`icons/` and `CHANGELOG.md`; the course-specific tables at the top of
+`cite_check.py`, `harvest_mask.py` and `explain_check.js` are this course's.
+Build and check with `./run_checks.sh`. The repository root's `CLAUDE.md`
+holds the course state. Everything below this paragraph is the build log of the
+sessions that wrote the bank (to 2026-09-21) and describes the engine of that
+time; where it names `views.js` or `shell.html` features, the core now carries
+them.
 
 ## Files
 - `build.py`       assembles shell + data + views into the single HTML file
 - `shell.html`     CSS, markup, and the spaced-repetition engine
 - `views.js`       all seven UI views (topics, quiz, weak spots, exam sim, atlas, reference, settings)
-- `q1_cyp.js` … `q8_atlas.js`  the question bank, one file per topic group
+- `q1_topics.js` (TOPICS and the CYP questions; `q1_cyp.js` before 2026-11-01) … `q15_types.js`  the question bank, one file per topic group
 - `atlas.js`      the functional group atlas: skeletal-structure renderer + board data
 - `q6_variants.js` alternate wordings, used when a missed concept comes back
 - `diagrams.js`    drawn SVG diagrams (DIA.*)

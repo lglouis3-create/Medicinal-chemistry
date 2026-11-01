@@ -120,7 +120,7 @@ def load():
       c+='\nglobalThis.__Q=QUESTIONS;';
       const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},
         document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),
-                  createElement:()=>({}),body:{}},
+                  createElement:()=>({}),body:{},addEventListener(){}},
         window:{},prompt:()=>'x',setTimeout:()=>0,clearTimeout(){},
         Date,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
       sb.globalThis=sb; vm.createContext(sb); vm.runInContext(c,sb);

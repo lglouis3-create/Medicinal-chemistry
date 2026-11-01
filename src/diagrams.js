@@ -379,3 +379,9 @@ DIA.routeRank = `<svg viewBox="0 0 880 230" xmlns="http://www.w3.org/2000/svg" r
 <text x="8" y="200" font-size="11.5" fill="#5A6878">The minor routes still matter clinically: hair and saliva give a testing window for drugs of abuse, and milk matters for the nursing infant.</text>
 <text x="8" y="220" font-size="11.5" fill="#5A6878">Which route a drug takes follows from its size and polarity, which is what phase II metabolism changes.</text>
 </g></svg>`;
+
+/* The Diagrams tab (kit core): [group name, [figure keys]]. Empty, so the tab
+   removes itself from the nav, as the course had no Diagrams tab before it
+   moved onto the core (2026-11-01). The figures above still show in the
+   questions' concept blocks and the reading tabs as before. */
+const DIAGRAMS = [];

@@ -10,45 +10,43 @@ Citations are scanned in `cite`, `teach`, `note` and every option's `why`, since
 slide numbers appear in all four.
 
     python3 cite_check.py
+
+Decks are looked for under decks/ and the working directory. A citation spells
+a deck the way `course.js` does (dots in the file stem written as underscores),
+and that spelling is resolved against the files on disk automatically; the
+tables under COURSE-SPECIFIC cover any other spelling a citation uses.
 """
 import glob, json, os, re, subprocess, sys
 
-import pdfplumber
+# Exit codes as every check uses them (check_lib.js): 0 pass, 1 fail, 2 NOT RUN.
+# A check that cannot run says why and exits 2, so it is never read as a pass.
+def not_run(why):
+    print(f"NOT RUN: cite_check.py: {why}")
+    sys.exit(2)
 
-DECK_DIRS = ["yen", "."]
+try:
+    import pdfplumber
+except ImportError:
+    not_run("pdfplumber is not installed, so no deck can be read")
 
-# how a citation spells a deck -> the file on disk
+DECK_DIRS = ["decks", "."]
+
+# --------------------------------------------------------------------------
+# COURSE-SPECIFIC (usually empty): spellings that cannot be derived.
+# --------------------------------------------------------------------------
+# how a citation spells a deck (lower case) -> the file on disk, or None when
+# the deck is not a PDF on hand (its slide numbers are then reported unchecked)
 ALIASES = {
-    "mcmet-9_15_2026.pdf": "MCMet-9.15.2026.pdf",
-    "mcmet-9_16_2026.pdf": "MCMet-9.16.2026.pdf",
-    "mcmet-9_17_2026.pdf": "MCMet-9.17.2026.pdf",
-    "mcmet-9_10_26.pdf":   "MCMet-9_10_26.pdf",
     "mcmet-9_4_26.pdf":       "MCMet-9_4_26-9_9_26.pdf",
     "mcmet9_4_26__9_9_26.pdf": "MCMet-9_4_26-9_9_26.pdf",
-    "mcmet-9_4_26-9_9_26.pdf": "MCMet-9_4_26-9_9_26.pdf",
-    "mcfgs8_1718_26.pdf":  "MCFGs8_1718_26.pdf",
-    "090326_admetabsorption_i.pdf": "090326_ADMETAbsorption_I.pdf",
-    "090226_physicochemicalprop2.pdf": "090226_PhysicochemicalProp2.pdf",
-    "082426_introductiontosar.pdf": "082426_IntroductiontoSAR.pdf",
     "ex4-prep-work.pdf": None,
 }
-# lecture number -> file, for citations that say "Lecture #11" instead
-LECTURES = {
-    "10": "MCMet-9_4_26-9_9_26.pdf",
-    "11": "MCMet-9_10_26.pdf",
-    "13": "MCMet-9.15.2026.pdf",
-    "14": "MCMet-9.16.2026.pdf",
-    "15": "MCMet-9.17.2026.pdf",
-}
-
-PDF_IN_TEXT = re.compile(r"([A-Za-z0-9_.\-]+\.pdf)", re.I)
-# A citation may name a second deck in words rather than by filename, as in
-# "... slides 13; Absorption I slide 24". Without these the slide number is
-# attributed to the previous deck and reported as out of range.
-BARE_DECK = re.compile(
-    r"\b(Absorption I{1,2}|Distribution|Stereochemistry|Bioisosterism|"
-    r"Physicochemical Properties [123]|Drug Discovery|Drug\u2013Receptor Interactions|"
-    r"Introduction to SAR|Practice Problem Answers|Functional group deck)\b")
+# lecture number -> file, for citations that say "Lecture #11" instead of a
+# file name. Filled from course.js (the digits of each lecture id); add here
+# only when a citation numbers a lecture differently.
+LECTURES = {}
+# a deck named in words inside a citation ("... slides 13; Absorption I slide
+# 24") -> its file, so the slide number is not attributed to the previous deck
 BARE_MAP = {
     "Absorption I": "090326_ADMETAbsorption_I.pdf", "Absorption II": "090426_ADMETAbsorption_II.pdf",
     "Distribution": "090426_Distribution.pdf",
@@ -63,9 +61,31 @@ BARE_MAP = {
     "Practice Problem Answers": "082726_PracticeProblemAnswers.pdf",
     "Functional group deck": "MCFGs8_1718_26.pdf",
 }
+
+# --------------------------------------------------------------------------
+
+# The built page is located by built_page.js, the helper every check uses.
+HERE = os.path.dirname(os.path.abspath(__file__))
+os.chdir(HERE)
+
+PDF_IN_TEXT = re.compile(r"([A-Za-z0-9_.\-]+\.pdf)", re.I)
+BARE_DECK = re.compile(r"\b(" + "|".join(re.escape(k) for k in BARE_MAP) + r")\b") if BARE_MAP else None
 LECTURE_IN_TEXT = re.compile(r"[Ll]ecture\s*#\s*(\d+)")
 # "slide 34", "slides 29-30", "slides 46, 50, 56", "slides 42 to 62"
 SLIDES = re.compile(r"slides?\s+((?:\d+\s*(?:[-–]|,|and|to)?\s*)+)", re.I)
+
+
+def course_lectures():
+    """lecture number -> deck file, read off course.js: {id:'L07', deck:'Lecture07.pdf', ...}."""
+    out = {}
+    if not os.path.exists("course.js"):
+        return out
+    src = open("course.js", encoding="utf-8").read()
+    for m in re.finditer(r"\{\s*id:\s*'([^']+)'\s*,\s*deck:\s*'([^']+)'", src):
+        num = re.fullmatch(r"L?(\d+)", m.group(1))      # L07 or 7; other ids are not lecture numbers
+        if num:
+            out[str(int(num.group(1)))] = m.group(2)
+    return out
 
 
 def page_counts():
@@ -86,41 +106,59 @@ def page_counts():
 def load_questions():
     """Read the bank out of the built page, the same way the node checks do."""
     js = r"""
-      const fs=require('fs'),vm=require('vm');
-      let c=[...fs.readFileSync(process.argv[1],'utf8')
-        .matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
-      const b=c.lastIndexOf('   BOOT'); c=c.slice(0,c.lastIndexOf('/* ===',b));
+      const vm=require('vm');
+      const PAGE=require(process.argv[1]);
+      let c=PAGE.engine();
       c+='\nglobalThis.__Q=QUESTIONS;';
       const sb={console,localStorage:{getItem:()=>null,setItem(){},removeItem(){}},
         document:{querySelector:()=>({}),querySelectorAll:()=>[],getElementById:()=>({}),
-                  createElement:()=>({}),body:{}},window:{},prompt:()=>'x',
+                  createElement:()=>({}),body:{},addEventListener(){}},window:{},prompt:()=>'x',
         setTimeout:()=>0,clearTimeout(){},Date,Math,JSON,Object,Array,String,Number,
         Boolean,RegExp,Error,isNaN,parseInt,parseFloat};
       sb.globalThis=sb;vm.createContext(sb);vm.runInContext(c,sb);
       const tt=t=>Array.isArray(t)?t.map(p=>[p.h,p.t].filter(Boolean).join('. ')).join(' '):(t||'');
       process.stdout.write(JSON.stringify(sb.__Q.map(q=>({
         id:q.id, cite:q.cite||'', teach:tt(q.teach), note:q.note||'',
-        whys:q.options.map(o=>o.why||'')}))));
+        whys:(q.options||[]).map(o=>o.why||'').concat((q.steps||[]).map(s=>s.why||''),(q.pairs||[]).map(p=>p.why||''))}))));
     """
-    out = subprocess.run(
-        ["node", "-e", js, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'index.html')],
-        capture_output=True, text=True)
+    js = "require(process.argv[1]).need('cite_check.py');" + js
+    out = subprocess.run(["node", "-e", js, os.path.join(HERE, "built_page.js")],
+                         capture_output=True, text=True)
+    if out.returncode == 2:
+        print(out.stdout.strip())
+        sys.exit(2)
     if out.returncode != 0:
-        sys.exit("ERROR: could not read the built page\n" + out.stderr.strip())
+        print("ERROR: could not read the built page\n" + out.stderr.strip())
+        print("FAIL: cite_check.py: the built page could not be read")
+        sys.exit(1)
     return json.loads(out.stdout)
 
 
-def resolve(name):
-    """A deck as written in a citation -> the file on disk, or None."""
-    key = name.lower()
-    if key in ALIASES:
-        return ALIASES[key]
-    return name
+def make_resolver(counts):
+    """A deck as written in a citation -> the file on disk, or None.
+
+    The derived spellings: the file name itself, and the file stem with its
+    dots written as underscores (how course.js and the citations spell it)."""
+    derived = {}
+    for name in counts:
+        stem, ext = os.path.splitext(name)
+        derived[name.lower()] = name
+        derived[(stem.replace(".", "_") + ext).lower()] = name
+
+    def resolve(name):
+        key = name.lower()
+        if key in ALIASES:
+            return ALIASES[key]
+        return derived.get(key, name)
+    return resolve
 
 
 def main():
     counts = page_counts()
     qs = load_questions()
+    resolve = make_resolver(counts)
+    lectures = dict(course_lectures())
+    lectures.update(LECTURES)
 
     bad, unchecked, checked = [], {}, 0
     for q in qs:
@@ -135,13 +173,10 @@ def main():
             for m in PDF_IN_TEXT.finditer(text):
                 marks.append((m.start(), resolve(m.group(1)), m.group(1)))
             for m in LECTURE_IN_TEXT.finditer(text):
-                marks.append((m.start(), LECTURES.get(m.group(1)), "Lecture #" + m.group(1)))
-            for m in BARE_DECK.finditer(text):
-                # skip one that is part of a filename already matched above
-                if any(a <= m.start() < a + 40 and shown.lower().endswith(".pdf")
-                       for a, _, shown in marks):
-                    pass
-                marks.append((m.start(), BARE_MAP.get(m.group(1)), m.group(1)))
+                marks.append((m.start(), lectures.get(m.group(1)), "Lecture #" + m.group(1)))
+            if BARE_DECK:
+                for m in BARE_DECK.finditer(text):
+                    marks.append((m.start(), BARE_MAP.get(m.group(1)), m.group(1)))
             marks.sort()
             for sm in SLIDES.finditer(text):
                 prior = [x for x in marks if x[0] < sm.start()]
@@ -149,11 +184,7 @@ def main():
                     continue
                 _, fname, shown = prior[-1]
                 nums = [int(n) for n in re.findall(r"\d+", sm.group(1))]
-                if fname is None:
-                    unchecked.setdefault(shown, 0)
-                    unchecked[shown] += 1
-                    continue
-                if fname not in counts:
+                if fname is None or fname not in counts:
                     unchecked.setdefault(shown, 0)
                     unchecked[shown] += 1
                     continue
@@ -165,10 +196,9 @@ def main():
 
     print("\n=== Citation check ===")
     if not counts:
-        print("  NOT RUN: no lecture PDFs found under yen/ or the working directory.")
-        print("  The decks are Louis's course files and are not shipped in the source")
-        print("  zip, so this check only means something where they are present.")
-        return 0
+        print("  The decks are the course's own files and are not in the repository,")
+        print("  so this check only means something where they are present.")
+        not_run("no lecture PDFs found under decks/ or src/")
     print(f"  {checked} slide references checked against {len(counts)} decks on hand")
     if unchecked:
         print("\n  decks named but not on hand (references not checked):")
@@ -181,9 +211,13 @@ def main():
     elif checked:
         print("\n  every checked slide number exists in its deck")
     else:
-        print("\n  NOT RUN: decks were found but no citation matched one of them")
-        return 0
-    return 1 if bad else 0
+        not_run("decks were found but no citation matched one of them")
+    if bad:
+        print(f"FAIL: cite_check.py: {len(bad)} citation(s) point past the end of their deck")
+        return 1
+    print(f"PASS: cite_check.py: {checked} slide references checked against {len(counts)} decks"
+          + (f"; {sum(unchecked.values())} in decks not on hand were not checked" if unchecked else ""))
+    return 0
 
 
 if __name__ == "__main__":
