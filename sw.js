@@ -1,4 +1,5 @@
-/* Service worker for the PHAR 4342 drill.
+/* Service worker for a course drill. build.py fills in SITE and writes the
+   result to the repository root, beside index.html.
 
    What it is for: the drill keeps working with no connection (on a plane, in a
    basement lecture hall), and a flaky connection never leaves a student staring
@@ -11,37 +12,38 @@
    only when the network is down or slower than NET_TIMEOUT, and if the network
    copy then turns out to be newer, the page is told so it can offer a reload.
 
-   This origin (lglouis3-create.github.io) also serves other sites, and Cache
-   Storage is shared across the whole origin. Every cache this worker creates is
-   named with PREFIX, and cleanup only ever deletes caches carrying that prefix. */
+   lglouis3-create.github.io serves every course's drill, and Cache Storage is
+   shared across the whole origin. Every cache this worker creates is named
+   PREFIX + 'v' + a number, PREFIX coming from the course's `ns`, and cleanup
+   only ever deletes caches named exactly that way, so another course's offline
+   copy is never touched, including one whose `ns` starts with this one's.
 
-const PREFIX = 'phar4342-drill-';
+   A course that had its own worker before it moved onto the core names that
+   worker's cache prefix in course.js `oldCachePrefix`; caches whose names start
+   with it are deleted too. build.py refuses a prefix that would match this
+   course's own caches.
+
+   Generalized from Medicinal-chemistry's sw.js (ed38dbd). */
+
+const SITE = {"prefix": "phar4342final-", "files": ["index.html", "PHAR4342_Final_Drill.html", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"], "aliases": ["PHAR4342_Final_Drill.html"], "old": "phar4342-drill-"};
+const PREFIX = SITE.prefix;
 // Bump only when the shape of what is cached changes; content updates do not
 // need a bump, because the page is refreshed from the network on every load.
 const CACHE = PREFIX + 'v1';
 const NET_TIMEOUT = 3500;
+const OURS = (n) => n.startsWith(PREFIX) && /^v\d+$/.test(n.slice(PREFIX.length));
 
 const SCOPE = new URL(self.registration.scope);
 const at = (path) => new URL(path, SCOPE).href;
 const INDEX = at('index.html');
 
-// Paths a navigation can arrive on that should open the drill.
-const APP_PATHS = new Set([
-  SCOPE.pathname,
-  new URL(INDEX).pathname,
-  new URL(at('PHAR4342_Final_Drill.html')).pathname,
-]);
+// Paths a navigation can arrive on that should open the drill: the site root,
+// index.html, and the old file name the build keeps as a redirect.
+const APP_PATHS = new Set([SCOPE.pathname, new URL(INDEX).pathname]
+  .concat(SITE.aliases.map((a) => new URL(at(a)).pathname)));
 
 // Saved at install, so the drill opens offline straight after the first visit.
-const PRECACHE = [
-  INDEX,
-  at('PHAR4342_Final_Drill.html'),
-  at('manifest.json'),
-  at('icon-192.png'),
-  at('icon-512.png'),
-  at('icon-maskable-512.png'),
-  at('apple-touch-icon.png'),
-];
+const PRECACHE = SITE.files.map(at);
 const PRECACHE_PATHS = new Set(PRECACHE.map((u) => new URL(u).pathname));
 
 self.addEventListener('install', (event) => {
@@ -57,9 +59,8 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const names = await caches.keys();
-    await Promise.all(names
-      .filter((n) => n.startsWith(PREFIX) && n !== CACHE)
-      .map((n) => caches.delete(n)));
+    const left = (n) => (OURS(n) && n !== CACHE) || (SITE.old && n.startsWith(SITE.old) && !OURS(n));
+    await Promise.all(names.filter(left).map((n) => caches.delete(n)));
     await self.clients.claim();
   })());
 });
@@ -77,8 +78,8 @@ self.addEventListener('fetch', (event) => {
   if (PRECACHE_PATHS.has(url.pathname)) {
     event.respondWith(savedFirst(req));
   }
-  // Anything else in scope (the src/ sources, the README) goes to the network
-  // untouched.
+  // Anything else in scope (version.json, the src/ sources, the README) goes
+  // to the network untouched.
 });
 
 /* The drill itself: network first, saved copy on failure or delay. */
