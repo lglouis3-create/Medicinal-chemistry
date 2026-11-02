@@ -164,3 +164,22 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-02)? No: the one exam, Exam 4, is Mon 9/21.
 - Preview published at https://lglouis3-create.github.io/Medicinal-chemistry/preview/;
   the live page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-02 09:54 UTC: kit update live (core ff7bd51 → 2bbe395)
+
+- Louis approved the preview in the "Kit updater" session ("Yrs do it", in reply to the
+  request for "approve updates for Medicinal-chemistry").
+- Commit e954e08 "kit update: core ff7bd51 → 2bbe395" on `main`: `src/` from branch
+  `kit/update-2bbe395` (2482622), root page rebuilt with `python3 build.py`, `preview/`
+  removed, the pin in `CLAUDE.md` updated. No `CHANGELOG.md` bullet was added, so the
+  live page matches the approved preview.
+- The live `index.html` differs from the approved `preview/index.html` only in the
+  preview banner (removed), the manifest link (added), `preview:false` and the build
+  stamp (diff of the two files, timestamps masked).
+- `run_checks.sh` before the commit: 23 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479 questions carry at least one explanation
+  issue). WebKit (Safari): NOT RUN, not installed.
+- Token grep before the commit: none found.
+- "pages build and deployment" for e954e08: completed, success (run 41424293314,
+  2026-11-02T09:53:59Z). The live page was not opened from this session.
