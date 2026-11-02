@@ -138,3 +138,29 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Louis approved the switch ("Yes merge and make it live"). `kit/move-to-core` merged
   `main`'s preview commits, removed `preview/`, rebuilt the root page and went to `main`.
 
+
+## 2026-11-02 08:50 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12.9)
+
+- Preflight: the kit and all four course repositories attached; `git fetch`,
+  `git push --dry-run` to `updater-access-test` and `gh api .../actions/runs?per_page=1`
+  answered for each; Python 3.13.18, Node v22.23.4 and Chromium start.
+- Pin `kit:{core:'ff7bd51'}` is behind kit `main` 2bbe395. Kit pull requests since the
+  pin: #5 (core: a start-up fault can no longer cost saved progress), #6 (calculation
+  features and core support: typed numbers, typed exam items, feature modules), #7 and
+  #8 (records only), #9 (core: an exam with no question count, section points or time
+  limit set). None is labelled `small-fix` and #5, #6 and #9 change the core, so the
+  update waits for Louis.
+- This course's copies of the pinned core files matched ff7bd51 exactly before the copy
+  (0 of the core files differed). The new core is on branch `kit/update-2bbe395`
+  (2482622), with `course.js` `kit:{core:'2bbe395'}`; `ns` (`phar4342final`) and every
+  question file unchanged. No `features` are on for this course.
+- `python3 build.py --preview`: 479 questions in 13 topics from 15 question files,
+  `preview/index.html` 7,210,455 bytes (live `index.html` 7,195,775 bytes).
+- `run_checks.sh` on that branch: 23 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479 questions carry at least one explanation
+  issue). New checks that ran: `startup_test.js` 77, `nullexam_test.js` 77.
+- WebKit (Safari): NOT RUN; not installed in this container.
+- Exam today (America/Chicago 2026-11-02)? No: the one exam, Exam 4, is Mon 9/21.
+- Preview published at https://lglouis3-create.github.io/Medicinal-chemistry/preview/;
+  the live page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
