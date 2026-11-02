@@ -166,5 +166,5 @@ const COURSE = {
       ['rx_gluc_sulf',           ['UGT', 'STs', 'Morphine 6-O-Glucuronide', 'Labetolol sulfate']],
     ],
   },
-  kit: {core:'ff7bd51'},   // lglouis3-create/exam-drill-kit main (merge of pull request #4)
+  kit: {core:'2bbe395'},   // lglouis3-create/exam-drill-kit main (merge of pull request #9)
 };

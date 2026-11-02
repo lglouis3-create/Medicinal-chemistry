@@ -29,14 +29,20 @@ function fgScale(svg, target, floor){
    "Epoxide oxirane". Exact match first, then case-insensitive, then the
    atlas key whose first word is the whole option, so a structure is drawn
    whenever one exists for that group and never for a different one. */
-const FG_KEYS = (typeof FG !== 'undefined') ? Object.keys(FG) : [];
+/* Built while the page starts, from an optional course table: a table of the
+   wrong shape leaves the index empty (no structure is drawn with an option),
+   with the error on the console, rather than stopping the page's script. */
+const FG_KEYS = (() => { try { return (typeof FG !== 'undefined') ? Object.keys(FG) : []; }
+  catch(e){ console.error('The structure index (FG) could not be built; options are shown without structures.', e); return []; } })();
 const FG_INDEX = (() => {
   const ix = {};
-  FG_KEYS.forEach(k => {
-    ix[k.toLowerCase()] = k;
-    const first = k.toLowerCase().split(' ')[0];
-    if(!(first in ix)) ix[first] = k;
-  });
+  try {
+    FG_KEYS.forEach(k => {
+      ix[k.toLowerCase()] = k;
+      const first = k.toLowerCase().split(' ')[0];
+      if(!(first in ix)) ix[first] = k;
+    });
+  } catch(e){ console.error('The structure index (FG) could not be built; options are shown without structures.', e); return {}; }
   return ix;
 })();
 function fgKey(name){
@@ -1539,11 +1545,23 @@ function drawPaper(){
   return shuffle(parts.flat());
 }
 const EXAM_KEY = () => NS + ':exam:' + PROFILE;
+/* An untimed paper (nullexam.js starts one when the course sets a count and no
+   time limit) has ends: null and `started`, when it began. It keeps its own
+   rules whatever the course says later: a course that gains a time limit while
+   such a paper is open still brings it back untimed, with its answers, its
+   place and the time taken, and only a paper started after that has the
+   countdown. The engine reads it, not nullexam.js, because a course that sets
+   every number has no nullexam.js in its page. A timed paper is saved exactly
+   as before. */
+const untimedPaper = () => !!EX && EX.ends === null && typeof EX.started === 'number';
+// written, and removed, only when the saved progress was loaded (canSave in shell.html)
 function saveExam(){
-  if(!EX || !EX.running) return;
-  store.set(EXAM_KEY(), JSON.stringify({ids:EX.qs.map(q=>q.id), picks:EX.picks, orders:EX.orders, i:EX.i, ends:EX.ends}));
+  if(!EX || !EX.running || !canSave()) return;
+  const paper = {ids:EX.qs.map(q=>q.id), picks:EX.picks, orders:EX.orders, i:EX.i, ends:EX.ends};
+  if(untimedPaper()) paper.started = EX.started;
+  store.set(EXAM_KEY(), JSON.stringify(paper));
 }
-function clearExam(){ store.del(EXAM_KEY()); }
+function clearExam(){ if(canSave()) store.del(EXAM_KEY()); }
 /* A paper saved by an earlier visit is brought back if its clock has not run
    out; otherwise it is submitted as it stands. */
 function restoreExam(){
@@ -1552,12 +1570,21 @@ function restoreExam(){
   if(!j || !j.ids) return false;
   const qs = j.ids.map(byId); if(qs.some(q => !q)) { clearExam(); return false; }
   EX = {qs, i:Math.min(j.i||0, qs.length-1), picks:j.picks, orders:j.orders, running:true, done:false, ends:j.ends};
-  if(Date.now() >= EX.ends){ finishExam(true); return true; }
+  if(j.ends === null && typeof j.started === 'number') EX.started = j.started;   // untimed: never expires
+  else if(Date.now() >= EX.ends){ finishExam(true); return true; }
   startClock();
   return true;
 }
+const tookText = () => fmt(Date.now() - EX.started) + ' taken';
 function startClock(){
   clearInterval(EX.timer);
+  if(untimedPaper()){
+    EX.timer = setInterval(()=>{
+      if(!EX || !EX.running) return clearInterval(EX && EX.timer);
+      const c = document.getElementById('exClock'); if(c) c.textContent = tookText();
+    }, 1000);
+    return;
+  }
   EX.timer = setInterval(()=>{
     if(!EX || !EX.running) return clearInterval(EX.timer);
     if(Date.now() >= EX.ends){ finishExam(true); return; }
@@ -1582,7 +1609,7 @@ function renderExamQ(){
   const answered = EX.picks.filter(p => Array.isArray(p) ? p.length > 0 : p !== null).length;
   const multi = isMulti(q);
   let h = `<div class="examhead">
-    <span class="clock" id="exClock">${fmt(EX.ends-Date.now())}</span>
+    <span class="clock" id="exClock"${untimedPaper() ? ' title="Time taken so far: this paper is untimed"' : ''}>${untimedPaper() ? tookText() : fmt(EX.ends-Date.now())}</span>
     <span class="prog">Question ${EX.i+1} of ${EX.qs.length} · ${answered} answered</span>
   </div>
   <div class="qcard"><div class="qhead">${profTag(q.prof)}${multi ? '<span class="tag sata">select all that apply</span>' : ''}<span class="spacer"></span>
@@ -1626,6 +1653,7 @@ const examBlank = (q, p) => isMulti(q) ? !(Array.isArray(p) && p.length) : (p ==
    misses, for a paper that could not be finished. */
 function finishExam(partial){
   clearInterval(EX.timer);
+  if(untimedPaper()) EX.took = Date.now() - EX.started;
   EX.running = false; EX.done = true; EX.partial = !!partial;
   EX.qs.forEach((q,i)=>{
     const p = EX.picks[i];
@@ -1640,7 +1668,8 @@ function renderExamResult(){
   const right = EX.qs.filter((q,i)=> examRight(q, EX.picks[i])).length;
   const blank = EX.qs.filter((q,i)=> examBlank(q, EX.picks[i])).length;
   const pct = Math.round(100*right/EX.qs.length);
-  let h = `<h2>Exam simulation — ${right} / ${EX.qs.length} (${pct}%)</h2>
+  let h = `<h2>Exam simulation — ${right} / ${EX.qs.length} (${pct}%)</h2>${typeof EX.took === 'number' ? `
+  <p class="sub" id="exTook">Time taken: ${fmt(EX.took)}. This paper was untimed.</p>` : ''}
   <p class="sub">${blank ? blank + ' left blank' + (EX.partial ? ', not logged. ' : ', scored as incorrect. ') : ''}${EX.partial ? 'The answered items are' : 'All ' + EX.qs.length + ' are'} now in your history,
   so anything you missed is back in active review.</p>
   <p><button class="btn" id="exAgain">New paper</button>
@@ -2137,9 +2166,12 @@ function renderSettings(){
   $('#expGuides').onclick = () => download(`${COURSE.id}-guides.html`, readingHtml(), 'text/html');
   $('#btnExport').onclick = exportProgress;
   wireHome($('#v-settings'));
-  $('#btnImport').onclick = ()=> $('#fileIn').click();
+  // Import and Erase replace the saved progress, so they too do nothing when
+  // it was not loaded in this visit, and say why
+  $('#btnImport').onclick = ()=>{ if(!canSave()){ alert(LOAD_FAIL + ' The file was not imported.'); return; } $('#fileIn').click(); };
   $('#fileIn').onchange = e=>{
     const f = e.target.files[0]; if(!f) return;
+    if(!canSave()){ e.target.value = ''; alert(LOAD_FAIL + ' The file was not imported.'); return; }
     const r = new FileReader();
     r.onload = ()=>{
       try{
@@ -2154,8 +2186,10 @@ function renderSettings(){
     r.readAsText(f);
   };
   $('#btnReset').onclick = ()=>{
+    if(!canSave()){ alert(LOAD_FAIL + ' Nothing was erased.'); return; }
     if(confirm(`Erase all quiz history for "${PROFILE}"? This cannot be undone.`)){
-      DB = BLANK(); save(); LOG = []; saveLog(); alert('History erased.'); renderSettings();
+      // erasing replaces a stored history that could not be read, too
+      DB = BLANK(); save(); LOG = []; LOG_OK = true; saveLog(); alert('History erased.'); renderSettings();
     }
   };
 }
@@ -2213,23 +2247,55 @@ isDue = function(s){ return (DB.settings.mode === 'all') ? true : _isDue(s); };
 
 /* ==========================================================================
    BOOT
-   ========================================================================== */
-document.title = COURSE.title.replace(/\u2014.*/, '').trim() + ' — exam drill';
-document.getElementById('courseTitle').textContent = COURSE.title;
-document.querySelectorAll('#nav button').forEach(b => b.onclick = () => show(b.dataset.v));
-document.getElementById('btnWho').onclick = () => { askProfile(true); show(VIEW); };
+   ==========================================================================
+   The saved progress is read first, before any step that builds the page.
+   (load() in shell.html needs the answer history and the scheduler, which the
+   shell defines after the storage code, so this is the earliest point it can
+   run; before it, only a preview's first-visit copy of the live keys writes to
+   storage, and it copies them unchanged.) Until 2026-11-01 the tab
+   steps came first: when one threw (in a scratch move of the
+   Pharmacokinetics drill, a DIAGRAMS list of another shape), start-up stopped
+   before the load, the drill ran on a blank progress, and the next answer
+   was saved over the saved progress. Every write of the progress, the answer
+   history and the exam paper also waits for a load that worked (canSave in
+   shell.html), so a fault before or in the load cannot cost saved progress.
+
+   Every step after the load runs on its own (bootStep): a step that throws is
+   skipped with its error on the console, and the rest of start-up goes on, so
+   one feature's fault cannot stop the drill. A tab whose list cannot be built
+   is removed, as an empty one is. */
+function bootStep(name, run, onFail){
+  try { run(); return true; }
+  catch(e){
+    console.error(`Start-up step skipped: ${name}.`, e);
+    if(onFail){ try { onFail(); } catch(e2){ console.error(`Start-up step skipped: ${name} (its fallback failed too).`, e2); } }
+    return false;
+  }
+}
+bootStep('loading the saved progress', () => askProfile(false), () => { if(!canSave()) loadWarn(true); });
+bootStep('the page title', () => {
+  document.title = COURSE.title.replace(/\u2014.*/, '').trim() + ' — exam drill';
+  document.getElementById('courseTitle').textContent = COURSE.title;
+});
+bootStep('the tab buttons', () => {
+  document.querySelectorAll('#nav button').forEach(b => b.onclick = () => show(b.dataset.v));
+  document.getElementById('btnWho').onclick = () => { askProfile(true); show(VIEW); };
+});
 /* A tab with nothing in it is removed rather than left to open on an empty
    page: the atlas when the course draws no structures, the Diagrams tab when no
-   figure is registered. */
+   figure is registered, and either one when its list cannot be built. */
 const dropTab = v => { const b = document.querySelector(`#nav button[data-v="${v}"]`); if(b) b.remove(); };
-if(COURSE.atlas === false || typeof ATLAS === 'undefined' || !ATLAS.boards || !ATLAS.boards.length) dropTab('atlas');
-if(!DIA_LIST().length) dropTab('diagrams');
-askProfile(false);
+bootStep('the Atlas tab', () => {
+  if(COURSE.atlas === false || typeof ATLAS === 'undefined' || !ATLAS.boards || !ATLAS.boards.length) dropTab('atlas');
+}, () => dropTab('atlas'));
+bootStep('the Diagrams tab', () => { if(!DIA_LIST().length) dropTab('diagrams'); }, () => dropTab('diagrams'));
 // Chrome offers installing the drill after the first render; the Home Screen
 // section in Settings turns into an Install button where it is on screen, and
 // shows one the next time Settings is drawn.
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; refreshHomeCards(); });
-window.addEventListener('appinstalled', () => { installPrompt = null; refreshHomeCards(); });
+bootStep('the Home Screen section', () => {
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; refreshHomeCards(); });
+  window.addEventListener('appinstalled', () => { installPrompt = null; refreshHomeCards(); });
+});
 
 /* ---------- the bar along the bottom ----------
    One bar (Medicinal-chemistry's #swbar) carries both a plain note and an offer
@@ -2269,7 +2335,7 @@ function offerReload(text){
    origin, and opened from disk the file is already self-contained. It never
    reloads on its own; a student part-way through an exam paper decides when
    (Medicinal-chemistry, ed38dbd). */
-(function offline(){
+bootStep('the offline copy', function offline(){
   const sw = navigator.serviceWorker;
   const hosted = location.protocol === 'https:' ||
                  location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -2292,7 +2358,7 @@ function offerReload(text){
       bar('Saved for offline use: the drill now opens with no connection.', null, null, 7000);
     }, {once: true});
   }).catch(() => {});
-})();
+});
 
 /* ---------- a newer version is published ----------
    A page left open keeps the copy it loaded. Every 15 minutes, and when the tab
@@ -2308,9 +2374,11 @@ function checkForUpdate(){
     offerReload('A newer version of the drill is published. Your progress is kept.');
   }).catch(() => {});
 }
-setInterval(checkForUpdate, 15 * 60000);
-document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') checkForUpdate(); });
-setTimeout(checkForUpdate, 5000);
+bootStep('the update check', () => {
+  setInterval(checkForUpdate, 15 * 60000);
+  document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') checkForUpdate(); });
+  setTimeout(checkForUpdate, 5000);
+});
 
 /* ---------- keeping the place across a reload ----------
    A reload (Reload for a newer version, the browser's own, or a phone that drops
@@ -2391,19 +2459,24 @@ function placeRestore(pl){
     placeScroll(pl);
     [350, 1200].forEach(ms => setTimeout(() => { if(!PLACE_MOVED && VIEW === pl.v) placeScroll(pl); }, ms));
     return true;
-  } catch(e){ Q = null; return false; }
+  } catch(e){ console.error('Start-up step skipped: the place before the reload could not be brought back.', e); Q = null; return false; }
 }
-try { history.scrollRestoration = 'manual'; } catch(e){}
-window.addEventListener('scroll', placeSoon, {passive: true});
-document.addEventListener('toggle', placeSoon, true);
-document.addEventListener('click', placeSoon);
-['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(t => window.addEventListener(t, () => { PLACE_MOVED = true; }, {passive: true, capture: true}));
-document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden') placeSave(); });
-window.addEventListener('pagehide', placeSave);
+bootStep('keeping the place across a reload', () => {
+  try { history.scrollRestoration = 'manual'; } catch(e){}
+  window.addEventListener('scroll', placeSoon, {passive: true});
+  document.addEventListener('toggle', placeSoon, true);
+  document.addEventListener('click', placeSoon);
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(t => window.addEventListener(t, () => { PLACE_MOVED = true; }, {passive: true, capture: true}));
+  document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden') placeSave(); });
+  window.addEventListener('pagehide', placeSave);
+});
 
 /* A running paper comes back first (restoreExam); otherwise the place saved
-   before the reload, otherwise Topics. */
-{ const ex = restoreExam(), pl = placeLoad();
-  if(ex) show('exam');
-  else if(!(pl && placeRestore(pl))) show('topics');
+   before the reload, otherwise Topics. A paper or a place that cannot be
+   brought back leaves the next one to open. */
+{ let ex = false, pl = null;
+  bootStep('bringing back a running exam paper', () => { ex = restoreExam(); });
+  bootStep('reading the place saved before the reload', () => { pl = placeLoad(); });
+  const shown = ex ? bootStep('the exam page', () => show('exam')) : !!(pl && placeRestore(pl));
+  if(!shown) bootStep('the Topics page', () => show('topics'));
   PLACE_READY = true; }
