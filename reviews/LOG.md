@@ -183,3 +183,27 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Token grep before the commit: none found.
 - "pages build and deployment" for e954e08: completed, success (run 41424293314,
   2026-11-02T09:53:59Z). The live page was not opened from this session.
+
+## 2026-11-03 08:50 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all four course repositories attached; `git fetch`,
+  `git push --dry-run` to `updater-access-test` and `gh api .../actions/runs?per_page=1`
+  answered for each; Python 3.13.18, Node v22.23.4 and Chromium start.
+- Pin `kit:{core:'2bbe395'}` is behind kit `main` e827671. Under `skill/SKILL.md` Mode 7
+  as of e827671 (decision 10, 2026-11-03), no update goes live without Louis's reply.
+- This course's copies of the pinned core files matched 2bbe395 exactly before the copy.
+  The 18 core files changed since 2bbe395 are checks, tests and check helpers; the page
+  code (`views.js`, `shell.html`, `build.py`) is unchanged. New core on branch
+  `kit/update-e827671` (00b331b), with `course.js` `kit:{core:'e827671'}`; `ns` and every
+  question file unchanged.
+- `python3 build.py --preview`: 479 questions; the preview page differs from the live
+  page only in the build time, the pin inside the embedded manifest and the preview
+  marks (banner, `preview:true`, no manifest link) (diff, timestamps masked).
+- `run_checks.sh` on that branch: 24 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479 questions carry at least one explanation
+  issue). New check that ran: `style_check_test.js` 29. WebKit (Safari): NOT RUN, not
+  installed.
+- Exam today (America/Chicago 2026-11-03)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
+  page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
