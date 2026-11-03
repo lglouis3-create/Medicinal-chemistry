@@ -207,3 +207,27 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-03)? No: the one exam, Exam 4, was Mon 9/21.
 - Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
   page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-03 12:55 UTC: kit update live (core 2bbe395 → e827671)
+
+- Louis approved in the "Kit updater" session after testing the preview on his device
+  ("Then approve of the updates and continue forward"), asking first for two checks:
+  - GitHub checks: this repository's only workflow is the Pages deploy and `main` has no
+    branch protection, so it has no required checks of its own; the preview commit
+    4ee665c deployed with success. The kit's "Kit checks" run 41599615956 for e827671
+    passed all 9 jobs; its "Chromium · medicinal-chemistry" job (this course's `main` at
+    07:56 UTC with the e827671 core copied in, the same content as branch commit 00b331b)
+    printed 24 PASS, 0 FAIL, 2 NOT RUN, 1 REPORT. No check ran on 00b331b itself. The kit
+    WebKit job ran on the template course, not on this course.
+  - Explanation report: `LIMIT=1000 node explain_check.js` on the live build (4ee665c,
+    core 2bbe395) and on the update (00b331b, core e827671): the two full listings are
+    identical (816 lines each; 363 of 479 questions flagged in both).
+- Commit 39edc49 "kit update: core 2bbe395 → e827671" on `main`: `src/` from branch
+  `kit/update-e827671`, root page rebuilt, `preview/` removed, pin in `CLAUDE.md`
+  updated. No `CHANGELOG.md` bullet added; the page matches the approved preview except
+  the preview banner (removed), the manifest link (added) and `preview:false`.
+- `run_checks.sh` before the commit: 24 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`,
+  `cite_check.py`), 1 REPORT (`explain_check.js`). WebKit (Safari): NOT RUN here.
+- Token grep before the commit: none found.
+- "pages build and deployment" for 39edc49: completed, success (run 41639659320,
+  2026-11-03T12:55:02Z). The live page was not opened from this session.
