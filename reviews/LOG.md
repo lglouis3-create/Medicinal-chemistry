@@ -231,3 +231,32 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Token grep before the commit: none found.
 - "pages build and deployment" for 39edc49: completed, success (run 41639659320,
   2026-11-03T12:55:02Z). The live page was not opened from this session.
+
+## 2026-11-04 08:50 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all four course repositories attached; `git fetch`,
+  `git push --dry-run` to `updater-access-test` and `gh api .../actions/runs?per_page=1`
+  answered for each; Python 3.13.18, Node v22.23.4 and Chromium start.
+- Pin `kit:{core:'e827671'}` is behind kit `main` 91b5920 (kit pull requests #39, #42,
+  #43, #44). No update goes live without Louis's reply (the run's instructions of
+  2026-11-03 and `skill/SKILL.md` Mode 7).
+- This course's copies of the pinned core files matched e827671 exactly before the copy.
+  Core files changed: `shell.html` and `views.js` (#39: a save still waiting on its
+  150 ms timer is written when the page is hidden or closed), `storage_test.js`,
+  `check_lib.js`, `ci_course.sh`. The saved data and its format, `ns` and every
+  question file are unchanged. New core on branch `kit/update-91b5920` (504ae6e).
+- `python3 build.py --preview`: 479 questions; the preview page differs from the live
+  page in the #39 lines, the pin inside the embedded manifest and the preview marks
+  (diff, timestamps masked).
+- `run_checks.sh` on that branch: 24 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479). `storage_test.js` 29 checks (24 before).
+  WebKit (Safari): NOT RUN here.
+- `LIMIT=1000 node explain_check.js` on the live build and on the update: identical
+  listings (816 lines each).
+- Kit "Kit checks" run 41672860821 for 91b5920: 13 of 13 jobs success, including
+  "Chromium · medicinal-chemistry" (this course with that core copied in) and the WebKit
+  template and module jobs; no WebKit job runs this course.
+- Exam today (America/Chicago 2026-11-04)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
+  page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
