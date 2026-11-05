@@ -260,3 +260,34 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-04)? No: the one exam, Exam 4, was Mon 9/21.
 - Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
   page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-05 08:50 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all four course repositories attached; `git fetch`,
+  `git push --dry-run` to `updater-access-test` and `gh api .../actions/runs?per_page=1`
+  answered for each; Python 3.13.18, Node v22.23.4 and Chromium start.
+- Pin `kit:{core:'e827671'}` is behind kit `main` 8ec7125. The preview of 2026-11-04
+  (91b5920) had no reply from Louis; this preview replaces it. Kit pull requests since
+  91b5920: #32, #45, #46, #47, #48, #51 (Import, one writing tab per profile, per-tab
+  last-save records, storage use in Settings, history kept when a save is refused, no
+  silent history cut). No update goes live without Louis's reply.
+- This course's copies of the pinned core files matched e827671 exactly before the copy.
+  New core on branch `kit/update-8ec7125` (c44ba69); `ns` and every question file unchanged.
+- Old progress in the new page (scratch Playwright test, Chromium, same origin, service
+  workers blocked): 5 answers saved by the live build (e827671) loaded in the new build
+  as the same 5 answers, profile `me`, no read-only wall, a sixth answer saved; one new
+  storage key, `phar4342final:writer:me`; no page errors.
+- `python3 build.py --preview`: 479 questions, `preview/index.html` 6.99 MB.
+- `run_checks.sh` on that branch: 27 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479). New: `import_test.js` 273,
+  `storage_use_test.js` 43, `cap_test.js` 18; `history_test.js` 94 (28 before).
+  WebKit (Safari): NOT RUN here.
+- `LIMIT=1000 node explain_check.js` on the live build and on the update: identical
+  listings (816 lines each).
+- Kit "Kit checks" run 41975821787 for 8ec7125: 13 of 13 jobs success, including
+  "Chromium · medicinal-chemistry" and "WebKit · template"; no WebKit job runs this
+  course.
+- Exam today (America/Chicago 2026-11-05)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
+  page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
