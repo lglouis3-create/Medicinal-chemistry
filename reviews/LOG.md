@@ -311,3 +311,17 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Token grep before the commit: none found.
 - "pages build and deployment" for 0e456c6: completed, success (run 42034138003,
   2026-11-05T13:15:50Z). The live page was not opened from this session.
+
+## 2026-11-06: kit update e827671 → 8ec7125 complete (Louis's device check)
+
+- Louis, in the "Kit updater" session: "The live Medicinal-chemistry site works on my
+  device, and progress saves after reloading." He asked for this update to be marked
+  complete.
+- The check applies to the live site built by commit 0e456c6 ("kit update: core
+  e827671 → 8ec7125"); the final commit on `main` is 0b55d5e (the log entry of that
+  update), whose "pages build and deployment" run 42034302760 completed with success
+  on 2026-11-05T13:16:52Z. Pin: `kit:{core:'8ec7125'}`; no `preview/` folder.
+- Status: complete. Later kit updates follow the preview-and-approval process (the
+  "Kit update run" instructions of 2026-11-03 and kit `skill/SKILL.md` Mode 7): a
+  preview at `/preview/`, a summary to Louis, and the live page changed only after his
+  "approve updates for Medicinal-chemistry".
