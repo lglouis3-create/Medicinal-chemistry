@@ -325,3 +325,27 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
   "Kit update run" instructions of 2026-11-03 and kit `skill/SKILL.md` Mode 7): a
   preview at `/preview/`, a summary to Louis, and the live page changed only after his
   "approve updates for Medicinal-chemistry".
+
+## 2026-11-06 08:50 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all five attached course repositories (the four in `COURSES.md`
+  on kit `main` 62b886b, and DEENT, attached 2026-11-06 but not yet listed there);
+  `git fetch`, `git push --dry-run` to `updater-access-test` and
+  `gh api .../actions/runs?per_page=1` answered for each; Python 3.13.18, Node v22.23.4
+  and Chromium start.
+- Pin `kit:{core:'8ec7125'}` is behind kit `main` 62b886b (kit pull requests #55, #60).
+  Core files changed: `storage_test.js` and `import_test.js` only (#55); the page code is
+  unchanged. No update goes live without Louis's reply.
+- This course's copies of the pinned core files matched 8ec7125 exactly before the copy.
+  New core on branch `kit/update-62b886b` (4b15884); `ns` and every question file unchanged.
+- `python3 build.py --preview`: 479 questions; the preview page differs from the live
+  page only in the pin inside the embedded manifest, the build time and the preview marks
+  (diff, timestamps masked).
+- `run_checks.sh` on that branch: 27 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479, the same count as the live build;
+  `explain_check.js` and the question files are unchanged since 8ec7125, so the listing
+  is the same). `storage_test.js` 31 checks (29 before). WebKit (Safari): NOT RUN here.
+- Exam today (America/Chicago 2026-11-06)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
+  page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
