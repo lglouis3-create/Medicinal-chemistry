@@ -349,3 +349,38 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-06)? No: the one exam, Exam 4, was Mon 9/21.
 - Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
   page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-07 08:47 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all five course repositories in `COURSES.md` on kit `main`
+  0eeb13b (BDK, Basic-Pharmacokinetics-, DEENT, Intro-Pharmacology-, Medicinal-chemistry),
+  each attached to the session; `git fetch`, `git push --dry-run` to
+  `kit-updater-preflight-scratch` and `gh api .../actions/runs?per_page=1` answered for
+  each; Python 3.13.18, Node v22.23.4 and Chromium 153.0.8010.12 start.
+  `node coordinator/coord.js kitupdate --json` on kit `main`: DEENT paused, the other four
+  active.
+- Pin `kit:{core:'8ec7125'}` on `main` (410c99e, the commit Pages last deployed) is behind
+  kit `main` 0eeb13b (kit pull requests #57, #65, #68, #50, #71, #69, #58, #67 merged since
+  62b886b). The preview of 62b886b built on 2026-11-06 was not approved; this run replaces
+  it. "Kit checks" on 0eeb13b: run 42327179077, completed, success.
+- Core files changed since 8ec7125: `check_lib.js`, `ci_course.sh`, `import_test.js`,
+  `run_checks.sh`, `scheduler_test.js`, `shell.html`, `storage_test.js`, `views.js`; new
+  `ci_exclusions.sh`, `notruncase_test.js`, `ownership_test.js`, `record_modules_test.js`.
+  Page code changed in `shell.html` and `views.js`: a running exam, quiz or targeted review
+  stays with the profile it started in (#58); a tab's last save keeps every module's data
+  through placement and recovery and is never removed to make room (#69); take-overs and the
+  lock check after a profile switch wait for the real lock release (#71, #68). No update
+  goes live without Louis's reply.
+- This course's copies of the pinned core files matched 8ec7125 exactly before the copy.
+  New core on branch `kit/update-0eeb13b`; `ns` and every question file unchanged.
+- `python3 build.py --preview`: 479 questions, 189 images; the preview page differs from
+  the live page in 187 lines (diff with timestamps masked): the preview note, the pin and
+  build stamp in the embedded manifest, and the `views.js` changes above.
+- `run_checks.sh` on that branch: 30 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no
+  step-through figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/),
+  1 REPORT (`explain_check.js`: 363 of 479, the same count as the live build), 0 NOT RUN
+  cases. New checks: `notruncase_test.js` 42, `record_modules_test.js` 52,
+  `ownership_test.js` 54. WebKit (Safari): NOT RUN here (Chromium only in this container).
+- Exam today (America/Chicago 2026-11-07)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
+  page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
