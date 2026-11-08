@@ -399,3 +399,26 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - "pages build and deployment" for db6da5b: completed, success (run 42460750977,
   2026-11-08T07:56:01Z). The live page was not opened from this session (the Pages host
   is not reachable from the container).
+
+## 2026-11-08 08:48 UTC: kit-update run (scheduled task "Kit update run", KIT_DESIGN.md §12)
+
+- Preflight: the kit and all five course repositories in `COURSES.md` on kit `main`
+  1bdc08e, each attached; `git fetch`, `git push --dry-run` and `gh api
+  .../actions/runs?per_page=1` answered for each; Python 3.13.18, Node v22.23.4 and
+  Chromium 153.0.8010.12 start. `coord.js kitupdate`: DEENT paused, the other four active.
+- Pin `kit:{core:'0eeb13b'}` on `main` (21ccdae, deployed) against kit `main` 1bdc08e: the
+  only kit change since 0eeb13b is pull request #74 (the coordination policy document);
+  no file under `core/` or `features/` changed, so the course's core copies already match
+  kit `main` byte for byte. The run first reported the course as current; Louis replied
+  in the session that the pin should track kit `main`, so this preview was built.
+- Branch `kit/update-1bdc08e`: `course.js` pin only; every other file unchanged.
+- `python3 build.py --preview`: 479 questions, 189 images; the preview differs from the
+  live page only in the preview note, the pin and the build stamp (6 lines, timestamps
+  masked).
+- `run_checks.sh`: 30 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no step-through figures
+  in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/), 1 REPORT
+  (`explain_check.js`: 363 of 479, as the live build), 0 NOT RUN cases. WebKit (Safari):
+  NOT RUN here (Chromium only).
+- Exam today (America/Chicago 2026-11-08)? No: the one exam, Exam 4, was Mon 9/21.
+- Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live page
+  is unchanged. "approve updates for Medicinal-chemistry" makes it live.
