@@ -9,6 +9,9 @@ Site: https://lglouis3-create.github.io/Medicinal-chemistry/ (GitHub Pages from 
 repository root). Repository: `lglouis3-create/Medicinal-chemistry`. Course: PHAR 4342
 PT I, Intro to Medicinal Chemistry, Fall 2026, cumulative final (Exam 4) on Mon 9/21,
 9:00-10:15 am (`src/course.js`). The exam has passed; no later exam date is recorded.
+Louis, 2026-11-08: the course has ended. A kit-update preview is no longer built because the
+pin differs from kit `main` alone; the course stays eligible for improvements that fit its
+material, published under his standing authorization for routine updates.
 
 ## Read first
 
@@ -39,10 +42,11 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit `main` at `0eeb13b` (kit pull request #67;
-  `course.js` `kit:{core:'0eeb13b'}`; updated from `ff7bd51` to `2bbe395` on
-  2026-11-02, to `e827671` on 2026-11-03, to `8ec7125` on 2026-11-05 and to `0eeb13b`
-  on 2026-11-08, each by the kit-update run after Louis approved the preview). Only Mode 7 of the
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit `main` at `1bdc08e` (kit pull request #74;
+  `course.js` `kit:{core:'1bdc08e'}`; updated from `ff7bd51` to `2bbe395` on
+  2026-11-02, to `e827671` on 2026-11-03, to `8ec7125` on 2026-11-05, to `0eeb13b` on
+  2026-11-08 after Louis approved the preview, and to `1bdc08e` on 2026-11-08 under
+  Louis's standing authorization of 2026-11-08 for routine updates). Only Mode 7 of the
   kit's skill, or the nightly kit-update run under `KIT_DESIGN.md` §12.9, changes the
   pin.
 - The question files are listed in `course.js` `files`, and this course's tables for
