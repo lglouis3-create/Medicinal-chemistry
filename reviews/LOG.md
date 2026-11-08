@@ -422,3 +422,23 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-08)? No: the one exam, Exam 4, was Mon 9/21.
 - Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live page
   is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-08: kit update 0eeb13b → 1bdc08e live, deploy confirmed; course recorded as ended
+
+- Louis, 2026-11-08, in the "Kit updater" session: standing authorization to prepare,
+  validate and publish routine course updates without a per-update approval, and the
+  instruction to finish this update if it qualifies as routine. It does: the change is the
+  pin line in `course.js`; the course's core copies already matched kit `main` 1bdc08e.
+- Verification before publishing: `main` was ed10308 (the preview commit) and branch
+  `kit/update-1bdc08e` 78e531d as logged; the preview's pin read 1bdc08e; the live build
+  from the branch's `src/` differs from the validated preview only in the preview note,
+  the manifest link and the `preview` flag of BUILD (stamps masked).
+- Commit 59c9a86 "kit update: core 0eeb13b → 1bdc08e" on `main`: `preview/` removed, the
+  `CLAUDE.md` pin paragraph updated, and the course recorded as ended (Louis, 2026-11-08):
+  no kit-update preview is built for a pin difference alone from now on; the course stays
+  eligible for improvements that fit its material. Rollback: revert 59c9a86.
+- "pages build and deployment" for 59c9a86: completed, success (run 42472429167,
+  2026-11-08T10:41:53Z).
+- Kit `main` has since moved to fa579cd (#62, #70, #72, #59, #73). Those are study-flow,
+  exam-review and optional-topic changes to the core, assessed for this course under the
+  maintenance policy, not applied here.
