@@ -384,3 +384,18 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Exam today (America/Chicago 2026-11-07)? No: the one exam, Exam 4, was Mon 9/21.
 - Preview at https://lglouis3-create.github.io/Medicinal-chemistry/preview/; the live
   page is unchanged. "approve updates for Medicinal-chemistry" makes it live.
+
+## 2026-11-08: kit update 8ec7125 → 0eeb13b live, deploy confirmed
+
+- Louis, in the "Kit updater" session, 2026-11-08: "Approve updates for medicinal
+  chemistry", after the summary of the 2026-11-07 run and the preview at `/preview/`
+  (main d15f20b).
+- Commit db6da5b "kit update: core 8ec7125 → 0eeb13b" on `main`: `src/` from branch
+  `kit/update-0eeb13b` (016ac02, the files the checks ran on: 30 PASS, 0 FAIL, 2 NOT RUN,
+  1 REPORT), `python3 build.py` for the live `index.html` and `version.json`, `preview/`
+  removed, the pin paragraph of `CLAUDE.md` updated. Pin: `kit:{core:'0eeb13b'}`. Question
+  files, ids and `ns` unchanged; `sw.js` unchanged (its cache name changes only when the
+  shape of what is cached changes).
+- "pages build and deployment" for db6da5b: completed, success (run 42460750977,
+  2026-11-08T07:56:01Z). The live page was not opened from this session (the Pages host
+  is not reachable from the container).
