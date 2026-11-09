@@ -42,11 +42,12 @@ Counts from the built pages (`QUESTIONS`, `IMAGES`) and `node test.js`, 2026-11-
 ## The engine and the kit pin
 
 - Since this branch the engine is the kit core: every file of the kit's `core/` except
-  `README.md`, plus `core/vendor/`, copied into `src/` from kit `main` at `1bdc08e` (kit pull request #74;
-  `course.js` `kit:{core:'1bdc08e'}`; updated from `ff7bd51` to `2bbe395` on
+  `README.md`, plus `core/vendor/`, copied into `src/` from kit `main` at `cad669b` (kit pull request #94;
+  `course.js` `kit:{core:'cad669b'}`; updated from `ff7bd51` to `2bbe395` on
   2026-11-02, to `e827671` on 2026-11-03, to `8ec7125` on 2026-11-05, to `0eeb13b` on
-  2026-11-08 after Louis approved the preview, and to `1bdc08e` on 2026-11-08 under
-  Louis's standing authorization of 2026-11-08 for routine updates). Only Mode 7 of the
+  2026-11-08 after Louis approved the preview, to `1bdc08e` on 2026-11-08 and to
+  `cad669b` on 2026-11-09, the last two under Louis's standing authorization of
+  2026-11-08 for routine updates). Only Mode 7 of the
   kit's skill, or the nightly kit-update run under `KIT_DESIGN.md` §12.9, changes the
   pin.
 - The question files are listed in `course.js` `files`, and this course's tables for
