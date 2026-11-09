@@ -442,3 +442,47 @@ list; the three test defects above and `scheduler_test.js`'s fixed file name.
 - Kit `main` has since moved to fa579cd (#62, #70, #72, #59, #73). Those are study-flow,
   exam-review and optional-topic changes to the core, assessed for this course under the
   maintenance policy, not applied here.
+
+## 2026-11-09 08:48 UTC: kit-update run; kit update 1bdc08e → cad669b live (routine, standing authorization)
+
+- Preflight: the kit and all five course repositories in `COURSES.md` on kit `main`
+  cad669b, each attached; `git fetch`, `git push --dry-run` and `gh api
+  .../actions/runs?per_page=1` answered for each; Python 3.13.18, Node v22.23.4 and
+  Chromium 153.0.8010.12 start. `coord.js kitupdate`: DEENT paused, the other four active.
+- Assessment (kit `CHANGELOG.md`, `git log --stat 1bdc08e..cad669b -- core/ features/
+  template/`, the `core/README.md` storage sections, `review/standing-autonomy-2026-11-08.md`):
+  18 core files changed since the pin, among them `shell.html`, `views.js`, `build.py`,
+  `features.js`, and five new checks; no change to `store`, `save`, `load`, `upgradeDB`, the
+  progress version, any `<ns>:data|log|pending` key, `saveExam`/`clearExam`'s payload, the
+  worker, question ids or `ns`. What a student of this course gains: a Start here block on
+  Topics; wide reading tables that keep their first column on a narrow screen; a tab bar that
+  scrolls its opened tab into view; 44 px step-through and Enlarge controls, with a placeholder
+  that keeps the page in place (#70, #90); Atlas Reveal name buttons and a Hide names mode that
+  names no structure; a targeted repeat that stays inside its set and Weak spots numbers that
+  say what they count (#62); the exam paper's last-question "Review answers" opening an overview
+  with one Submit instead of submitting at once, a neutral selection colour, and an opening page
+  that describes select-all items from the engine's own sample draws (#59). Optional topics
+  (#72), the `share` tags and `manifest.short_name` (#88) and the feature-module hooks (#80,
+  #84) are inert here: no `optional` topic, no `share` or `manifest` key, no `features`.
+  Judged routine under Louis's 2026-11-08 list: no content, exam setting, scoring, scheduling or
+  progress-storage change; the exam Review change removes nothing (Submit stays on every
+  question and on the overview). The course has ended; no exam day.
+- Candidate: branch `kit/update-cad669b` (0d77223): every file of kit `core/` at cad669b
+  except `README.md`, byte for byte (verified), and the one pin line in `course.js`; no other
+  file. `run_checks.sh` on it: 35 PASS, 0 FAIL, 2 NOT RUN (`stepper_test.js`: no step-through
+  figures in DIA; `cite_check.py`: no lecture PDFs under decks/ or src/), 1 REPORT
+  (`explain_check.js`: 363 of 479, as the live build), 0 NOT RUN cases. New checks:
+  `flow_test.js` 71, `ux_test.js` 95, `optional_test.js` 53, `exam_review_test.js` 88,
+  `share_test.js` 41. WebKit (Safari): NOT RUN here (Chromium only). Kit checks on cad669b:
+  run 42586013028, completed, success.
+- Independent review (a separate reviewer agent, read-only) of 0d77223 against 97ecf8b: the
+  18 core files equal kit cad669b; every other core file and `core/vendor/` identical; the
+  `course.js` diff is the pin line only; no question, atlas, glossary, reference, tell, guide,
+  image or changelog file changed; no storage, worker, id or `ns` change; built page differs
+  from the live page only in the core CSS and script, the pin and the preview artifacts.
+  Verdict: routine, approve.
+- Published: commit f927264 "kit update: core 1bdc08e → cad669b" on `main` (the live build
+  from the candidate's `src/`, which differs from the validated preview only in the manifest
+  link and the preview note; the `CLAUDE.md` pin paragraph updated). Rollback: revert f927264.
+  "pages build and deployment" for f927264: completed, success (run 42590681999,
+  2026-11-09T09:11:39Z). The live page was not opened from this session.
